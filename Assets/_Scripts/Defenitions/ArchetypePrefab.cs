@@ -15,7 +15,7 @@ public class ArchetypePrefab : MonoBehaviour
 
     public List<AttackType> attackQueue = new();
 
-    private int queueCapasity = 1;
+    private int queueCapasity = 2;
     private bool isAttacking;
 
 
@@ -73,6 +73,7 @@ public class ArchetypePrefab : MonoBehaviour
     public void AttackDone()
     {
         isAttacking = false;
+        attackQueue.Clear();
     }
 
     private void Attack(AttackType attackType)
