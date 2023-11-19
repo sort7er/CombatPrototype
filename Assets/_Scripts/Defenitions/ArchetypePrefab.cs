@@ -6,16 +6,18 @@ public class ArchetypePrefab : MonoBehaviour
     public Animator archetypeAnim { get; private set; }
 
 
-    private enum AttackType
+    public enum AttackType
     {
         light,
         heavy,
         unique
     }
 
-    private List<AttackType> attackQueue = new();
+    public List<AttackType> attackQueue = new();
 
     private int queueCapasity = 1;
+    private bool isAttacking;
+
 
     private void Awake()
     {
@@ -30,26 +32,36 @@ public class ArchetypePrefab : MonoBehaviour
     {
         CheckAttack(AttackType.heavy);
     }
-    
+
+    //Checking if there is a queue
     private void CheckAttack(AttackType attackType)
     {
-        if(attackQueue.Count > 0)
+        if (isAttacking)
         {
-            //Add to queue
+            //If is currently attacking, try and add this attack to queue
+            TryAddToQueue(attackType);
         }
         else
         {
+            //If not currently attacking
             Attack(attackType);
         }
     }
 
-    private void AddToQueue(AttackType attackType)
+    private void TryAddToQueue(AttackType attackType)
     {
-        //if(attackQueue.Count < queueCapasity)
+        // if there is capasity in the queue, add the new attack
+        if (attackQueue.Count < queueCapasity)
+        {
+            attackQueue.Add(attackType);
+        }
     }
 
-    public void CheckQueue()
+    //This is called from the animation, to see if it should chain into a new attack
+    public void AttackDoneAndCheckQueue()
     {
+        isAttacking = false;
+
         // Attack if queue is not empty
         if(attackQueue.Count > 0)
         {
@@ -57,9 +69,15 @@ public class ArchetypePrefab : MonoBehaviour
             attackQueue.RemoveAt(0);
         }
     }
+    //This is called from the animation, used at end of combo
+    public void AttackDone()
+    {
+        isAttacking = false;
+    }
 
     private void Attack(AttackType attackType)
     {
+        isAttacking = true;
         if(attackType == AttackType.light)
         {
             archetypeAnim.SetTrigger("Fire");
@@ -73,11 +91,4 @@ public class ArchetypePrefab : MonoBehaviour
             Debug.Log("Unique");
         }
     }
-
-    public void StopFire()
-    {
-        archetypeAnim.ResetTrigger("Fire");
-        archetypeAnim.ResetTrigger("HeavyFire");
-    }
-
 }
