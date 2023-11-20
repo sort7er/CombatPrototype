@@ -40,6 +40,7 @@ public class ArchetypePrefab : MonoBehaviour
         {
             //If is currently attacking, try and add this attack to queue
             TryAddToQueue(attackType);
+
         }
         else
         {
@@ -61,9 +62,8 @@ public class ArchetypePrefab : MonoBehaviour
     public void AttackDoneAndCheckQueue()
     {
         isAttacking = false;
-
         // Attack if queue is not empty
-        if(attackQueue.Count > 0)
+        if (attackQueue.Count > 0)
         {
             Attack(attackQueue[0]);
             attackQueue.RemoveAt(0);
