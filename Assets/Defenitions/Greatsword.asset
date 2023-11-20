@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7464ee5310a2d5c47a00f01e49c4a8a4, type: 3}
-  m_Name: Great sword
+  m_Name: Greatsword
   m_EditorClassIdentifier: 
   archetypeName: Great sword
   archetypePrefab: {fileID: -7139077835231697723, guid: afd52918b1021eb4daedfe6c909bba70,

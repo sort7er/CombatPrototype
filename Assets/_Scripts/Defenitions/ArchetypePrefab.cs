@@ -6,14 +6,14 @@ public class ArchetypePrefab : MonoBehaviour
     public Animator archetypeAnim { get; private set; }
 
 
-    public enum AttackType
+    private enum AttackType
     {
         light,
         heavy,
         unique
     }
 
-    public List<AttackType> attackQueue = new();
+    private List<AttackType> attackQueue = new();
 
     private int queueCapasity = 2;
     private bool isAttacking;
