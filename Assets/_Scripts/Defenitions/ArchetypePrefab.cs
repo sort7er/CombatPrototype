@@ -33,6 +33,15 @@ public class ArchetypePrefab : MonoBehaviour
         CheckAttack(AttackType.heavy);
     }
 
+    //Temporary fuction until weapon switching is proparly made
+    public void Abort()
+    {
+        archetypeAnim.ResetTrigger("Fire");
+        archetypeAnim.ResetTrigger("HeavyFire");
+        attackQueue.Clear();
+        isAttacking = false;
+    }
+
     //Checking if there is a queue
     private void CheckAttack(AttackType attackType)
     {

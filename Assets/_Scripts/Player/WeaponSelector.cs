@@ -89,6 +89,7 @@ public class WeaponSelector : MonoBehaviour
     public void HideWeapon()
     {
         isHolstered = true;
+        archetypePrefabs[currentWeapon].Abort();
         archetypePrefabs[currentWeapon].gameObject.SetActive(false);
         MainUI.instance.SetWeaponText("");
     }
