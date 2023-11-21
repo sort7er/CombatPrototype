@@ -267,6 +267,8 @@ GameObject:
   - component: {fileID: 5156418192644007235}
   - component: {fileID: 8027015571285881487}
   - component: {fileID: 4213443550365733023}
+  - component: {fileID: 2336968167109671564}
+  - component: {fileID: 7184959094642092623}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -400,7 +402,19 @@ MonoBehaviour:
     m_ActionId: 45b8e3c1-ac41-4b5d-a5dc-fca7cbd6e566
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2336968167109671564}
+        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 158eaacb-8468-4d92-aa9c-59b4d1d585dc
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -511,6 +525,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b2b9300f-b6d4-47dd-a2e0-5a537cef894a
     m_ActionName: Player/Holster[/Keyboard/h]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2336968167109671564}
+        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+        m_MethodName: HeavyFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 13b7caf7-aca5-4325-bf79-f45994add18c
+    m_ActionName: Player/HeavyFire[/Keyboard/shift,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -565,9 +595,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 549351530727516426}
   archetypes:
-  - {fileID: 11400000, guid: daf082c0ed77a264eaba1e624e6ade15, type: 2}
-  - {fileID: 11400000, guid: 739d7325963392e4eaa3939f40d32b99, type: 2}
-  - {fileID: 11400000, guid: 80a957e63483af04b9448e98becab827, type: 2}
-  - {fileID: 11400000, guid: 43b8c355625220942a96142b2f9df09e, type: 2}
-  - {fileID: 11400000, guid: 3ff76f57711b15847affe55f001e1caf, type: 2}
-  - {fileID: 11400000, guid: a94456fbe6aaa114b8ba091f75f75a86, type: 2}
+  - {fileID: 11400000, guid: 7171a49dda3a0694eb067ccf79ec4859, type: 2}
+  - {fileID: 11400000, guid: 62df7628ad5e18747a1b4fc1b8bf164b, type: 2}
+  - {fileID: 11400000, guid: 796977e6b435dd84d9444d682868e322, type: 2}
+  - {fileID: 11400000, guid: 96c16c1f9dbd3a14e9491f2e94acb6be, type: 2}
+  - {fileID: 11400000, guid: eb2753e68ff12eb4eba373a2f27fbdb6, type: 2}
+  - {fileID: 11400000, guid: dbdada92ac365f749adbe10c5434b492, type: 2}
+--- !u!114 &2336968167109671564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272457161204308622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96860d533c0f8e04a816de7e61e67d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7184959094642092623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272457161204308622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770050bd33879e146b86a7d3dadeb932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
