@@ -24,18 +24,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
+                    "name": "HeavyFire",
                     "type": "Button",
-                    "id": "158eaacb-8468-4d92-aa9c-59b4d1d585dc",
+                    "id": "13b7caf7-aca5-4325-bf79-f45994add18c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HeavyFire",
+                    "name": "Fire",
                     "type": "Button",
-                    "id": "13b7caf7-aca5-4325-bf79-f45994add18c",
+                    "id": "158eaacb-8468-4d92-aa9c-59b4d1d585dc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -266,17 +266,6 @@
                 },
                 {
                     "name": "",
-                    "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "886e731e-7071-4ae4-95c0-e61739dad6fd",
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
@@ -304,6 +293,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd36c556-d992-459d-9d44-cfe7c328d072",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -364,6 +364,39 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "One Modifier",
+                    "id": "e8b67840-44a7-44e6-a630-66fb65f1ed68",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HeavyFire",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "bfe76245-8657-4c05-9538-639ab5517d97",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "HeavyFire",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Binding",
+                    "id": "dc9e9a23-c1ca-4ccc-8f13-23fc07989185",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "HeavyFire",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "11995722-be48-4aff-a5df-46cc8f719ef2",
                     "path": "<Gamepad>/rightTrigger",
@@ -403,17 +436,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "HeavyFire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "70396362-e90c-4d04-9ef0-397a300cc158",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
                     "action": "HeavyFire",
                     "isComposite": false,
                     "isPartOfComposite": false

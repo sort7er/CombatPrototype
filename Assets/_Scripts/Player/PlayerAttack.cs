@@ -1,28 +1,38 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private WeaponSelector weaponSelector;
+    private InputReader inputReader;
+    private WeaponSelector weaponSelector;
 
-    public void Fire(InputAction.CallbackContext ctx)
+    private void Awake()
     {
-        if (ctx.performed)
+        inputReader = GetComponent<InputReader>();
+        weaponSelector = GetComponent<WeaponSelector>();
+
+        inputReader.OnFire += Fire;
+        inputReader.OnHeavyFire += HeavyFire;
+    }
+
+    private void OnDestroy()
+    {
+        inputReader.OnFire -= Fire;
+        inputReader.OnHeavyFire -= HeavyFire;
+    }
+
+    private void Fire()
+    {
+        if (!weaponSelector.IsHolstered())
         {
-            if (!weaponSelector.IsHolstered())
-            {
-                weaponSelector.CurrentArchetype().Fire();
-            }
+            weaponSelector.CurrentArchetype().Fire();
         }
     }
-    public void HeavyFire(InputAction.CallbackContext ctx)
+    private void HeavyFire()
     {
-        if (ctx.performed)
+        if (!weaponSelector.IsHolstered())
         {
-            if (!weaponSelector.IsHolstered())
-            {
-                weaponSelector.CurrentArchetype().HeavyFire();
-            }
+            weaponSelector.CurrentArchetype().HeavyFire();
         }
     }
+
 }
