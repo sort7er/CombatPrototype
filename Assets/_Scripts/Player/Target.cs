@@ -1,18 +1,13 @@
-using UnityEngine;
-
 public class Target
 {
-    public Transform targetTransform;
+    public Enemy enemy;
     public float dotProduct;
     public float distance;
 
-    public bool insideTarget;
-
-    public Target(Transform targetTransform, float dotProduct, float distance, ref bool insideTarget)
+    public Target(Enemy enemy, float dotProduct, float distance)
     {
-        this.targetTransform = targetTransform;
+        this.enemy = enemy;
         this.dotProduct = dotProduct;
         this.distance = distance;
-        this.insideTarget = insideTarget;
     }
 }

@@ -7,8 +7,9 @@ public class Enemy : MonoBehaviour
     // This script is just to test the target assistance
 
     [Header("Colors")]
-    [SerializeField] private Color defaultColor;
     [SerializeField] private Color targetColor;
+    [SerializeField] private Color secondTargetColor;
+    [SerializeField] private Color defaultColor;
 
     [Header("References")]
     [SerializeField] private MeshRenderer meshRenderer;
@@ -25,6 +26,10 @@ public class Enemy : MonoBehaviour
     public void SetAsTarget()
     {
         enemyMaterial.color = targetColor;
+    }
+    public void SetAsSecondTarget()
+    {
+        enemyMaterial.color = secondTargetColor;
     }
     public void SetDefault()
     {

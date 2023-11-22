@@ -622,8 +622,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31efbb15fb46824aa1f3aaef00fe28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.8117647, g: 0.05882353, b: 0, a: 1}
-  targetColor: {r: 0.8117647, g: 0.5686275, b: 0, a: 1}
+  targetColor: {r: 0.13573885, g: 1, b: 0, a: 1}
+  secondTargetColor: {r: 1, g: 0.9499881, b: 0, a: 1}
+  defaultColor: {r: 1, g: 0.070652165, b: 0, a: 1}
   meshRenderer: {fileID: 687032903}
 --- !u!54 &975537545
 Rigidbody:
@@ -805,8 +806,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31efbb15fb46824aa1f3aaef00fe28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.8117647, g: 0.05882353, b: 0, a: 1}
-  targetColor: {r: 0.8117647, g: 0.5686275, b: 0, a: 1}
+  targetColor: {r: 0.13573885, g: 1, b: 0, a: 1}
+  secondTargetColor: {r: 1, g: 0.9499881, b: 0, a: 1}
+  defaultColor: {r: 1, g: 0.070652165, b: 0, a: 1}
   meshRenderer: {fileID: 341890202}
 --- !u!54 &1165263795
 Rigidbody:
@@ -905,8 +907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31efbb15fb46824aa1f3aaef00fe28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.8117647, g: 0.05882353, b: 0, a: 1}
-  targetColor: {r: 0.8117647, g: 0.5686275, b: 0, a: 1}
+  targetColor: {r: 0.13573885, g: 1, b: 0, a: 1}
+  secondTargetColor: {r: 1, g: 0.9499881, b: 0, a: 1}
+  defaultColor: {r: 1, g: 0.070652165, b: 0, a: 1}
   meshRenderer: {fileID: 1538124873}
 --- !u!54 &1175961773
 Rigidbody:
@@ -995,10 +998,22 @@ MonoBehaviour:
   overlapRange: 10
   maxColliders: 10
   acceptedDotProduct: 0.75
-  idealDotProduct: 0.9
+  idealDotProduct: 0.83
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1253931706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2336968167109671564, guid: 4e46e8e9580cc62499609d3a69251b49,
+    type: 3}
+  m_PrefabInstance: {fileID: 6722069367170094066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253931694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96860d533c0f8e04a816de7e61e67d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1343870315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,8 +1045,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31efbb15fb46824aa1f3aaef00fe28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.8117647, g: 0.05882353, b: 0, a: 1}
-  targetColor: {r: 0.8117647, g: 0.5686275, b: 0, a: 1}
+  targetColor: {r: 0.13573885, g: 1, b: 0, a: 1}
+  secondTargetColor: {r: 1, g: 0.9499881, b: 0, a: 1}
+  defaultColor: {r: 1, g: 0.070652165, b: 0, a: 1}
   meshRenderer: {fileID: 1692581005}
 --- !u!54 &1343870317
 Rigidbody:
@@ -1605,8 +1621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31efbb15fb46824aa1f3aaef00fe28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.8117647, g: 0.05882353, b: 0, a: 1}
-  targetColor: {r: 0.8117647, g: 0.5686275, b: 0, a: 1}
+  targetColor: {r: 0.13573885, g: 1, b: 0, a: 1}
+  secondTargetColor: {r: 1, g: 0.9499881, b: 0, a: 1}
+  defaultColor: {r: 1, g: 0.070652165, b: 0, a: 1}
   meshRenderer: {fileID: 1089388890}
 --- !u!54 &1920795692
 Rigidbody:
@@ -1899,6 +1916,56 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionId
+      value: a21cdf56-c43e-4e90-96f4-b3535dd7bd09
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionName
+      value: Player/UniqueFire[/Mouse/forwardButton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1253931706}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UniqueFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputReader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2481343924331421528, guid: 4e46e8e9580cc62499609d3a69251b49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2022,8 +2089,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31efbb15fb46824aa1f3aaef00fe28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.8117647, g: 0.05882353, b: 0, a: 1}
-  targetColor: {r: 0.8117647, g: 0.5686275, b: 0, a: 1}
+  targetColor: {r: 0.13573885, g: 1, b: 0, a: 1}
+  secondTargetColor: {r: 1, g: 0.9499881, b: 0, a: 1}
+  defaultColor: {r: 1, g: 0.070652165, b: 0, a: 1}
   meshRenderer: {fileID: 1784141669648900734}
 --- !u!1 &8120179541120931218
 GameObject:

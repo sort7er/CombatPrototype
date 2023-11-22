@@ -10,150 +10,119 @@ public class TargetAssistance : MonoBehaviour
     [Range(-1, 1)]
     [SerializeField] private float acceptedDotProduct = 0.75f;
     [Range(-1, 1)]
-    [SerializeField] private float idealDotProduct = 0.9f;
+    [SerializeField] private float idealDotProduct = 0.85f;
 
 
     [Header("References")]
     [SerializeField] private LayerMask enemyLayer;
 
-    private Transform target;
-    private Enemy targetEnemy;
     private Collider[] hitColliders;
-    private InputReader inputReader; //Temp
 
-    private List<Target> targetsToCheck = new();
-
-    private float highest;
-    private bool insideTargetDot;
+    private List<Target> idealTargets = new();
+    private List<Target> otherTargets = new();
+    private List<Enemy> finalTargets = new();
 
     private void Awake()
     {
-        inputReader = GetComponent<InputReader>(); //Temp 
-        inputReader.OnFire += Temp; //Temp
-
-
         hitColliders = new Collider[maxColliders];
     }
 
-    //Temp
-    private void OnDestroy()
+    public List<Enemy> CheckForEnemies(float range = 10f, float idealDotProduct = 0.85f, float acceptedDotProduct = 0.75f)
     {
-        inputReader.OnFire -= Temp;
+        CleanUpPreviousData();
+
+        //Find the targets within the area and put them in the correct list
+        AddTargetsToLists(range, idealDotProduct, acceptedDotProduct);
+
+        //Sort lists based on the distance and dotproduct
+        idealTargets.Sort(SortByDistance);
+        otherTargets.Sort(SortByDotProduct);
+
+        //Want the highest dot products first
+        otherTargets.Reverse();
+
+        //Add the elements to the final list so they are structured in the right order
+        AddToFinalList();
+
+        return finalTargets;
     }
 
-    //Temp
-    private void Temp()
+    private void CleanUpPreviousData()
     {
-        CheckForEnemies(overlapRange, acceptedDotProduct);
+        idealTargets.Clear();
+        otherTargets.Clear();
+        finalTargets.Clear();
     }
 
-    public void CheckForEnemies(float range, float dotProduct)
+    private void AddTargetsToLists(float range, float idealDotProduct, float acceptedDotProduct)
     {
-        insideTargetDot = false;
         int numColliders;
         numColliders = Physics.OverlapSphereNonAlloc(transform.position, range, hitColliders, enemyLayer);
 
-        for (int i = 0; i < numColliders; i++)
-        {
-            // Find distance and dotproduct of everything inside the layer
-            Target newTarget = CreateTarget(hitColliders[i].transform);
-
-            if (newTarget.dotProduct >= acceptedDotProduct)
-            {
-                targetsToCheck.Add(newTarget);
-            }
-
-
-            //Check if targets are inside the accepted dotproduct
-            
-
-        }
 
         for (int i = 0; i < numColliders; i++)
         {
-            // Find distance and dotproduct of everything inside the layer
             Target newTarget = CreateTarget(hitColliders[i].transform);
 
-            if (newTarget.dotProduct >= acceptedDotProduct)
+            if(newTarget == null)
             {
-                targetsToCheck.Add(newTarget);
+                break;
             }
 
 
-            //Check if targets are inside the accepted dotproduct
-
-
-        }
-
-
-
-        if (target != null)
-        {
-            if (target.TryGetComponent<Enemy>(out Enemy enemy))
+            if (newTarget.dotProduct >= idealDotProduct)
             {
-                targetEnemy = enemy;
-                targetEnemy.SetAsTarget();
+                idealTargets.Add(newTarget);
             }
+            else if (newTarget.dotProduct >= acceptedDotProduct)
+            {
+                otherTargets.Add(newTarget);
+            }
+
         }
-
-
-
-        //if (enemiesToCheck.Count > 0)
-        //{
-        //    // Afterwards return the closest of the remaining enemies
-
-        //    //FindClosestEnemy();
-        //    targetEnemy.SetAsTarget();
-        //}
     }
+
 
     private Target CreateTarget(Transform colliderTransform)
     {
-        Vector3 dirToTarget = Vector3.Normalize(colliderTransform.position - transform.position);
-        float dotProduct = Vector3.Dot(transform.forward, dirToTarget);
-
-        bool insideTarget = false;
-
-        if(dotProduct >= idealDotProduct)
+        if(colliderTransform.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            insideTarget = true;
+            Vector3 dirToTarget = Vector3.Normalize(colliderTransform.position - transform.position);
+            float dotProduct = Vector3.Dot(transform.forward, dirToTarget);
+            float distance = Vector3.Distance(transform.position, colliderTransform.position);
+
+
+            return new Target(enemy, dotProduct, distance);
+        }
+        else
+        {
+            return null;
         }
 
-        float distance = Vector3.Distance(transform.position, colliderTransform.position);
-
-        return new Target(colliderTransform, dotProduct, distance, ref insideTarget);
+        
     }
 
-    private void InsideDotProduct(Transform targetTrans, float dotProduct)
+    private void AddToFinalList()
     {
-        Vector3 dirToTarget = Vector3.Normalize(targetTrans.position - transform.position);
-        float dot = Vector3.Dot(transform.forward, dirToTarget);
 
-        if (dot >= dotProduct)
+        for (int i = 0; i < idealTargets.Count; i++)
         {
-            if(dot > highest)
-            {
-                highest = dot;
-                target = targetTrans; 
-            }
+            finalTargets.Add(idealTargets[i].enemy);
+        }
+        for (int i = 0; i < otherTargets.Count; i++)
+        {
+            finalTargets.Add(otherTargets[i].enemy);
         }
     }
 
-    //private void FindClosestEnemy()
-    //{
-    //    targetEnemy = enemiesToCheck[0];
 
-    //    float closest = 20;
-    //    for (int i = 0; i < enemiesToCheck.Count; i++)
-    //    {
-    //        float distance = Vector3.Distance(transform.position, enemiesToCheck[i].transform.position);
+    private int SortByDistance(Target t1, Target t2)
+    {
+        return t1.distance.CompareTo(t2.distance);
+    }
 
-    //        if (distance < closest)
-    //        {
-    //            targetEnemy = enemiesToCheck[i];
-    //            closest = distance;
-    //        }
-    //    }
-    //}
-
+    private int SortByDotProduct(Target t1, Target t2)
+    {
+        return t1.dotProduct.CompareTo(t2.dotProduct);
+    }
 }

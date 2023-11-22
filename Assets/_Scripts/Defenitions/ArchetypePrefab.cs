@@ -32,6 +32,10 @@ public class ArchetypePrefab : MonoBehaviour
     {
         CheckAttack(AttackType.heavy);
     }
+    public void UniqueFire()
+    {
+        CheckAttack(AttackType.unique);
+    }
 
     //Temporary fuction until weapon switching is proparly made
     public void Abort()
@@ -99,6 +103,7 @@ public class ArchetypePrefab : MonoBehaviour
         else if (attackType == AttackType.unique)
         {
             Debug.Log("Unique");
+            isAttacking = false;
         }
     }
 }

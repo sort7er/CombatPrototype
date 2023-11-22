@@ -7,6 +7,7 @@ public class InputReader : MonoBehaviour
 
     public event Action OnFire;
     public event Action OnHeavyFire;
+    public event Action OnUniqueFire;
 
 
     private bool isHeavy;
@@ -24,6 +25,13 @@ public class InputReader : MonoBehaviour
         {
             OnHeavyFire?.Invoke();
             isHeavy = true;
+        }
+    }
+    public void UniqueFire(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OnUniqueFire?.Invoke();
         }
     }
 
