@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public List<Enemy> enemies = new();
 
     private InputReader inputReader;
     private WeaponSelector weaponSelector;
     private TargetAssistance targetAssistance;
+    
+    private List<Enemy> enemies = new();
 
     private void Awake()
     {

@@ -10,8 +10,11 @@ public class CameraController : MonoBehaviour
     [Header("References")]
     public Transform playerCam;
 
+    public bool canRotate { get; private set; }
+    
     private Vector2 input;
     private float xRotation = 0f;
+
 
     private void Start()
     {
@@ -33,7 +36,22 @@ public class CameraController : MonoBehaviour
 
         playerCam.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-        transform.Rotate(Vector3.up * mouseX);
+
+
+        if(canRotate)
+        {
+            transform.Rotate(Vector3.up * mouseX);
+        }
     }
+
+    public void DisableRotation()
+    {
+        canRotate = false;
+    }
+    public void EnableRotation()
+    {
+        canRotate = true;
+    }
+
 
 }

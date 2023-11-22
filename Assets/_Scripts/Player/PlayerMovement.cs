@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public TextMeshProUGUI speed;
 
+    public bool canMove { get; private set; }
+
     private Rigidbody rb;
     private Vector2 input;
     private Vector3 movementDirection;
@@ -62,7 +64,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayer();
+        if (canMove)
+        {
+            MovePlayer();
+        }
     }
 
     private void MovePlayer()
@@ -101,6 +106,15 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
+    public void EnableMovement()
+    {
+        canMove = true;
     }
 
 }
