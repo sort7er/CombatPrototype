@@ -4,9 +4,12 @@ using UnityEngine;
 public class PlayerDash : MonoBehaviour
 {
 
-    [Header("Values")]
+    [Header("Rotation")]
     private float rotationDuration = 0.3f;
+
+    [Header("Dash")]
     private float dashDuration = 0.3f;
+    private float jumpPower = 2;
 
 
     private Rigidbody rb;
@@ -41,7 +44,7 @@ public class PlayerDash : MonoBehaviour
     public void StartDash()
     {
         rb.velocity = Vector3.zero;
-        rb.DOMove(dashPos, dashDuration).OnComplete(EndDash);
+        rb.DOJump(dashPos, jumpPower, 1, dashDuration).OnComplete(EndDash);
     }
     public void EndDash()
     {
