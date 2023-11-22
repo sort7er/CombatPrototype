@@ -8,7 +8,7 @@ public class PlayerDash : MonoBehaviour
     private float rotationDuration = 0.3f;
 
     [Header("Dash")]
-    private float dashDuration = 0.3f;
+    private float dashDuration = 0.5f;
     private float jumpPower = 2;
 
 
@@ -19,6 +19,7 @@ public class PlayerDash : MonoBehaviour
     private Vector3 directionToTarget;
     private Vector3 dashPos;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,23 +27,38 @@ public class PlayerDash : MonoBehaviour
         cameraController = GetComponent<CameraController>();
     }
 
-    public void DashForward(Transform target)
+    public void DashForward(Vector3 targetPos)
     {
         playerMovement.DisableMovement();
         cameraController.DisableRotation();
-        
 
-        Vector3 compensatedLookAt = new Vector3(target.position.x, transform.position.y, target.position.z);
+        Vector3 compensatedLookAt = new Vector3(targetPos.x, transform.position.y, targetPos.z);
+        transform.DOLookAt(compensatedLookAt, rotationDuration);
 
-        transform.DOLookAt(compensatedLookAt, rotationDuration).OnComplete(StartDash);
+        directionToTarget = targetPos - transform.position;
 
-        directionToTarget = target.position - transform.position;
-
-        dashPos = transform.position + directionToTarget - directionToTarget.normalized;
+        Invoke(nameof(StartDash), rotationDuration);
+    }
+    public void DashForward()
+    {
+        playerMovement.DisableMovement();
+        Invoke(nameof(StartDashNoTarget), rotationDuration);
     }
 
-    public void StartDash()
+    private void StartDashNoTarget()
     {
+        cameraController.DisableRotation();
+
+        Vector3 targetPos = transform.position + transform.forward * 10;
+
+        directionToTarget = targetPos - transform.position;
+        StartDash();
+    }
+
+    private void StartDash()
+    {
+        dashPos = transform.position + directionToTarget - directionToTarget.normalized;
+
         rb.velocity = Vector3.zero;
         rb.DOJump(dashPos, jumpPower, 1, dashDuration).OnComplete(EndDash);
     }

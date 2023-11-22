@@ -47,24 +47,27 @@ public class PlayerAttack : MonoBehaviour
 
     private void UniqueFire()
     {
+        if (!weaponSelector.CurrentArchetype().isAttacking)
+        {
+            FindEnemies();
+            if (enemies.Count > 0)
+            {
+                playerDash.DashForward(enemies[0].transform.position);
+            }
+            else
+            {
+                playerDash.DashForward();
+            }
 
-        TargetAssistanceTest();
-        if (enemies.Count > 0)
-        {
-            playerDash.DashForward(enemies[0].transform);
-        }
-        else
-        {
-            Debug.Log("No enemies to dash towards");
+            if (!weaponSelector.IsHolstered())
+            {
+                weaponSelector.CurrentArchetype().UniqueFire();
+            }
         }
 
-        if (!weaponSelector.IsHolstered())
-        {
-            weaponSelector.CurrentArchetype().UniqueFire();
-        }
     }
 
-    private void TargetAssistanceTest()
+    private void FindEnemies()
     {
         for (int i = 0; i < enemies.Count; i++)
         {

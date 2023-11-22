@@ -16,7 +16,7 @@ public class ArchetypePrefab : MonoBehaviour
     private List<AttackType> attackQueue = new();
 
     private int queueCapasity = 2;
-    private bool isAttacking;
+    public bool isAttacking { get; private set; }
 
 
     private void Awake()
@@ -40,10 +40,14 @@ public class ArchetypePrefab : MonoBehaviour
     //Temporary fuction until weapon switching is proparly made
     public void Abort()
     {
-        archetypeAnim.ResetTrigger("Fire");
-        archetypeAnim.ResetTrigger("HeavyFire");
+        ResetTriggers();
         attackQueue.Clear();
         isAttacking = false;
+    }
+    private void ResetTriggers()
+    {
+        archetypeAnim.ResetTrigger("Fire");
+        archetypeAnim.ResetTrigger("HeavyFire");
     }
 
     //Checking if there is a queue
@@ -51,8 +55,11 @@ public class ArchetypePrefab : MonoBehaviour
     {
         if (isAttacking)
         {
-            //If is currently attacking, try and add this attack to queue
-            TryAddToQueue(attackType);
+            //If is currently attacking, try and add this attack to queue. Cannot queue unique attack
+            if(attackType != AttackType.unique)
+            {
+                TryAddToQueue(attackType);
+            }
 
         }
         else
@@ -102,8 +109,8 @@ public class ArchetypePrefab : MonoBehaviour
         }
         else if (attackType == AttackType.unique)
         {
-            Debug.Log("Unique");
-            isAttacking = false;
+            ResetTriggers();
+            archetypeAnim.Play("UniqueFire");
         }
     }
 }
