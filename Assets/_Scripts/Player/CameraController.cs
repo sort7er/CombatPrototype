@@ -15,11 +15,12 @@ public class CameraController : MonoBehaviour
     private Vector2 input;
     private float xRotation = 0f;
 
-
-    private void Start()
+    void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        canRotate = true;
     }
+
 
     public void OnLook(InputAction.CallbackContext context)
     {

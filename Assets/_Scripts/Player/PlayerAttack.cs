@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     private InputReader inputReader;
     private WeaponSelector weaponSelector;
     private TargetAssistance targetAssistance;
+    private PlayerDash playerDash;
     
     private List<Enemy> enemies = new();
 
@@ -15,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
         inputReader = GetComponent<InputReader>();
         weaponSelector = GetComponent<WeaponSelector>();
         targetAssistance = GetComponent<TargetAssistance>();
+        playerDash = GetComponent<PlayerDash>();
 
         inputReader.OnFire += Fire;
         inputReader.OnHeavyFire += HeavyFire;
@@ -47,7 +49,14 @@ public class PlayerAttack : MonoBehaviour
     {
 
         TargetAssistanceTest();
-
+        if (enemies.Count > 0)
+        {
+            playerDash.DashForward(enemies[0].transform);
+        }
+        else
+        {
+            Debug.Log("No enemies to dash towards");
+        }
 
         if (!weaponSelector.IsHolstered())
         {

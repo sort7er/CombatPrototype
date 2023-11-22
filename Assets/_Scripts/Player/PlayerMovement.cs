@@ -21,9 +21,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 input;
     private Vector3 movementDirection;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        canMove = true;
     }
 
 
