@@ -18,6 +18,7 @@ public class PlayerDash : MonoBehaviour
 
     private Vector3 directionToTarget;
     private Vector3 dashPos;
+    private Vector3 target;
 
 
     private void Awake()
@@ -29,14 +30,13 @@ public class PlayerDash : MonoBehaviour
 
     public void DashForward(Vector3 targetPos)
     {
+        target = targetPos;
+
         playerMovement.DisableMovement();
         cameraController.DisableRotation();
 
-        Vector3 compensatedLookAt = new Vector3(targetPos.x, transform.position.y, targetPos.z);
+        Vector3 compensatedLookAt = new Vector3(target.x, transform.position.y, target.z);
         transform.DOLookAt(compensatedLookAt, rotationDuration);
-
-        directionToTarget = targetPos - transform.position;
-
         Invoke(nameof(StartDash), rotationDuration);
     }
     public void DashForward()
@@ -49,15 +49,18 @@ public class PlayerDash : MonoBehaviour
     {
         cameraController.DisableRotation();
 
-        Vector3 targetPos = transform.position + transform.forward * 10;
+        target = transform.position + transform.forward * 10;
 
-        directionToTarget = targetPos - transform.position;
         StartDash();
     }
 
     private void StartDash()
     {
+        directionToTarget = target - transform.position;
         dashPos = transform.position + directionToTarget - directionToTarget.normalized;
+
+        Vector3 compensatedLookAt = new Vector3(dashPos.x, transform.position.y, dashPos.z);
+        transform.DOLookAt(compensatedLookAt, dashDuration * 0.5f);
 
         rb.velocity = Vector3.zero;
         rb.DOJump(dashPos, jumpPower, 1, dashDuration).OnComplete(EndDash);
