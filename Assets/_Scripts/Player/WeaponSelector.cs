@@ -1,104 +1,108 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class WeaponSelector : MonoBehaviour
 {
-    public event Action<ArchetypePrefab> OnNewArchetype;
+    public event Action<Archetype> OnNewArchetype;
 
     [Header("References")]
     [SerializeField] private Transform weaponContainer;
     [SerializeField] private Archetype[] archetypes;
 
+    private InputReader inputReader;
+
     private int currentWeapon;
-    private ArchetypePrefab[] archetypePrefabs;
+    private Archetype[] archetypePrefabs;
+    private Archetype currentArchetype;
 
     private bool isHolstered;
 
     private void Awake()
     {
-        archetypePrefabs = new ArchetypePrefab[archetypes.Length];
+        inputReader = GetComponent<InputReader>();
+
+        inputReader.OnNextWeapon += NextWeapon;
+        inputReader.OnPreviousWeapon += PreviousWeapon;
+        inputReader.OnHolster += Holster;
+
+        archetypePrefabs = new Archetype[archetypes.Length];
+
         for (int i = 0; i < archetypes.Length; i++)
         {
-            archetypePrefabs[i] = Instantiate(archetypes[i].archetypePrefab, weaponContainer);
+            archetypePrefabs[i] = Instantiate(archetypes[i], weaponContainer);
             archetypePrefabs[i].gameObject.SetActive(false);
             isHolstered= true;
         }
+        currentArchetype = archetypePrefabs[0];
     }
-    public void Holster(InputAction.CallbackContext ctx)
+    private void OnDestroy()
     {
-        if (ctx.performed)
+        inputReader.OnNextWeapon -= NextWeapon;
+        inputReader.OnPreviousWeapon -= PreviousWeapon;
+        inputReader.OnHolster -= Holster;
+    }
+    public void Holster()
+    {
+        if (currentArchetype.gameObject.activeSelf)
         {
-            if (archetypePrefabs[currentWeapon].gameObject.activeSelf)
-            {
-                HideWeapon();
-            }
-            else if (!archetypePrefabs[currentWeapon].gameObject.activeSelf)
-            {
-                ShowWeapon();
-            }
+            HideWeapon();
         }
-    }
-    public void NextWeapon(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed)
+        else if (!currentArchetype.gameObject.activeSelf)
         {
-            if (archetypePrefabs[currentWeapon].gameObject.activeSelf)
-            {
-                HideWeapon();
-
-                if (currentWeapon < archetypePrefabs.Length - 1)
-                {
-                    currentWeapon++;
-                }
-                else
-                {
-                    currentWeapon = 0;
-                }
-            }
-
             ShowWeapon();
         }
     }
-    public void PreviousWeapon(InputAction.CallbackContext ctx)
+    private void NextWeapon()
     {
-        if (ctx.performed)
+        if (currentArchetype.gameObject.activeSelf)
         {
-            if (archetypePrefabs[currentWeapon].gameObject.activeSelf)
+            HideWeapon();
+
+            if (currentWeapon < archetypePrefabs.Length - 1)
             {
-                HideWeapon();
-
-                if (currentWeapon > 0)
-                {
-                    currentWeapon--;
-                }
-                else
-                {
-                    currentWeapon = archetypePrefabs.Length - 1;
-                }
+                currentWeapon++;
             }
-
-            ShowWeapon();
+            else
+            {
+                currentWeapon = 0;
+            }
         }
+
+        ShowWeapon();
+    }
+    private void PreviousWeapon()
+    {
+        if (currentArchetype.gameObject.activeSelf)
+        {
+            HideWeapon();
+
+            if (currentWeapon > 0)
+            {
+                currentWeapon--;
+            }
+            else
+            {
+                currentWeapon = archetypePrefabs.Length - 1;
+            }
+        }
+
+        ShowWeapon();
     }
 
     public void ShowWeapon()
     {
         isHolstered= false;
-        archetypePrefabs[currentWeapon].gameObject.SetActive(true);
-        MainUI.instance.SetWeaponText(archetypes[currentWeapon].archetypeName);
-        OnNewArchetype?.Invoke(archetypePrefabs[currentWeapon]);
+        currentArchetype = archetypePrefabs[currentWeapon];
+        currentArchetype.gameObject.SetActive(true);
+        MainUI.instance.SetWeaponText(currentArchetype.archetypeName);
+        OnNewArchetype?.Invoke(currentArchetype);
     }
     public void HideWeapon()
     {
         isHolstered = true;
-        archetypePrefabs[currentWeapon].Abort();
-        archetypePrefabs[currentWeapon].gameObject.SetActive(false);
+        currentArchetype.archetypeAnimator.Abort();
+        currentArchetype.gameObject.SetActive(false);
         MainUI.instance.SetWeaponText("");
-    }
-    public ArchetypePrefab CurrentArchetype()
-    {
-        return archetypePrefabs[currentWeapon];
     }
     public bool IsHolstered()
     {

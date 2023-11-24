@@ -7,10 +7,11 @@ public class PlayerAttack : MonoBehaviour
     private WeaponSelector weaponSelector;
     private TargetAssistance targetAssistance;
     private PlayerDash playerDash;
-    
+    private UniqueAbility uniqueAbility;
+
     private List<Enemy> enemies = new();
 
-    private ArchetypePrefab currentArchetype;
+    private Archetype currentArchetype;
 
     private void Awake()
     {
@@ -33,29 +34,30 @@ public class PlayerAttack : MonoBehaviour
         inputReader.OnUniqueFire -= UniqueFire;
         weaponSelector.OnNewArchetype -= NewArchetype;
     }
-    private void NewArchetype(ArchetypePrefab newArchetype)
+    private void NewArchetype(Archetype newArchetype)
     {
         currentArchetype = newArchetype;
+        uniqueAbility = newArchetype.uniqueAbility;
     }
 
     private void Fire()
     {
         if (!weaponSelector.IsHolstered())
         {
-            currentArchetype.Fire();
+            currentArchetype.archetypeAnimator.Fire();
         }
     }
     private void HeavyFire()
     {
         if (!weaponSelector.IsHolstered())
         {
-            currentArchetype.HeavyFire();
+            currentArchetype.archetypeAnimator.HeavyFire();
         }
     }
 
     private void UniqueFire()
     {
-        if (!currentArchetype.isAttacking && !weaponSelector.IsHolstered())
+        if (!currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered())
         {
             enemies = targetAssistance.CheckForEnemies();
 
@@ -68,8 +70,8 @@ public class PlayerAttack : MonoBehaviour
                 playerDash.DashForward();
             }
 
-            currentArchetype.UniqueFire();
-            //currentArchetype.uniqueAbility.ExecuteAbility();
+            currentArchetype.archetypeAnimator.UniqueFire();
+            uniqueAbility.ExecuteAbility(this);
 
         }
 

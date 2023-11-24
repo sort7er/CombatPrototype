@@ -8,6 +8,9 @@ public class InputReader : MonoBehaviour
     public event Action OnFire;
     public event Action OnHeavyFire;
     public event Action OnUniqueFire;
+    public event Action OnNextWeapon;
+    public event Action OnPreviousWeapon;
+    public event Action OnHolster;
 
 
     private bool isHeavy;
@@ -46,5 +49,27 @@ public class InputReader : MonoBehaviour
             isHeavy= false;
         }
     }
+    public void NextWeapon(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OnNextWeapon?.Invoke();
+        }
+    }
+    public void PreviousWeapon(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OnPreviousWeapon?.Invoke();
+        }
+    }
+    public void Holster(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OnHolster?.Invoke();
+        }
+    }
+
 
 }

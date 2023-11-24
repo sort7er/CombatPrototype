@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 702135583832380966}
   - component: {fileID: 4400833112380348657}
   - component: {fileID: -2607780637761456646}
+  - component: {fileID: 2082084165264853290}
   m_Layer: 10
   m_Name: Katana
   m_TagString: Untagged
@@ -382,3 +383,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f73ca5da6569d4c9cb0d29fd8f9bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2082084165264853290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7434022121973901870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7464ee5310a2d5c47a00f01e49c4a8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  archetypeName: Katana
+  archetypeAnimator: {fileID: -2607780637761456646}
+  archetype: 3

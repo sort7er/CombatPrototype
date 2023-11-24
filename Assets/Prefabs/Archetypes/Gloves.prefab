@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 4868489171338191512}
   - component: {fileID: 8671870193130985381}
   - component: {fileID: -652187064001779090}
+  - component: {fileID: -6986869437882207479}
   m_Layer: 10
   m_Name: Gloves
   m_TagString: Untagged
@@ -268,6 +269,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f73ca5da6569d4c9cb0d29fd8f9bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6986869437882207479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164020039961093946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7464ee5310a2d5c47a00f01e49c4a8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  archetypeName: Gloves
+  archetypeAnimator: {fileID: -652187064001779090}
+  archetype: 1
 --- !u!1 &3251812734958632316
 GameObject:
   m_ObjectHideFlags: 0

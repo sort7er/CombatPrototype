@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArchetypePrefab : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public class ArchetypeAnimator : MonoBehaviour
 {
-    public Animator archetypeAnim { get; private set; }
-
+    private Animator archetypeAnim;
 
     private enum AttackType
     {
