@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class UniqueGloves : UniqueAbility
 {
-    public override void ExecuteAbility(PlayerAttack playerAttack)
+    public override void ExecuteAbility(PlayerData playerData, Vector3 target)
     {
-        Debug.Log(playerAttack.transform.name + "Gloves");
+
+    }
+
+    public override void ExecuteAbilityNoTarget(PlayerData playerData)
+    {
+        Debug.Log(playerData.transform.name + "Gloves");
     }
 }

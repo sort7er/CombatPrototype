@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     private List<Enemy> enemies = new();
 
     private Archetype currentArchetype;
+    private PlayerData playerData;
 
     private void Awake()
     {
@@ -19,6 +20,8 @@ public class PlayerAttack : MonoBehaviour
         weaponSelector = GetComponent<WeaponSelector>();
         targetAssistance = GetComponent<TargetAssistance>();
         playerDash = GetComponent<PlayerDash>();
+
+        playerData = new PlayerData(GetComponent<PlayerMovement>(), GetComponent<CameraController>(), this, GetComponent<Rigidbody>());
 
         inputReader.OnFire += Fire;
         inputReader.OnHeavyFire += HeavyFire;
@@ -63,15 +66,17 @@ public class PlayerAttack : MonoBehaviour
 
             if (enemies.Count > 0)
             {
-                playerDash.DashForward(enemies[0].transform.position);
+                uniqueAbility.ExecuteAbility(playerData, enemies[0].transform.position);
+                //playerDash.DashForward(enemies[0].transform.position);
             }
             else
             {
-                playerDash.DashForward();
+                uniqueAbility.ExecuteAbilityNoTarget(playerData);
+                //playerDash.DashForward();
             }
 
             currentArchetype.archetypeAnimator.UniqueFire();
-            uniqueAbility.ExecuteAbility(this);
+
 
         }
 

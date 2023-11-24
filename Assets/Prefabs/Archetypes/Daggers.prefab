@@ -165,8 +165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   archetypeName: Daggers
-  uniqueAbility: {fileID: 11400000, guid: d0b8d4c5b9d6dc34c989d2e68796a1f1, type: 2}
   archetypeAnimator: {fileID: 327060173806312056}
+  uniqueAbility: {fileID: 0}
+  archetype: 0
 --- !u!1 &2251228174531905063
 GameObject:
   m_ObjectHideFlags: 0

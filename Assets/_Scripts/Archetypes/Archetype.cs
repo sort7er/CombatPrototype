@@ -19,34 +19,29 @@ public class Archetype : MonoBehaviour
         Sword
     };
 
-    private UniqueDaggers uniqueDaggers = new UniqueDaggers();
-    private UniqueGloves uniqueGloves = new UniqueGloves();
-    private UniqueGreatsword uniqueGreatsword = new UniqueGreatsword();
-    private UniqueKatana uniqueKatana = new UniqueKatana();
-    private UniqueSpear uniqueSpear = new UniqueSpear();
-    private UniqueSword uniqueSword = new UniqueSword();
 
     private void Awake()
     {
-        switch(archetype)
+
+        switch (archetype)
         {
             case Type.Daggers:
-                uniqueAbility = uniqueDaggers;
+                uniqueAbility = gameObject.AddComponent<UniqueDaggers>();
                 break;
             case Type.Gloves:
-                uniqueAbility = uniqueGloves;
+                uniqueAbility = gameObject.AddComponent<UniqueGloves>();
                 break;
             case Type.Greatsword:
-                uniqueAbility = uniqueGreatsword;
+                uniqueAbility = gameObject.AddComponent<UniqueGreatsword>();
                 break;
             case Type.Katana:
-                uniqueAbility = uniqueKatana;
+                uniqueAbility = gameObject.AddComponent<UniqueKatana>();
                 break;
             case Type.Spear:
-                uniqueAbility = uniqueSpear;
+                uniqueAbility = gameObject.AddComponent<UniqueSpear>();
                 break;
             case Type.Sword:
-                uniqueAbility = uniqueSword;
+                uniqueAbility = gameObject.AddComponent<UniqueSword>();
                 break;
         }
     }

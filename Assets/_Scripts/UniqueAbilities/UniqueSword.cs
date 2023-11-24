@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class UniqueSword : UniqueAbility
 {
-    public override void ExecuteAbility(PlayerAttack playerAttack)
+
+    public override void ExecuteAbility(PlayerData playerData, Vector3 target)
     {
-        Debug.Log(playerAttack.transform.name + "Sword");
+
+    }
+
+    public override void ExecuteAbilityNoTarget(PlayerData playerData)
+    {
+
     }
 }
