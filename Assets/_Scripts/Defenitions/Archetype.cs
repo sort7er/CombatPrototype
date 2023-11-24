@@ -7,4 +7,6 @@ public class Archetype : ScriptableObject
 
     public ArchetypePrefab archetypePrefab;
 
+    public UniqueAbility uniqueAbility;
+
 }

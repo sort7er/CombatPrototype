@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-
     private InputReader inputReader;
     private WeaponSelector weaponSelector;
     private TargetAssistance targetAssistance;
     private PlayerDash playerDash;
     
     private List<Enemy> enemies = new();
+
+    private ArchetypePrefab currentArchetype;
 
     private void Awake()
     {
@@ -21,6 +22,8 @@ public class PlayerAttack : MonoBehaviour
         inputReader.OnFire += Fire;
         inputReader.OnHeavyFire += HeavyFire;
         inputReader.OnUniqueFire += UniqueFire;
+
+        weaponSelector.OnNewArchetype += NewArchetype;
     }
 
     private void OnDestroy()
@@ -28,28 +31,34 @@ public class PlayerAttack : MonoBehaviour
         inputReader.OnFire -= Fire;
         inputReader.OnHeavyFire -= HeavyFire;
         inputReader.OnUniqueFire -= UniqueFire;
+        weaponSelector.OnNewArchetype -= NewArchetype;
+    }
+    private void NewArchetype(ArchetypePrefab newArchetype)
+    {
+        currentArchetype = newArchetype;
     }
 
     private void Fire()
     {
         if (!weaponSelector.IsHolstered())
         {
-            weaponSelector.CurrentArchetype().Fire();
+            currentArchetype.Fire();
         }
     }
     private void HeavyFire()
     {
         if (!weaponSelector.IsHolstered())
         {
-            weaponSelector.CurrentArchetype().HeavyFire();
+            currentArchetype.HeavyFire();
         }
     }
 
     private void UniqueFire()
     {
-        if (!weaponSelector.CurrentArchetype().isAttacking)
+        if (!currentArchetype.isAttacking && !weaponSelector.IsHolstered())
         {
-            FindEnemies();
+            enemies = targetAssistance.CheckForEnemies();
+
             if (enemies.Count > 0)
             {
                 playerDash.DashForward(enemies[0].transform.position);
@@ -59,32 +68,10 @@ public class PlayerAttack : MonoBehaviour
                 playerDash.DashForward();
             }
 
-            if (!weaponSelector.IsHolstered())
-            {
-                weaponSelector.CurrentArchetype().UniqueFire();
-            }
+            currentArchetype.UniqueFire();
+            //currentArchetype.uniqueAbility.ExecuteAbility();
+
         }
 
     }
-
-    private void FindEnemies()
-    {
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            enemies[i].SetDefault();
-        }
-
-        enemies = targetAssistance.CheckForEnemies();
-
-        if (enemies.Count > 1)
-        {
-            enemies[1].SetAsSecondTarget();
-            enemies[0].SetAsTarget();
-        }
-        else if (enemies.Count > 0)
-        {
-            enemies[0].SetAsTarget();
-        }
-    }
-
 }

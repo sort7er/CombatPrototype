@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class WeaponSelector : MonoBehaviour
 {
+    public event Action<ArchetypePrefab> OnNewArchetype;
+
     [Header("References")]
     [SerializeField] private Transform weaponContainer;
     [SerializeField] private Archetype[] archetypes;
@@ -14,7 +17,6 @@ public class WeaponSelector : MonoBehaviour
 
     private void Awake()
     {
-
         archetypePrefabs = new ArchetypePrefab[archetypes.Length];
         for (int i = 0; i < archetypes.Length; i++)
         {
@@ -85,6 +87,7 @@ public class WeaponSelector : MonoBehaviour
         isHolstered= false;
         archetypePrefabs[currentWeapon].gameObject.SetActive(true);
         MainUI.instance.SetWeaponText(archetypes[currentWeapon].archetypeName);
+        OnNewArchetype?.Invoke(archetypePrefabs[currentWeapon]);
     }
     public void HideWeapon()
     {
