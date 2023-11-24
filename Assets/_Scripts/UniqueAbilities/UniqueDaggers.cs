@@ -53,7 +53,7 @@ public class UniqueDaggers : UniqueAbility
         Vector3 compensatedLookAt = new Vector3(dashPos.x, playerTrans.position.y, dashPos.z);
         playerTrans.DOLookAt(compensatedLookAt, dashDuration * 0.5f);
 
-        rb.velocity = Vector3.zero;
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
         rb.DOJump(dashPos, jumpPower, 1, dashDuration).OnComplete(EndDash);
     }
     public void EndDash()

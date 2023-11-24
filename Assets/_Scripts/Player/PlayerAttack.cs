@@ -6,8 +6,6 @@ public class PlayerAttack : MonoBehaviour
     private InputReader inputReader;
     private WeaponSelector weaponSelector;
     private TargetAssistance targetAssistance;
-    private PlayerDash playerDash;
-    private UniqueAbility uniqueAbility;
 
     private List<Enemy> enemies = new();
 
@@ -19,7 +17,6 @@ public class PlayerAttack : MonoBehaviour
         inputReader = GetComponent<InputReader>();
         weaponSelector = GetComponent<WeaponSelector>();
         targetAssistance = GetComponent<TargetAssistance>();
-        playerDash = GetComponent<PlayerDash>();
 
         playerData = new PlayerData(GetComponent<PlayerMovement>(), GetComponent<CameraController>(), this, GetComponent<Rigidbody>());
 
@@ -40,7 +37,6 @@ public class PlayerAttack : MonoBehaviour
     private void NewArchetype(Archetype newArchetype)
     {
         currentArchetype = newArchetype;
-        uniqueAbility = newArchetype.uniqueAbility;
     }
 
     private void Fire()
@@ -66,13 +62,11 @@ public class PlayerAttack : MonoBehaviour
 
             if (enemies.Count > 0)
             {
-                uniqueAbility.ExecuteAbility(playerData, enemies[0].transform.position);
-                //playerDash.DashForward(enemies[0].transform.position);
+                currentArchetype.uniqueAbility.ExecuteAbility(playerData, enemies[0].transform.position);
             }
             else
             {
-                uniqueAbility.ExecuteAbilityNoTarget(playerData);
-                //playerDash.DashForward();
+                currentArchetype.uniqueAbility.ExecuteAbilityNoTarget(playerData);
             }
 
             currentArchetype.archetypeAnimator.UniqueFire();

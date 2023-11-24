@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 4213443550365733023}
   - component: {fileID: 2336968167109671564}
   - component: {fileID: 7184959094642092623}
+  - component: {fileID: 6825286761255639201}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -479,8 +480,8 @@ MonoBehaviour:
     m_ActionName: Player/Rewind[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4213443550365733023}
-        m_TargetAssemblyTypeName: WeaponSelector, Assembly-CSharp
+      - m_Target: {fileID: 2336968167109671564}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
         m_MethodName: NextWeapon
         m_Mode: 0
         m_Arguments:
@@ -495,8 +496,8 @@ MonoBehaviour:
     m_ActionName: Player/NextWeapon[/Mouse/scroll/down]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4213443550365733023}
-        m_TargetAssemblyTypeName: WeaponSelector, Assembly-CSharp
+      - m_Target: {fileID: 2336968167109671564}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
         m_MethodName: PreviousWeapon
         m_Mode: 0
         m_Arguments:
@@ -511,8 +512,8 @@ MonoBehaviour:
     m_ActionName: Player/PreviousWeapon[/Mouse/scroll/up]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4213443550365733023}
-        m_TargetAssemblyTypeName: WeaponSelector, Assembly-CSharp
+      - m_Target: {fileID: 2336968167109671564}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
         m_MethodName: Holster
         m_Mode: 0
         m_Arguments:
@@ -541,6 +542,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 13b7caf7-aca5-4325-bf79-f45994add18c
     m_ActionName: Player/HeavyFire[/Keyboard/shift,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2336968167109671564}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
+        m_MethodName: UniqueFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a21cdf56-c43e-4e90-96f4-b3535dd7bd09
+    m_ActionName: Player/UniqueFire[/Mouse/forwardButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -595,12 +612,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 549351530727516426}
   archetypes:
-  - {fileID: 11400000, guid: 7171a49dda3a0694eb067ccf79ec4859, type: 2}
-  - {fileID: 11400000, guid: 62df7628ad5e18747a1b4fc1b8bf164b, type: 2}
-  - {fileID: 11400000, guid: 796977e6b435dd84d9444d682868e322, type: 2}
-  - {fileID: 11400000, guid: 96c16c1f9dbd3a14e9491f2e94acb6be, type: 2}
-  - {fileID: 11400000, guid: eb2753e68ff12eb4eba373a2f27fbdb6, type: 2}
-  - {fileID: 11400000, guid: dbdada92ac365f749adbe10c5434b492, type: 2}
+  - {fileID: -944858642115517091, guid: a020bb54c8e81b84480121525869fe15, type: 3}
+  - {fileID: -6986869437882207479, guid: 94cb588e5f80fd94ca1c751c94321e5b, type: 3}
+  - {fileID: 5098180745610601783, guid: afd52918b1021eb4daedfe6c909bba70, type: 3}
+  - {fileID: 2082084165264853290, guid: dc1af49b76fcb34419416ccf0ae59fb9, type: 3}
+  - {fileID: 8662280912918786359, guid: e6feced28c1283147b46af48337b91a2, type: 3}
+  - {fileID: 8644848556210373675, guid: f81f9aa7ef0ad2c4bb21c731a8589d6f, type: 3}
 --- !u!114 &2336968167109671564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,3 +642,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770050bd33879e146b86a7d3dadeb932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6825286761255639201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272457161204308622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09167d40fa7fe184f868c0a790318a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlapRange: 10
+  maxColliders: 10
+  acceptedDotProduct: 0.75
+  idealDotProduct: 0.83
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
