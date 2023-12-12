@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -29,7 +30,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        float mouseX = input.x * mouseSensitivity * Time.deltaTime;
+
         float mouseY = input.y * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
@@ -37,10 +38,9 @@ public class CameraController : MonoBehaviour
 
         playerCam.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-
-
         if(canRotate)
         {
+            float mouseX = input.x * mouseSensitivity * Time.deltaTime;
             transform.Rotate(Vector3.up * mouseX);
         }
     }
@@ -52,6 +52,19 @@ public class CameraController : MonoBehaviour
     public void EnableRotation()
     {
         canRotate = true;
+    }
+
+    public void LookAt(Vector3 target, float duration)
+    {
+        playerCam.DOLookAt(target, duration).SetEase(Ease.OutSine).OnComplete(LookAtDone);
+    }
+    private void LookAtDone()
+    {
+        xRotation = playerCam.transform.eulerAngles.x;
+        if(xRotation > 90)
+        {
+            xRotation -= 360;
+        }
     }
 
 

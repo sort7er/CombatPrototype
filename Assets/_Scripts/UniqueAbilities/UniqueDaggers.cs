@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UniqueDaggers : UniqueAbility
@@ -17,23 +18,21 @@ public class UniqueDaggers : UniqueAbility
 
 
 
-    public override void ExecuteAbility(PlayerData playerData, Vector3 target)
+    public override void ExecuteAbility(PlayerData playerData, TargetAssistanceParams targetAssistanceParams, List<Enemy> enemies)
     {
-        CheckData(playerData);
-
-        this.target = target;
+        base.ExecuteAbility(playerData, targetAssistanceParams, enemies);
+        target = enemies[0].transform.position;
         playerMovement.DisableMovement();
         cameraController.DisableRotation();
 
         Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
         playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
         Invoke(nameof(StartDash), rotationDuration);
-
     }
 
     public override void ExecuteAbilityNoTarget(PlayerData playerData)
     {
-        CheckData(playerData);
+        base.ExecuteAbilityNoTarget(playerData);
         playerMovement.DisableMovement();
         Invoke(nameof(StartDashNoTarget), rotationDuration);
     }
@@ -52,11 +51,12 @@ public class UniqueDaggers : UniqueAbility
 
         Vector3 compensatedLookAt = new Vector3(dashPos.x, playerTrans.position.y, dashPos.z);
         playerTrans.DOLookAt(compensatedLookAt, dashDuration * 0.5f);
+        cameraController.LookAt(compensatedLookAt, dashDuration * 0.5f);
 
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
         rb.DOJump(dashPos, jumpPower, 1, dashDuration).OnComplete(EndDash);
     }
-    public void EndDash()
+    private void EndDash()
     {
         playerMovement.EnableMovement();
         cameraController.EnableRotation();

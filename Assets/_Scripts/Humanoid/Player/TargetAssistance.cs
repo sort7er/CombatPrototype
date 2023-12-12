@@ -5,13 +5,7 @@ public class TargetAssistance : MonoBehaviour
 {
 
     [Header("Values")]
-    [SerializeField] private float overlapRange = 10f;
     [SerializeField] private int maxColliders = 10;
-    [Range(-1, 1)]
-    [SerializeField] private float acceptedDotProduct = 0.75f;
-    [Range(-1, 1)]
-    [SerializeField] private float idealDotProduct = 0.85f;
-
 
     [Header("References")]
     [SerializeField] private LayerMask enemyLayer;
@@ -27,12 +21,12 @@ public class TargetAssistance : MonoBehaviour
         hitColliders = new Collider[maxColliders];
     }
 
-    public List<Enemy> CheckForEnemies(float range = 10f, float idealDotProduct = 0.85f, float acceptedDotProduct = 0.75f)
+    public List<Enemy> CheckForEnemies(TargetAssistanceParams targetAssistanceParams)
     {
         CleanUpPreviousData();
 
         //Find the targets within the area and put them in the correct list
-        AddTargetsToLists(range, idealDotProduct, acceptedDotProduct);
+        AddTargetsToLists(targetAssistanceParams.range, targetAssistanceParams.idealDotProduct, targetAssistanceParams.acceptedDotProduct);
 
         //Sort lists based on the distance and dotproduct
         idealTargets.Sort(SortByDistance);

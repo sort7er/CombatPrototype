@@ -589,14 +589,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ff07e8aab15c44d9b3531204abe3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 7
-  jumpForce: 6
-  airMultiplier: 0.4
-  groundDistance: 0.2
-  groundDrag: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  groundDistance: 0.2
+  groundDrag: 5
+  fallingForce: 6
+  playerSpeed: 7
+  jumpForce: 8
+  airMultiplier: 0.4
   speed: {fileID: 0}
 --- !u!114 &4213443550365733023
 MonoBehaviour:
@@ -654,10 +655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09167d40fa7fe184f868c0a790318a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlapRange: 10
   maxColliders: 10
-  acceptedDotProduct: 0.75
-  idealDotProduct: 0.83
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

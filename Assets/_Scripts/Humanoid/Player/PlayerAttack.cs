@@ -58,20 +58,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered())
         {
-            enemies = targetAssistance.CheckForEnemies();
+            enemies = targetAssistance.CheckForEnemies(currentArchetype.targetAssistanceParams);
 
-            if (enemies.Count > 0)
-            {
-                currentArchetype.uniqueAbility.ExecuteAbility(playerData, enemies[0].transform.position);
-            }
-            else
-            {
-                currentArchetype.uniqueAbility.ExecuteAbilityNoTarget(playerData);
-            }
-
-            currentArchetype.archetypeAnimator.UniqueFire();
-
-
+            currentArchetype.UniqueAttack(enemies, playerData);
         }
 
     }

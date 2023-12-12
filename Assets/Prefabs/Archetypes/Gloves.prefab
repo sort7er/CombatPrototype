@@ -283,6 +283,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   archetypeName: Gloves
   archetypeAnimator: {fileID: -652187064001779090}
+  targetAssistanceParams:
+    range: 2
+    idealDotProduct: 0.6
+    acceptedDotProduct: 0.1
   archetype: 1
 --- !u!1 &3251812734958632316
 GameObject:

@@ -2,28 +2,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Humanoid
 {
     [Header("Values")]
     public float playerSpeed;
     public float jumpForce;
     public float airMultiplier;
-    public float groundDistance;
-    public float groundDrag;
 
     [Header("References")]
-    public LayerMask groundLayer;
     public TextMeshProUGUI speed;
 
     public bool canMove { get; private set; }
 
-    private Rigidbody rb;
     private Vector2 input;
     private Vector3 movementDirection;
 
-    void Awake()
+    protected override void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        base.Awake();
         canMove = true;
     }
 
@@ -44,16 +40,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void Update()
+    protected override void Update()
     {
-        if(GroundCheck() )
-        {
-            rb.drag = groundDrag;
-        }
-        else
-        {
-            rb.drag = 0;
-        }
+        base.Update();
         SpeedControl();
 
         if (speed!= null)
@@ -63,8 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         if (canMove)
         {
             MovePlayer();
@@ -92,20 +82,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 limitedVel = flatVel.normalized * playerSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
-    }
-
-
-
-    private bool GroundCheck()
-    {
-        if (Physics.CheckSphere(transform.position, groundDistance, groundLayer))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 

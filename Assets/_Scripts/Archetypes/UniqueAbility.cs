@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class UniqueAbility : MonoBehaviour
@@ -7,22 +8,37 @@ public abstract class UniqueAbility : MonoBehaviour
     protected PlayerMovement playerMovement;
     protected CameraController cameraController;
 
-    public abstract void ExecuteAbility(PlayerData playerData, Vector3 target);
-    public abstract void ExecuteAbilityNoTarget(PlayerData playerData);
+    protected float range;
+    protected float idealDot;
+    protected float acceptedDot;
 
-    protected virtual void CheckData(PlayerData playerData)
+    protected List<Enemy> enemies;
+
+
+    public virtual void ExecuteAbility(PlayerData playerData, TargetAssistanceParams targetAssistanceParams, List<Enemy> enemies)
     {
-        if (rb == null)
-        {
-            StoreData(playerData);
-        }
+        StorePlayerData(playerData);
+        StoreOtherData(targetAssistanceParams, enemies);
+    }
+    public virtual void ExecuteAbilityNoTarget(PlayerData playerData)
+    {
+        StorePlayerData(playerData);
     }
 
-    protected virtual void StoreData(PlayerData playerData)
+
+    private void StorePlayerData(PlayerData playerData)
     {
         playerTrans = playerData.transform;
         rb = playerData.rb;
         playerMovement = playerData.playerMovement;
         cameraController = playerData.cameraController;
     }
+    private void StoreOtherData(TargetAssistanceParams targetAssistanceParams, List<Enemy> enemies)
+    {
+        range = targetAssistanceParams.range;
+        idealDot = targetAssistanceParams.idealDotProduct;
+        acceptedDot = targetAssistanceParams.acceptedDotProduct;
+        this.enemies = enemies;
+    }
 }
+
