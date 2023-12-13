@@ -56,15 +56,21 @@ public class CameraController : MonoBehaviour
 
     public void LookAt(Vector3 target, float duration)
     {
-        playerCam.DOLookAt(target, duration).SetEase(Ease.OutSine).OnComplete(LookAtDone);
+        Vector3 lookDir = target - playerCam.position;
+        Quaternion look = Quaternion.LookRotation(lookDir, Vector3.up);
+        Quaternion newLook = Quaternion.Euler(look.eulerAngles.x, 0, 0);
+
+        playerCam.DOLocalRotateQuaternion(newLook, duration).SetEase(Ease.OutSine).OnComplete(LookAtDone);
     }
     private void LookAtDone()
     {
+        Debug.Log(playerCam.transform.eulerAngles);
         xRotation = playerCam.transform.eulerAngles.x;
         if(xRotation > 90)
         {
             xRotation -= 360;
         }
+        Debug.Log(playerCam.transform.eulerAngles);
     }
 
 

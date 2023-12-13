@@ -24,6 +24,11 @@ public class ArchetypeAnimator : MonoBehaviour
         archetypeAnim = GetComponent<Animator>();
     }
 
+    //private void Update()
+    //{
+    //    Debug.Log(isAttacking);
+    //}
+
     public void Fire()
     {
         CheckAttack(AttackType.light);
@@ -109,8 +114,7 @@ public class ArchetypeAnimator : MonoBehaviour
         }
         else if (attackType == AttackType.unique)
         {
-            ResetTriggers();
-            archetypeAnim.Play("UniqueFire");
+            archetypeAnim.SetTrigger("UniqueFire");
         }
     }
 }
