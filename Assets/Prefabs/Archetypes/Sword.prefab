@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 3759224701557506478}
   - component: {fileID: 5594791275529633368}
   - component: {fileID: 8644848556210373675}
+  - component: {fileID: -8704577237919880119}
   m_Layer: 10
   m_Name: Sword
   m_TagString: Untagged
@@ -397,4 +398,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   archetypeName: Sword
   archetypeAnimator: {fileID: 5594791275529633368}
-  archetype: 5
+  targetAssistanceParams:
+    range: 10
+    idealDotProduct: 0.85
+    acceptedDotProduct: 0.75
+  uniqueAbility: {fileID: -8704577237919880119}
+--- !u!114 &-8704577237919880119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782877767876783187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e9b056301dafb4d89129bb8e5bdd9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

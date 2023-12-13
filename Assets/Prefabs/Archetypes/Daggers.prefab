@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6863005565140570885}
   - component: {fileID: 327060173806312056}
   - component: {fileID: -944858642115517091}
+  - component: {fileID: -4413238757584107831}
   m_Layer: 0
   m_Name: Daggers
   m_TagString: Untagged
@@ -166,8 +167,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   archetypeName: Daggers
   archetypeAnimator: {fileID: 327060173806312056}
-  uniqueAbility: {fileID: 0}
-  archetype: 0
+  targetAssistanceParams:
+    range: 10
+    idealDotProduct: 0.85
+    acceptedDotProduct: 0.75
+  uniqueAbility: {fileID: -4413238757584107831}
+--- !u!114 &-4413238757584107831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531636718668085353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6410f96fa0ade4548b581eb32a0d26db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2251228174531905063
 GameObject:
   m_ObjectHideFlags: 0
