@@ -400,7 +400,7 @@ MonoBehaviour:
   archetypeAnimator: {fileID: -2607780637761456646}
   targetAssistanceParams:
     range: 10
-    idealDotProduct: 0.85
+    idealDotProduct: 0.98
     acceptedDotProduct: 0.75
   uniqueAbility: {fileID: 5525634552681046500}
 --- !u!114 &5525634552681046500

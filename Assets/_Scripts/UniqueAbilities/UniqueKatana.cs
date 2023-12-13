@@ -5,8 +5,14 @@ using UnityEngine;
 public class UniqueKatana : UniqueAbility
 {
     [Header("Rotation")]
-    private float rotationDuration = 0.3f;
+    private float rotationDuration = 0.35f;
 
+
+    [Header("Dash")]
+    private float dashDuration = 0.2f;
+
+    private Vector3 directionToTarget;
+    private Vector3 dashPos;
     private Vector3 target;
     public override void ExecuteAbility(PlayerData playerData, TargetAssistanceParams targetAssistanceParams, List<Enemy> enemies)
     {
@@ -23,19 +29,31 @@ public class UniqueKatana : UniqueAbility
     public override void ExecuteAbilityNoTarget(PlayerData playerData)
     {
         base.ExecuteAbilityNoTarget(playerData);
+        playerMovement.DisableMovement();
+        Invoke(nameof(StartDashNoTarget), rotationDuration);
+    }
+    private void StartDashNoTarget()
+    {
+        cameraController.DisableRotation();
+
+        target = playerTrans.position + playerTrans.forward * 10;
+
+        StartDash();
     }
 
     private void StartDash()
     {
-        //directionToTarget = target - playerTrans.position;
-        //dashPos = playerTrans.position + directionToTarget - directionToTarget.normalized;
+        directionToTarget = target - playerTrans.position;
+        dashPos = playerTrans.position + directionToTarget - directionToTarget.normalized * 1.5f;
 
-        //Vector3 compensatedLookAt = new Vector3(dashPos.x, playerTrans.position.y, dashPos.z);
-        //playerTrans.DOLookAt(compensatedLookAt, dashDuration * 0.5f);
-        //cameraController.LookAt(compensatedLookAt, dashDuration * 0.5f);
+        Vector3 compensatedLookAt = new Vector3(dashPos.x, playerTrans.position.y, dashPos.z);
+        playerTrans.DOLookAt(compensatedLookAt, dashDuration * 0.5f);
 
-        //rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        //rb.DOJump(dashPos, jumpPower, 1, dashDuration).OnComplete(EndDash);
+        Vector3 compensatedCamLookAt = new Vector3(target.x, target.y + 1.3f, target.z);
+        cameraController.LookAt(compensatedCamLookAt, dashDuration * 0.5f);
+
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        rb.DOMove(dashPos, dashDuration).OnComplete(EndDash);
     }
     private void EndDash()
     {
