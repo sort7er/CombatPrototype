@@ -64,13 +64,11 @@ public class CameraController : MonoBehaviour
     }
     private void LookAtDone()
     {
-        Debug.Log(playerCam.transform.eulerAngles);
         xRotation = playerCam.transform.eulerAngles.x;
         if(xRotation > 90)
         {
             xRotation -= 360;
         }
-        Debug.Log(playerCam.transform.eulerAngles);
     }
 
 
