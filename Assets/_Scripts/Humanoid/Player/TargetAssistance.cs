@@ -21,12 +21,14 @@ public class TargetAssistance : MonoBehaviour
         hitColliders = new Collider[maxColliders];
     }
 
-    public List<Enemy> CheckForEnemies(TargetAssistanceParams targetAssistanceParams)
+    public List<Enemy> CheckForEnemies(TargetAssistanceParams targetAssistanceParams, out int numIdealTarget)
     {
         CleanUpPreviousData();
 
         //Find the targets within the area and put them in the correct list
         AddTargetsToLists(targetAssistanceParams.range, targetAssistanceParams.idealDotProduct, targetAssistanceParams.acceptedDotProduct);
+
+        numIdealTarget = idealTargets.Count;
 
         //Sort lists based on the distance and dotproduct
         idealTargets.Sort(SortByDistance);

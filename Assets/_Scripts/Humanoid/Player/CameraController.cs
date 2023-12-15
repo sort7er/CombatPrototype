@@ -61,6 +61,10 @@ public class CameraController : MonoBehaviour
 
         playerCam.DOLocalRotateQuaternion(newLook, duration).SetEase(Ease.OutSine).OnComplete(LookAtDone);
     }
+    public void LookAtAngle(float angle, float duration)
+    {
+        playerCam.DOLocalRotate(new Vector3(angle, 0, 0), duration).SetEase(Ease.InCirc).OnComplete(LookAtDone);
+    }
     private void LookAtDone()
     {
         xRotation = playerCam.transform.eulerAngles.x;

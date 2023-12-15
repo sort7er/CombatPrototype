@@ -399,9 +399,9 @@ MonoBehaviour:
   archetypeName: Greatsword
   archetypeAnimator: {fileID: -7139077835231697723}
   targetAssistanceParams:
-    range: 10
-    idealDotProduct: 0.85
-    acceptedDotProduct: 0.75
+    range: 3
+    idealDotProduct: 0.6
+    acceptedDotProduct: 0.1
   uniqueAbility: {fileID: -1087981080382097670}
 --- !u!114 &-1087981080382097670
 MonoBehaviour:

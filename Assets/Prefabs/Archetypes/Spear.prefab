@@ -251,8 +251,8 @@ MonoBehaviour:
   archetypeName: Spear
   archetypeAnimator: {fileID: 3570969243458825861}
   targetAssistanceParams:
-    range: 10
-    idealDotProduct: 0.85
+    range: 15
+    idealDotProduct: 0.98
     acceptedDotProduct: 0.75
   uniqueAbility: {fileID: 5596301190246143032}
 --- !u!114 &5596301190246143032
