@@ -1,9 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class ArchetypeAnimator : MonoBehaviour
 {
+    public event Action OnLethal;
+    public event Action OnLethal2;
+    public event Action OnNotLethal;
+
     private Animator archetypeAnim;
 
     private enum AttackType
@@ -104,7 +109,7 @@ public class ArchetypeAnimator : MonoBehaviour
     private void Attack(AttackType attackType)
     {
         isAttacking = true;
-        if(attackType == AttackType.light)
+        if (attackType == AttackType.light)
         {
             archetypeAnim.SetTrigger("Fire");
         }
@@ -117,4 +122,25 @@ public class ArchetypeAnimator : MonoBehaviour
             archetypeAnim.SetTrigger("UniqueFire");
         }
     }
+
+    //This is called from the animation, to see when an attack is lethal
+    public void Lethal()
+    {
+        OnLethal?.Invoke();
+    }
+    public void Lethal2()
+    {
+        OnLethal2?.Invoke();
+    }
+    public void Both()
+    {
+        Lethal();
+        Lethal2();
+    }
+
+    public void NotLethal()
+    {
+        OnNotLethal?.Invoke();
+    }
+
 }

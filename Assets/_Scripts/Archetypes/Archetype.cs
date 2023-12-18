@@ -7,14 +7,58 @@ public class Archetype : MonoBehaviour
 
     public string archetypeName;
     public ArchetypeAnimator archetypeAnimator;
-    public TargetAssistanceParams targetAssistanceParams;
     public UniqueAbility uniqueAbility;
+    public WeaponTrigger[] weaponTrigger;
+    public TargetAssistanceParams targetAssistanceParams;
 
-    //[Header("Target Assistance")]
-    //public float range = 10;
-    //public float idealDotProduct = 0.85f;
-    //public float acceptedDotProduct = 0.75f;
+    private List<Health> hits = new();
 
+    private void Awake()
+    {
+        for(int i = 0; i < weaponTrigger.Length; i++)
+        {
+            weaponTrigger[i].OnHit += OnHit;
+        }
+        archetypeAnimator.OnLethal += Lethal;
+        archetypeAnimator.OnLethal2 += Lethal2;
+        archetypeAnimator.OnNotLethal += NotLethal;
+    }
+    private void OnDestroy()
+    {
+        for (int i = 0; i < weaponTrigger.Length; i++)
+        {
+            weaponTrigger[i].OnHit -= OnHit;
+        }
+        archetypeAnimator.OnLethal -= Lethal;
+        archetypeAnimator.OnLethal2 -= Lethal2;
+        archetypeAnimator.OnNotLethal -= NotLethal;
+    }
+    private void OnHit(Health health, Vector3 contactPoint, WeaponTrigger weaponUsed)
+    {
+        if(!hits.Contains(health))
+        {
+            hits.Add(health);
+            health.TakeDamage(1);
+            Debug.Log(weaponUsed.gameObject.name + " hit " + health.gameObject.name + " at " + contactPoint);
+        }
+    }
+    private void Lethal()
+    {
+        hits.Clear();
+        weaponTrigger[0].EnableCollider();
+    }
+    private void Lethal2()
+    {
+        hits.Clear();
+        weaponTrigger[1].EnableCollider();
+    }
+    private void NotLethal()
+    {
+        for (int i = 0; i < weaponTrigger.Length; i++)
+        {
+            weaponTrigger[i].DisableCollider();
+        }
+    }
 
     public void UniqueAttack(List<Enemy> enemies, PlayerData playerData)
     {

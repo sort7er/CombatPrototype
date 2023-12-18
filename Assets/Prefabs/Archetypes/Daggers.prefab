@@ -167,11 +167,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   archetypeName: Daggers
   archetypeAnimator: {fileID: 327060173806312056}
+  uniqueAbility: {fileID: -4413238757584107831}
+  weaponTrigger:
+  - {fileID: 4712965149028616860}
+  - {fileID: 9177554307088060315}
   targetAssistanceParams:
     range: 10
     idealDotProduct: 0.85
     acceptedDotProduct: 0.75
-  uniqueAbility: {fileID: -4413238757584107831}
 --- !u!114 &-4413238757584107831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +362,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1210441841767034025}
+  - component: {fileID: 1012671068263836939}
+  - component: {fileID: 9177554307088060315}
   m_Layer: 0
   m_Name: LeftModelContainer
   m_TagString: Untagged
@@ -382,6 +387,39 @@ Transform:
   - {fileID: 7805995484336036242}
   m_Father: {fileID: 308167401398118701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1012671068263836939
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3880332881041695603}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 0.6, z: 0.3}
+  m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &9177554307088060315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3880332881041695603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9b5e9b322d8c649824884ecaceb5e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4076885378981839462
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +432,7 @@ GameObject:
   - component: {fileID: 9203382385200052071}
   - component: {fileID: 7685664018257924730}
   m_Layer: 0
-  m_Name: SwordPart (1)
+  m_Name: Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,6 +512,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7299010889154252886}
+  - component: {fileID: 5368006908032718938}
+  - component: {fileID: 4712965149028616860}
   m_Layer: 0
   m_Name: RightModelContainer
   m_TagString: Untagged
@@ -497,6 +537,39 @@ Transform:
   - {fileID: 2521245344204484603}
   m_Father: {fileID: 308167401398118701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5368006908032718938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4717549647548453307}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 0.6, z: 0.3}
+  m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &4712965149028616860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4717549647548453307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9b5e9b322d8c649824884ecaceb5e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7662657494584236023
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +616,7 @@ GameObject:
   - component: {fileID: 2315126346888567349}
   - component: {fileID: 2502675060334265997}
   m_Layer: 0
-  m_Name: SwordPart (1)
+  m_Name: Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
