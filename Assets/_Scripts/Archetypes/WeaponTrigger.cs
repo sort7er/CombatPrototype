@@ -27,7 +27,7 @@ public class WeaponTrigger : MonoBehaviour
     {
         if(other.TryGetComponent<Health>(out Health health))
         {
-            upDir = -transform.forward;
+            upDir = transform.forward;
             contactPoint = other.ClosestPointOnBounds(transform.position);
             OnHit?.Invoke(health, this);
         }
