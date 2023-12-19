@@ -33,13 +33,13 @@ public class Archetype : MonoBehaviour
         archetypeAnimator.OnLethal2 -= Lethal2;
         archetypeAnimator.OnNotLethal -= NotLethal;
     }
-    private void OnHit(Health health, Vector3 contactPoint, WeaponTrigger weaponUsed)
+    private void OnHit(Health health, WeaponTrigger weaponTrigger)
     {
         if(!hits.Contains(health))
         {
             hits.Add(health);
             health.TakeDamage(1);
-            Debug.Log(weaponUsed.gameObject.name + " hit " + health.gameObject.name + " at " + contactPoint);
+            EffectManager.instance.Hit(weaponTrigger.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
         }
     }
     private void Lethal()
