@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public Archetype currentArchetype { get; private set; }
+
     private InputReader inputReader;
     private WeaponSelector weaponSelector;
     private TargetAssistance targetAssistance;
 
     private List<Enemy> enemies = new();
 
-    private Archetype currentArchetype;
     private PlayerData playerData;
 
     private void Awake()

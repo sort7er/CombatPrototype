@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &232589044241109271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4305590773371394401}
+  m_Layer: 0
+  m_Name: EndPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4305590773371394401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232589044241109271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -0, y: 1.384, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4687010497591090685}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &302737551315922917
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +291,7 @@ GameObject:
   - component: {fileID: 4687010497591090685}
   - component: {fileID: 2669771166507158675}
   - component: {fileID: 8540676259532825529}
+  - component: {fileID: 1332521718114864408}
   m_Layer: 0
   m_Name: ModelContainer
   m_TagString: Untagged
@@ -281,6 +313,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 830476478600452613}
+  - {fileID: 8352692471256722217}
+  - {fileID: 4305590773371394401}
   m_Father: {fileID: 702135583832380966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2669771166507158675
@@ -316,6 +350,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9b5e9b322d8c649824884ecaceb5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1332521718114864408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533239777402817850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32e435ef9d8519418c31f1f36afc704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutForce: 2000
+  endSlicePoint: {fileID: 4305590773371394401}
+  startSlicePoint: {fileID: 8352692471256722217}
 --- !u!1 &6555578567712235922
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,27 +472,34 @@ MonoBehaviour:
     animationClip: {fileID: 7400000, guid: d7712b807cba6a648bdbb17fdedad3cc, type: 2}
   lightAttackInputs:
   - animationClip: {fileID: 7400000, guid: 72be711e66e252b4c8cb1167d89ecaa5, type: 2}
+    damageType: 1
     damage: 20
     queuePoint: 18
   - animationClip: {fileID: 7400000, guid: 87ac5c889b16d9d4ca1ad2996c7cac46, type: 2}
+    damageType: 1
     damage: 20
     queuePoint: 18
   - animationClip: {fileID: 7400000, guid: bd79df2c6ef4524418a9fe4f6b8625b5, type: 2}
+    damageType: 1
     damage: 30
     queuePoint: 0
   heavyAttackInputs:
   - animationClip: {fileID: 7400000, guid: 1d772fc194cd1204f861a36595a75eb3, type: 2}
+    damageType: 1
     damage: 30
     queuePoint: 30
   - animationClip: {fileID: 7400000, guid: 85e5b3a753f475c4eb19713de0213deb, type: 2}
+    damageType: 1
     damage: 30
     queuePoint: 30
   - animationClip: {fileID: 7400000, guid: 98ec1b66c1f5cb14b8d7d271be506adb, type: 2}
+    damageType: 1
     damage: 35
     queuePoint: 0
   uniqueAttackInput:
     animationClip: {fileID: 7400000, guid: 10dd5fdbea342604ba3df48d6e55453e, type: 2}
-    damage: 0
+    damageType: 1
+    damage: 50
     queuePoint: 0
 --- !u!114 &2082084165264853290
 MonoBehaviour:
@@ -460,12 +516,14 @@ MonoBehaviour:
   archetypeName: Katana
   archetypeAnimator: {fileID: -2607780637761456646}
   uniqueAbility: {fileID: 5525634552681046500}
-  weaponTrigger:
-  - {fileID: 8540676259532825529}
   targetAssistanceParams:
     range: 10
     idealDotProduct: 0.98
     acceptedDotProduct: 0.75
+  weaponTrigger:
+  - {fileID: 8540676259532825529}
+  slicingObject:
+  - {fileID: 1332521718114864408}
 --- !u!114 &5525634552681046500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,3 +536,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e85185cf0adb9e428f27127e76bb9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &9071185717351479566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8352692471256722217}
+  m_Layer: 0
+  m_Name: StartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8352692471256722217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9071185717351479566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4687010497591090685}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}

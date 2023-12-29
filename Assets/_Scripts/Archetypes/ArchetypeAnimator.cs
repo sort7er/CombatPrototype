@@ -18,6 +18,9 @@ public class ArchetypeAnimator : MonoBehaviour
     [Header("Unique attack")]
     [SerializeField] private AttackInput uniqueAttackInput;
 
+
+    public Attack currentAttack { get; private set; }
+
     private Anim idleAnim;
     private Attack[] lightAttacks;
     private Attack[] heavyAttacks;
@@ -49,7 +52,7 @@ public class ArchetypeAnimator : MonoBehaviour
 
         SetUpAttacks(lightAttacks, lightAttackInputs);
         SetUpAttacks(heavyAttacks, heavyAttackInputs);
-        uniqueAttack = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint);
+        uniqueAttack = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint, uniqueAttackInput.damageType);
 
     }
     
@@ -57,7 +60,7 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         for (int i = 0; i < inputs.Length; i++)
         {
-            attacksToSetUp[i] = new Attack(inputs[i].animationClip, inputs[i].damage, inputs[i].queuePoint);
+            attacksToSetUp[i] = new Attack(inputs[i].animationClip, inputs[i].damage, inputs[i].queuePoint, inputs[i].damageType);
         }
     }
 
@@ -113,29 +116,28 @@ public class ArchetypeAnimator : MonoBehaviour
     private void Attack(AttackType attackType, float crossfade = 0)
     {
         isAttacking = true;
-        Attack currenAttack;
         if (attackType == AttackType.light)
         {
-            currenAttack = lightAttacks[currentCombo];
+            currentAttack = lightAttacks[currentCombo];
         }
         else if(attackType == AttackType.heavy)
         {
-            currenAttack = heavyAttacks[currentCombo];
+            currentAttack = heavyAttacks[currentCombo];
         }
         else
         {
-            currenAttack = uniqueAttack;
+            currentAttack = uniqueAttack;
         }
 
-        archetypeAnim.CrossFade(currenAttack.state, crossfade);
+        archetypeAnim.CrossFade(currentAttack.state, crossfade);
 
         //If not the third attack, check for more attacks in the queue after queuepoint in the attack
         if(currentCombo < 2)
         {
-            float remapedValue = Remap(currenAttack.queuePoint, 0, 60, 0, 1);
+            float remapedValue = Remap(currentAttack.queuePoint, 0, 60, 0, 1);
             Invoke(nameof(CheckQueue), remapedValue);
         }
-        Invoke(nameof(AttackDone), currenAttack.duration);
+        Invoke(nameof(AttackDone), currentAttack.duration);
         UpdateCurrentAttack();
 
     }
@@ -172,6 +174,7 @@ public class ArchetypeAnimator : MonoBehaviour
         attackQueue.Clear();
         isAttacking = false;
         currentCombo = 0;
+        currentAttack = null;
         archetypeAnim.CrossFade(idleAnim.state, 0.25f);
     }
 

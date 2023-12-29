@@ -1,19 +1,18 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Enemy : Humanoid
 {
     [Header("Values")]
     [SerializeField] private float rotationSlerp = 10;
 
-    private Transform playerTrans;
+    public Player player { get; private set; }
     private Animator enemyAnim;
 
     protected override void Awake()
     {
         base.Awake();
         enemyAnim = GetComponent<Animator>();
-        playerTrans = FindObjectOfType<PlayerInput>().transform;
+        player = FindObjectOfType<Player>();
     }
 
     protected override void Update()
@@ -24,7 +23,7 @@ public class Enemy : Humanoid
 
     private void LookAtPlayer()
     {
-        Vector3 alteredPlayerPos = new Vector3(playerTrans.position.x, transform.position.y, playerTrans.position.z);
+        Vector3 alteredPlayerPos = new Vector3(player.Position().x, transform.position.y, player.Position().z);
         Vector3 playerDirection = alteredPlayerPos - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);

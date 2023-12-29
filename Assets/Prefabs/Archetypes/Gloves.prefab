@@ -274,26 +274,33 @@ MonoBehaviour:
     animationClip: {fileID: 7400000, guid: 8cabcedf8bf0a924eb7731edcc9050f2, type: 2}
   lightAttackInputs:
   - animationClip: {fileID: 7400000, guid: 1e2f6c4776c07224b90608ab7127d294, type: 2}
+    damageType: 2
     damage: 15
     queuePoint: 15
   - animationClip: {fileID: 7400000, guid: 4228f52e173f2bd4892378dda4bbee30, type: 2}
+    damageType: 2
     damage: 15
     queuePoint: 15
   - animationClip: {fileID: 7400000, guid: bc4e9e5f27fdc004abb3f4c0f2b354f0, type: 2}
+    damageType: 2
     damage: 20
     queuePoint: 0
   heavyAttackInputs:
   - animationClip: {fileID: 7400000, guid: 8e425e04c64da6d438c69a0885a5bcfa, type: 2}
+    damageType: 2
     damage: 20
     queuePoint: 25
   - animationClip: {fileID: 7400000, guid: 7327dfab66cffb247a434acbc75499d6, type: 2}
+    damageType: 2
     damage: 20
     queuePoint: 25
   - animationClip: {fileID: 7400000, guid: 159b225846668be4197a0390941a5ccf, type: 2}
+    damageType: 2
     damage: 30
     queuePoint: 0
   uniqueAttackInput:
     animationClip: {fileID: 7400000, guid: ba6229badbb0e014c9c9e332d237bcb6, type: 2}
+    damageType: 2
     damage: 50
     queuePoint: 40
 --- !u!114 &-6986869437882207479

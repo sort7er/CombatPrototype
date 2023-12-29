@@ -8,12 +8,12 @@ public class WeaponSelector : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform weaponContainer;
     [SerializeField] private Archetype[] archetypes;
+    public Archetype currentArchetype { get; private set; }
 
     private InputReader inputReader;
 
     private int currentWeapon;
     private Archetype[] archetypePrefabs;
-    private Archetype currentArchetype;
 
     private bool isHolstered;
 

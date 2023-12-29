@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 6959427750282765739}
   - component: {fileID: 4562874743710675973}
   - component: {fileID: 7167202842242780339}
+  - component: {fileID: 4601893145489176139}
   m_Layer: 0
   m_Name: ModelContainer
   m_TagString: Untagged
@@ -115,6 +116,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8547546765250947534}
+  - {fileID: 4786358279790056335}
+  - {fileID: 7755285446356589492}
   m_Father: {fileID: 3058080416233402960}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4562874743710675973
@@ -150,6 +153,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9b5e9b322d8c649824884ecaceb5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4601893145489176139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4240307809707254982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32e435ef9d8519418c31f1f36afc704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutForce: 2000
+  endSlicePoint: {fileID: 7755285446356589492}
+  startSlicePoint: {fileID: 4786358279790056335}
+--- !u!1 &5058622237768530060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7755285446356589492}
+  m_Layer: 0
+  m_Name: EndPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7755285446356589492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058622237768530060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0.892, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6959427750282765739}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &6226089990226987888
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +316,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7160186335477853425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4786358279790056335}
+  m_Layer: 0
+  m_Name: StartPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4786358279790056335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7160186335477853425}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6959427750282765739}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &7620454733154602679
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,26 +503,33 @@ MonoBehaviour:
     animationClip: {fileID: 7400000, guid: f39e391f6bf892145a0b3ab0d87cf698, type: 2}
   lightAttackInputs:
   - animationClip: {fileID: 7400000, guid: 971991e81b726eb42884c415f827160d, type: 2}
+    damageType: 1
     damage: 20
     queuePoint: 22
   - animationClip: {fileID: 7400000, guid: dbdf50d66185e82428183cb87ad510a5, type: 2}
+    damageType: 1
     damage: 20
     queuePoint: 21
   - animationClip: {fileID: 7400000, guid: 7a590f6537ab19040ae0691e69007526, type: 2}
+    damageType: 1
     damage: 30
     queuePoint: 0
   heavyAttackInputs:
   - animationClip: {fileID: 7400000, guid: 326bf85a377ce8f4590998f660426ec3, type: 2}
+    damageType: 1
     damage: 30
     queuePoint: 32
   - animationClip: {fileID: 7400000, guid: c8ffeef8a935bcc4f82ef1b29b7f4c0f, type: 2}
+    damageType: 0
     damage: 30
     queuePoint: 38
   - animationClip: {fileID: 7400000, guid: 6fd681ec71863b44c92b5d5013eeba4b, type: 2}
+    damageType: 1
     damage: 50
     queuePoint: 0
   uniqueAttackInput:
     animationClip: {fileID: 7400000, guid: 3da9ef02a5ec1c642843dd45d053562c, type: 2}
+    damageType: 1
     damage: 0
     queuePoint: 0
 --- !u!114 &8644848556210373675
@@ -460,12 +547,14 @@ MonoBehaviour:
   archetypeName: Sword
   archetypeAnimator: {fileID: 5594791275529633368}
   uniqueAbility: {fileID: -8704577237919880119}
-  weaponTrigger:
-  - {fileID: 7167202842242780339}
   targetAssistanceParams:
     range: 10
     idealDotProduct: 0.85
     acceptedDotProduct: 0.75
+  weaponTrigger:
+  - {fileID: 7167202842242780339}
+  slicingObject:
+  - {fileID: 4601893145489176139}
 --- !u!114 &-8704577237919880119
 MonoBehaviour:
   m_ObjectHideFlags: 0

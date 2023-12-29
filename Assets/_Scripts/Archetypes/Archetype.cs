@@ -8,8 +8,11 @@ public class Archetype : MonoBehaviour
     public string archetypeName;
     public ArchetypeAnimator archetypeAnimator;
     public UniqueAbility uniqueAbility;
-    public WeaponTrigger[] weaponTrigger;
     public TargetAssistanceParams targetAssistanceParams;
+    public WeaponTrigger[] weaponTrigger;
+    public SlicingObject[] slicingObject;
+
+    public SlicingObject currentSlicingObject { get; private set; }
 
     private List<Health> hits = new();
 
@@ -38,7 +41,7 @@ public class Archetype : MonoBehaviour
         if(!hits.Contains(health))
         {
             hits.Add(health);
-            health.TakeDamage(50);
+            health.TakeDamage(50, archetypeAnimator.currentAttack.damageType);
             EffectManager.instance.Hit(weaponTrigger.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
         }
     }
@@ -46,11 +49,13 @@ public class Archetype : MonoBehaviour
     {
         hits.Clear();
         weaponTrigger[0].EnableCollider();
+        currentSlicingObject = slicingObject[0];
     }
     private void Lethal2()
     {
         hits.Clear();
         weaponTrigger[1].EnableCollider();
+        currentSlicingObject = slicingObject[1];
     }
     private void NotLethal()
     {

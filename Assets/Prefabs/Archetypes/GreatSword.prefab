@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2655611582540498875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6692215632260392097}
+  m_Layer: 0
+  m_Name: EndPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6692215632260392097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2655611582540498875}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 1.845, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6091667072839896337}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &2671708000515701944
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +114,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3685389058252090089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2484113172150851536}
+  m_Layer: 0
+  m_Name: StartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2484113172150851536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3685389058252090089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6091667072839896337}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &4685220339741557397
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +190,7 @@ GameObject:
   - component: {fileID: 6091667072839896337}
   - component: {fileID: 4166106540548999897}
   - component: {fileID: 6949705772171659493}
+  - component: {fileID: 300046648842138269}
   m_Layer: 0
   m_Name: ModelContainer
   m_TagString: Untagged
@@ -149,6 +212,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4225907377583327529}
+  - {fileID: 2484113172150851536}
+  - {fileID: 6692215632260392097}
   m_Father: {fileID: 6176240336937996770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4166106540548999897
@@ -184,6 +249,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9b5e9b322d8c649824884ecaceb5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &300046648842138269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5789012186243795907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32e435ef9d8519418c31f1f36afc704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutForce: 2000
+  endSlicePoint: {fileID: 6692215632260392097}
+  startSlicePoint: {fileID: 2484113172150851536}
 --- !u!1 &6195977798594379458
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,27 +503,34 @@ MonoBehaviour:
     animationClip: {fileID: 7400000, guid: a450458843b172348b345ac1fd36f613, type: 2}
   lightAttackInputs:
   - animationClip: {fileID: 7400000, guid: 70479980cc42fb240998651fc211c9cd, type: 2}
+    damageType: 1
     damage: 25
     queuePoint: 30
   - animationClip: {fileID: 7400000, guid: bd0dfe48d897bc44dbb31a8753209296, type: 2}
+    damageType: 1
     damage: 25
     queuePoint: 36
   - animationClip: {fileID: 7400000, guid: 60399aee0b866c14594c50bd4e7626ad, type: 2}
+    damageType: 1
     damage: 30
     queuePoint: 0
   heavyAttackInputs:
   - animationClip: {fileID: 7400000, guid: 2be21f86799c567459c4393c9d737108, type: 2}
+    damageType: 1
     damage: 35
     queuePoint: 43
   - animationClip: {fileID: 7400000, guid: 64c90af0b47324541889ce81601cc813, type: 2}
+    damageType: 1
     damage: 35
     queuePoint: 42
   - animationClip: {fileID: 7400000, guid: f55f3e6b359670b45bd49960e0e97431, type: 2}
+    damageType: 0
     damage: 50
     queuePoint: 0
   uniqueAttackInput:
     animationClip: {fileID: 7400000, guid: d49a5c412927e994297d4e2b498e41d5, type: 2}
-    damage: 0
+    damageType: 1
+    damage: 100
     queuePoint: 0
 --- !u!114 &5098180745610601783
 MonoBehaviour:
@@ -460,12 +547,14 @@ MonoBehaviour:
   archetypeName: Greatsword
   archetypeAnimator: {fileID: -7139077835231697723}
   uniqueAbility: {fileID: -1087981080382097670}
-  weaponTrigger:
-  - {fileID: 6949705772171659493}
   targetAssistanceParams:
     range: 3
     idealDotProduct: 0.6
     acceptedDotProduct: 0.1
+  weaponTrigger:
+  - {fileID: 6949705772171659493}
+  slicingObject:
+  - {fileID: 300046648842138269}
 --- !u!114 &-1087981080382097670
 MonoBehaviour:
   m_ObjectHideFlags: 0

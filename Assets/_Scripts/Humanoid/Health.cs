@@ -1,15 +1,23 @@
 using System;
 using UnityEngine;
+using HealthRelated;
 
-public class Health : MonoBehaviour
+
+namespace HealthRelated
 {
-    [SerializeField] private int startHealth = 100;
     public enum DamageType
     {
         Default,
         Slice,
         Crubmle
     }
+}
+
+public class Health : MonoBehaviour
+{
+    [SerializeField] private int startHealth = 100;
+
+
 
     public event Action OnTakeDamage;
     public event Action OnDeath;
