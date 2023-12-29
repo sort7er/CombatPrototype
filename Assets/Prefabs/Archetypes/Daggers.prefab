@@ -153,6 +153,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f73ca5da6569d4c9cb0d29fd8f9bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleInput:
+    animationClip: {fileID: 7400000, guid: e3a30eeef8b02604cb1a41713296c9c2, type: 2}
+  lightAttackInputs:
+  - animationClip: {fileID: 7400000, guid: b44d4a51a1f73bd46b6c24b6c836af27, type: 2}
+    damage: 20
+    queuePoint: 20
+  - animationClip: {fileID: 7400000, guid: 9ed34108217e08442af71260456448c2, type: 2}
+    damage: 25
+    queuePoint: 20
+  - animationClip: {fileID: 7400000, guid: 6f5f61d2faa209d4b99ab9e0a6366276, type: 2}
+    damage: 30
+    queuePoint: 0
+  heavyAttackInputs:
+  - animationClip: {fileID: 7400000, guid: ee58444269bb7ed45a0049d2e90880b3, type: 2}
+    damage: 30
+    queuePoint: 33
+  - animationClip: {fileID: 7400000, guid: 4b30ee95d1552b3489ead88441494dd1, type: 2}
+    damage: 35
+    queuePoint: 33
+  - animationClip: {fileID: 7400000, guid: 72bc853c15673ac4a9c7c79d066a76c9, type: 2}
+    damage: 40
+    queuePoint: 0
+  uniqueAttackInput:
+    animationClip: {fileID: 7400000, guid: f16a5d9c4b80ee1438a0819f13bbbfea, type: 2}
+    damage: 20
+    queuePoint: 0
 --- !u!114 &-944858642115517091
 MonoBehaviour:
   m_ObjectHideFlags: 0

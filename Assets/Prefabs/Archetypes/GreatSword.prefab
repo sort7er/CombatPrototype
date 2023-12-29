@@ -419,6 +419,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f73ca5da6569d4c9cb0d29fd8f9bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleInput:
+    animationClip: {fileID: 7400000, guid: a450458843b172348b345ac1fd36f613, type: 2}
+  lightAttackInputs:
+  - animationClip: {fileID: 7400000, guid: 70479980cc42fb240998651fc211c9cd, type: 2}
+    damage: 25
+    queuePoint: 30
+  - animationClip: {fileID: 7400000, guid: bd0dfe48d897bc44dbb31a8753209296, type: 2}
+    damage: 25
+    queuePoint: 36
+  - animationClip: {fileID: 7400000, guid: 60399aee0b866c14594c50bd4e7626ad, type: 2}
+    damage: 30
+    queuePoint: 0
+  heavyAttackInputs:
+  - animationClip: {fileID: 7400000, guid: 2be21f86799c567459c4393c9d737108, type: 2}
+    damage: 35
+    queuePoint: 43
+  - animationClip: {fileID: 7400000, guid: 64c90af0b47324541889ce81601cc813, type: 2}
+    damage: 35
+    queuePoint: 42
+  - animationClip: {fileID: 7400000, guid: f55f3e6b359670b45bd49960e0e97431, type: 2}
+    damage: 50
+    queuePoint: 0
+  uniqueAttackInput:
+    animationClip: {fileID: 7400000, guid: d49a5c412927e994297d4e2b498e41d5, type: 2}
+    damage: 0
+    queuePoint: 0
 --- !u!114 &5098180745610601783
 MonoBehaviour:
   m_ObjectHideFlags: 0

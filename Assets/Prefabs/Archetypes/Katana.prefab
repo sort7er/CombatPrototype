@@ -302,7 +302,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 1.9, z: 0.2}
+  m_Size: {x: 0.5, y: 1.9, z: 0.3}
   m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &8540676259532825529
 MonoBehaviour:
@@ -419,6 +419,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f73ca5da6569d4c9cb0d29fd8f9bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleInput:
+    animationClip: {fileID: 7400000, guid: d7712b807cba6a648bdbb17fdedad3cc, type: 2}
+  lightAttackInputs:
+  - animationClip: {fileID: 7400000, guid: 72be711e66e252b4c8cb1167d89ecaa5, type: 2}
+    damage: 20
+    queuePoint: 18
+  - animationClip: {fileID: 7400000, guid: 87ac5c889b16d9d4ca1ad2996c7cac46, type: 2}
+    damage: 20
+    queuePoint: 18
+  - animationClip: {fileID: 7400000, guid: bd79df2c6ef4524418a9fe4f6b8625b5, type: 2}
+    damage: 30
+    queuePoint: 0
+  heavyAttackInputs:
+  - animationClip: {fileID: 7400000, guid: 1d772fc194cd1204f861a36595a75eb3, type: 2}
+    damage: 30
+    queuePoint: 30
+  - animationClip: {fileID: 7400000, guid: 85e5b3a753f475c4eb19713de0213deb, type: 2}
+    damage: 30
+    queuePoint: 30
+  - animationClip: {fileID: 7400000, guid: 98ec1b66c1f5cb14b8d7d271be506adb, type: 2}
+    damage: 35
+    queuePoint: 0
+  uniqueAttackInput:
+    animationClip: {fileID: 7400000, guid: 10dd5fdbea342604ba3df48d6e55453e, type: 2}
+    damage: 0
+    queuePoint: 0
 --- !u!114 &2082084165264853290
 MonoBehaviour:
   m_ObjectHideFlags: 0

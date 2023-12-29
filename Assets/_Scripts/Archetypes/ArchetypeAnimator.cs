@@ -9,6 +9,21 @@ public class ArchetypeAnimator : MonoBehaviour
     public event Action OnLethal2;
     public event Action OnNotLethal;
 
+    [Header("Idle")]
+    [SerializeField] private AnimationInput idleInput;
+    [Header("Light attacks")]
+    [SerializeField] private AttackInput[] lightAttackInputs;
+    [Header("Heavy attacks")]
+    [SerializeField] private AttackInput[] heavyAttackInputs;
+    [Header("Unique attack")]
+    [SerializeField] private AttackInput uniqueAttackInput;
+
+    private Anim idleAnim;
+    private Attack[] lightAttacks;
+    private Attack[] heavyAttacks;
+    private Attack uniqueAttack;
+
+    
     private Animator archetypeAnim;
 
     private enum AttackType
@@ -23,16 +38,29 @@ public class ArchetypeAnimator : MonoBehaviour
     private int queueCapasity = 2;
     public bool isAttacking { get; private set; }
 
+    private int currentCombo;
 
     private void Awake()
     {
         archetypeAnim = GetComponent<Animator>();
+        idleAnim = new Anim(idleInput.animationClip);
+        lightAttacks = new Attack[lightAttackInputs.Length];
+        heavyAttacks = new Attack[heavyAttackInputs.Length];
+
+        SetUpAttacks(lightAttacks, lightAttackInputs);
+        SetUpAttacks(heavyAttacks, heavyAttackInputs);
+        uniqueAttack = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint);
+
+    }
+    
+    public void SetUpAttacks(Attack[] attacksToSetUp, AttackInput[] inputs)
+    {
+        for (int i = 0; i < inputs.Length; i++)
+        {
+            attacksToSetUp[i] = new Attack(inputs[i].animationClip, inputs[i].damage, inputs[i].queuePoint);
+        }
     }
 
-    //private void Update()
-    //{
-    //    Debug.Log(isAttacking);
-    //}
 
     public void Fire()
     {
@@ -50,14 +78,8 @@ public class ArchetypeAnimator : MonoBehaviour
     //Temporary fuction until weapon switching is proparly made
     public void Abort()
     {
-        ResetTriggers();
         attackQueue.Clear();
         isAttacking = false;
-    }
-    private void ResetTriggers()
-    {
-        archetypeAnim.ResetTrigger("Fire");
-        archetypeAnim.ResetTrigger("HeavyFire");
     }
 
     //Checking if there is a queue
@@ -88,39 +110,69 @@ public class ArchetypeAnimator : MonoBehaviour
         }
     }
 
-    //This is called from the animation, to see if it should chain into a new attack
-    public void AttackDoneAndCheckQueue()
-    {
-        isAttacking = false;
-        // Attack if queue is not empty
-        if (attackQueue.Count > 0)
-        {
-            Attack(attackQueue[0]);
-            attackQueue.RemoveAt(0);
-        }
-    }
-    //This is called from the animation, used at end of combo
-    public void AttackDone()
-    {
-        isAttacking = false;
-        attackQueue.Clear();
-    }
-
-    private void Attack(AttackType attackType)
+    private void Attack(AttackType attackType, float crossfade = 0)
     {
         isAttacking = true;
+        Attack currenAttack;
         if (attackType == AttackType.light)
         {
-            archetypeAnim.SetTrigger("Fire");
+            currenAttack = lightAttacks[currentCombo];
         }
         else if(attackType == AttackType.heavy)
         {
-            archetypeAnim.SetTrigger("HeavyFire");
+            currenAttack = heavyAttacks[currentCombo];
         }
-        else if (attackType == AttackType.unique)
+        else
         {
-            archetypeAnim.SetTrigger("UniqueFire");
+            currenAttack = uniqueAttack;
         }
+
+        archetypeAnim.CrossFade(currenAttack.state, crossfade);
+
+        //If not the third attack, check for more attacks in the queue after queuepoint in the attack
+        if(currentCombo < 2)
+        {
+            float remapedValue = Remap(currenAttack.queuePoint, 0, 60, 0, 1);
+            Invoke(nameof(CheckQueue), remapedValue);
+        }
+        Invoke(nameof(AttackDone), currenAttack.duration);
+        UpdateCurrentAttack();
+
+    }
+    private float Remap(float value, float from1, float to1, float from2, float to2)
+    {
+        return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
+    }
+    private void UpdateCurrentAttack()
+    {
+        if(currentCombo < 2)
+        {
+            currentCombo++;
+        }
+        else
+        {
+            currentCombo = 0;
+        }
+    }
+
+    //See if it should chain into a new attack
+    public void CheckQueue()
+    {
+        // Attack if queue is not empty
+        if (attackQueue.Count > 0)
+        {
+            CancelInvoke(nameof(AttackDone));
+            Attack(attackQueue[0], 0.25f);
+            attackQueue.RemoveAt(0);
+        }
+    }
+    //Used at end of attacks
+    public void AttackDone()
+    {
+        attackQueue.Clear();
+        isAttacking = false;
+        currentCombo = 0;
+        archetypeAnim.CrossFade(idleAnim.state, 0.25f);
     }
 
     //This is called from the animation, to see when an attack is lethal
@@ -142,5 +194,4 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         OnNotLethal?.Invoke();
     }
-
 }
