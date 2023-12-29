@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32e435ef9d8519418c31f1f36afc704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutForce: 2000
+  cutForce: 500
   endSlicePoint: {fileID: 7386917984496843541}
   startSlicePoint: {fileID: 8721171879472973418}
 --- !u!1 &4076885378981839462
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32e435ef9d8519418c31f1f36afc704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutForce: 2000
+  cutForce: 500
   endSlicePoint: {fileID: 8390965000620304643}
   startSlicePoint: {fileID: 8580401042198820296}
 --- !u!1 &7662657494584236023

@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32e435ef9d8519418c31f1f36afc704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutForce: 2000
+  cutForce: 500
   endSlicePoint: {fileID: 7755285446356589492}
   startSlicePoint: {fileID: 4786358279790056335}
 --- !u!1 &5058622237768530060

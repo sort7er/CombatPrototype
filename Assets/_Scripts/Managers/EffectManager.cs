@@ -8,7 +8,6 @@ public class EffectManager : MonoBehaviour
     [Header("Hit effect")]
     public int poolSize = 10;
     public ParticleSystem hitEffect;
-    public Transform hitEffectParent;
 
     private ParticleSystem[] hitEffects;
     private int currentHitEffect;
@@ -27,7 +26,7 @@ public class EffectManager : MonoBehaviour
 
         for (int i = 0; i < poolSize; i++)
         {
-            hitEffects[i] = Instantiate(hitEffect, hitEffectParent);
+            hitEffects[i] = Instantiate(hitEffect, ParentManager.instance.effects);
             hitEffects[i].gameObject.SetActive(false);
         }
     }

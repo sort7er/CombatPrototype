@@ -15,7 +15,19 @@ public class SlicingObject : MonoBehaviour
     private Vector3 direction;
 
     private List<SlicableObject> cannotSlice = new();
+    private WeaponSelector weaponSelector;
+    private ArchetypeAnimator archetypeAnimator;
+    
 
+    private void Awake()
+    {
+        weaponSelector = FindObjectOfType<Player>().weaponSelector;
+        weaponSelector.OnNewArchetype += NewArchetype;
+    }
+    private void OnDestroy()
+    {
+        weaponSelector.OnNewArchetype -= NewArchetype;
+    }
 
     private void Update()
     {
@@ -37,19 +49,31 @@ public class SlicingObject : MonoBehaviour
         if(hull != null)
         {
             GameObject upperHull = hull.CreateUpperHull(target.gameObject, target.meshRenderer.material);
+            upperHull.transform.position = target.transform.position;
+            upperHull.transform.rotation = target.transform.rotation;
             SlicableObject upperSlice = upperHull.AddComponent<SlicableObject>();
-            upperSlice.SetUpSlicableObject(target.transform.parent, cutForce);
+            upperSlice.SetUpSlicableObject(ParentManager.instance.meshes, cutForce);
             cannotSlice.Add(upperSlice);
 
             GameObject lowerHull = hull.CreateLowerHull(target.gameObject, target.meshRenderer.material);
+            lowerHull.transform.position = target.transform.position;
+            lowerHull.transform.rotation = target.transform.rotation;
             SlicableObject lowerSlice = lowerHull.AddComponent<SlicableObject>();
-            lowerSlice.SetUpSlicableObject(target.transform.parent, cutForce);
+            lowerSlice.SetUpSlicableObject(ParentManager.instance.meshes, cutForce);
             cannotSlice.Add(lowerSlice);
 
             Destroy(target.gameObject);
         }
     }
-
+    public void NewArchetype(Archetype newArchetype)
+    {
+        if(archetypeAnimator != null)
+        {
+            archetypeAnimator.OnAttackDone -= SwingDone;
+        }
+        archetypeAnimator = newArchetype.archetypeAnimator;
+        archetypeAnimator.OnAttackDone += SwingDone;
+    }
     public void SwingDone()
     {
         cannotSlice.Clear();

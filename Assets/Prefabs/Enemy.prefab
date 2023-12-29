@@ -122,6 +122,11 @@ MonoBehaviour:
   meshes:
   - {fileID: 6852626906183478805}
   - {fileID: 8280782227285894511}
+  prefabs:
+  - {fileID: 5725819523948652768, guid: b20e1344b3764a940b29583d39ec33cc, type: 3}
+  - {fileID: 7400578952299861988, guid: 6e63d61d6c89a7441863ec7b4de4e2e5, type: 3}
+  - {fileID: 3334896440328721665, guid: a50bab49384846c4cbd4f716392a37dc, type: 3}
+  - {fileID: 7698124251612721426, guid: c82e4c9cc847be84e8e1ec891dcb9d9f, type: 3}
 --- !u!95 &8569343081816793612
 Animator:
   serializedVersion: 5

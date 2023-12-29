@@ -8,6 +8,7 @@ public class ArchetypeAnimator : MonoBehaviour
     public event Action OnLethal;
     public event Action OnLethal2;
     public event Action OnNotLethal;
+    public event Action OnAttackDone;
 
     [Header("Idle")]
     [SerializeField] private AnimationInput idleInput;
@@ -171,6 +172,7 @@ public class ArchetypeAnimator : MonoBehaviour
     //Used at end of attacks
     public void AttackDone()
     {
+        OnAttackDone?.Invoke();
         attackQueue.Clear();
         isAttacking = false;
         currentCombo = 0;

@@ -3,7 +3,11 @@ using HealthRelated;
 
 public class EnemyHealth : Health
 {
+    [Header("For slice death")]
     [SerializeField] private SlicableObject[] meshes;
+    [Header("For crumble death")]
+    [SerializeField] private ShardContainer[] prefabs;
+
 
     private Enemy enemy;
     
@@ -16,13 +20,11 @@ public class EnemyHealth : Health
     public override void TakeDamage(int damage, DamageType incomingDamage)
     {
         base.TakeDamage(damage, incomingDamage);
-        Debug.Log("Hit " + incomingDamage.ToString());
         enemy.Hit();
     }
     protected override void Dead(DamageType incomingDamage)
     {
         base.Dead(incomingDamage);
-        Debug.Log("Dead " + incomingDamage.ToString());
 
         if(incomingDamage == DamageType.Slice)
         {
@@ -31,6 +33,15 @@ public class EnemyHealth : Health
                 enemy.player.weaponSelector.currentArchetype.currentSlicingObject.Slice(meshes[i]);
             }
         }
+        if (incomingDamage == DamageType.Crubmle)
+        {
+            int rnd = Random.Range(0, prefabs.Length);
+            ShardContainer container = Instantiate(prefabs[rnd], transform.position, transform.rotation);
+
+            Vector3 direction = transform.position - enemy.player.Position();
+            container.Blast(direction * 2);
+        }
+        Destroy(gameObject);
 
     }
 }

@@ -49,13 +49,19 @@ public class Archetype : MonoBehaviour
     {
         hits.Clear();
         weaponTrigger[0].EnableCollider();
-        currentSlicingObject = slicingObject[0];
+        if (HasSlicing())
+        {
+            currentSlicingObject = slicingObject[0];
+        }
     }
     private void Lethal2()
     {
         hits.Clear();
         weaponTrigger[1].EnableCollider();
-        currentSlicingObject = slicingObject[1];
+        if (HasSlicing())
+        {
+            currentSlicingObject = slicingObject[1];
+        }
     }
     private void NotLethal()
     {
@@ -77,6 +83,18 @@ public class Archetype : MonoBehaviour
         }
 
         archetypeAnimator.UniqueFire();
+    }
+
+    private bool HasSlicing()
+    {
+        if(slicingObject.Length > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }
