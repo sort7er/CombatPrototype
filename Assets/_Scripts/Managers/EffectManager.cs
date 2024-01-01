@@ -16,6 +16,10 @@ public class EffectManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
         SetUpHitEffect();
     }
 

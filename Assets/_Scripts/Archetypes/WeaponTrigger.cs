@@ -36,7 +36,7 @@ public class WeaponTrigger : MonoBehaviour
         }
         else if(other.TryGetComponent<SlicableObject>(out SlicableObject sliceble))
         {
-            if(VolumeOfMesh(sliceble.mesh) > 0.25f)
+            if(VolumeOfMesh(sliceble.mesh) > 0.15f)
             {
                 player.weaponSelector.currentArchetype.currentSlicingObject.Slice(sliceble);
             }
