@@ -14,7 +14,7 @@ public class SlicingObject : MonoBehaviour
     private Vector3 lastPos, newPos;
     private Vector3 direction;
 
-    private List<SlicableObject> cannotSlice = new();
+    public List<SlicableObject> cannotSlice /*{ get; private set; }*/ = new();
     private WeaponSelector weaponSelector;
     private ArchetypeAnimator archetypeAnimator;
     
@@ -73,6 +73,7 @@ public class SlicingObject : MonoBehaviour
         }
         archetypeAnimator = newArchetype.archetypeAnimator;
         archetypeAnimator.OnAttackDone += SwingDone;
+        
     }
     public void SwingDone()
     {

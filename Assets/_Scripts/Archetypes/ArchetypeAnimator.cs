@@ -167,6 +167,7 @@ public class ArchetypeAnimator : MonoBehaviour
             CancelInvoke(nameof(AttackDone));
             Attack(attackQueue[0], 0.25f);
             attackQueue.RemoveAt(0);
+            OnAttackDone?.Invoke();
         }
     }
     //Used at end of attacks

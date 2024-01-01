@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class WeaponTrigger : MonoBehaviour
 {
@@ -15,10 +14,12 @@ public class WeaponTrigger : MonoBehaviour
     private Vector3 previousPos;
 
     private Player player;
+    private SlicingObject slicingObject;
 
     private void Awake()
     {
         weaponCollider = GetComponent<Collider>();
+        slicingObject = GetComponent<SlicingObject>();
         player = FindObjectOfType<Player>();
         DisableCollider();
         
@@ -34,11 +35,14 @@ public class WeaponTrigger : MonoBehaviour
             contactPoint = other.ClosestPointOnBounds(transform.position);
             OnHit?.Invoke(health, this);
         }
-        else if(other.TryGetComponent<SlicableObject>(out SlicableObject sliceble))
+        else if(other.TryGetComponent<SlicableObject>(out SlicableObject sliceble) && slicingObject != null)
         {
-            if(VolumeOfMesh(sliceble.mesh) > 0.15f)
+            if (!slicingObject.cannotSlice.Contains(sliceble))
             {
-                player.weaponSelector.currentArchetype.currentSlicingObject.Slice(sliceble);
+                if (VolumeOfMesh(sliceble.mesh) > 0.15f)
+                {
+                    player.weaponSelector.currentArchetype.currentSlicingObject.Slice(sliceble);
+                }
             }
         }
     }
