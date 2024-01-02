@@ -12,8 +12,6 @@ public class PlayerMovement : Humanoid
     [Header("References")]
     public TextMeshProUGUI speed;
 
-    public bool canMove { get; private set; }
-
     private Vector2 input;
     private Vector3 movementDirection;
 
@@ -52,16 +50,7 @@ public class PlayerMovement : Humanoid
 
     }
 
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-        if (canMove)
-        {
-            MovePlayer();
-        }
-    }
-
-    private void MovePlayer()
+    protected override void Move()
     {
         movementDirection = transform.forward * input.y + transform.right * input.x;
         if (GroundCheck())
@@ -72,26 +61,6 @@ public class PlayerMovement : Humanoid
         {
             rb.AddForce(movementDirection.normalized * airMultiplier * playerSpeed * 10, ForceMode.Force);
         }
-    }
-
-    private void SpeedControl()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-
-        if (flatVel.magnitude > playerSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * playerSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
-    }
-
-    public void DisableMovement()
-    {
-        canMove = false;
-    }
-    public void EnableMovement()
-    {
-        canMove = true;
     }
 
 }

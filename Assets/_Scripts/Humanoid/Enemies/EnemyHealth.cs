@@ -21,6 +21,10 @@ public class EnemyHealth : Health
     {
         base.TakeDamage(damage, incomingDamage);
         enemy.Hit();
+
+        Vector3 pushback = transform.position - enemy.player.Position();
+        enemy.AddForce(pushback.normalized * 2);
+        
     }
     protected override void Dead(DamageType incomingDamage)
     {

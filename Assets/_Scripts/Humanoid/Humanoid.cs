@@ -3,13 +3,15 @@ using UnityEngine;
 public class Humanoid : MonoBehaviour
 {
     [Header("Humanoid")]
-    [SerializeField] protected LayerMask groundLayer;
+    [SerializeField] protected float movementSpeed = 10;
     [SerializeField] protected float groundDistance;
     [SerializeField] protected float groundDrag;
     [SerializeField] protected float fallingForce;
+    [SerializeField] protected LayerMask groundLayer;
 
 
-    protected Rigidbody rb;
+    public Rigidbody rb { get; private set; }
+    protected bool canMove;
 
 
     protected virtual void Awake()
@@ -35,6 +37,15 @@ public class Humanoid : MonoBehaviour
             //Falling speed
             rb.AddForce(Vector3.down * fallingForce, ForceMode.Force);
         }
+
+        if (canMove)
+        {
+            Move();
+        }
+    }
+    protected virtual void Move()
+    {
+
     }
 
     protected bool GroundCheck()
@@ -47,5 +58,35 @@ public class Humanoid : MonoBehaviour
         {
             return false;
         }
+    }
+
+
+
+    public Vector3 Position()
+    {
+        return transform.position;
+    }
+    protected void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+        if (flatVel.magnitude > movementSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * movementSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+    }
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+    public void ImmediateStop()
+    {
+        DisableMovement();
+        rb.velocity = Vector3.zero;
     }
 }

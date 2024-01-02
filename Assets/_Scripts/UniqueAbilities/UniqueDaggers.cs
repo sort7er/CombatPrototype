@@ -28,6 +28,7 @@ public class UniqueDaggers : UniqueAbility
         Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
         playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
         Invoke(nameof(StartDash), rotationDuration);
+        enemies[0].Takedown();
     }
 
     public override void ExecuteAbilityNoTarget(PlayerData playerData)
@@ -46,6 +47,7 @@ public class UniqueDaggers : UniqueAbility
     }
     private void StartDash()
     {
+
         directionToTarget = target - playerTrans.position;
         dashPos = playerTrans.position + directionToTarget - directionToTarget.normalized;
 

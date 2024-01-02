@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 using HealthRelated;
-
+using UnityEngine.UI;
+using DG.Tweening;
 
 namespace HealthRelated
 {
@@ -16,7 +17,7 @@ namespace HealthRelated
 public class Health : MonoBehaviour
 {
     [SerializeField] private int startHealth = 100;
-
+    [SerializeField] private Slider healthSlider;
 
 
     public event Action OnTakeDamage;
@@ -26,6 +27,9 @@ public class Health : MonoBehaviour
     protected virtual void Awake()
     {
         health = startHealth;
+        healthSlider.minValue = 0;
+        healthSlider.maxValue = health;
+        healthSlider.value = health;
     }
 
     public virtual void TakeDamage(int damage, DamageType incomingDamage = DamageType.Default)
@@ -37,8 +41,8 @@ public class Health : MonoBehaviour
 
         OnTakeDamage?.Invoke();
         health -=  damage;
-
-        if(health <= 0)
+        healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
+        if (health <= 0)
         {
             health = 0;
             Dead(incomingDamage);
