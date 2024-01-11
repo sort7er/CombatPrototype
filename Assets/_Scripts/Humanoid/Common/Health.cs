@@ -10,7 +10,7 @@ namespace HealthRelated
     {
         Default,
         Slice,
-        Crubmle
+        Crumble
     }
 }
 
@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
         healthSlider.value = health;
     }
 
-    public virtual void TakeDamage(int damage, DamageType incomingDamage = DamageType.Default)
+    public virtual void TakeDamage(int damage, Archetype killingArchetype, DamageType incomingDamage = DamageType.Default)
     {
         if (IsDead())
         {
@@ -45,11 +45,11 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            Dead(incomingDamage);
+            Dead(killingArchetype, incomingDamage);
         }
     }
 
-    protected virtual void Dead(DamageType incomingDamage)
+    protected virtual void Dead(Archetype killingArchetype, DamageType incomingDamage)
     {
         OnDeath?.Invoke();
     }

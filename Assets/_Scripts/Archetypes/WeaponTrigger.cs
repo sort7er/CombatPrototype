@@ -9,6 +9,7 @@ public class WeaponTrigger : MonoBehaviour
     public Vector3 swingDir { get; private set; }
     public Vector3 upDir { get; private set; }
 
+    private Archetype archetype;
     private Collider weaponCollider;
     private Vector3 currentPos;
     private Vector3 previousPos;
@@ -18,6 +19,7 @@ public class WeaponTrigger : MonoBehaviour
 
     private void Awake()
     {
+        archetype = GetComponentInParent<Archetype>();
         weaponCollider = GetComponent<Collider>();
         slicingObject = GetComponent<SlicingObject>();
         player = FindObjectOfType<Player>();
@@ -29,19 +31,19 @@ public class WeaponTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<Health>(out Health health))
+        if(other.TryGetComponent(out Health health))
         {
             upDir = transform.forward;
             contactPoint = other.ClosestPointOnBounds(transform.position);
             OnHit?.Invoke(health, this);
         }
-        else if(other.TryGetComponent<SlicableObject>(out SlicableObject sliceble) && slicingObject != null)
+        else if(other.TryGetComponent(out SlicableObject sliceble) && slicingObject != null)
         {
             if (!slicingObject.cannotSlice.Contains(sliceble))
             {
                 if (VolumeOfMesh(sliceble.mesh) > 0.15f)
                 {
-                    player.weaponSelector.currentArchetype.currentSlicingObject.Slice(sliceble);
+                    archetype.currentSlicingObject.Slice(sliceble);
                 }
             }
         }

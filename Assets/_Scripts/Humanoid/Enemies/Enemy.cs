@@ -1,18 +1,25 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : Humanoid
 {
-    [Header("Values")]
+    [Header("Movement Values")]
     [SerializeField] private float rotationSlerp = 10;
-
     public float waypointDistance = 1f;
     public float playerDistance = 1f;
+
+    [Header("Attacking")]
+    public float attackCooldown;
+    public Archetype currentArchetype;
+
 
     public Player player { get; private set; }
     public NavMeshAgent agent { get; private set; }
     public NavMeshPath currentPath { get; private set; }
     private Animator enemyAnim;
+    private WeaponContainer weaponContainer;
 
     //State machine
     public EnemyState currentState;
@@ -28,6 +35,10 @@ public class Enemy : Humanoid
         base.Awake();
         FindReferences();
         SwitchState(chaseState);
+    }
+    private void Start()
+    {
+        currentArchetype = weaponContainer.archetype;
     }
 
     protected override void Update()
@@ -51,6 +62,7 @@ public class Enemy : Humanoid
         enemyAnim = GetComponent<Animator>();
         player = FindObjectOfType<Player>();
         agent = GetComponent<NavMeshAgent>();
+        weaponContainer = GetComponentInChildren<WeaponContainer>();
     }
     protected override void Move()
     {
@@ -109,8 +121,16 @@ public class Enemy : Humanoid
         enemyAnim.SetTrigger("Hit");
     }
 
+    public void InvokeFunction(Action function, float waitTime)
+    {
+        StartCoroutine(DoFunction(function, waitTime));
+    }
 
-
+    private IEnumerator DoFunction(Action function, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        function.Invoke();
+    }
 
 
 }

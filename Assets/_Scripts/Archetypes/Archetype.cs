@@ -9,6 +9,7 @@ public class Archetype : MonoBehaviour
     public ArchetypeAnimator archetypeAnimator;
     public UniqueAbility uniqueAbility;
     public TargetAssistanceParams targetAssistanceParams;
+    public Humanoid owner;
     public WeaponTrigger[] weaponTrigger;
     public SlicingObject[] slicingObject;
 
@@ -26,6 +27,14 @@ public class Archetype : MonoBehaviour
         archetypeAnimator.OnLethal2 += Lethal2;
         archetypeAnimator.OnNotLethal += NotLethal;
     }
+    private void Start()
+    {
+        //Temporary until a pickupfunction works
+        if (transform.parent.TryGetComponent(out WeaponContainer container))
+        {
+            owner = container.owner;
+        }
+    }
     private void OnDestroy()
     {
         for (int i = 0; i < weaponTrigger.Length; i++)
@@ -41,7 +50,7 @@ public class Archetype : MonoBehaviour
         if(!hits.Contains(health))
         {
             hits.Add(health);
-            health.TakeDamage(archetypeAnimator.currentAttack.damage, archetypeAnimator.currentAttack.damageType);
+            health.TakeDamage(archetypeAnimator.currentAttack.damage, this, archetypeAnimator.currentAttack.damageType);
             EffectManager.instance.Hit(weaponTrigger.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
         }
     }

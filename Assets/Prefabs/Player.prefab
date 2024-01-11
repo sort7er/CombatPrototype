@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 549351530727516426}
+  - component: {fileID: 1394102023306007283}
   m_Layer: 10
   m_Name: WeaponContainer
   m_TagString: Untagged
@@ -114,6 +115,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7282179891230423291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1394102023306007283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3505613866565440465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1e835d31b832c498ee4801db71e067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6473715462561526432
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +285,7 @@ GameObject:
   - component: {fileID: 6825286761255639201}
   - component: {fileID: 3979716233658242414}
   - component: {fileID: 5698463858767405853}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,12 +604,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ff07e8aab15c44d9b3531204abe3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 6
+  groundDistance: 0.3
+  groundDrag: 8
+  fallingForce: 6
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundDistance: 0.2
-  groundDrag: 5
-  fallingForce: 6
   playerSpeed: 7
   jumpForce: 8
   airMultiplier: 0.4
@@ -674,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  healthSlider: {fileID: 0}
 --- !u!114 &5698463858767405853
 MonoBehaviour:
   m_ObjectHideFlags: 0

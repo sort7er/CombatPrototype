@@ -17,32 +17,32 @@ public class EnemyHealth : Health
         base.Awake();
         enemy = GetComponent<Enemy>();
     }
-    public override void TakeDamage(int damage, DamageType incomingDamage)
+    public override void TakeDamage(int damage, Archetype killingArchetype, DamageType incomingDamage)
     {
-        base.TakeDamage(damage, incomingDamage);
+        base.TakeDamage(damage, killingArchetype, incomingDamage);
         enemy.Hit();
 
         Vector3 pushback = transform.position - enemy.player.Position();
         enemy.AddForce(pushback.normalized * 2);
         
     }
-    protected override void Dead(DamageType incomingDamage)
+    protected override void Dead(Archetype killingArchetype, DamageType incomingDamage)
     {
-        base.Dead(incomingDamage);
+        base.Dead(killingArchetype, incomingDamage);
 
         if(incomingDamage == DamageType.Slice)
         {
             for (int i = 0; i < meshes.Length; i++) 
             {
-                enemy.player.weaponSelector.currentArchetype.currentSlicingObject.Slice(meshes[i]);
+                killingArchetype.currentSlicingObject.Slice(meshes[i]);
             }
         }
-        if (incomingDamage == DamageType.Crubmle)
+        if (incomingDamage == DamageType.Crumble)
         {
             int rnd = Random.Range(0, prefabs.Length);
             ShardContainer container = Instantiate(prefabs[rnd], transform.position, transform.rotation);
 
-            Vector3 direction = transform.position - enemy.player.Position();
+            Vector3 direction = transform.position - killingArchetype.owner.Position();
             container.Blast(direction * 2);
         }
         Destroy(gameObject);
