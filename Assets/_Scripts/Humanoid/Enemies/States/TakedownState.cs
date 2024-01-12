@@ -1,15 +1,19 @@
 using UnityEngine;
 
-public class TakedownState : EnemyState
+namespace EnemyStates
 {
-    public override void EnterState(Enemy enemy)
+    public class TakedownState : EnemyState
     {
-        Debug.Log("wd");
-        enemy.ImmediateStop();
-    }
+        public override void EnterState(Enemy enemy)
+        {
+            Debug.Log("wd");
+            enemy.ImmediateStop();
+        }
 
-    public override void UpdateState(Enemy enemy)
-    {
+        public override void UpdateState(Enemy enemy)
+        {
 
+        }
     }
 }
+

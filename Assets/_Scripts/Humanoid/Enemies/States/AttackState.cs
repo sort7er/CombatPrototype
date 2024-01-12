@@ -1,85 +1,89 @@
 using UnityEngine;
 
-public class AttackState : EnemyState
+namespace EnemyStates
 {
-
-    private bool coolDown;
-    public override void EnterState(Enemy enemy)
+    public class AttackState : EnemyState
     {
-        enemy.DisableMovement();
-        coolDown = false;
-    }
 
-    public override void UpdateState(Enemy enemy)
-    {
-        enemy.LookAtTarget(enemy.player.Position());
-
-        if (HasArchetype(enemy))
+        private bool coolDown;
+        public override void EnterState(Enemy enemy)
         {
-            if (Vector3.Distance(enemy.player.Position(), enemy.Position()) > enemy.playerDistance && !IsActive(enemy))
+            enemy.DisableMovement();
+            coolDown = false;
+        }
+
+        public override void UpdateState(Enemy enemy)
+        {
+            enemy.LookAtTarget(enemy.player.Position());
+
+            if (HasArchetype(enemy))
             {
-                enemy.SwitchState(enemy.chaseState);
-            }
+                if (Vector3.Distance(enemy.player.Position(), enemy.Position()) > enemy.playerDistance && !IsActive(enemy))
+                {
+                    enemy.SwitchState(enemy.chaseState);
+                }
 
-            if (!IsActive(enemy) && !coolDown)
+                if (!IsActive(enemy) && !coolDown)
+                {
+                    SelectCombo(enemy);
+                    coolDown = true;
+                    enemy.InvokeFunction(CooldownDone, Random.Range(enemy.attackCooldown, enemy.attackCooldown + 1));
+                }
+            }
+            else
             {
-                SelectCombo(enemy);
-                coolDown = true;
-                enemy.InvokeFunction(CooldownDone, Random.Range(enemy.attackCooldown, enemy.attackCooldown + 1));
+                //If no archetype, go look for weapon or something. For now just chase player
+                if (Vector3.Distance(enemy.player.Position(), enemy.Position()) > enemy.playerDistance)
+                {
+                    enemy.SwitchState(enemy.chaseState);
+                }
             }
         }
-        else
+
+        private void SelectCombo(Enemy enemy)
         {
-            //If no archetype, go look for weapon or something. For now just chase player
-            if (Vector3.Distance(enemy.player.Position(), enemy.Position()) > enemy.playerDistance)
+            int numberOfAttacks = Random.Range(1, 4);
+
+            for (int i = 0; i < numberOfAttacks; i++)
             {
-                enemy.SwitchState(enemy.chaseState);
+                RandomFire(enemy);
             }
         }
-    }
 
-    private void SelectCombo(Enemy enemy)
-    {
-        int numberOfAttacks = Random.Range(1, 4);
-
-        for (int i = 0; i < numberOfAttacks; i++)
+        private void RandomFire(Enemy enemy)
         {
-            RandomFire(enemy);
-        }
-    }
+            int rnd = Random.Range(0, 2);
 
-    private void RandomFire(Enemy enemy)
-    {
-        int rnd = Random.Range(0, 2);
+            if (rnd == 0)
+            {
+                enemy.currentArchetype.archetypeAnimator.Fire();
+            }
+            else
+            {
+                enemy.currentArchetype.archetypeAnimator.HeavyFire();
+            }
+        }
+        public void CooldownDone()
+        {
+            coolDown = false;
+        }
 
-        if (rnd == 0)
+        private bool HasArchetype(Enemy enemy)
         {
-            enemy.currentArchetype.archetypeAnimator.Fire();
+            if (enemy.currentArchetype != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
-        {
-            enemy.currentArchetype.archetypeAnimator.HeavyFire();
-        }
-    }
-    public void CooldownDone()
-    {
-        coolDown = false;
-    }
 
-    private bool HasArchetype(Enemy enemy)
-    {
-        if(enemy.currentArchetype != null)
+        private bool IsActive(Enemy enemy)
         {
-            return true;
+            return enemy.currentArchetype.archetypeAnimator.isAttacking;
         }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool IsActive(Enemy enemy)
-    {
-        return enemy.currentArchetype.archetypeAnimator.IsActive();
     }
 }
+

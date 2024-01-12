@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using EnemyStates;
 
 public class Enemy : Humanoid
 {

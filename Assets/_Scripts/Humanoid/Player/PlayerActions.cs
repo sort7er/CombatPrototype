@@ -14,7 +14,8 @@ public class PlayerActions : MonoBehaviour
 
     private PlayerData playerData;
 
-    private bool cannotParry;
+    private bool parrying;
+    private bool blocking;
 
     private void Awake()
     {
@@ -64,7 +65,7 @@ public class PlayerActions : MonoBehaviour
 
     private void UniqueFire()
     {
-        if (!currentArchetype.archetypeAnimator.IsActive() && !weaponSelector.IsHolstered())
+        if (WeaponAvailable())
         {
             enemies = targetAssistance.CheckForEnemies(currentArchetype.targetAssistanceParams, out int numIdealTargets);
 
@@ -74,31 +75,41 @@ public class PlayerActions : MonoBehaviour
     }
     private void Block()
     {
-        if(!currentArchetype.archetypeAnimator.IsActive() && !weaponSelector.IsHolstered())
+        if(WeaponAvailable())
         {
-            cannotParry = false;
+            parrying = false;
+            blocking = false;
             currentArchetype.archetypeAnimator.Block();
-            Invoke(nameof(CannotParry), parryWindow);
-            
+            Invoke(nameof(CheckForParry), parryWindow);
         }
     }
-    private void CannotParry()
+
+    private void CheckForParry()
     {
-        cannotParry = true;
+        if (parrying)
+        {
+            currentArchetype.archetypeAnimator.Parry();
+        }
+        else
+        {
+            blocking = true;
+        }
     }
+
     private void Parry()
     {
-        if (currentArchetype.archetypeAnimator.isDefending && !weaponSelector.IsHolstered())
+        if (!blocking)
         {
-            if (!cannotParry)
-            {
-                CancelInvoke(nameof(CannotParry));
-                currentArchetype.archetypeAnimator.Parry();
-            }
-            else
-            {
-                currentArchetype.archetypeAnimator.ActionDone();
-            }
+            parrying = true;
         }
+        else
+        {
+            currentArchetype.archetypeAnimator.ActionDone();
+        }
+    }
+
+    private bool WeaponAvailable()
+    {
+        return !currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered();
     }
 }
