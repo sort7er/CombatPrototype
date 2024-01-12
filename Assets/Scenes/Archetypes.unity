@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -890,80 +890,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6447444073157942565, guid: ca25066036473ca49a73d594b649c74b,
     type: 3}
   m_PrefabInstance: {fileID: 988811381}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &703722821
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1624033060}
-    m_Modifications:
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964380067938829984, guid: afd52918b1021eb4daedfe6c909bba70,
-        type: 3}
-      propertyPath: m_Name
-      value: Greatsword
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: afd52918b1021eb4daedfe6c909bba70, type: 3}
---- !u!4 &703722822 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6176240336937996770, guid: afd52918b1021eb4daedfe6c909bba70,
-    type: 3}
-  m_PrefabInstance: {fileID: 703722821}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
@@ -2665,12 +2591,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618356976}
   m_CullTransparentMesh: 1
---- !u!4 &1624033060 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 549351530727516426, guid: 4e46e8e9580cc62499609d3a69251b49,
-    type: 3}
-  m_PrefabInstance: {fileID: 6722069367170094066}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1662691155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6447444073157942565, guid: ca25066036473ca49a73d594b649c74b,
@@ -3402,11 +3322,7 @@ PrefabInstance:
       objectReference: {fileID: 1618356978}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 549351530727516426, guid: 4e46e8e9580cc62499609d3a69251b49,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 703722822}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e46e8e9580cc62499609d3a69251b49, type: 3}
 --- !u!1001 &8202860532561262766
