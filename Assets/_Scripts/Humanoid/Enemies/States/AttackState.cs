@@ -41,11 +41,9 @@ public class AttackState : EnemyState
     private void SelectCombo(Enemy enemy)
     {
         int numberOfAttacks = Random.Range(1, 4);
-            Debug.Log("Attack" + numberOfAttacks);
 
         for (int i = 0; i < numberOfAttacks; i++)
         {
-            Debug.Log("Actual attack");
             RandomFire(enemy);
         }
     }
@@ -66,7 +64,6 @@ public class AttackState : EnemyState
     public void CooldownDone()
     {
         coolDown = false;
-        Debug.Log("ye");
     }
 
     private bool HasArchetype(Enemy enemy)

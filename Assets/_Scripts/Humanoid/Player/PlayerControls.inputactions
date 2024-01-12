@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Parry",
+                    "name": "Block & Parry",
                     "type": "Button",
                     "id": "7b26cb96-76c3-4342-b0b9-4d846cde9bce",
                     "expectedControlType": "Button",
@@ -280,7 +280,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Parry",
+                    "action": "Block & Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -78,6 +78,14 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         CheckAttack(AttackType.unique);
     }
+    public void Block()
+    {
+
+    }
+    public void Parry()
+    {
+
+    }
 
     //Temporary fuction until weapon switching is proparly made
     public void Abort()

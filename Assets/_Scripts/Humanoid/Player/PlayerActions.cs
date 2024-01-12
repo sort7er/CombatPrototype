@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerActions : MonoBehaviour
 {
     public Archetype currentArchetype { get; private set; }
 
@@ -24,6 +24,8 @@ public class PlayerAttack : MonoBehaviour
         inputReader.OnFire += Fire;
         inputReader.OnHeavyFire += HeavyFire;
         inputReader.OnUniqueFire += UniqueFire;
+        inputReader.OnBlock += Block;
+        inputReader.OnParry += Parry;
 
         weaponSelector.OnNewArchetype += NewArchetype;
     }
@@ -34,6 +36,8 @@ public class PlayerAttack : MonoBehaviour
         inputReader.OnHeavyFire -= HeavyFire;
         inputReader.OnUniqueFire -= UniqueFire;
         weaponSelector.OnNewArchetype -= NewArchetype;
+        inputReader.OnBlock -= Block;
+        inputReader.OnParry -= Parry;
     }
     private void NewArchetype(Archetype newArchetype)
     {
@@ -64,5 +68,19 @@ public class PlayerAttack : MonoBehaviour
             currentArchetype.UniqueAttack(enemies, playerData);
         }
 
+    }
+    private void Block()
+    {
+        if(!currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered())
+        {
+            currentArchetype.archetypeAnimator.Block();
+        }
+    }
+    private void Parry()
+    {
+        if (!currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered())
+        {
+            currentArchetype.archetypeAnimator.Parry();
+        }
     }
 }

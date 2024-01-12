@@ -11,6 +11,8 @@ public class InputReader : MonoBehaviour
     public event Action OnNextWeapon;
     public event Action OnPreviousWeapon;
     public event Action OnHolster;
+    public event Action OnBlock;
+    public event Action OnParry;
 
 
     private bool isHeavy;
@@ -70,6 +72,15 @@ public class InputReader : MonoBehaviour
             OnHolster?.Invoke();
         }
     }
-
-
+    public void BlockAndParry(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OnBlock?.Invoke();
+        }
+        if (ctx.canceled)
+        {
+            OnParry?.Invoke();
+        }
+    }
 }

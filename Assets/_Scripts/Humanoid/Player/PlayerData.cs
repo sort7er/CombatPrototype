@@ -6,12 +6,12 @@ public class PlayerData
     public Transform transform;
     public PlayerMovement playerMovement;
     public CameraController cameraController;
-    public PlayerAttack playerAttack;
+    public PlayerActions playerAttack;
 
     //Components
     public Rigidbody rb;
 
-    public PlayerData(PlayerMovement playerMovement, CameraController cameraController, PlayerAttack playerAttack, Rigidbody rb)
+    public PlayerData(PlayerMovement playerMovement, CameraController cameraController, PlayerActions playerAttack, Rigidbody rb)
     {
         this.playerMovement = playerMovement;
         this.cameraController = cameraController;

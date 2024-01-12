@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public CameraController cameraController;
     public WeaponSelector weaponSelector;
-    public PlayerAttack playerAttack;
+    public PlayerActions playerAttack;
     public TargetAssistance targetAssistance;
     public Health health;
 
