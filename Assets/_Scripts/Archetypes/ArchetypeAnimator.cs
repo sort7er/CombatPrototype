@@ -8,10 +8,14 @@ public class ArchetypeAnimator : MonoBehaviour
     public event Action OnLethal;
     public event Action OnLethal2;
     public event Action OnNotLethal;
-    public event Action OnAttackDone;
+    public event Action OnActionDone;
 
     [Header("Idle")]
     [SerializeField] private AnimationInput idleInput;
+    [Header("Block")]
+    [SerializeField] private AttackInput blockInput;
+    [Header("Parry")]
+    [SerializeField] private AttackInput parryInput;
     [Header("Light attacks")]
     [SerializeField] private AttackInput[] lightAttackInputs;
     [Header("Heavy attacks")]
@@ -20,27 +24,33 @@ public class ArchetypeAnimator : MonoBehaviour
     [SerializeField] private AttackInput uniqueAttackInput;
 
 
-    public Attack currentAttack { get; private set; }
+    public Attack currentAction { get; private set; }
 
     private Anim idleAnim;
-    private Attack[] lightAttacks;
-    private Attack[] heavyAttacks;
-    private Attack uniqueAttack;
+    private Attack block;
+    private Attack parry;
+    private Attack[] light;
+    private Attack[] heavy;
+    private Attack unique;
+
 
     
     private Animator archetypeAnim;
 
-    private enum AttackType
+    private enum ActionType
     {
         light,
         heavy,
-        unique
+        unique,
+        block,
+        parry
     }
 
-    private List<AttackType> attackQueue = new();
+    private List<ActionType> attackQueue = new();
 
     private int queueCapasity = 2;
     public bool isAttacking { get; private set; }
+    public bool isDefending{ get; private set; }
 
     private int currentCombo;
 
@@ -48,12 +58,14 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         archetypeAnim = GetComponent<Animator>();
         idleAnim = new Anim(idleInput.animationClip);
-        lightAttacks = new Attack[lightAttackInputs.Length];
-        heavyAttacks = new Attack[heavyAttackInputs.Length];
+        block = new Attack(blockInput.animationClip, blockInput.damage, blockInput.queuePoint, blockInput.damageType);
+        parry = new Attack(parryInput.animationClip, parryInput.damage, parryInput.queuePoint, parryInput.damageType);
+        light = new Attack[lightAttackInputs.Length];
+        heavy = new Attack[heavyAttackInputs.Length];
 
-        SetUpAttacks(lightAttacks, lightAttackInputs);
-        SetUpAttacks(heavyAttacks, heavyAttackInputs);
-        uniqueAttack = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint, uniqueAttackInput.damageType);
+        SetUpAttacks(light, lightAttackInputs);
+        SetUpAttacks(heavy, heavyAttackInputs);
+        unique = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint, uniqueAttackInput.damageType);
 
     }
     
@@ -68,23 +80,23 @@ public class ArchetypeAnimator : MonoBehaviour
 
     public void Fire()
     {
-        CheckAttack(AttackType.light);
+        CheckAction(ActionType.light);
     }
     public void HeavyFire()
     {
-        CheckAttack(AttackType.heavy);
+        CheckAction(ActionType.heavy);
     }
     public void UniqueFire()
     {
-        CheckAttack(AttackType.unique);
+        CheckAction(ActionType.unique);
     }
     public void Block()
     {
-
+        CheckAction(ActionType.block);
     }
     public void Parry()
     {
-
+        CheckAction(ActionType.parry);
     }
 
     //Temporary fuction until weapon switching is proparly made
@@ -95,25 +107,33 @@ public class ArchetypeAnimator : MonoBehaviour
     }
 
     //Checking if there is a queue
-    private void CheckAttack(AttackType attackType)
+    private void CheckAction(ActionType actionType)
     {
-        if (isAttacking)
+        if (IsActive())
         {
             //If is currently attacking, try and add this attack to queue. Cannot queue unique attack
-            if(attackType != AttackType.unique)
+            if(actionType == ActionType.light || actionType == ActionType.heavy)
             {
-                TryAddToQueue(attackType);
+                TryAddToQueue(actionType);
             }
 
         }
         else
         {
             //If not currently attacking
-            Attack(attackType);
+
+            if(actionType == ActionType.block || actionType == ActionType.parry)
+            {
+                Defence(actionType);
+            }
+            else
+            {
+                Attack(actionType);
+            }
         }
     }
 
-    private void TryAddToQueue(AttackType attackType)
+    private void TryAddToQueue(ActionType attackType)
     {
         // if there is capasity in the queue, add the new attack
         if (attackQueue.Count < queueCapasity)
@@ -122,34 +142,52 @@ public class ArchetypeAnimator : MonoBehaviour
         }
     }
 
-    private void Attack(AttackType attackType, float crossfade = 0)
+    private void Attack(ActionType attackType, float crossfade = 0)
     {
         isAttacking = true;
-        if (attackType == AttackType.light)
+        if (attackType == ActionType.light)
         {
-            currentAttack = lightAttacks[currentCombo];
+            currentAction = light[currentCombo];
         }
-        else if(attackType == AttackType.heavy)
+        else if(attackType == ActionType.heavy)
         {
-            currentAttack = heavyAttacks[currentCombo];
+            currentAction = heavy[currentCombo];
         }
         else
         {
-            currentAttack = uniqueAttack;
+            currentAction = unique;
         }
 
-        archetypeAnim.CrossFade(currentAttack.state, crossfade);
+
+        archetypeAnim.CrossFade(currentAction.state, crossfade);
 
         //If not the third attack, check for more attacks in the queue after queuepoint in the attack
         if(currentCombo < 2)
         {
-            float remapedValue = Remap(currentAttack.queuePoint, 0, 60, 0, 1);
+            float remapedValue = Remap(currentAction.queuePoint, 0, 60, 0, 1);
             Invoke(nameof(CheckQueue), remapedValue);
         }
-        Invoke(nameof(AttackDone), currentAttack.duration);
+        Invoke(nameof(ActionDone), currentAction.duration);
         UpdateCurrentAttack();
 
     }
+
+    private void Defence(ActionType defenceType, float crossfade = 0)
+    {
+        isDefending = true;
+        if (defenceType == ActionType.block)
+        {
+            currentAction = block;
+        }
+        else
+        {
+            currentAction = parry;
+            Invoke(nameof(ActionDone), currentAction.duration);
+        }
+
+        archetypeAnim.CrossFade(currentAction.state, crossfade);
+    }
+
     private float Remap(float value, float from1, float to1, float from2, float to2)
     {
         return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
@@ -172,20 +210,21 @@ public class ArchetypeAnimator : MonoBehaviour
         // Attack if queue is not empty
         if (attackQueue.Count > 0)
         {
-            CancelInvoke(nameof(AttackDone));
+            CancelInvoke(nameof(ActionDone));
             Attack(attackQueue[0], 0.25f);
             attackQueue.RemoveAt(0);
-            OnAttackDone?.Invoke();
+            OnActionDone?.Invoke();
         }
     }
     //Used at end of attacks
-    public void AttackDone()
+    public void ActionDone()
     {
-        OnAttackDone?.Invoke();
+        OnActionDone?.Invoke();
         attackQueue.Clear();
         isAttacking = false;
+        isDefending = false;
         currentCombo = 0;
-        currentAttack = null;
+        currentAction = null;
         archetypeAnim.CrossFade(idleAnim.state, 0.25f);
     }
 
@@ -207,5 +246,17 @@ public class ArchetypeAnimator : MonoBehaviour
     public void NotLethal()
     {
         OnNotLethal?.Invoke();
+    }
+
+    public bool IsActive()
+    {
+        if(!isAttacking && !isDefending)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

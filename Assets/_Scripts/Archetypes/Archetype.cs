@@ -50,7 +50,7 @@ public class Archetype : MonoBehaviour
         if(!hits.Contains(health))
         {
             hits.Add(health);
-            health.TakeDamage(archetypeAnimator.currentAttack.damage, this, archetypeAnimator.currentAttack.damageType);
+            health.TakeDamage(archetypeAnimator.currentAction.damage, this, archetypeAnimator.currentAction.damageType);
             EffectManager.instance.Hit(weaponTrigger.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
         }
     }

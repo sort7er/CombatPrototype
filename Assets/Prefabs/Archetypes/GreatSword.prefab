@@ -264,6 +264,7 @@ MonoBehaviour:
   cutForce: 500
   endSlicePoint: {fileID: 6692215632260392097}
   startSlicePoint: {fileID: 2484113172150851536}
+  cannotSlice: []
 --- !u!1 &6195977798594379458
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +502,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleInput:
     animationClip: {fileID: 7400000, guid: a450458843b172348b345ac1fd36f613, type: 2}
+  blockInput:
+    animationClip: {fileID: 7400000, guid: 503104b1039ed6a4cb1be0fc6aa1946e, type: 2}
+    damageType: 0
+    damage: 0
+    queuePoint: 0
+  parryInput:
+    animationClip: {fileID: 7400000, guid: 2d00a47a7d005714788a14bef6195bf9, type: 2}
+    damageType: 0
+    damage: 0
+    queuePoint: 0
   lightAttackInputs:
   - animationClip: {fileID: 7400000, guid: 70479980cc42fb240998651fc211c9cd, type: 2}
     damageType: 1
@@ -551,6 +562,7 @@ MonoBehaviour:
     range: 3
     idealDotProduct: 0.6
     acceptedDotProduct: 0.1
+  owner: {fileID: 0}
   weaponTrigger:
   - {fileID: 6949705772171659493}
   slicingObject:

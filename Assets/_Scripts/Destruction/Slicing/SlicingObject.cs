@@ -69,10 +69,10 @@ public class SlicingObject : MonoBehaviour
     {
         if(archetypeAnimator != null)
         {
-            archetypeAnimator.OnAttackDone -= SwingDone;
+            archetypeAnimator.OnActionDone -= SwingDone;
         }
         archetypeAnimator = newArchetype.archetypeAnimator;
-        archetypeAnimator.OnAttackDone += SwingDone;
+        archetypeAnimator.OnActionDone += SwingDone;
         
     }
     public void SwingDone()

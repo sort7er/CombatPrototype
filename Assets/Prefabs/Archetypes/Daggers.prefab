@@ -155,6 +155,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleInput:
     animationClip: {fileID: 7400000, guid: e3a30eeef8b02604cb1a41713296c9c2, type: 2}
+  blockInput:
+    animationClip: {fileID: 7400000, guid: 1b021bd82a3c307439fd2ec89292fc59, type: 2}
+    damageType: 0
+    damage: 0
+    queuePoint: 0
+  parryInput:
+    animationClip: {fileID: 7400000, guid: e44608502f6d62147ab80b6db965abe2, type: 2}
+    damageType: 0
+    damage: 0
+    queuePoint: 0
   lightAttackInputs:
   - animationClip: {fileID: 7400000, guid: b44d4a51a1f73bd46b6c24b6c836af27, type: 2}
     damageType: 1
@@ -205,6 +215,7 @@ MonoBehaviour:
     range: 10
     idealDotProduct: 0.85
     acceptedDotProduct: 0.75
+  owner: {fileID: 0}
   weaponTrigger:
   - {fileID: 4712965149028616860}
   - {fileID: 9177554307088060315}
@@ -567,6 +578,7 @@ MonoBehaviour:
   cutForce: 500
   endSlicePoint: {fileID: 7386917984496843541}
   startSlicePoint: {fileID: 8721171879472973418}
+  cannotSlice: []
 --- !u!1 &4076885378981839462
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +747,7 @@ MonoBehaviour:
   cutForce: 500
   endSlicePoint: {fileID: 8390965000620304643}
   startSlicePoint: {fileID: 8580401042198820296}
+  cannotSlice: []
 --- !u!1 &7662657494584236023
 GameObject:
   m_ObjectHideFlags: 0

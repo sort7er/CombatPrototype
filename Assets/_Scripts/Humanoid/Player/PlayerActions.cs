@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     public Archetype currentArchetype { get; private set; }
+    [SerializeField] private float parryWindow = 0.1f;
 
     private InputReader inputReader;
     private WeaponSelector weaponSelector;
@@ -12,6 +13,8 @@ public class PlayerActions : MonoBehaviour
     private List<Enemy> enemies = new();
 
     private PlayerData playerData;
+
+    private bool cannotParry;
 
     private void Awake()
     {
@@ -61,7 +64,7 @@ public class PlayerActions : MonoBehaviour
 
     private void UniqueFire()
     {
-        if (!currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered())
+        if (!currentArchetype.archetypeAnimator.IsActive() && !weaponSelector.IsHolstered())
         {
             enemies = targetAssistance.CheckForEnemies(currentArchetype.targetAssistanceParams, out int numIdealTargets);
 
@@ -71,16 +74,31 @@ public class PlayerActions : MonoBehaviour
     }
     private void Block()
     {
-        if(!currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered())
+        if(!currentArchetype.archetypeAnimator.IsActive() && !weaponSelector.IsHolstered())
         {
+            cannotParry = false;
             currentArchetype.archetypeAnimator.Block();
+            Invoke(nameof(CannotParry), parryWindow);
+            
         }
+    }
+    private void CannotParry()
+    {
+        cannotParry = true;
     }
     private void Parry()
     {
-        if (!currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered())
+        if (currentArchetype.archetypeAnimator.isDefending && !weaponSelector.IsHolstered())
         {
-            currentArchetype.archetypeAnimator.Parry();
+            if (!cannotParry)
+            {
+                CancelInvoke(nameof(CannotParry));
+                currentArchetype.archetypeAnimator.Parry();
+            }
+            else
+            {
+                currentArchetype.archetypeAnimator.ActionDone();
+            }
         }
     }
 }

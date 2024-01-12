@@ -16,12 +16,12 @@ public class AttackState : EnemyState
 
         if (HasArchetype(enemy))
         {
-            if (Vector3.Distance(enemy.player.Position(), enemy.Position()) > enemy.playerDistance && !IsAttacking(enemy))
+            if (Vector3.Distance(enemy.player.Position(), enemy.Position()) > enemy.playerDistance && !IsActive(enemy))
             {
                 enemy.SwitchState(enemy.chaseState);
             }
 
-            if (!IsAttacking(enemy) && !coolDown)
+            if (!IsActive(enemy) && !coolDown)
             {
                 SelectCombo(enemy);
                 coolDown = true;
@@ -78,8 +78,8 @@ public class AttackState : EnemyState
         }
     }
 
-    private bool IsAttacking(Enemy enemy)
+    private bool IsActive(Enemy enemy)
     {
-        return enemy.currentArchetype.archetypeAnimator.isAttacking;
+        return enemy.currentArchetype.archetypeAnimator.IsActive();
     }
 }
