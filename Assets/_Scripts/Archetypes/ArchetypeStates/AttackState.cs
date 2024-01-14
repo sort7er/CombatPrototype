@@ -1,4 +1,3 @@
-using EnemyStates;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -107,8 +106,13 @@ namespace ArchetypeStates
         }
         private void AttackDone()
         {
+            if(attackQueue.Count > 0)
+            {
+                Debug.Log(attackQueue[0].animationClip.name);
+            }
             Debug.Log("Done");
             StartSettings();
+            archetypeAnimator.InvokeAttackDoneEvent();
             archetypeAnimator.SwitchState(archetypeAnimator.idleState);
         }
 

@@ -57,7 +57,7 @@ public class ArchetypeAnimator : MonoBehaviour
     }
     private void Update()
     {
-        //Debug.Log(attackState.attackQueue.Count);
+        //Debug.Log(attackState.currentCombo);
     }
 
     #region Animation set up
