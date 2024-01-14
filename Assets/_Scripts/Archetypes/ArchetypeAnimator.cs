@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using ArchetypeStates;
+using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class ArchetypeAnimator : MonoBehaviour
@@ -25,7 +26,10 @@ public class ArchetypeAnimator : MonoBehaviour
     [SerializeField] private AttackInput uniqueAttackInput;
 
 
+    public Animator archetypeAnim { get; private set; }
     public Attack currentAttack { get; private set; }
+    public Attack entryAttack { get; private set; }
+    public bool isAttacking { get; private set; }
 
     public Anim idleAnim;
     public Attack block;
@@ -35,23 +39,9 @@ public class ArchetypeAnimator : MonoBehaviour
     public Attack unique;
 
 
-    
-    private Animator archetypeAnim;
-
-    private List<Attack> attackQueue = new();
-
-    private int queueCapasity = 2;
-    public bool isAttacking { get; private set; }
-
-    public bool isDefending { get; private set; }
-
-    private int currentCombo;
-
     public ArchetypeState currentState;
     public IdleState idleState = new IdleState();
-    public FireState fireState = new FireState();
-    public HeavyFireState heavyFireState = new HeavyFireState();
-    public UniqueState uniqueState = new UniqueState();
+    public AttackState attackState = new AttackState();
     public BlockingState blockState = new BlockingState();
     public ParryState parryState = new ParryState();
 
@@ -65,7 +55,12 @@ public class ArchetypeAnimator : MonoBehaviour
         SetUpAnimations();
         SwitchState(idleState);
     }
+    private void Update()
+    {
+        //Debug.Log(attackState.attackQueue.Count);
+    }
 
+    #region Animation set up
     private void SetUpAnimations()
     {
         idleAnim = new Anim(idleInput.animationClip);
@@ -86,9 +81,9 @@ public class ArchetypeAnimator : MonoBehaviour
             attacksToSetUp[i] = new Attack(inputs[i].animationClip, inputs[i].damage, inputs[i].queuePoint, inputs[i].damageType);
         }
     }
+    #endregion
 
-
-
+    #region Inputs
     public void Fire()
     {
         currentState.Fire(this);
@@ -109,6 +104,7 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         currentState.Parry(this);
     }
+    #endregion
 
     //Temporary fuction until weapon switching is proparly made
     public void Abort()
@@ -116,70 +112,52 @@ public class ArchetypeAnimator : MonoBehaviour
         SwitchState(idleState);
     }
 
-
-    //private void Defence(ActionType defenceType, float crossfade = 0)
-    //{
-    //    isDefending = true;
-    //    if (defenceType == ActionType.block)
-    //    {
-    //        currentAttack = block;
-    //    }
-    //    else
-    //    {
-    //        currentAttack = parry;
-    //        Invoke(nameof(ActionDone), currentAttack.duration);
-    //        Debug.Log("Defence");
-    //    }
-
-    //    archetypeAnim.CrossFade(currentAttack.state, crossfade);
-    //}
-
-    private float Remap(float value, float from1, float to1, float from2, float to2)
-    {
-        return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
-    }
-    private void UpdateCurrentAttack()
-    {
-        if(currentCombo < 2)
-        {
-            currentCombo++;
-        }
-        else
-        {
-            currentCombo = 0;
-        }
-    }
-
-    //See if it should chain into a new attack
-    public void CheckQueue()
-    {
-        // Attack if queue is not empty, there is an if statement here
-
-            Debug.Log("CheckQueue");
-            CancelInvoke(nameof(ActionDone));
-
-    }
     //Used at end of attacks
-    public void ActionDone()
-    {
-        isAttacking = false;
-        OnActionDone?.Invoke();
-        currentCombo = 0;
-        currentAttack = null;
-        archetypeAnim.CrossFade(idleAnim.state, 0.25f);
-    }
+
     //Called from other parts of the FSM
     public void SwitchState(ArchetypeState state)
     {
         currentState = state;
         state.EnterState(this, archetypeAnim);
     }
-    public void SetCurrentAction(Attack currentAttack)
+    public void SetCurrentAttack(Attack newAttack)
     {
-        this.currentAttack = currentAttack;
+        currentAttack = newAttack;
+    }
+    public void SetEntryAttack(Attack newAttack)
+    {
+        entryAttack = newAttack;
+    }
+    public void IsAttacking(bool state)
+    {
+        isAttacking = state;
+    }
+    public void SetAnimation(Anim anim, float crossfade = 0)
+    {
+        archetypeAnim.CrossFade(anim.state, crossfade);
+    }
+    public void InvokeAttackDoneEvent()
+    {
+        OnActionDone?.Invoke();
+    }
+    public void InvokeFunction(Action function, float waitTime)
+    {
+        StartCoroutine(DoFunction(function, waitTime));
+    }
+
+    private IEnumerator DoFunction(Action function, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        function.Invoke();
+    }
+    public void StopFunction()
+    {
+        StopAllCoroutines();
     }
 
     //This is called from the animation, to see when an attack is lethal
+
+    #region When weapon is leathal
     public void Lethal()
     {
         OnLethal?.Invoke();
@@ -198,4 +176,5 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         OnNotLethal?.Invoke();
     }
+    #endregion
 }

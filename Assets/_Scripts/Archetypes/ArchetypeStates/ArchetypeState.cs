@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace ArchetypeStates
 {
+    [Serializable]
     public abstract class ArchetypeState
     {
 
