@@ -8,8 +8,7 @@ namespace ArchetypeStates
         public List<Attack> attackQueue = new();
         private ArchetypeAnimator archetypeAnimator;
 
-        private int queueCapasity = 2;
-        private int currentCombo;
+        public int currentCombo;
 
 
         public override void EnterState(ArchetypeAnimator archetype, Animator anim)
@@ -17,8 +16,6 @@ namespace ArchetypeStates
             archetypeAnimator = archetype;
             StartSettings();
             CheckAttack(archetypeAnimator.entryAttack);
-            
-
         }
         public override void Fire(ArchetypeAnimator archetype)
         {
@@ -61,27 +58,24 @@ namespace ArchetypeStates
         private void TryAddToQueue(Attack attack)
         {
             // If there is capasity in the queue, add the new attack
-            if (attackQueue.Count < queueCapasity)
+            if (currentCombo < 3)
             {
                 Debug.Log("Added " + attack.animationClip.name);
                 attackQueue.Add(attack);
+                UpdateCombo();
             }
         }
         private void Attack(Attack attack, float crossfade = 0)
         {
+            UpdateCombo();
             archetypeAnimator.SetCurrentAttack(attack);
             archetypeAnimator.IsAttacking(true);
             archetypeAnimator.SetAnimation(attack, crossfade);
 
-            //If not the third attack, check for more attacks in the queue after queuepoint in the attack
-            if (currentCombo < 2)
-            {
-                float remapedValue = Remap(archetypeAnimator.currentAttack.queuePoint, 0, 60, 0, 1);
-                archetypeAnimator.InvokeFunction(CheckQueue, remapedValue);
-            }
-            archetypeAnimator.InvokeFunction(AttackDone, archetypeAnimator.currentAttack.duration);
+            float remapedValue = Remap(archetypeAnimator.currentAttack.queuePoint, 0, 60, 0, 1);
+            archetypeAnimator.InvokeFunction(CheckQueue, remapedValue);
 
-            UpdateCurrentAttack();
+            archetypeAnimator.InvokeFunction(AttackDone, archetypeAnimator.currentAttack.duration);            
         }
 
         private void CheckQueue()
@@ -89,7 +83,6 @@ namespace ArchetypeStates
             // Attack if queue is not empty, there is an if statement here
             if (attackQueue.Count > 0)
             {
-                Debug.Log(attackQueue[0].animationClip.name);
                 archetypeAnimator.StopFunction();
                 Attack(attackQueue[0], 0.25f);
                 attackQueue.RemoveAt(0);
@@ -97,7 +90,7 @@ namespace ArchetypeStates
             }
         }
 
-        private void UpdateCurrentAttack()
+        private void UpdateCombo()
         {
             if (currentCombo < 2)
             {
@@ -106,11 +99,6 @@ namespace ArchetypeStates
         }
         private void AttackDone()
         {
-            if(attackQueue.Count > 0)
-            {
-                Debug.Log(attackQueue[0].animationClip.name);
-            }
-            Debug.Log("Done");
             StartSettings();
             archetypeAnimator.InvokeAttackDoneEvent();
             archetypeAnimator.SwitchState(archetypeAnimator.idleState);

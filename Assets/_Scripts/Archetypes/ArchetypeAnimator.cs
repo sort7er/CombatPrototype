@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using ArchetypeStates;
 using System.Collections;
@@ -57,6 +56,10 @@ public class ArchetypeAnimator : MonoBehaviour
     }
     private void Update()
     {
+        //if(attackState.attackQueue.Count > 0)
+        //{
+        //    Debug.Log(attackState.attackQueue[0].animationClip.name);
+        //}
         //Debug.Log(attackState.currentCombo);
     }
 
