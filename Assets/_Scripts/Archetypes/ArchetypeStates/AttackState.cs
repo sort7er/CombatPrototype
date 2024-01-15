@@ -60,7 +60,6 @@ namespace ArchetypeStates
             // If there is capasity in the queue, add the new attack
             if (currentCombo < 3)
             {
-                Debug.Log("Added " + attack.animationClip.name);
                 attackQueue.Add(attack);
                 UpdateCombo();
             }
