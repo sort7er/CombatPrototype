@@ -76,7 +76,7 @@ namespace ArchetypeStates
             archetypeAnimator.IsAttacking(true);
             archetypeAnimator.CrossFade(attack, crossfade);
 
-            float remapedValue = archetypeAnimator.Remap(archetypeAnimator.currentAttack.queuePoint, 0, 60, 0, 1);
+            float remapedValue = archetypeAnimator.Remap(archetypeAnimator.currentAttack.queuePoint);
             archetypeAnimator.InvokeFunction(CheckQueue, remapedValue);
 
             archetypeAnimator.InvokeFunction(AttackDone, archetypeAnimator.currentAttack.duration);            

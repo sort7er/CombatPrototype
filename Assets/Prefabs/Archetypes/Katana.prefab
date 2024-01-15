@@ -480,11 +480,11 @@ MonoBehaviour:
   - animationClip: {fileID: 7400000, guid: 1d0ca8c2ccc7f6f428242a58f98ef439, type: 2}
     damageType: 0
     damage: 0
-    queuePoint: 0
+    queuePoint: 5
   - animationClip: {fileID: 7400000, guid: 956608279e408b74598a5a2c40c6a230, type: 2}
     damageType: 0
     damage: 0
-    queuePoint: 0
+    queuePoint: 5
   lightAttackInputs:
   - animationClip: {fileID: 7400000, guid: 72be711e66e252b4c8cb1167d89ecaa5, type: 2}
     damageType: 1
@@ -516,19 +516,6 @@ MonoBehaviour:
     damageType: 1
     damage: 50
     queuePoint: 0
-  block:
-    animationClip: {fileID: 0}
-    damage: 0
-    queuePoint: 0
-    damageType: 0
-  parry: []
-  light: []
-  heavy: []
-  unique:
-    animationClip: {fileID: 0}
-    damage: 0
-    queuePoint: 0
-    damageType: 0
 --- !u!114 &2082084165264853290
 MonoBehaviour:
   m_ObjectHideFlags: 0
