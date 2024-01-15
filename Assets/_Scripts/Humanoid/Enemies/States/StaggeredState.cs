@@ -8,7 +8,6 @@ namespace EnemyStates
         private ArchetypeAnimator archetypeAnimator;
         public override void EnterState(Enemy enemy)
         {
-            Debug.Log("Huh");
             this.enemy = enemy;
             enemy.enemyAnim.SetTrigger("Staggered");
             enemy.DisableMovement();

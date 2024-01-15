@@ -79,8 +79,11 @@ public class WeaponTrigger : MonoBehaviour
     {
         if (hittingArchetype.isParrying)
         {
-            Debug.Log("Parry");
             archetype.owner.Staggered();
+
+            Vector3 direction = hittingArchetype.transform.position - transform.position;
+
+            EffectManager.instance.Parry(transform.position + direction * 0.5f + Vector3.up * 0.3f);
         }
         else if (hittingArchetype.isBlocking)
         {

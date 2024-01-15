@@ -9,8 +9,21 @@ public class EffectManager : MonoBehaviour
     public int poolSize = 10;
     public ParticleSystem hitEffect;
 
-    private ParticleSystem[] hitEffects;
-    private int currentHitEffect;
+    [Header("Anticipation effect")]
+    public int aPoolSize = 5;
+    public ParticleSystem anticipationEffect;
+    
+    [Header("Parry effect")]
+    public ParticleSystem parryEffect;
+
+
+    private ParticleSystem[] hit;
+    private int currentHit;
+
+    private ParticleSystem[] anticipation;
+    private int currentAnticipation;
+
+    private ParticleSystem parry;
 
 
     private void Awake()
@@ -21,23 +34,41 @@ public class EffectManager : MonoBehaviour
     private void Start()
     {
         SetUpHitEffect();
+        SetUpAnticipationEffect();
+        SetUpParryEffect();
     }
 
     private void SetUpHitEffect()
     {
-        hitEffects = new ParticleSystem[poolSize];
-        currentHitEffect = 0;
+        hit = new ParticleSystem[poolSize];
+        currentHit = 0;
 
         for (int i = 0; i < poolSize; i++)
         {
-            hitEffects[i] = Instantiate(hitEffect, ParentManager.instance.effects);
-            hitEffects[i].gameObject.SetActive(false);
+            hit[i] = Instantiate(hitEffect, ParentManager.instance.effects);
+            hit[i].gameObject.SetActive(false);
         }
+    }
+    private void SetUpAnticipationEffect()
+    {
+        anticipation = new ParticleSystem[aPoolSize];
+        currentAnticipation = 0;
+
+        for (int i = 0; i < aPoolSize; i++)
+        {
+            anticipation[i] = Instantiate(anticipationEffect, ParentManager.instance.effects);
+            anticipation[i].gameObject.SetActive(false);
+        }
+    }
+    private void SetUpParryEffect()
+    {
+        parry = Instantiate(parryEffect, ParentManager.instance.effects);
+        parry.gameObject.SetActive(false);
     }
 
     public void Hit(Vector3 position, Vector3 direction, Vector3 upDirection)
     {
-        ParticleSystem effect = hitEffects[currentHitEffect];
+        ParticleSystem effect = hit[currentHit];
 
         effect.gameObject.SetActive(true);
 
@@ -47,15 +78,42 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(ResetEffect(effect));
 
 
-        if(currentHitEffect < poolSize - 1)
+        if(currentHit < poolSize - 1)
         {
-            currentHitEffect++;
+            currentHit++;
         }
         else
         {
-            currentHitEffect = 0;
+            currentHit = 0;
         }
 
+    }
+    public void Anticipation(Vector3 position)
+    {
+        ParticleSystem effect = anticipation[currentAnticipation];
+
+        effect.gameObject.SetActive(true);
+
+        effect.transform.position = position;
+
+        StartCoroutine(ResetEffect(effect));
+
+
+        if (currentAnticipation < aPoolSize - 1)
+        {
+            currentAnticipation++;
+        }
+        else
+        {
+            currentAnticipation = 0;
+        }
+
+    }
+    public void Parry(Vector3 position)
+    {
+        parry.transform.position = position;
+        parry.gameObject.SetActive(true);
+        StartCoroutine(ResetEffect(parry));
     }
 
     private IEnumerator ResetEffect(ParticleSystem effectToReset)

@@ -113,7 +113,6 @@ public class Enemy : Humanoid
     }
     public override void Staggered()
     {
-        Debug.Log("ye");
         currentState.Staggered(this);
     }
 

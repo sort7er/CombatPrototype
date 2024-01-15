@@ -7,7 +7,6 @@ namespace ArchetypeStates
         private ArchetypeAnimator archetypeAnimator;
         public override void EnterState(ArchetypeAnimator archetype)
         {
-            Debug.Log("Abort");
             archetypeAnimator = archetype;
             archetype.CrossFade(archetype.staggered, 0f);
             archetype.InvokeFunction(StaggerDone, archetype.staggered.duration);

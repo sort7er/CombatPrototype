@@ -13,12 +13,16 @@ public class Archetype : MonoBehaviour
     public SlicingObject[] slicingObject;
 
     public Humanoid owner { get; private set; }
+
     public SlicingObject currentSlicingObject { get; private set; }
 
     private List<Health> hits = new();
+    private Player player;
 
     private void Awake()
     {
+        player = FindObjectOfType<Player>();
+
         for(int i = 0; i < weaponTrigger.Length; i++)
         {
             weaponTrigger[i].OnHit += OnHit;
@@ -61,6 +65,10 @@ public class Archetype : MonoBehaviour
         if (HasSlicing())
         {
             currentSlicingObject = slicingObject[0];
+        }
+        if(owner != player.playerMovement)
+        {
+            EffectManager.instance.Anticipation(weaponTrigger[0].transform.position);
         }
     }
     private void Lethal2()
