@@ -13,6 +13,7 @@ namespace ArchetypeStates
         public abstract void UniqueFire(ArchetypeAnimator archetype);
         public abstract void Block(ArchetypeAnimator archetype);
         public abstract void Parry(ArchetypeAnimator archetype);
+        public abstract void Staggered(ArchetypeAnimator archetype);
     }
 
 }

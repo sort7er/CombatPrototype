@@ -80,6 +80,7 @@ public class WeaponTrigger : MonoBehaviour
         if (hittingArchetype.isParrying)
         {
             Debug.Log("Parry");
+            archetype.owner.Staggered();
         }
         else if (hittingArchetype.isBlocking)
         {

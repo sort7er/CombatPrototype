@@ -2,30 +2,37 @@ using UnityEngine;
 
 namespace ArchetypeStates
 {
-    public class IdleState : ArchetypeState
+    public class StaggeredState : ArchetypeState
     {
+        private ArchetypeAnimator archetypeAnimator;
         public override void EnterState(ArchetypeAnimator archetype)
         {
-            archetype.CrossFade(archetype.idle, 0.25f);
+            Debug.Log("Abort");
+            archetypeAnimator = archetype;
+            archetype.CrossFade(archetype.staggered, 0f);
+            archetype.InvokeFunction(StaggerDone, archetype.staggered.duration);
         }
+
+        private void StaggerDone()
+        {
+            archetypeAnimator.SwitchState(archetypeAnimator.idleState);
+        }
+        #region Unused
         public override void Fire(ArchetypeAnimator archetype)
         {
-            archetype.SetEntryAttack(archetype.light[0]);
-            archetype.SwitchState(archetype.attackState);
+
         }
         public override void HeavyFire(ArchetypeAnimator archetype)
         {
-            archetype.SetEntryAttack(archetype.heavy[0]);
-            archetype.SwitchState(archetype.attackState);
+
         }
         public override void UniqueFire(ArchetypeAnimator archetype)
         {
-            archetype.SetEntryAttack(archetype.unique);
-            archetype.SwitchState(archetype.attackState);
+
         }
         public override void Block(ArchetypeAnimator archetype)
         {
-            archetype.SwitchState(archetype.blockState);
+
         }
 
         public override void Parry(ArchetypeAnimator archetype)
@@ -36,6 +43,6 @@ namespace ArchetypeStates
         {
 
         }
+        #endregion
     }
 }
-

@@ -47,6 +47,10 @@ public class Humanoid : MonoBehaviour
     {
 
     }
+    public virtual void Staggered()
+    {
+
+    }
 
     protected bool GroundCheck()
     {

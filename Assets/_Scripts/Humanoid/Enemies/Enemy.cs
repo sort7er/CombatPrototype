@@ -19,13 +19,15 @@ public class Enemy : Humanoid
     public NavMeshAgent agent { get; private set; }
     public NavMeshPath currentPath { get; private set; }
     public Archetype currentArchetype { get; private set; }
-    private Animator enemyAnim;
+    public Animator enemyAnim { get; private set; }
+
     private WeaponContainer weaponContainer;
 
     //State machine
     public EnemyState currentState;
     public ChaseState chaseState = new ChaseState();
     public AttackState attackState = new AttackState();
+    public StaggeredState staggeredState = new StaggeredState();
     public TakedownState takedownState = new TakedownState();
 
     public Vector3 currentTarget { get; private set; }
@@ -108,6 +110,11 @@ public class Enemy : Humanoid
     public void Takedown()
     {
         SwitchState(takedownState);
+    }
+    public override void Staggered()
+    {
+        Debug.Log("ye");
+        currentState.Staggered(this);
     }
 
 

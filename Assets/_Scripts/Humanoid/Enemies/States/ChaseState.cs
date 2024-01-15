@@ -21,6 +21,10 @@ namespace EnemyStates
                 enemy.SwitchState(enemy.attackState);
             }
         }
+        public override void Staggered(Enemy enemy)
+        {
+
+        }
     }
 }
 

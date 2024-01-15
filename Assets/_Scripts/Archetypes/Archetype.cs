@@ -9,10 +9,10 @@ public class Archetype : MonoBehaviour
     public ArchetypeAnimator archetypeAnimator;
     public UniqueAbility uniqueAbility;
     public TargetAssistanceParams targetAssistanceParams;
-    public Humanoid owner;
     public WeaponTrigger[] weaponTrigger;
     public SlicingObject[] slicingObject;
 
+    public Humanoid owner { get; private set; }
     public SlicingObject currentSlicingObject { get; private set; }
 
     private List<Health> hits = new();

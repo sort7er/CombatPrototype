@@ -46,7 +46,14 @@ namespace ArchetypeStates
         {
 
         }
+
         #endregion
+        public override void Staggered(ArchetypeAnimator archetype)
+        {
+            StartSettings();
+            archetypeAnimator.InvokeAttackDoneEvent();
+            archetype.SwitchState(archetype.staggeredState);
+        }
         private void CheckAttack(Attack attack)
         {
             if (!archetypeAnimator.isAttacking)
@@ -88,7 +95,7 @@ namespace ArchetypeStates
             if (attackQueue.Count > 0)
             {
                 archetypeAnimator.StopFunction();
-                Attack(attackQueue[0], 0.25f);
+                Attack(attackQueue[0], 0.1f);
                 attackQueue.RemoveAt(0);
                 archetypeAnimator.InvokeAttackDoneEvent();
             }

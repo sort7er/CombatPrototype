@@ -39,6 +39,10 @@ namespace EnemyStates
                 }
             }
         }
+        public override void Staggered(Enemy enemy)
+        {
+            enemy.SwitchState(enemy.staggeredState);
+        }
 
         private void SelectCombo(Enemy enemy)
         {

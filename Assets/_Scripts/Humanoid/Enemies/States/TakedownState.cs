@@ -14,6 +14,10 @@ namespace EnemyStates
         {
 
         }
+        public override void Staggered(Enemy enemy)
+        {
+
+        }
     }
 }
 

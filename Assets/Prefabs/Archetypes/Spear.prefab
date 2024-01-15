@@ -238,20 +238,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleInput:
     animationClip: {fileID: 7400000, guid: 483b97383ea25144d918ab6c976ef0c9, type: 2}
-  blockInput:
-    animationClip: {fileID: 7400000, guid: 010f89bc79699a541b6d95a5adf7ef7d, type: 2}
-    damageType: 0
-    damage: 0
-    queuePoint: 0
-  parryInputs:
-  - animationClip: {fileID: 7400000, guid: 635cc55476d73a345b450dc95413dba6, type: 2}
-    damageType: 0
-    damage: 0
-    queuePoint: 5
-  - animationClip: {fileID: 7400000, guid: 057085f6a1481424caaa63545e954afb, type: 2}
-    damageType: 0
-    damage: 0
-    queuePoint: 5
   lightAttackInputs:
   - animationClip: {fileID: 7400000, guid: 1ab0d945e5a4f9148ac951fff27910af, type: 2}
     damageType: 0
@@ -283,6 +269,22 @@ MonoBehaviour:
     damageType: 0
     damage: 0
     queuePoint: 0
+  blockInput:
+    animationClip: {fileID: 7400000, guid: 010f89bc79699a541b6d95a5adf7ef7d, type: 2}
+    damageType: 0
+    damage: 0
+    queuePoint: 0
+  parryInputs:
+  - animationClip: {fileID: 7400000, guid: 635cc55476d73a345b450dc95413dba6, type: 2}
+    damageType: 0
+    damage: 0
+    queuePoint: 10
+  - animationClip: {fileID: 7400000, guid: 057085f6a1481424caaa63545e954afb, type: 2}
+    damageType: 0
+    damage: 0
+    queuePoint: 10
+  staggeredInput:
+    animationClip: {fileID: 7400000, guid: bce38b3d6945ecf4fbdcd7a86652b407, type: 2}
 --- !u!114 &8662280912918786359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +304,6 @@ MonoBehaviour:
     range: 15
     idealDotProduct: 0.98
     acceptedDotProduct: 0.75
-  owner: {fileID: 0}
   weaponTrigger:
   - {fileID: 8191728088700852555}
   slicingObject: []

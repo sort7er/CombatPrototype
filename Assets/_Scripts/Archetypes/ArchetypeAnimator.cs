@@ -13,16 +13,18 @@ public class ArchetypeAnimator : MonoBehaviour
 
     [Header("Idle")]
     [SerializeField] private AnimationInput idleInput;
-    [Header("Block")]
-    [SerializeField] private AttackInput blockInput;
-    [Header("Parry")]
-    [SerializeField] private AttackInput []parryInputs;
     [Header("Light attacks")]
     [SerializeField] private AttackInput[] lightAttackInputs;
     [Header("Heavy attacks")]
     [SerializeField] private AttackInput[] heavyAttackInputs;
     [Header("Unique attack")]
     [SerializeField] private AttackInput uniqueAttackInput;
+    [Header("Block")]
+    [SerializeField] private AttackInput blockInput;
+    [Header("Parry")]
+    [SerializeField] private AttackInput []parryInputs;
+    [Header("Staggered")]
+    [SerializeField] private AnimationInput staggeredInput;
 
 
     public Animator archetypeAnim { get; private set; }
@@ -32,12 +34,13 @@ public class ArchetypeAnimator : MonoBehaviour
     public bool isBlocking { get; private set; }
     public bool isParrying { get; private set; }
 
-    public Anim idleAnim;
-    public Attack block;
-    public Attack[] parry;
+    public Anim idle;
     public Attack[] light;
     public Attack[] heavy;
     public Attack unique;
+    public Attack block;
+    public Attack[] parry;
+    public Anim staggered;
 
 
     public ArchetypeState currentState;
@@ -45,6 +48,7 @@ public class ArchetypeAnimator : MonoBehaviour
     public AttackState attackState = new AttackState();
     public BlockingState blockState = new BlockingState();
     public ParryState parryState = new ParryState();
+    public StaggeredState staggeredState = new StaggeredState();
 
 
 
@@ -60,15 +64,16 @@ public class ArchetypeAnimator : MonoBehaviour
     #region Animation set up
     private void SetUpAnimations()
     {
-        idleAnim = new Anim(idleInput.animationClip);
-        block = new Attack(blockInput.animationClip, blockInput.damage, blockInput.queuePoint, blockInput.damageType);
-        parry = new Attack[parryInputs.Length];
+        idle = new Anim(idleInput.animationClip);
         light = new Attack[lightAttackInputs.Length];
         heavy = new Attack[heavyAttackInputs.Length];
+        block = new Attack(blockInput.animationClip, blockInput.damage, blockInput.queuePoint, blockInput.damageType);
+        parry = new Attack[parryInputs.Length];
+        staggered = new Anim(staggeredInput.animationClip);
 
-        SetUpAttacks(parry, parryInputs);
         SetUpAttacks(light, lightAttackInputs);
         SetUpAttacks(heavy, heavyAttackInputs);
+        SetUpAttacks(parry, parryInputs);
         unique = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint, uniqueAttackInput.damageType);
     }
     
@@ -101,6 +106,10 @@ public class ArchetypeAnimator : MonoBehaviour
     public void Parry()
     {
         currentState.Parry(this);
+    }
+    public void Staggered()
+    {
+        currentState.Staggered(this);
     }
     #endregion
 

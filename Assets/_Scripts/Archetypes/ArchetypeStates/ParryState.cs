@@ -30,6 +30,10 @@ namespace ArchetypeStates
         {
 
         }
+        public override void Staggered(ArchetypeAnimator archetype)
+        {
+
+        }
         #endregion
         public override void Parry(ArchetypeAnimator archetype)
         {
