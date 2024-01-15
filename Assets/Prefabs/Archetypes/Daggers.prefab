@@ -160,8 +160,12 @@ MonoBehaviour:
     damageType: 0
     damage: 0
     queuePoint: 0
-  parryInput:
-    animationClip: {fileID: 7400000, guid: e44608502f6d62147ab80b6db965abe2, type: 2}
+  parryInputs:
+  - animationClip: {fileID: 7400000, guid: e44608502f6d62147ab80b6db965abe2, type: 2}
+    damageType: 0
+    damage: 0
+    queuePoint: 0
+  - animationClip: {fileID: 7400000, guid: 3d3ed871b91ba3a47b6f84f52e965fdd, type: 2}
     damageType: 0
     damage: 0
     queuePoint: 0
@@ -196,6 +200,19 @@ MonoBehaviour:
     damageType: 0
     damage: 20
     queuePoint: 0
+  block:
+    animationClip: {fileID: 0}
+    damage: 0
+    queuePoint: 0
+    damageType: 0
+  parry: []
+  light: []
+  heavy: []
+  unique:
+    animationClip: {fileID: 0}
+    damage: 0
+    queuePoint: 0
+    damageType: 0
 --- !u!114 &-944858642115517091
 MonoBehaviour:
   m_ObjectHideFlags: 0

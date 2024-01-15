@@ -7,7 +7,7 @@ namespace ArchetypeStates
     public abstract class ArchetypeState
     {
 
-        public abstract void EnterState(ArchetypeAnimator archetype, Animator anim);
+        public abstract void EnterState(ArchetypeAnimator archetype);
         public abstract void Fire(ArchetypeAnimator archetype);
         public abstract void HeavyFire(ArchetypeAnimator archetype);
         public abstract void UniqueFire(ArchetypeAnimator archetype);

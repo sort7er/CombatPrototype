@@ -35,7 +35,7 @@ public class Enemy : Humanoid
     {
         base.Awake();
         FindReferences();
-        //SwitchState(chaseState);
+        SwitchState(chaseState);
     }
     private void Start()
     {

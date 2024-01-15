@@ -75,41 +75,26 @@ public class PlayerActions : MonoBehaviour
     }
     private void Block()
     {
-        //if(WeaponAvailable())
-        //{
-        //    parrying = false;
-        //    blocking = false;
-        //    currentArchetype.archetypeAnimator.Block();
-        //    Invoke(nameof(CheckForParry), parryWindow);
-        //}
-    }
-
-    private void CheckForParry()
-    {
-        //if (parrying)
-        //{
-        //    currentArchetype.archetypeAnimator.Parry();
-        //}
-        //else
-        //{
-        //    blocking = true;
-        //}
+        if (WeaponAvailable())
+        {
+            currentArchetype.archetypeAnimator.Block();
+        }
     }
 
     private void Parry()
     {
-        //if (!blocking)
-        //{
-        //    parrying = true;
-        //}
-        //else
-        //{
-        //    currentArchetype.archetypeAnimator.AttackDone();
-        //}
+        if (WeaponAvailable())
+        {
+            currentArchetype.archetypeAnimator.Parry();
+        }
     }
 
     private bool WeaponAvailable()
     {
+        if(currentArchetype == null)
+        {
+            return false;
+        }
         return !currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered();
     }
 }

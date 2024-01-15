@@ -10,19 +10,26 @@ namespace ArchetypeStates
 
         public int currentCombo;
 
+        // Heavy and light must match
+        private int numberOfAttacks;
 
-        public override void EnterState(ArchetypeAnimator archetype, Animator anim)
+
+        public override void EnterState(ArchetypeAnimator archetype)
         {
+            numberOfAttacks = archetype.light.Length;
             archetypeAnimator = archetype;
             StartSettings();
             CheckAttack(archetypeAnimator.entryAttack);
+
         }
         public override void Fire(ArchetypeAnimator archetype)
         {
+            UpdateCombo();
             CheckAttack(archetype.light[currentCombo]);
         }
         public override void HeavyFire(ArchetypeAnimator archetype)
         {
+            UpdateCombo();
             CheckAttack(archetype.heavy[currentCombo]);
         }
         public override void UniqueFire(ArchetypeAnimator archetype)
@@ -58,20 +65,18 @@ namespace ArchetypeStates
         private void TryAddToQueue(Attack attack)
         {
             // If there is capasity in the queue, add the new attack
-            if (currentCombo < 3)
+            if (currentCombo < numberOfAttacks)
             {
                 attackQueue.Add(attack);
-                UpdateCombo();
             }
         }
         private void Attack(Attack attack, float crossfade = 0)
         {
-            UpdateCombo();
             archetypeAnimator.SetCurrentAttack(attack);
             archetypeAnimator.IsAttacking(true);
-            archetypeAnimator.SetAnimation(attack, crossfade);
+            archetypeAnimator.CrossFade(attack, crossfade);
 
-            float remapedValue = Remap(archetypeAnimator.currentAttack.queuePoint, 0, 60, 0, 1);
+            float remapedValue = archetypeAnimator.Remap(archetypeAnimator.currentAttack.queuePoint, 0, 60, 0, 1);
             archetypeAnimator.InvokeFunction(CheckQueue, remapedValue);
 
             archetypeAnimator.InvokeFunction(AttackDone, archetypeAnimator.currentAttack.duration);            
@@ -91,7 +96,7 @@ namespace ArchetypeStates
 
         private void UpdateCombo()
         {
-            if (currentCombo < 2)
+            if (currentCombo < numberOfAttacks - 1)
             {
                 currentCombo++;
             }
@@ -110,10 +115,6 @@ namespace ArchetypeStates
             archetypeAnimator.IsAttacking(false);
             archetypeAnimator.SetCurrentAttack(null);
         }
-        //Tool to mach invoke time with keyframes
-        private float Remap(float value, float from1, float to1, float from2, float to2)
-        {
-            return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
-        }
+
     }
 }

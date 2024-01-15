@@ -4,9 +4,9 @@ namespace ArchetypeStates
 {
     public class IdleState : ArchetypeState
     {
-        public override void EnterState(ArchetypeAnimator archetype, Animator anim)
+        public override void EnterState(ArchetypeAnimator archetype)
         {
-            archetype.SetAnimation(archetype.idleAnim, 0.25f);
+            archetype.CrossFade(archetype.idleAnim, 0.25f);
         }
         public override void Fire(ArchetypeAnimator archetype)
         {
@@ -27,9 +27,10 @@ namespace ArchetypeStates
         {
             archetype.SwitchState(archetype.blockState);
         }
+
         public override void Parry(ArchetypeAnimator archetype)
         {
-            archetype.SwitchState(archetype.parryState);
+
         }
     }
 }
