@@ -13,12 +13,12 @@ public class Enemy : Humanoid
 
     [Header("Attacking")]
     public float attackCooldown;
-    public Archetype currentArchetype;
 
 
     public Player player { get; private set; }
     public NavMeshAgent agent { get; private set; }
     public NavMeshPath currentPath { get; private set; }
+    public Archetype currentArchetype { get; private set; }
     private Animator enemyAnim;
     private WeaponContainer weaponContainer;
 

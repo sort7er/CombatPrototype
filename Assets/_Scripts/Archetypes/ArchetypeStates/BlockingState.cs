@@ -7,12 +7,11 @@ namespace ArchetypeStates
         private ArchetypeAnimator archetypeAnimator;
 
         private float parryWindow = 0.17f;
-        private bool blocking;
 
         public override void EnterState(ArchetypeAnimator archetype)
         {
             archetypeAnimator = archetype;
-            blocking = false;
+            archetypeAnimator.IsBlocking(false);
             archetype.CrossFade(archetype.block);
             archetype.InvokeFunction(Blocking, parryWindow);
         }
@@ -36,19 +35,22 @@ namespace ArchetypeStates
         #endregion
         public override void Parry(ArchetypeAnimator archetype)
         {
-            if (!blocking)
+            if (!archetypeAnimator.isBlocking)
             {
+                archetypeAnimator.StopFunction();
+                archetypeAnimator.IsBlocking(false);
                 archetypeAnimator.SwitchState(archetypeAnimator.parryState);
             }
             else
             {
+                archetypeAnimator.IsBlocking(false);
                 archetype.SwitchState(archetype.idleState);
             }
         }
 
         private void Blocking()
         {
-            blocking = true;
+            archetypeAnimator.IsBlocking(true);
         }
     }
 }

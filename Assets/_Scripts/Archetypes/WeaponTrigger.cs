@@ -14,7 +14,7 @@ public class WeaponTrigger : MonoBehaviour
     private Vector3 currentPos;
     private Vector3 previousPos;
 
-    private Player player;
+    private ArchetypeAnimator hittingArchetype;
     private SlicingObject slicingObject;
 
     private void Awake()
@@ -22,7 +22,6 @@ public class WeaponTrigger : MonoBehaviour
         archetype = GetComponentInParent<Archetype>();
         weaponCollider = GetComponent<Collider>();
         slicingObject = GetComponent<SlicingObject>();
-        player = FindObjectOfType<Player>();
         DisableCollider();
         
         currentPos = Vector3.zero;
@@ -33,14 +32,25 @@ public class WeaponTrigger : MonoBehaviour
     {
         if(other.TryGetComponent(out Health health))
         {
-            upDir = transform.forward;
-            contactPoint = other.ClosestPointOnBounds(transform.position);
-            OnHit?.Invoke(health, this);
+            //Check if is blocking or parrying
+            hittingArchetype = CheckIfAnimator(health);
+
+            if(hittingArchetype != null)
+            {
+                CheckIfBlock(other, health);
+            }
+            else
+            {
+                DoDamage(other, health);
+            }
+            
         }
         else if(other.TryGetComponent(out SlicableObject sliceble) && slicingObject != null)
         {
+            //Check that object don't get sliced several times in the same blow
             if (!slicingObject.cannotSlice.Contains(sliceble))
             {
+                //Slice object if not to small
                 if (VolumeOfMesh(sliceble.mesh) > 0.15f)
                 {
                     archetype.currentSlicingObject.Slice(sliceble);
@@ -49,6 +59,45 @@ public class WeaponTrigger : MonoBehaviour
         }
     }
 
+    public ArchetypeAnimator CheckIfAnimator(Health health)
+    {
+        if (health.TryGetComponent(out Enemy enemy))
+        {
+            return enemy.currentArchetype.archetypeAnimator;
+        }
+        else if (health.TryGetComponent(out WeaponSelector weaponSelector))
+        {
+            return weaponSelector.currentArchetype.archetypeAnimator;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private void CheckIfBlock(Collider other, Health health)
+    {
+        if (hittingArchetype.isParrying)
+        {
+            Debug.Log("Parry");
+        }
+        else if (hittingArchetype.isBlocking)
+        {
+            Debug.Log("Block");
+        }
+        else
+        {
+            Debug.Log("No");
+            DoDamage(other, health);
+        }
+    }
+
+    private void DoDamage(Collider other, Health health)
+    {
+        upDir = transform.forward;
+        contactPoint = other.ClosestPointOnBounds(transform.position);
+        OnHit?.Invoke(health, this);
+    }
     public void EnableCollider()
     {
         weaponCollider.enabled = true;

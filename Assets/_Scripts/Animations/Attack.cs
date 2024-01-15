@@ -1,8 +1,6 @@
 using UnityEngine;
 using HealthRelated;
 using System;
-
-[Serializable]
 public class Attack : Anim
 {
 

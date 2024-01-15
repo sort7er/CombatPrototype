@@ -29,6 +29,8 @@ public class ArchetypeAnimator : MonoBehaviour
     public Attack currentAttack { get; private set; }
     public Attack entryAttack { get; private set; }
     public bool isAttacking { get; private set; }
+    public bool isBlocking { get; private set; }
+    public bool isParrying { get; private set; }
 
     public Anim idleAnim;
     public Attack block;
@@ -125,6 +127,14 @@ public class ArchetypeAnimator : MonoBehaviour
     public void IsAttacking(bool state)
     {
         isAttacking = state;
+    }
+    public void IsBlocking(bool state)
+    {
+        isBlocking = state;
+    }
+    public void IsParrying(bool state)
+    {
+        isParrying = state;
     }
     public void CrossFade(Anim anim, float crossfade = 0)
     {
