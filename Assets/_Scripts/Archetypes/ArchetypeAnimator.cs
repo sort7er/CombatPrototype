@@ -27,6 +27,8 @@ public class ArchetypeAnimator : MonoBehaviour
     [Header("Staggered")]
     [SerializeField] private AnimationInput staggeredInput;
 
+    [SerializeField] private TrailRenderer[] trail;
+
 
     public Animator archetypeAnim { get; private set; }
     public Attack currentAttack { get; private set; }
@@ -60,6 +62,7 @@ public class ArchetypeAnimator : MonoBehaviour
 
         SetUpAnimations();
         SwitchState(idleState);
+        DisableTrail();
     }
 
     #region Animation set up
@@ -91,14 +94,17 @@ public class ArchetypeAnimator : MonoBehaviour
     public void Fire()
     {
         currentState.Fire(this);
+        DelayedEnable();
     }
     public void HeavyFire()
     {
         currentState.HeavyFire(this);
+        DelayedEnable();
     }
     public void UniqueFire()
     {
         currentState.UniqueFire(this);
+        DelayedEnable();
     }
     public void Block()
     {
@@ -177,4 +183,33 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
     }
+
+    private void DelayedEnable()
+    {
+        CancelInvoke(nameof(EnableTrail));
+        Invoke(nameof(EnableTrail), 0.1f);
+    }
+
+    private void EnableTrail()
+    {
+        if(trail.Length > 0)
+        {
+            for(int i = 0; i < trail.Length; i++)
+            {
+                trail[i].enabled = true;
+            }
+            Invoke(nameof(DisableTrail), 0.1f);
+        }
+    }
+    private void DisableTrail()
+    {
+        if (trail.Length > 0)
+        {
+            for (int i = 0; i < trail.Length; i++)
+            {
+                trail[i].enabled = false;
+            }
+        }
+    }
+
 }

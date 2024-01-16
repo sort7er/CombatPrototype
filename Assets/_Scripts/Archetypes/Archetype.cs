@@ -1,5 +1,4 @@
 using HumanoidTypes;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
