@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
     [SerializeField] private int startHealth = 100;
     [SerializeField] private Slider healthSlider;
 
+    public Humanoid owner { get; private set; }
+
 
     public event Action OnTakeDamage;
     public event Action OnDeath;
@@ -30,6 +32,8 @@ public class Health : MonoBehaviour
         healthSlider.minValue = 0;
         healthSlider.maxValue = health;
         healthSlider.value = health;
+
+        owner = GetComponent<Humanoid>();
     }
 
     public virtual void TakeDamage(int damage, Archetype killingArchetype, DamageType incomingDamage = DamageType.Default)

@@ -4,23 +4,21 @@ using System.Collections.Generic;
 using System;
 using HumanoidTypes;
 
-public class SlicingObject : MonoBehaviour
+public class SlicingObject : ModelContainer
 {
-    public event Action<SlicableObject, SlicableObject> OnSliceDone;
-
     [Header("Values")]
     [SerializeField] private float cutForce = 2000f;
 
-    [Header("References")]
-    [SerializeField] private Transform endSlicePoint;
     [SerializeField] private Transform startSlicePoint;
-
-    private Vector3 lastPos, newPos;
-    private Vector3 direction;
 
     public List<SlicableObject> cannotSlice { get; private set; } = new();
     private WeaponSelector weaponSelector;
     private Archetype archetype;
+
+    protected override void Awake()
+    {
+        isSlicable = true;
+    }
 
     public void OwnerFound(Humanoid newOwner)
     {
@@ -40,14 +38,7 @@ public class SlicingObject : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        newPos = endSlicePoint.position;
-        direction = newPos - lastPos;
-        lastPos = endSlicePoint.position;
-    }
-
-    public void CheckSlice(SlicableObject sliceble)
+    public override void CheckSlice(SlicableObject sliceble)
     {
         if (!cannotSlice.Contains(sliceble))
         {
@@ -86,18 +77,18 @@ public class SlicingObject : MonoBehaviour
             cannotSlice.Add(lowerSlice);
 
             Destroy(target.gameObject);
-            OnSliceDone?.Invoke(lowerSlice, upperSlice);
+            SliceDone(lowerSlice, upperSlice);
         }
     }
     public void NewArchetype(Archetype newArchetype)
     {
         if(archetype == newArchetype)
         {
-            archetype.archetypeAnimator.OnActionDone += SwingDone;
+            archetype.archetypeAnimator.OnSwingDone += SwingDone;
         }
         else
         {
-            archetype.archetypeAnimator.OnActionDone -= SwingDone;
+            archetype.archetypeAnimator.OnSwingDone -= SwingDone;
         }        
     }
     public void SwingDone()

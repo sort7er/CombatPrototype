@@ -8,27 +8,19 @@ public class Archetype : MonoBehaviour
     public TargetAssistanceParams targetAssistanceParams;
 
 
-    public ArchetypeAnimator archetypeAnimator { get; private set; }
-    public UniqueAbility uniqueAbility { get; private set; }
+    public ArchetypeAnimator archetypeAnimator;
+    public UniqueAbility uniqueAbility;
+    public HitBox hitBox;
 
     public Humanoid owner { get; private set; }
-    public HitBox hitBox { get; private set; }
     public WeaponContainer weaponContainer { get; private set; }
 
     public SlicingObject[] slicingObjects;
 
     private void Awake()
     {
-        FindReferences();
-        hitBox.OnHit += OnHit;
-    }
-
-    private void FindReferences()
-    {
-        archetypeAnimator = GetComponent<ArchetypeAnimator>();
-        uniqueAbility = GetComponent<UniqueAbility>();
-        hitBox = GetComponent<HitBox>();
         FindOwner();
+        hitBox.OnHit += OnHit;
     }
 
     private void FindOwner()
@@ -62,10 +54,14 @@ public class Archetype : MonoBehaviour
     {
         hitBox.OnHit -= OnHit;
     }
-    private void OnHit(Health health)
+    private void OnHit(Health health, List<ModelContainer> weapons)
     {
         health.TakeDamage(archetypeAnimator.currentAttack.damage, this, archetypeAnimator.currentAttack.damageType);
-        //EffectManager.instance.Hit(hitBox.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
+
+        for(int i = 0; i < weapons.Count;i++)
+        {
+            EffectManager.instance.Hit(weapons[i].Position(), weapons[i].Direction(), weapons[i].UpDir());
+        }
     }
 
     public void UniqueAttack(List<Enemy> enemies, PlayerData playerData)

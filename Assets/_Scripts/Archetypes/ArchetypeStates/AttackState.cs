@@ -51,7 +51,7 @@ namespace ArchetypeStates
         public override void Staggered(ArchetypeAnimator archetype)
         {
             StartSettings();
-            archetypeAnimator.InvokeAttackDoneEvent();
+            archetypeAnimator.SwingDone();
             archetype.SwitchState(archetype.staggeredState);
         }
         private void CheckAttack(Attack attack)
@@ -79,9 +79,7 @@ namespace ArchetypeStates
         }
         private void Attack(Attack attack, float crossfade = 0)
         {
-            archetypeAnimator.SetCurrentAttack(attack);
-            archetypeAnimator.IsAttacking(true);
-            archetypeAnimator.CrossFade(attack, crossfade);
+            archetypeAnimator.IsAttacking(attack, crossfade);
 
             float remapedValue = archetypeAnimator.Remap(archetypeAnimator.currentAttack.queuePoint);
             archetypeAnimator.InvokeFunction(CheckQueue, remapedValue);
@@ -95,9 +93,9 @@ namespace ArchetypeStates
             if (attackQueue.Count > 0)
             {
                 archetypeAnimator.StopFunction();
+                archetypeAnimator.SwingDone();
                 Attack(attackQueue[0], 0.1f);
                 attackQueue.RemoveAt(0);
-                archetypeAnimator.InvokeAttackDoneEvent();
             }
         }
 
@@ -111,7 +109,7 @@ namespace ArchetypeStates
         private void AttackDone()
         {
             StartSettings();
-            archetypeAnimator.InvokeAttackDoneEvent();
+            archetypeAnimator.SwingDone();
             archetypeAnimator.SwitchState(archetypeAnimator.idleState);
         }
 
@@ -119,8 +117,7 @@ namespace ArchetypeStates
         {
             currentCombo = 0;
             attackQueue.Clear();
-            archetypeAnimator.IsAttacking(false);
-            archetypeAnimator.SetCurrentAttack(null);
+            archetypeAnimator.AttackingDone();
         }
 
     }

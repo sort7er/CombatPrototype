@@ -2,15 +2,13 @@ using System;
 using UnityEngine;
 using ArchetypeStates;
 using System.Collections;
+using Attacks;
 
 [RequireComponent(typeof(Animator))]
 public class ArchetypeAnimator : MonoBehaviour
 {
-    public event Action OnLethal;
-    public event Action OnLethal2;
-    public event Action OnBoth;
-    public event Action OnNotLethal;
-    public event Action OnActionDone;
+    public event Action<Attack> OnAttack;
+    public event Action OnSwingDone;
 
     [Header("Idle")]
     [SerializeField] private AnimationInput idleInput;
@@ -27,7 +25,7 @@ public class ArchetypeAnimator : MonoBehaviour
     [Header("Staggered")]
     [SerializeField] private AnimationInput staggeredInput;
 
-    [SerializeField] private TrailRenderer[] trail;
+    [SerializeField] private ParticleSystem[] trail;
 
 
     public Animator archetypeAnim { get; private set; }
@@ -62,7 +60,6 @@ public class ArchetypeAnimator : MonoBehaviour
 
         SetUpAnimations();
         SwitchState(idleState);
-        DisableTrail();
     }
 
     #region Animation set up
@@ -71,21 +68,21 @@ public class ArchetypeAnimator : MonoBehaviour
         idle = new Anim(idleInput.animationClip);
         light = new Attack[lightAttackInputs.Length];
         heavy = new Attack[heavyAttackInputs.Length];
-        block = new Attack(blockInput.animationClip, blockInput.damage, blockInput.queuePoint, blockInput.damageType);
+        block = new Attack(blockInput.animationClip, blockInput.damage, blockInput.queuePoint, blockInput.damageType, blockInput.activeWeapon);
         parry = new Attack[parryInputs.Length];
         staggered = new Anim(staggeredInput.animationClip);
 
         SetUpAttacks(light, lightAttackInputs);
         SetUpAttacks(heavy, heavyAttackInputs);
         SetUpAttacks(parry, parryInputs);
-        unique = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint, uniqueAttackInput.damageType);
+        unique = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint, uniqueAttackInput.damageType, uniqueAttackInput.activeWeapon);
     }
     
     public void SetUpAttacks(Attack[] attacksToSetUp, AttackInput[] inputs)
     {
         for (int i = 0; i < inputs.Length; i++)
         {
-            attacksToSetUp[i] = new Attack(inputs[i].animationClip, inputs[i].damage, inputs[i].queuePoint, inputs[i].damageType);
+            attacksToSetUp[i] = new Attack(inputs[i].animationClip, inputs[i].damage, inputs[i].queuePoint, inputs[i].damageType, inputs[i].activeWeapon);
         }
     }
     #endregion
@@ -94,17 +91,14 @@ public class ArchetypeAnimator : MonoBehaviour
     public void Fire()
     {
         currentState.Fire(this);
-        DelayedEnable();
     }
     public void HeavyFire()
     {
         currentState.HeavyFire(this);
-        DelayedEnable();
     }
     public void UniqueFire()
     {
         currentState.UniqueFire(this);
-        DelayedEnable();
     }
     public void Block()
     {
@@ -132,17 +126,26 @@ public class ArchetypeAnimator : MonoBehaviour
         currentState = state;
         state.EnterState(this);
     }
-    public void SetCurrentAttack(Attack newAttack)
-    {
-        currentAttack = newAttack;
-    }
     public void SetEntryAttack(Attack newAttack)
     {
         entryAttack = newAttack;
     }
-    public void IsAttacking(bool state)
+    public void IsAttacking(Attack newAttack, float crossfade = 0)
     {
-        isAttacking = state;
+        isAttacking = true;
+        currentAttack = newAttack;
+        EnableTrail(currentAttack.activeWeapon);
+        CrossFade(currentAttack, crossfade);
+        OnAttack?.Invoke(currentAttack);
+    }
+    public void SwingDone()
+    {
+        DisableTrail();
+        OnSwingDone?.Invoke();
+    }
+    public void AttackingDone()
+    {
+        isAttacking = false;
     }
     public void IsBlocking(bool state)
     {
@@ -156,14 +159,7 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         archetypeAnim.CrossFade(anim.state, crossfade);
     }
-    public void SetAnimation(Anim anim)
-    {
-        archetypeAnim.Play(anim.state);
-    }
-    public void InvokeAttackDoneEvent()
-    {
-        OnActionDone?.Invoke();
-    }
+
     public void InvokeFunction(Action function, float waitTime)
     {
         StartCoroutine(DoFunction(function, waitTime));
@@ -184,30 +180,34 @@ public class ArchetypeAnimator : MonoBehaviour
         return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
     }
 
-    private void DelayedEnable()
-    {
-        CancelInvoke(nameof(EnableTrail));
-        Invoke(nameof(EnableTrail), 0.1f);
-    }
-
-    private void EnableTrail()
+    private void EnableTrail(ActiveWeapon activeWeapon)
     {
         if(trail.Length > 0)
         {
-            for(int i = 0; i < trail.Length; i++)
+            if(activeWeapon == ActiveWeapon.right)
             {
-                trail[i].enabled = true;
+                trail[0].Play();
             }
-            Invoke(nameof(DisableTrail), 0.1f);
+            else if(activeWeapon == ActiveWeapon.left)
+            {
+                trail[1].Play();
+            }
+            else
+            {
+                trail[0].Play();
+                trail[1].Play();
+
+            }
         }
     }
     private void DisableTrail()
     {
-        if (trail.Length > 0)
+        if(trail.Length > 0)
         {
-            for (int i = 0; i < trail.Length; i++)
+            trail[0].Stop();
+            if(trail.Length > 1)
             {
-                trail[i].enabled = false;
+                trail[1].Stop();
             }
         }
     }
