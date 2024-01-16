@@ -46,7 +46,7 @@ public class Archetype : MonoBehaviour
     private void OnHit(Health health)
     {
         health.TakeDamage(archetypeAnimator.currentAttack.damage, this, archetypeAnimator.currentAttack.damageType);
-        //EffectManager.instance.Hit(weaponTrigger.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
+        //EffectManager.instance.Hit(hitBox.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
     }
 
     public void UniqueAttack(List<Enemy> enemies, PlayerData playerData)
