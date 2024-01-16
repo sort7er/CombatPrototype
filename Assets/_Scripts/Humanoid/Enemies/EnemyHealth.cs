@@ -34,7 +34,7 @@ public class EnemyHealth : Health
         {
             for (int i = 0; i < meshes.Length; i++) 
             {
-                killingArchetype.currentSlicingObject.Slice(meshes[i]);
+                killingArchetype.hitBox.DoSlice(meshes[i]);
             }
         }
         if (incomingDamage == DamageType.Crumble)

@@ -289,8 +289,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4687010497591090685}
-  - component: {fileID: 2669771166507158675}
-  - component: {fileID: 8540676259532825529}
   - component: {fileID: 1332521718114864408}
   m_Layer: 0
   m_Name: ModelContainer
@@ -317,39 +315,6 @@ Transform:
   - {fileID: 4305590773371394401}
   m_Father: {fileID: 702135583832380966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2669771166507158675
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5533239777402817850}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 1.9, z: 0.3}
-  m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &8540676259532825529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5533239777402817850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce9b5e9b322d8c649824884ecaceb5e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1332521718114864408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +330,6 @@ MonoBehaviour:
   cutForce: 500
   endSlicePoint: {fileID: 4305590773371394401}
   startSlicePoint: {fileID: 8352692471256722217}
-  cannotSlice: []
 --- !u!1 &6555578567712235922
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +377,7 @@ GameObject:
   - component: {fileID: -2607780637761456646}
   - component: {fileID: 2082084165264853290}
   - component: {fileID: 5525634552681046500}
+  - component: {fileID: -4191224774394389854}
   m_Layer: 10
   m_Name: Katana
   m_TagString: Untagged
@@ -531,16 +496,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   archetypeName: Katana
-  archetypeAnimator: {fileID: -2607780637761456646}
-  uniqueAbility: {fileID: 5525634552681046500}
   targetAssistanceParams:
     range: 10
     idealDotProduct: 0.98
     acceptedDotProduct: 0.75
-  weaponTrigger:
-  - {fileID: 8540676259532825529}
-  slicingObject:
-  - {fileID: 1332521718114864408}
 --- !u!114 &5525634552681046500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +512,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e85185cf0adb9e428f27127e76bb9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4191224774394389854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7434022121973901870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f118be13640682846a8ecbbb19377322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  center: 1
+  halfExtends: {x: 1, y: 1, z: 1}
+  weapons:
+  - {fileID: 4687010497591090685}
 --- !u!1 &9071185717351479566
 GameObject:
   m_ObjectHideFlags: 0

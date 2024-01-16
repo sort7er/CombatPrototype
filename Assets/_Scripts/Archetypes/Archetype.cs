@@ -6,31 +6,31 @@ public class Archetype : MonoBehaviour
 
 
     public string archetypeName;
-    public ArchetypeAnimator archetypeAnimator;
-    public UniqueAbility uniqueAbility;
     public TargetAssistanceParams targetAssistanceParams;
-    public WeaponTrigger[] weaponTrigger;
-    public SlicingObject[] slicingObject;
+
+
+    public ArchetypeAnimator archetypeAnimator { get; private set; }
+    public UniqueAbility uniqueAbility { get; private set; }
 
     public Humanoid owner { get; private set; }
+    public HitBox hitBox { get; private set; }
 
-    public SlicingObject currentSlicingObject { get; private set; }
-
-    private List<Health> hits = new();
     private Player player;
 
     private void Awake()
     {
-        player = FindObjectOfType<Player>();
-
-        for(int i = 0; i < weaponTrigger.Length; i++)
-        {
-            weaponTrigger[i].OnHit += OnHit;
-        }
-        archetypeAnimator.OnLethal += Lethal;
-        archetypeAnimator.OnLethal2 += Lethal2;
-        archetypeAnimator.OnNotLethal += NotLethal;
+        FindReferences();
+        hitBox.OnHit += OnHit;
     }
+
+    private void FindReferences()
+    {
+        archetypeAnimator = GetComponent<ArchetypeAnimator>();
+        uniqueAbility = GetComponent<UniqueAbility>();
+        hitBox = GetComponent<HitBox>();
+        player = FindObjectOfType<Player>();
+    }
+
     private void Start()
     {
         //Temporary until a pickupfunction works
@@ -41,51 +41,12 @@ public class Archetype : MonoBehaviour
     }
     private void OnDestroy()
     {
-        for (int i = 0; i < weaponTrigger.Length; i++)
-        {
-            weaponTrigger[i].OnHit -= OnHit;
-        }
-        archetypeAnimator.OnLethal -= Lethal;
-        archetypeAnimator.OnLethal2 -= Lethal2;
-        archetypeAnimator.OnNotLethal -= NotLethal;
+        hitBox.OnHit -= OnHit;
     }
-    private void OnHit(Health health, WeaponTrigger weaponTrigger)
+    private void OnHit(Health health)
     {
-        if(!hits.Contains(health))
-        {
-            hits.Add(health);
-            health.TakeDamage(archetypeAnimator.currentAttack.damage, this, archetypeAnimator.currentAttack.damageType);
-            EffectManager.instance.Hit(weaponTrigger.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
-        }
-    }
-    private void Lethal()
-    {
-        hits.Clear();
-        weaponTrigger[0].EnableCollider();
-        if (HasSlicing())
-        {
-            currentSlicingObject = slicingObject[0];
-        }
-        if(owner != player.playerMovement)
-        {
-            EffectManager.instance.Anticipation(weaponTrigger[0].transform.position);
-        }
-    }
-    private void Lethal2()
-    {
-        hits.Clear();
-        weaponTrigger[1].EnableCollider();
-        if (HasSlicing())
-        {
-            currentSlicingObject = slicingObject[1];
-        }
-    }
-    private void NotLethal()
-    {
-        for (int i = 0; i < weaponTrigger.Length; i++)
-        {
-            weaponTrigger[i].DisableCollider();
-        }
+        health.TakeDamage(archetypeAnimator.currentAttack.damage, this, archetypeAnimator.currentAttack.damageType);
+        //EffectManager.instance.Hit(weaponTrigger.contactPoint, weaponTrigger.swingDir, weaponTrigger.upDir);
     }
 
     public void UniqueAttack(List<Enemy> enemies, PlayerData playerData)
@@ -101,10 +62,10 @@ public class Archetype : MonoBehaviour
 
         archetypeAnimator.UniqueFire();
     }
-
-    private bool HasSlicing()
+    
+    public bool IsPlayer()
     {
-        if(slicingObject.Length > 0)
+        if (owner == player.playerMovement)
         {
             return true;
         }
@@ -113,5 +74,4 @@ public class Archetype : MonoBehaviour
             return false;
         }
     }
-
 }

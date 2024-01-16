@@ -8,6 +8,7 @@ public class ArchetypeAnimator : MonoBehaviour
 {
     public event Action OnLethal;
     public event Action OnLethal2;
+    public event Action OnBoth;
     public event Action OnNotLethal;
     public event Action OnActionDone;
 
@@ -176,27 +177,4 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
     }
-
-    //This is called from the animations, to see when an attack is lethal
-
-    #region When weapon is leathal
-    public void Lethal()
-    {
-        OnLethal?.Invoke();
-    }
-    public void Lethal2()
-    {
-        OnLethal2?.Invoke();
-    }
-    public void Both()
-    {
-        Lethal();
-        Lethal2();
-    }
-
-    public void NotLethal()
-    {
-        OnNotLethal?.Invoke();
-    }
-    #endregion
 }
