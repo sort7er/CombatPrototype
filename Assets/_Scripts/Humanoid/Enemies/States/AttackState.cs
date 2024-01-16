@@ -23,12 +23,13 @@ namespace EnemyStates
                     enemy.SwitchState(enemy.chaseState);
                 }
 
-                if (!IsActive(enemy) && !coolDown)
-                {
-                    SelectCombo(enemy);
-                    coolDown = true;
-                    enemy.InvokeFunction(CooldownDone, Random.Range(enemy.attackCooldown, enemy.attackCooldown + 1));
-                }
+                //Attack if there is a weapon, and if there is no longer any attackcooldown
+                //if (!IsActive(enemy) && !coolDown)
+                //{
+                //    SelectCombo(enemy);
+                //    coolDown = true;
+                //    enemy.InvokeFunction(CooldownDone, Random.Range(enemy.attackCooldown, enemy.attackCooldown + 1));
+                //}
             }
             else
             {
@@ -86,7 +87,14 @@ namespace EnemyStates
 
         private bool IsActive(Enemy enemy)
         {
-            return enemy.currentArchetype.archetypeAnimator.isAttacking;
+            if(enemy.currentArchetype != null && enemy.currentArchetype.gameObject.activeSelf)
+            {
+                return enemy.currentArchetype.archetypeAnimator.isAttacking;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

@@ -220,6 +220,9 @@ MonoBehaviour:
     range: 10
     idealDotProduct: 0.85
     acceptedDotProduct: 0.75
+  slicingObjects:
+  - {fileID: 2581439556364633185}
+  - {fileID: 7887904613389641550}
 --- !u!114 &-4413238757584107831
 MonoBehaviour:
   m_ObjectHideFlags: 0

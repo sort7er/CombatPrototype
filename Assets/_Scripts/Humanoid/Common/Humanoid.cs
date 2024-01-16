@@ -1,8 +1,22 @@
 using UnityEngine;
+using HumanoidTypes;
+
+
+namespace HumanoidTypes
+{
+    public enum OwnerType
+    {
+        Player,
+        Enemy
+    }
+}
 
 public class Humanoid : MonoBehaviour
 {
+
+
     [Header("Humanoid")]
+    public OwnerType ownerType;
     [SerializeField] protected float movementSpeed = 10;
     [SerializeField] protected float groundDistance;
     [SerializeField] protected float groundDrag;

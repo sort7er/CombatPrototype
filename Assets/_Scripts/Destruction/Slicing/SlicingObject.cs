@@ -1,9 +1,13 @@
 using UnityEngine;
 using EzySlice;
 using System.Collections.Generic;
+using System;
+using HumanoidTypes;
 
 public class SlicingObject : MonoBehaviour
 {
+    public event Action<SlicableObject, SlicableObject> OnSliceDone;
+
     [Header("Values")]
     [SerializeField] private float cutForce = 2000f;
 
@@ -16,17 +20,24 @@ public class SlicingObject : MonoBehaviour
 
     public List<SlicableObject> cannotSlice { get; private set; } = new();
     private WeaponSelector weaponSelector;
-    private ArchetypeAnimator archetypeAnimator;
-    
+    private Archetype archetype;
 
-    private void Awake()
+    public void OwnerFound(Humanoid newOwner)
     {
-        weaponSelector = FindObjectOfType<Player>().weaponSelector;
-        weaponSelector.OnNewArchetype += NewArchetype;
+        archetype = GetComponentInParent<Archetype>();
+        if (newOwner.ownerType == OwnerType.Player)
+        {
+            weaponSelector = FindObjectOfType<Player>().weaponSelector;
+            weaponSelector.OnNewArchetype += NewArchetype;
+        }
     }
+
     private void OnDestroy()
     {
-        weaponSelector.OnNewArchetype -= NewArchetype;
+        if(weaponSelector != null)
+        {
+            weaponSelector.OnNewArchetype -= NewArchetype;
+        }
     }
 
     private void Update()
@@ -75,17 +86,19 @@ public class SlicingObject : MonoBehaviour
             cannotSlice.Add(lowerSlice);
 
             Destroy(target.gameObject);
+            OnSliceDone?.Invoke(lowerSlice, upperSlice);
         }
     }
     public void NewArchetype(Archetype newArchetype)
     {
-        if(archetypeAnimator != null)
+        if(archetype == newArchetype)
         {
-            archetypeAnimator.OnActionDone -= SwingDone;
+            archetype.archetypeAnimator.OnActionDone += SwingDone;
         }
-        archetypeAnimator = newArchetype.archetypeAnimator;
-        archetypeAnimator.OnActionDone += SwingDone;
-        
+        else
+        {
+            archetype.archetypeAnimator.OnActionDone -= SwingDone;
+        }        
     }
     public void SwingDone()
     {

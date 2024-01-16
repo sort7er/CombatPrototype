@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HitBox : MonoBehaviour
@@ -14,30 +13,37 @@ public class HitBox : MonoBehaviour
     private Archetype archetype;
     private Collider[] hits;
     private int numberOfHits;
+    private bool sliceEnded;
 
-    private List<SlicingObject> slicingObjects = new();
+    private SlicingObject[] slicingWeapons;
+
+    public enum HittingWeapon
+    {
+        right,
+        left,
+        both,
+    }
+
+    private HittingWeapon currentHittingWeapon;
 
     private void Awake()
     {
         hits = new Collider[10];
         archetype = GetComponent<Archetype>();
+        DoWeSlice();
     }
 
-    public void Hit(params Transform[] weaponsToCheck)
+    private void DoWeSlice()
     {
-        slicingObjects.Clear();
-
-        for(int i = 0; i < weaponsToCheck.Length; i++)
+        //Check if there is slicing on the weapons
+        slicingWeapons = new SlicingObject[weapons.Length];
+        for(int i = 0; i < weapons.Length; i++)
         {
-
-            SlicingObject slicingWeapon = weaponsToCheck[i].GetComponent<SlicingObject>(); 
-
-            if (slicingWeapon != null)
+            if (weapons[i].TryGetComponent(out SlicingObject slice))
             {
-                slicingObjects.Add(slicingWeapon);
+                slicingWeapons[i] = slice;
             }
         }
-        CheckHit();
     }
 
     private void CheckHit()
@@ -46,38 +52,62 @@ public class HitBox : MonoBehaviour
 
         for(int i = 0; i < numberOfHits; i++)
         {
-            //Check if hitting a player / enemy
-            if(hits[i].TryGetComponent(out Health health))
-            {
-                //Check if is blocking or parrying
-                ArchetypeAnimator opponentsWeapon = CheckIfAnimator(health);
-
-                if(opponentsWeapon != null)
-                {
-                    CheckIfBlock(opponentsWeapon, health);
-                }
-                else
-                {
-                    DoDamage(health);
-                }
-            }
-            //Check if hitting  a slicible object
-            else if (hits[i].TryGetComponent(out SlicableObject sliceble) && slicingObjects.Count > 0)
-            {
-                for (int j = 0; j < slicingObjects.Count; j++)
-                {
-                    slicingObjects[j].CheckSlice(sliceble);
-                }
-            }
+            CheckHitInfo(hits[i]);
         }
 
     }
-    public void DoSlice(SlicableObject slicable)
+    private void CheckHitInfo(Collider hit)
     {
-        //This is called when an enemy dies
-        for (int i = 0; i < slicingObjects.Count; i++)
+        //Check if hitting a player / enemy
+        if (hit.TryGetComponent(out Health health))
         {
-            slicingObjects[i].CheckSlice(slicable);
+            //Check if is blocking or parrying
+            ArchetypeAnimator opponentsWeapon = CheckIfAnimator(health);
+
+            if (opponentsWeapon != null)
+            {
+                CheckIfBlock(opponentsWeapon, health);
+            }
+            else
+            {
+                DoDamage(health);
+            }
+        }
+        //Check if hitting  a slicible object
+        else if (IsSlicing())
+        {
+            if (hit.TryGetComponent(out SlicableObject sliceble))
+            {
+                Slice(sliceble);
+            }
+        }
+    }
+
+    public void Slice(SlicableObject slicable)
+    {
+        sliceEnded = false;
+        if(currentHittingWeapon == HittingWeapon.right)
+        {
+            slicingWeapons[0].CheckSlice(slicable);
+        }
+        else if( currentHittingWeapon == HittingWeapon.left)
+        {
+            slicingWeapons[1].CheckSlice(slicable);
+        }
+        else
+        {
+            slicingWeapons[0].OnSliceDone += DelayedSlice;
+            slicingWeapons[0].CheckSlice(slicable);  
+        }
+    }
+    private void DelayedSlice(SlicableObject slicable, SlicableObject slicable2)
+    {
+        slicingWeapons[0].OnSliceDone -= DelayedSlice;
+        if (!sliceEnded)
+        {
+            slicingWeapons[1].CheckSlice(slicable);
+            slicingWeapons[1].CheckSlice(slicable2);
+            sliceEnded = true;
         }
     }
 
@@ -85,11 +115,25 @@ public class HitBox : MonoBehaviour
     {
         if (health.TryGetComponent(out Enemy enemy))
         {
-            return enemy.currentArchetype.archetypeAnimator;
+            if(enemy.currentArchetype != null)
+            {
+                return enemy.currentArchetype.archetypeAnimator;
+            }
+            else
+            {
+                return null;
+            }
         }
         else if (health.TryGetComponent(out WeaponSelector weaponSelector))
         {
-            return weaponSelector.currentArchetype.archetypeAnimator;
+            if (weaponSelector.currentArchetype != null)
+            {
+                return weaponSelector.currentArchetype.archetypeAnimator;
+            }
+            else
+            {
+                return null;
+            }
         }
         else
         {
@@ -112,7 +156,7 @@ public class HitBox : MonoBehaviour
         }
         else
         {
-            Debug.Log("No");
+            //Debug.Log("No");
             DoDamage(health);
         }
     }
@@ -127,7 +171,8 @@ public class HitBox : MonoBehaviour
     //Called from the animations
     public void Lethal()
     {
-        Hit(weapons[0]);
+        currentHittingWeapon = HittingWeapon.right;
+        CheckHit();
 
         if (!archetype.IsPlayer())
         {
@@ -136,7 +181,8 @@ public class HitBox : MonoBehaviour
     }
     public void Lethal2()
     {
-        Hit(weapons[1]);
+        currentHittingWeapon = HittingWeapon.left;
+        CheckHit();
 
         if (!archetype.IsPlayer())
         {
@@ -145,11 +191,23 @@ public class HitBox : MonoBehaviour
     }
     public void Both()
     {
-        Hit(weapons);
+        currentHittingWeapon = HittingWeapon.both;
+        CheckHit();
 
         if (!archetype.IsPlayer())
         {
             EffectManager.instance.Anticipation(weapons[0].position);
+        }
+    }
+    private bool IsSlicing()
+    {
+        if (slicingWeapons[0] != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

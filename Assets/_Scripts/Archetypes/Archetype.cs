@@ -1,10 +1,10 @@
+using HumanoidTypes;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Archetype : MonoBehaviour
 {
-
-
     public string archetypeName;
     public TargetAssistanceParams targetAssistanceParams;
 
@@ -14,8 +14,9 @@ public class Archetype : MonoBehaviour
 
     public Humanoid owner { get; private set; }
     public HitBox hitBox { get; private set; }
+    public WeaponContainer weaponContainer { get; private set; }
 
-    private Player player;
+    public SlicingObject[] slicingObjects;
 
     private void Awake()
     {
@@ -28,7 +29,26 @@ public class Archetype : MonoBehaviour
         archetypeAnimator = GetComponent<ArchetypeAnimator>();
         uniqueAbility = GetComponent<UniqueAbility>();
         hitBox = GetComponent<HitBox>();
-        player = FindObjectOfType<Player>();
+        FindOwner();
+    }
+
+    private void FindOwner()
+    {
+        if (transform.parent.TryGetComponent(out WeaponContainer container))
+        {
+            weaponContainer = container;
+            weaponContainer.OnOwnerFound += FoundOwner;
+            weaponContainer.FindOwner();
+        }
+    }
+    private void FoundOwner(Humanoid newOwner)
+    {
+        weaponContainer.OnOwnerFound -= FoundOwner;
+        owner = newOwner;
+        for(int i = 0; i < slicingObjects.Length; i++)
+        {
+            slicingObjects[i].OwnerFound(newOwner);
+        }
     }
 
     private void Start()
@@ -65,7 +85,7 @@ public class Archetype : MonoBehaviour
     
     public bool IsPlayer()
     {
-        if (owner == player.playerMovement)
+        if (owner.ownerType == OwnerType.Player)
         {
             return true;
         }

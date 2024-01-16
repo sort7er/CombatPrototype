@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31efbb15fb46824aa1f3aaef00fe28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerType: 1
   movementSpeed: 4
   groundDistance: 0.2
   groundDrag: 5
@@ -224,7 +225,6 @@ MonoBehaviour:
   waypointDistance: 0.5
   playerDistance: 5
   attackCooldown: 0.5
-  currentArchetype: {fileID: 0}
 --- !u!114 &5754660137233312941
 MonoBehaviour:
   m_ObjectHideFlags: 0
