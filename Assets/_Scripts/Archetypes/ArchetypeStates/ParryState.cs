@@ -48,7 +48,7 @@ namespace ArchetypeStates
         {
             archetype.IsParrying(true);
             cannotParry = true;
-            archetype.CrossFade(archetype.parry[currentParry]);
+            archetype.CrossFade(archetype.parry[currentParry], 0.1f);
             archetype.InvokeFunction(ParryWindowDone, archetype.Remap(archetype.parry[currentParry].queuePoint));
             archetype.InvokeFunction(CanParry, archetype.Remap(10));
             archetype.InvokeFunction(EndParry, archetype.parry[currentParry].duration);

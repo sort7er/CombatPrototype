@@ -6,16 +6,19 @@ namespace ArchetypeStates
     {
         public override void EnterState(ArchetypeAnimator archetype)
         {
-            archetype.CrossFade(archetype.idle, 0.25f);
+            archetype.CrossFade(archetype.idle);
+            archetype.SetEntryAttack(null);
         }
         public override void Fire(ArchetypeAnimator archetype)
         {
             archetype.SetEntryAttack(archetype.light[0]);
+
             archetype.SwitchState(archetype.attackState);
         }
         public override void HeavyFire(ArchetypeAnimator archetype)
         {
             archetype.SetEntryAttack(archetype.heavy[0]);
+
             archetype.SwitchState(archetype.attackState);
         }
         public override void UniqueFire(ArchetypeAnimator archetype)

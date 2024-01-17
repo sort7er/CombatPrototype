@@ -5395,12 +5395,12 @@ MonoBehaviour:
     damageType: 0
     activeWeapon: 0
     damage: 0
-    queuePoint: 10
+    queuePoint: 20
   - animationClip: {fileID: 7400000, guid: 956608279e408b74598a5a2c40c6a230, type: 2}
     damageType: 0
     activeWeapon: 0
     damage: 0
-    queuePoint: 10
+    queuePoint: 20
   staggeredInput:
     animationClip: {fileID: 7400000, guid: c7fe994f448772644bcd2d6a500a17dc, type: 2}
   trail:
@@ -5429,8 +5429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f118be13640682846a8ecbbb19377322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: 1
-  halfExtends: {x: 1, y: 1, z: 1}
+  center: 1.5
+  halfExtends: {x: 1.5, y: 1, z: 1.5}
   weapons:
   - {fileID: 1332521718114864408}
 --- !u!1 &9071185717351479566

@@ -9,6 +9,7 @@ public class ArchetypeAnimator : MonoBehaviour
 {
     public event Action<Attack> OnAttack;
     public event Action OnSwingDone;
+    public event Action OnAttackDone;
 
     [Header("Idle")]
     [SerializeField] private AnimationInput idleInput;
@@ -57,7 +58,6 @@ public class ArchetypeAnimator : MonoBehaviour
     private void Awake()
     {
         archetypeAnim = GetComponent<Animator>();
-
         SetUpAnimations();
         SwitchState(idleState);
     }
@@ -144,6 +144,12 @@ public class ArchetypeAnimator : MonoBehaviour
         OnSwingDone?.Invoke();
     }
     public void AttackingDone()
+    {
+        OnAttackDone?.Invoke();
+        SwingDone();
+        NotAttacking();
+    }
+    public void NotAttacking()
     {
         isAttacking = false;
     }

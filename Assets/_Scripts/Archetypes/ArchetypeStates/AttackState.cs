@@ -11,30 +11,28 @@ namespace ArchetypeStates
         public int currentCombo;
 
         // Heavy and light must match
-        private int numberOfAttacks;
+        private int numberOfAttacks; 
 
 
         public override void EnterState(ArchetypeAnimator archetype)
         {
-            numberOfAttacks = archetype.light.Length;
-            archetypeAnimator = archetype;
-            StartSettings();
-            CheckAttack(archetypeAnimator.entryAttack);
+            StartSettings(archetype);
+            CheckAttack(archetype, archetypeAnimator.entryAttack);
 
         }
         public override void Fire(ArchetypeAnimator archetype)
         {
             UpdateCombo();
-            CheckAttack(archetype.light[currentCombo]);
+            CheckAttack(archetype, archetype.light[currentCombo]);
         }
         public override void HeavyFire(ArchetypeAnimator archetype)
         {
             UpdateCombo();
-            CheckAttack(archetype.heavy[currentCombo]);
+            CheckAttack(archetype, archetype.heavy[currentCombo]);
         }
         public override void UniqueFire(ArchetypeAnimator archetype)
         {
-            CheckAttack(archetype.unique);
+            CheckAttack(archetype, archetype.unique);
         }
 
         #region Unused
@@ -50,15 +48,16 @@ namespace ArchetypeStates
         #endregion
         public override void Staggered(ArchetypeAnimator archetype)
         {
-            StartSettings();
-            archetypeAnimator.SwingDone();
-            archetype.SwitchState(archetype.staggeredState);
+            archetypeAnimator.StopFunction();
+            ResetQueue();
+            archetypeAnimator.AttackingDone();
+            archetypeAnimator.SwitchState(archetypeAnimator.staggeredState);
         }
-        private void CheckAttack(Attack attack)
+        private void CheckAttack(ArchetypeAnimator archetype, Attack attack)
         {
-            if (!archetypeAnimator.isAttacking)
+            if (!archetype.isAttacking)
             {
-                Attack(attack);
+                Attack(archetype, attack);
             }
             else
             {
@@ -77,14 +76,14 @@ namespace ArchetypeStates
                 attackQueue.Add(attack);
             }
         }
-        private void Attack(Attack attack, float crossfade = 0)
+        private void Attack(ArchetypeAnimator archetype, Attack attack, float crossfade = 0)
         {
-            archetypeAnimator.IsAttacking(attack, crossfade);
+            archetype.IsAttacking(attack, crossfade);
 
-            float remapedValue = archetypeAnimator.Remap(archetypeAnimator.currentAttack.queuePoint);
-            archetypeAnimator.InvokeFunction(CheckQueue, remapedValue);
+            float remapedValue = archetype.Remap(archetype.currentAttack.queuePoint);
+            archetype.InvokeFunction(CheckQueue, remapedValue);
 
-            archetypeAnimator.InvokeFunction(AttackDone, archetypeAnimator.currentAttack.duration);            
+            archetype.InvokeFunction(AttackDone, archetype.currentAttack.duration);            
         }
 
         private void CheckQueue()
@@ -94,7 +93,7 @@ namespace ArchetypeStates
             {
                 archetypeAnimator.StopFunction();
                 archetypeAnimator.SwingDone();
-                Attack(attackQueue[0], 0.1f);
+                Attack(archetypeAnimator, attackQueue[0], 0.1f);
                 attackQueue.RemoveAt(0);
             }
         }
@@ -108,16 +107,22 @@ namespace ArchetypeStates
         }
         private void AttackDone()
         {
-            StartSettings();
-            archetypeAnimator.SwingDone();
+            ResetQueue();
+            archetypeAnimator.AttackingDone();
             archetypeAnimator.SwitchState(archetypeAnimator.idleState);
         }
 
-        private void StartSettings()
+        private void StartSettings(ArchetypeAnimator archetype)
+        {
+            numberOfAttacks = archetype.light.Length;
+            archetypeAnimator = archetype;
+            ResetQueue();
+            archetypeAnimator.NotAttacking();
+        }
+        private void ResetQueue()
         {
             currentCombo = 0;
             attackQueue.Clear();
-            archetypeAnimator.AttackingDone();
         }
 
     }

@@ -1,15 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 namespace EnemyStates
 {
     public class AttackState : EnemyState
     {
-
         private bool coolDown;
+        private Enemy enemy;
         public override void EnterState(Enemy enemy)
         {
+            this.enemy = enemy;
             enemy.DisableMovement();
-            coolDown = false;
+            enemy.InvokeFunction(CooldownDone, Random.Range(enemy.attackCooldown, enemy.attackCooldown + 1));
         }
 
         public override void UpdateState(Enemy enemy)
@@ -23,12 +25,11 @@ namespace EnemyStates
                     enemy.SwitchState(enemy.chaseState);
                 }
 
-                //Attack if there is a weapon, and if there is no longer any attackcooldown
+                //Attack if there is a weapon, and if there is no longer any attackcooldown, should have a propar check to see if holding a weapon
                 if (!IsActive(enemy) && !coolDown)
                 {
                     SelectCombo(enemy);
                     coolDown = true;
-                    enemy.InvokeFunction(CooldownDone, Random.Range(enemy.attackCooldown, enemy.attackCooldown + 1));
                 }
             }
             else
@@ -42,21 +43,23 @@ namespace EnemyStates
         }
         public override void Staggered(Enemy enemy)
         {
+            enemy.StopFunction();
             enemy.SwitchState(enemy.staggeredState);
         }
 
-        private void SelectCombo(Enemy enemy)
+        public void SelectCombo(Enemy enemy)
         {
             int numberOfAttacks = Random.Range(1, 4);
-
-            for (int i = 0; i < numberOfAttacks; i++)
+            for (int i = 0; i < 3; i++)
             {
-                RandomFire(enemy);
+                enemy.InvokeCoroutine(RandomFire(enemy, i * 0.01f));
             }
         }
 
-        private void RandomFire(Enemy enemy)
+
+        private IEnumerator RandomFire(Enemy enemy, float waitTime)
         {
+            yield return new WaitForSeconds(waitTime);
             int rnd = Random.Range(0, 2);
 
             if (rnd == 0)
@@ -67,6 +70,10 @@ namespace EnemyStates
             {
                 enemy.currentArchetype.archetypeAnimator.HeavyFire();
             }
+        }
+        public void AttackDone()
+        {
+            enemy.InvokeFunction(CooldownDone, Random.Range(enemy.attackCooldown, enemy.attackCooldown + 1));
         }
         public void CooldownDone()
         {

@@ -42,6 +42,15 @@ public class Enemy : Humanoid
     private void Start()
     {
         currentArchetype = weaponContainer.archetype;
+        currentArchetype.archetypeAnimator.OnAttackDone += attackState.AttackDone;
+    }
+
+    private void OnDestroy()
+    {
+        if(currentArchetype != null)
+        {
+            currentArchetype.archetypeAnimator.OnAttackDone -= attackState.AttackDone;
+        }
     }
 
     protected override void Update()
@@ -138,6 +147,13 @@ public class Enemy : Humanoid
         yield return new WaitForSeconds(waitTime);
         function.Invoke();
     }
-
+    public void InvokeCoroutine(IEnumerator coroutine)
+    {
+        StartCoroutine(coroutine);
+    }
+    public void StopFunction()
+    {
+        StopAllCoroutines();
+    }
 
 }
