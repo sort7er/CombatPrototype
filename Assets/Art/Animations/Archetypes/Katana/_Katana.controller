@@ -418,25 +418,25 @@ AnimatorStateMachine:
     m_Position: {x: 360, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4156676256640167116}
-    m_Position: {x: 395, y: 505, z: 0}
+    m_Position: {x: 360, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5416383483116536212}
-    m_Position: {x: 430, y: 570, z: 0}
+    m_Position: {x: 460, y: 580, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3397878560228480747}
     m_Position: {x: 465, y: 635, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7270660239835173394}
-    m_Position: {x: 500, y: 700, z: 0}
+    m_Position: {x: 470, y: 690, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3700028802747582880}
-    m_Position: {x: 535, y: 765, z: 0}
+    m_Position: {x: 470, y: 740, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2507681464078840639}
-    m_Position: {x: 570, y: 830, z: 0}
+    m_Position: {x: 470, y: 800, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3962963581073729070}
-    m_Position: {x: 605, y: 895, z: 0}
+    m_Position: {x: 470, y: 850, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -506,7 +506,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Heavy_3_Katana_E_anim_meta
+  m_Name: Heavy_3_Katana_E
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

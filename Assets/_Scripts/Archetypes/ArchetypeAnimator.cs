@@ -26,8 +26,6 @@ public class ArchetypeAnimator : MonoBehaviour
     [Header("Staggered")]
     [SerializeField] private AnimationInput staggeredInput;
 
-    [SerializeField] private ParticleSystem[] trail;
-
 
     public Animator archetypeAnim { get; private set; }
     public Attack currentAttack { get; private set; }
@@ -134,13 +132,11 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         isAttacking = true;
         currentAttack = newAttack;
-        EnableTrail(currentAttack.activeWeapon);
         CrossFade(currentAttack, crossfade);
         OnAttack?.Invoke(currentAttack);
     }
     public void SwingDone()
     {
-        DisableTrail();
         OnSwingDone?.Invoke();
     }
     public void AttackingDone()
@@ -184,38 +180,6 @@ public class ArchetypeAnimator : MonoBehaviour
     public float Remap(float value, float from1 = 0, float to1 = 60, float from2  = 0, float to2 = 1)
     {
         return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
-    }
-
-    private void EnableTrail(ActiveWeapon activeWeapon)
-    {
-        if(trail.Length > 0)
-        {
-            if(activeWeapon == ActiveWeapon.right)
-            {
-                trail[0].Play();
-            }
-            else if(activeWeapon == ActiveWeapon.left)
-            {
-                trail[1].Play();
-            }
-            else
-            {
-                trail[0].Play();
-                trail[1].Play();
-
-            }
-        }
-    }
-    private void DisableTrail()
-    {
-        if(trail.Length > 0)
-        {
-            trail[0].Stop();
-            if(trail.Length > 1)
-            {
-                trail[1].Stop();
-            }
-        }
     }
 
 }

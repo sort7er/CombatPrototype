@@ -10,6 +10,7 @@ public class HitBox : MonoBehaviour
     [SerializeField] private float center;
     [SerializeField] private Vector3 halfExtends;
     [SerializeField] private ModelContainer[] weapons;
+    [SerializeField] private ParticleSystem[] trail;
     public Vector3 contactPoint { get; private set; }
 
     private Archetype archetype;
@@ -28,11 +29,13 @@ public class HitBox : MonoBehaviour
         hits = new Collider[10];
         archetype = GetComponent<Archetype>();
         archetype.archetypeAnimator.OnAttack += NewAttack;
+        archetype.archetypeAnimator.OnSwingDone += DisableTrail;
     }
 
     private void OnDestroy()
     {
         archetype.archetypeAnimator.OnAttack -= NewAttack;
+        archetype.archetypeAnimator.OnSwingDone -= DisableTrail;
     }
     private void NewAttack(Attack attack)
     {
@@ -55,6 +58,7 @@ public class HitBox : MonoBehaviour
             }
             
         }
+        EnableTrail(currentAttack.activeWeapon);
     }
 
     //Called from animation
@@ -199,5 +203,36 @@ public class HitBox : MonoBehaviour
     private bool IsSlicing()
     {
         return weapons[0].IsSlicable();
+    }
+    private void EnableTrail(ActiveWeapon activeWeapon)
+    {
+        if (trail.Length > 0)
+        {
+            if (activeWeapon == ActiveWeapon.right)
+            {
+                trail[0].Play();
+            }
+            else if (activeWeapon == ActiveWeapon.left)
+            {
+                trail[1].Play();
+            }
+            else
+            {
+                trail[0].Play();
+                trail[1].Play();
+
+            }
+        }
+    }
+    private void DisableTrail()
+    {
+        if (trail.Length > 0)
+        {
+            trail[0].Stop();
+            if (trail.Length > 1)
+            {
+                trail[1].Stop();
+            }
+        }
     }
 }
