@@ -6,7 +6,6 @@ namespace ArchetypeStates
     {
         private ArchetypeAnimator archetypeAnimator;
         private int currentParry = 0;
-        private bool cannotParry;
         public override void EnterState(ArchetypeAnimator archetype)
         {
             archetypeAnimator = archetype;
@@ -37,24 +36,16 @@ namespace ArchetypeStates
         #endregion
         public override void Parry(ArchetypeAnimator archetype)
         {
-            if (cannotParry)
-            {
-                archetype.StopFunction();
-                DoParry(archetype);
-            }
+            Debug.Log(2);
+            archetype.StopFunction();
+            DoParry(archetype);
         }
 
         private void DoParry(ArchetypeAnimator archetype)
         {
-            cannotParry = true;
             archetype.IsAttacking(archetype.parry[currentParry], 0.1f);
-            archetype.InvokeFunction(CanParry, Tools.Remap(10));
             archetype.InvokeFunction(EndParry, archetype.parry[currentParry].duration);
             UpdateParry();
-        }
-        private void CanParry()
-        {
-            cannotParry = false;
         }
         private void EndParry()
         {

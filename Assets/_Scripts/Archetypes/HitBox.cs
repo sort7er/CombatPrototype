@@ -74,6 +74,11 @@ public class HitBox : MonoBehaviour
         {
             CheckHitInfo(hits[i]);
         }
+        if (archetype.IsPlayer())
+        {
+            Debug.Log(currentAttack.animationClip.name);
+
+        }
 
     }
     private void CheckHitInfo(Collider hit)

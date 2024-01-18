@@ -80,10 +80,10 @@ public class ArchetypeAnimator : MonoBehaviour
         SetUpAttack(ref unique, uniqueInput);
         SetUpAttack(ref block, blockInput);
     }
-    private void Update()
-    {
-        Debug.Log(archetype.owner.name + ": " + canBeParried);
-    }
+    //private void Update()
+    //{
+    //    Debug.Log(archetype.owner.name + ": " + canBeParried);
+    //}
     public void SetUpAttack(ref Attack attacksToSetUp, AttackInput inputs)
     {
         attacksToSetUp = new Attack(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.queuePoint, inputs.damageType, inputs.activeWeapon, inputs.attributeAffected);
@@ -119,6 +119,7 @@ public class ArchetypeAnimator : MonoBehaviour
     }
     public void Parry()
     {
+        Debug.Log(1);
         currentState.Parry(this);
     }
     public void Staggered()

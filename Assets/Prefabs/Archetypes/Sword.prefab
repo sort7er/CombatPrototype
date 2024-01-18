@@ -557,14 +557,14 @@ MonoBehaviour:
     attributeAffected: 1
     damage: 0
     postureDamage: 30
-    queuePoint: 10
+    queuePoint: 5
   - animationClip: {fileID: 7400000, guid: f82b2fbbfab5e284e954a77dd991ff9e, type: 2}
     damageType: 0
     activeWeapon: 0
     attributeAffected: 1
     damage: 0
     postureDamage: 30
-    queuePoint: 10
+    queuePoint: 5
   staggeredInput:
     animationClip: {fileID: 7400000, guid: 2883b1b6c15bd8245ad49d2982d357ae, type: 2}
 --- !u!114 &-8704577237919880119
@@ -591,8 +591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f118be13640682846a8ecbbb19377322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: 1
-  halfExtends: {x: 1, y: 1, z: 1}
+  center: 2
+  halfExtends: {x: 1, y: 1, z: 4}
   weapons:
   - {fileID: 4601893145489176139}
   trail:

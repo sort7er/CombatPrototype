@@ -50,14 +50,14 @@ public class PlayerActions : MonoBehaviour
 
     private void Fire()
     {
-        if (!weaponSelector.IsHolstered())
+        if (WeaponAvailable())
         {
             currentArchetype.archetypeAnimator.Fire();
         }
     }
     private void HeavyFire()
     {
-        if (!weaponSelector.IsHolstered())
+        if (WeaponAvailable())
         {
             currentArchetype.archetypeAnimator.HeavyFire();
         }
@@ -95,6 +95,6 @@ public class PlayerActions : MonoBehaviour
         {
             return false;
         }
-        return !currentArchetype.archetypeAnimator.isAttacking && !weaponSelector.IsHolstered();
+        return !weaponSelector.IsHolstered();
     }
 }

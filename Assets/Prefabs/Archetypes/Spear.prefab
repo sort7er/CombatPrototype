@@ -327,14 +327,14 @@ MonoBehaviour:
     attributeAffected: 1
     damage: 0
     postureDamage: 20
-    queuePoint: 10
+    queuePoint: 5
   - animationClip: {fileID: 7400000, guid: 057085f6a1481424caaa63545e954afb, type: 2}
     damageType: 0
     activeWeapon: 0
     attributeAffected: 1
     damage: 0
     postureDamage: 20
-    queuePoint: 10
+    queuePoint: 5
   staggeredInput:
     animationClip: {fileID: 7400000, guid: bce38b3d6945ecf4fbdcd7a86652b407, type: 2}
 --- !u!114 &5596301190246143032
