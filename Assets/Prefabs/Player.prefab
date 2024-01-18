@@ -758,6 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ff07e8aab15c44d9b3531204abe3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerType: 0
   movementSpeed: 6
   groundDistance: 0.3
   groundDrag: 8
@@ -832,6 +833,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 100
   healthSlider: {fileID: 0}
+  startPosture: 100
+  postureSlider: {fileID: 0}
+  timeTillRegen: 2
+  defaultPostureRegen: 30
 --- !u!114 &5698463858767405853
 MonoBehaviour:
   m_ObjectHideFlags: 0

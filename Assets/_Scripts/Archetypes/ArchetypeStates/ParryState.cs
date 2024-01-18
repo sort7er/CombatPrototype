@@ -46,17 +46,11 @@ namespace ArchetypeStates
 
         private void DoParry(ArchetypeAnimator archetype)
         {
-            archetype.IsParrying(true);
             cannotParry = true;
-            archetype.CrossFade(archetype.parry[currentParry], 0.1f);
-            archetype.InvokeFunction(ParryWindowDone, archetype.Remap(archetype.parry[currentParry].queuePoint));
-            archetype.InvokeFunction(CanParry, archetype.Remap(10));
+            archetype.IsAttacking(archetype.parry[currentParry], 0.1f);
+            archetype.InvokeFunction(CanParry, Tools.Remap(10));
             archetype.InvokeFunction(EndParry, archetype.parry[currentParry].duration);
             UpdateParry();
-        }
-        private void ParryWindowDone()
-        {
-            archetypeAnimator.IsParrying(false);
         }
         private void CanParry()
         {
@@ -64,7 +58,7 @@ namespace ArchetypeStates
         }
         private void EndParry()
         {
-            archetypeAnimator.IsParrying(false);
+            archetypeAnimator.AttackingDone();
             archetypeAnimator.SwitchState(archetypeAnimator.idleState);
         }
 

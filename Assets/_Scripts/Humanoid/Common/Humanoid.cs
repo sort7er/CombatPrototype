@@ -23,7 +23,7 @@ public class Humanoid : MonoBehaviour
     [SerializeField] protected float fallingForce;
     [SerializeField] protected LayerMask groundLayer;
 
-
+    public Health health { get; private set; }
     public Rigidbody rb { get; private set; }
     protected bool canMove;
 
@@ -31,6 +31,10 @@ public class Humanoid : MonoBehaviour
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if(TryGetComponent(out Health health))
+        {
+            this.health = health;
+        }
     }
 
     protected virtual void Update()

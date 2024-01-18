@@ -80,7 +80,7 @@ namespace ArchetypeStates
         {
             archetype.IsAttacking(attack, crossfade);
 
-            float remapedValue = archetype.Remap(archetype.currentAttack.queuePoint);
+            float remapedValue = Tools.Remap(archetype.currentAttack.queuePoint);
             archetype.InvokeFunction(CheckQueue, remapedValue);
 
             archetype.InvokeFunction(AttackDone, archetype.currentAttack.duration);            

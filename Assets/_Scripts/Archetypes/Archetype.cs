@@ -1,6 +1,8 @@
 using HumanoidTypes;
 using System.Collections.Generic;
 using UnityEngine;
+using Attacks;
+using HealthRelated;
 
 public class Archetype : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class Archetype : MonoBehaviour
     {
         FindOwner();
         hitBox.OnHit += OnHit;
+        hitBox.OnPostureOnly += OnlyPosture;
     }
 
     private void FindOwner()
@@ -53,15 +56,23 @@ public class Archetype : MonoBehaviour
     private void OnDestroy()
     {
         hitBox.OnHit -= OnHit;
+        hitBox.OnPostureOnly -= OnlyPosture;
     }
-    private void OnHit(Health health, List<ModelContainer> weapons)
+    private void OnHit(Attack attack, Health health, List<ModelContainer> weapons)
     {
-        health.TakeDamage(archetypeAnimator.currentAttack.damage, this, archetypeAnimator.currentAttack.damageType);
+        health.TakeDamage(attack.damage, attack.postureDamage, this, attack.damageType);
 
-        for(int i = 0; i < weapons.Count;i++)
+        if(attack.attributeAffected == AttributeAffected.normal)
         {
-            EffectManager.instance.Hit(weapons[i].Position(), weapons[i].Direction(), weapons[i].UpDir());
+            for (int i = 0; i < weapons.Count; i++)
+            {
+                EffectManager.instance.Hit(weapons[i].Position(), weapons[i].Direction(), weapons[i].UpDir());
+            }
         }
+    }
+    private void OnlyPosture(int postureDamage, Health health)
+    {
+        health.TakeDamage(0, postureDamage, this, DamageType.Default);
     }
 
     public void UniqueAttack(List<Enemy> enemies, PlayerData playerData)

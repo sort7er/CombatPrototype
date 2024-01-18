@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    public event Action<Health, List<ModelContainer>> OnHit;
+
+    public event Action<Attack, Health, List<ModelContainer>> OnHit;
+    public event Action<int, Health> OnPostureOnly;
+    public event Action<bool> OnCanBeParried;
 
     [SerializeField] private float center;
     [SerializeField] private Vector3 halfExtends;
@@ -17,7 +20,6 @@ public class HitBox : MonoBehaviour
     private Collider[] hits;
     private int numberOfHits;
     private bool sliceEnded;
-
 
     private Attack currentAttack;
     private ActiveWeapon currentWeapon;
@@ -59,12 +61,14 @@ public class HitBox : MonoBehaviour
             
         }
         EnableTrail(currentAttack.activeWeapon);
+        OnCanBeParried?.Invoke(true);
     }
 
     //Called from animation
     public void Strike()
     {
         numberOfHits = Physics.OverlapBoxNonAlloc(transform.position + transform.forward * center, halfExtends, hits, transform.rotation);
+        OnCanBeParried?.Invoke(false);
 
         for(int i = 0; i < numberOfHits; i++)
         {
@@ -80,17 +84,16 @@ public class HitBox : MonoBehaviour
             //Prevent humanoid from killing themselves
             if(health.owner != archetype.owner)
             {
-                //Check if is blocking or parrying
-                ArchetypeAnimator opponentsWeapon = CheckIfAnimator(health);
-
-                if (opponentsWeapon != null)
+                //Check if current attack is a parry
+                if (currentAttack.attributeAffected == AttributeAffected.normal)
                 {
-                    CheckIfBlock(opponentsWeapon, health);
+                    CheckIfBlock(health);
                 }
                 else
                 {
-                    DoDamage(health);
+                    CheckIfCanParry(health);
                 }
+
             }           
         }
         //Check if hitting  a slicible object
@@ -100,6 +103,41 @@ public class HitBox : MonoBehaviour
             {
                 Slice(sliceble);
             }
+        }
+    }
+
+    private void CheckIfCanParry(Health health)
+    {
+        ArchetypeAnimator opponentsWeapon = CheckIfAnimator(health);
+        if (opponentsWeapon != null)
+        {
+            if (opponentsWeapon.canBeParried)
+            {
+                OnlyPosture(currentAttack.postureDamage, health);
+                Vector3 direction = opponentsWeapon.transform.position - weapons[0].Position();
+
+                EffectManager.instance.Parry(transform.position + direction * 0.5f + Vector3.up * 0.1f);
+            }
+        }
+    }
+    //Check if is blocking
+    private void CheckIfBlock(Health health)
+    {
+        ArchetypeAnimator opponentsWeapon = CheckIfAnimator(health);
+        if (opponentsWeapon != null)
+        {
+            if (opponentsWeapon.isBlocking)
+            {
+                OnlyPosture(currentAttack.damage * 3, health);
+            }
+            else
+            {
+                DoDamage(health);
+            }
+        }
+        else
+        {
+            DoDamage(health);
         }
     }
 
@@ -130,7 +168,6 @@ public class HitBox : MonoBehaviour
             sliceEnded = true;
         }
     }
-
     public ArchetypeAnimator CheckIfAnimator(Health health)
     {
         if (health.TryGetComponent(out Enemy enemy))
@@ -160,26 +197,6 @@ public class HitBox : MonoBehaviour
             return null;
         }
     }
-    private void CheckIfBlock(ArchetypeAnimator opponentsWeapon, Health health)
-    {
-        if (opponentsWeapon.isParrying)
-        {
-            archetype.owner.Staggered();
-
-            Vector3 direction = opponentsWeapon.transform.position - weapons[0].Position();
-
-            EffectManager.instance.Parry(transform.position + direction * 0.5f + Vector3.up * 0.3f);
-        }
-        else if (opponentsWeapon.isBlocking)
-        {
-            Debug.Log("Block");
-        }
-        else
-        {
-            //Debug.Log("No");
-            DoDamage(health);
-        }
-    }
     private void DoDamage(Health health)
     {
         //Get upDirection and contactpoint from currentWeapon
@@ -197,7 +214,13 @@ public class HitBox : MonoBehaviour
             weaponsToPassOn.Add(weapons[0]);
             weaponsToPassOn.Add(weapons[1]);
         }
-        OnHit?.Invoke(health, weaponsToPassOn);
+
+        OnHit?.Invoke(currentAttack, health, weaponsToPassOn);
+    }
+
+    private void OnlyPosture(int postureDamage, Health health)
+    {
+        OnPostureOnly?.Invoke(postureDamage, health);
     }
 
     private bool IsSlicing()

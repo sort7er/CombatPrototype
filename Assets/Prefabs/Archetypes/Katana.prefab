@@ -459,60 +459,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleInput:
     animationClip: {fileID: 7400000, guid: d7712b807cba6a648bdbb17fdedad3cc, type: 2}
-  lightAttackInputs:
+  lightInputs:
   - animationClip: {fileID: 7400000, guid: 72be711e66e252b4c8cb1167d89ecaa5, type: 2}
     damageType: 1
     activeWeapon: 0
+    attributeAffected: 0
     damage: 20
-    queuePoint: 18
+    postureDamage: 3
+    queuePoint: 15
   - animationClip: {fileID: 7400000, guid: 87ac5c889b16d9d4ca1ad2996c7cac46, type: 2}
     damageType: 1
     activeWeapon: 0
+    attributeAffected: 0
     damage: 20
-    queuePoint: 18
+    postureDamage: 3
+    queuePoint: 15
   - animationClip: {fileID: 7400000, guid: bd79df2c6ef4524418a9fe4f6b8625b5, type: 2}
     damageType: 1
     activeWeapon: 0
+    attributeAffected: 0
     damage: 30
+    postureDamage: 4
     queuePoint: 0
-  heavyAttackInputs:
+  heavyInputs:
   - animationClip: {fileID: 7400000, guid: 1d772fc194cd1204f861a36595a75eb3, type: 2}
     damageType: 1
     activeWeapon: 0
+    attributeAffected: 0
     damage: 30
+    postureDamage: 7
     queuePoint: 30
   - animationClip: {fileID: 7400000, guid: 85e5b3a753f475c4eb19713de0213deb, type: 2}
     damageType: 1
     activeWeapon: 0
+    attributeAffected: 0
     damage: 30
+    postureDamage: 7
     queuePoint: 30
   - animationClip: {fileID: 7400000, guid: 98ec1b66c1f5cb14b8d7d271be506adb, type: 2}
     damageType: 1
     activeWeapon: 0
-    damage: 35
+    attributeAffected: 0
+    damage: 40
+    postureDamage: 8
     queuePoint: 0
-  uniqueAttackInput:
+  uniqueInput:
     animationClip: {fileID: 7400000, guid: 10dd5fdbea342604ba3df48d6e55453e, type: 2}
     damageType: 1
     activeWeapon: 0
-    damage: 50
+    attributeAffected: 0
+    damage: 70
+    postureDamage: 50
     queuePoint: 0
   blockInput:
     animationClip: {fileID: 7400000, guid: 39631b380c0b77c478e5f5cee4e98bf8, type: 2}
     damageType: 0
     activeWeapon: 0
+    attributeAffected: 0
     damage: 0
+    postureDamage: 0
     queuePoint: 0
   parryInputs:
   - animationClip: {fileID: 7400000, guid: 1d0ca8c2ccc7f6f428242a58f98ef439, type: 2}
     damageType: 0
     activeWeapon: 0
+    attributeAffected: 1
     damage: 0
+    postureDamage: 25
     queuePoint: 20
   - animationClip: {fileID: 7400000, guid: 956608279e408b74598a5a2c40c6a230, type: 2}
     damageType: 0
     activeWeapon: 0
+    attributeAffected: 1
     damage: 0
+    postureDamage: 25
     queuePoint: 20
   staggeredInput:
     animationClip: {fileID: 7400000, guid: c7fe994f448772644bcd2d6a500a17dc, type: 2}

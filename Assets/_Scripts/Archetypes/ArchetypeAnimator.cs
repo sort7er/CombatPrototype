@@ -3,6 +3,7 @@ using UnityEngine;
 using ArchetypeStates;
 using System.Collections;
 using Attacks;
+using UnityEngine.Windows;
 
 [RequireComponent(typeof(Animator))]
 public class ArchetypeAnimator : MonoBehaviour
@@ -14,11 +15,11 @@ public class ArchetypeAnimator : MonoBehaviour
     [Header("Idle")]
     [SerializeField] private AnimationInput idleInput;
     [Header("Light attacks")]
-    [SerializeField] private AttackInput[] lightAttackInputs;
+    [SerializeField] private AttackInput[] lightInputs;
     [Header("Heavy attacks")]
-    [SerializeField] private AttackInput[] heavyAttackInputs;
+    [SerializeField] private AttackInput[] heavyInputs;
     [Header("Unique attack")]
-    [SerializeField] private AttackInput uniqueAttackInput;
+    [SerializeField] private AttackInput uniqueInput;
     [Header("Block")]
     [SerializeField] private AttackInput blockInput;
     [Header("Parry")]
@@ -27,12 +28,13 @@ public class ArchetypeAnimator : MonoBehaviour
     [SerializeField] private AnimationInput staggeredInput;
 
 
+    public Archetype archetype { get; private set; }
     public Animator archetypeAnim { get; private set; }
     public Attack currentAttack { get; private set; }
     public Attack entryAttack { get; private set; }
     public bool isAttacking { get; private set; }
     public bool isBlocking { get; private set; }
-    public bool isParrying { get; private set; }
+    public bool canBeParried { get; private set; }
 
     public Anim idle;
     public Attack[] light;
@@ -52,35 +54,48 @@ public class ArchetypeAnimator : MonoBehaviour
 
 
 
-
     private void Awake()
     {
+        archetype = GetComponent<Archetype>();
         archetypeAnim = GetComponent<Animator>();
         SetUpAnimations();
         SwitchState(idleState);
+
+        archetype.hitBox.OnCanBeParried += CanBeParried;
+    }
+    private void OnDestroy()
+    {
+        archetype.hitBox.OnCanBeParried -= CanBeParried;
     }
 
     #region Animation set up
     private void SetUpAnimations()
     {
         idle = new Anim(idleInput.animationClip);
-        light = new Attack[lightAttackInputs.Length];
-        heavy = new Attack[heavyAttackInputs.Length];
-        block = new Attack(blockInput.animationClip, blockInput.damage, blockInput.queuePoint, blockInput.damageType, blockInput.activeWeapon);
-        parry = new Attack[parryInputs.Length];
         staggered = new Anim(staggeredInput.animationClip);
 
-        SetUpAttacks(light, lightAttackInputs);
-        SetUpAttacks(heavy, heavyAttackInputs);
-        SetUpAttacks(parry, parryInputs);
-        unique = new Attack(uniqueAttackInput.animationClip, uniqueAttackInput.damage, uniqueAttackInput.queuePoint, uniqueAttackInput.damageType, uniqueAttackInput.activeWeapon);
+        SetUpAttacks(ref light, lightInputs);
+        SetUpAttacks(ref heavy, heavyInputs);
+        SetUpAttacks(ref parry, parryInputs);
+        SetUpAttack(ref unique, uniqueInput);
+        SetUpAttack(ref block, blockInput);
     }
-    
-    public void SetUpAttacks(Attack[] attacksToSetUp, AttackInput[] inputs)
+    private void Update()
     {
+        Debug.Log(archetype.owner.name + ": " + canBeParried);
+    }
+    public void SetUpAttack(ref Attack attacksToSetUp, AttackInput inputs)
+    {
+        attacksToSetUp = new Attack(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.queuePoint, inputs.damageType, inputs.activeWeapon, inputs.attributeAffected);
+    }
+
+    public void SetUpAttacks(ref Attack[] attacksToSetUp, AttackInput[] inputs)
+    {
+        attacksToSetUp = new Attack[inputs.Length];
+
         for (int i = 0; i < inputs.Length; i++)
         {
-            attacksToSetUp[i] = new Attack(inputs[i].animationClip, inputs[i].damage, inputs[i].queuePoint, inputs[i].damageType, inputs[i].activeWeapon);
+            SetUpAttack(ref attacksToSetUp[i], inputs[i]);
         }
     }
     #endregion
@@ -153,9 +168,9 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         isBlocking = state;
     }
-    public void IsParrying(bool state)
+    public void CanBeParried(bool state)
     {
-        isParrying = state;
+        canBeParried = state;
     }
     public void CrossFade(Anim anim, float crossfade = 0)
     {
@@ -176,10 +191,4 @@ public class ArchetypeAnimator : MonoBehaviour
     {
         StopAllCoroutines();
     }
-    //Tool to mach invoke time with keyframes
-    public float Remap(float value, float from1 = 0, float to1 = 60, float from2  = 0, float to2 = 1)
-    {
-        return from2 + (value - from1) * (to2 - from2) / (to1 - from1);
-    }
-
 }

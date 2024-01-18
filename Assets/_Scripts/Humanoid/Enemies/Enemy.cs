@@ -43,6 +43,7 @@ public class Enemy : Humanoid
     {
         currentArchetype = weaponContainer.archetype;
         currentArchetype.archetypeAnimator.OnAttackDone += attackState.AttackDone;
+        health.OnPostureDrained += Staggered;
     }
 
     private void OnDestroy()
@@ -50,6 +51,7 @@ public class Enemy : Humanoid
         if(currentArchetype != null)
         {
             currentArchetype.archetypeAnimator.OnAttackDone -= attackState.AttackDone;
+            health.OnPostureDrained -= Staggered;
         }
     }
 
@@ -155,5 +157,4 @@ public class Enemy : Humanoid
     {
         StopAllCoroutines();
     }
-
 }

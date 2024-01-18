@@ -11,7 +11,7 @@ namespace EnemyStates
         {
             this.enemy = enemy;
             enemy.DisableMovement();
-            enemy.InvokeFunction(CooldownDone, Random.Range(enemy.attackCooldown, enemy.attackCooldown + 1));
+
         }
 
         public override void UpdateState(Enemy enemy)
@@ -50,7 +50,7 @@ namespace EnemyStates
         public void SelectCombo(Enemy enemy)
         {
             int numberOfAttacks = Random.Range(1, 4);
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < numberOfAttacks; i++)
             {
                 enemy.InvokeCoroutine(RandomFire(enemy, i * 0.01f));
             }

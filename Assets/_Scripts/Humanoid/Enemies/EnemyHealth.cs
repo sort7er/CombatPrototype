@@ -17,13 +17,13 @@ public class EnemyHealth : Health
         base.Awake();
         enemy = GetComponent<Enemy>();
     }
-    public override void TakeDamage(int damage, Archetype killingArchetype, DamageType incomingDamage)
+    public override void TakeDamage(int damage, int postureDamage, Archetype killingArchetype, DamageType incomingDamage)
     {
-        base.TakeDamage(damage, killingArchetype, incomingDamage);
+        base.TakeDamage(damage, postureDamage, killingArchetype, incomingDamage);
         enemy.Hit();
 
         Vector3 pushback = transform.position - enemy.player.Position();
-        enemy.AddForce(pushback.normalized * 2);
+        //enemy.AddForce(pushback.normalized * 2);
         
     }
     protected override void Dead(Archetype killingArchetype, DamageType incomingDamage)
