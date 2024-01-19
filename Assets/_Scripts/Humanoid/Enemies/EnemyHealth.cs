@@ -1,5 +1,7 @@
 using UnityEngine;
 using HealthRelated;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class EnemyHealth : Health
 {
@@ -8,6 +10,7 @@ public class EnemyHealth : Health
     [Header("For crumble death")]
     [SerializeField] private ShardContainer[] prefabs;
 
+    [SerializeField] private Image skull;
 
     private Enemy enemy;
     
@@ -16,6 +19,7 @@ public class EnemyHealth : Health
     {
         base.Awake();
         enemy = GetComponent<Enemy>();
+        skull.gameObject.SetActive(false);
     }
     public override void TakeDamage(int damage, int postureDamage, Archetype killingArchetype, DamageType incomingDamage)
     {
@@ -47,5 +51,18 @@ public class EnemyHealth : Health
         }
         Destroy(gameObject);
 
+    }
+    protected override void DrainedPosture()
+    {
+        base.DrainedPosture();
+        skull.gameObject.SetActive(true);
+        skull.transform.DOPunchScale(Vector3.one * 0.1f, 3f).SetLoops(-1);
+        SetHealth(1);
+    }
+    protected override void StaggerDone()
+    {
+        base.StaggerDone();
+        skull.transform.DOKill();
+        skull.gameObject.SetActive(false);
     }
 }

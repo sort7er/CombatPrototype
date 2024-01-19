@@ -44,6 +44,7 @@ public class Enemy : Humanoid
         currentArchetype = weaponContainer.archetype;
         currentArchetype.archetypeAnimator.OnAttackDone += attackState.AttackDone;
         health.OnPostureDrained += Staggered;
+        health.OnStaggerDone += StaggerDone;
     }
 
     private void OnDestroy()
@@ -52,6 +53,7 @@ public class Enemy : Humanoid
         {
             currentArchetype.archetypeAnimator.OnAttackDone -= attackState.AttackDone;
             health.OnPostureDrained -= Staggered;
+            health.OnStaggerDone -= StaggerDone;
         }
     }
 
@@ -125,6 +127,10 @@ public class Enemy : Humanoid
     public override void Staggered()
     {
         currentState.Staggered(this);
+    }
+    private void StaggerDone()
+    {
+        staggeredState.StaggerDone();
     }
 
 

@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 using ArchetypeStates;
 using System.Collections;
-using Attacks;
-using UnityEngine.Windows;
 
 [RequireComponent(typeof(Animator))]
 public class ArchetypeAnimator : MonoBehaviour
@@ -190,5 +188,11 @@ public class ArchetypeAnimator : MonoBehaviour
     public void StopFunction()
     {
         StopAllCoroutines();
+    }
+    public void SuccessfulParry()
+    {
+        StopFunction();
+        AttackingDone();
+        SwitchState(idleState);
     }
 }

@@ -14,9 +14,6 @@ namespace EnemyStates
             
             archetypeAnimator = enemy.currentArchetype.archetypeAnimator;
             archetypeAnimator.Staggered();
-            enemy.InvokeFunction(StaggerDone, archetypeAnimator.staggered.duration);
-
-
         }
 
         public override void Staggered(Enemy enemy)
@@ -28,7 +25,7 @@ namespace EnemyStates
         {
 
         }
-        private void StaggerDone()
+        public void StaggerDone()
         {
             enemy.SwitchState(enemy.chaseState);
         }

@@ -252,7 +252,7 @@ MonoBehaviour:
     activeWeapon: 0
     attributeAffected: 1
     damage: 5
-    postureDamage: 0
+    postureDamage: 50
     queuePoint: 5
   staggeredInput:
     animationClip: {fileID: 7400000, guid: 45dbd8f996b07424994c19660893a090, type: 2}

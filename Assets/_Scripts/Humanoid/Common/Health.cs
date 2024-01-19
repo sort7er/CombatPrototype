@@ -21,19 +21,23 @@ public class Health : MonoBehaviour
 
     [SerializeField] private int startPosture = 100;
     [SerializeField] private Slider postureSlider;
-    [SerializeField] private float defaultTimeTillRegen = 2;
+    [SerializeField] private float defaultTimeTillRegen = 4;
     [SerializeField] private float defaultPostureRegen = 10;
+    [SerializeField] private float stunnedDuration = 10;
 
     public Humanoid owner { get; private set; }
 
 
     public event Action OnTakeDamage;
     public event Action OnPostureDrained;
+    public event Action OnStaggerDone;
     public event Action OnDeath;
     public int health { get; private set; }
     public float posture { get; private set; }
     private float postureRegen;
     private float timeTillRegen;
+
+    protected int storedHealth;
 
     private bool canRegen;
 
@@ -55,7 +59,7 @@ public class Health : MonoBehaviour
     {
         posture = startPosture;
         postureSlider.minValue = 0;
-        postureSlider.maxValue = 100;
+        postureSlider.maxValue = startPosture;
         postureSlider.value = posture;
         postureRegen = defaultPostureRegen;
     }
@@ -70,6 +74,7 @@ public class Health : MonoBehaviour
         OnTakeDamage?.Invoke();
         health -=  damage;
         healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
+
 
         CancelInvoke(nameof(StartRegen));
         canRegen = false;
@@ -100,7 +105,20 @@ public class Health : MonoBehaviour
 
     protected virtual void DrainedPosture()
     {
+        healthSlider.gameObject.SetActive(false);
+        postureSlider.gameObject.SetActive(false);
+        storedHealth = health;
         OnPostureDrained?.Invoke();
+        Invoke(nameof(StaggerDone), stunnedDuration);
+
+    }
+    protected virtual void StaggerDone()
+    {
+        healthSlider.gameObject.SetActive(true);
+        postureSlider.gameObject.SetActive(true);
+        health = storedHealth;
+        OnStaggerDone?.Invoke();
+        StartRegen();
     }
 
     public bool IsDead()
@@ -136,5 +154,8 @@ public class Health : MonoBehaviour
         }
         
     }
-
+    protected void SetHealth(int newHealth)
+    {
+        health = newHealth;
+    }
 }

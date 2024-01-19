@@ -20,6 +20,7 @@ public class HitBox : MonoBehaviour
     private Collider[] hits;
     private int numberOfHits;
     private bool sliceEnded;
+    private bool gotParried;
 
     private Attack currentAttack;
     private ActiveWeapon currentWeapon;
@@ -45,6 +46,11 @@ public class HitBox : MonoBehaviour
         currentWeapon = currentAttack.activeWeapon;
     }
 
+    public void GotParried()
+    {
+        gotParried= true;
+    }
+
     //Called from animation
     public void Anticipation()
     {
@@ -55,19 +61,21 @@ public class HitBox : MonoBehaviour
     //Called from animation
     public void Strike()
     {
-        numberOfHits = Physics.OverlapBoxNonAlloc(transform.position + transform.forward * center, halfExtends, hits, transform.rotation);
-        OnCanBeParried?.Invoke(false);
-
-        for(int i = 0; i < numberOfHits; i++)
+        if (!gotParried)
         {
-            CheckHitInfo(hits[i]);
+            numberOfHits = Physics.OverlapBoxNonAlloc(transform.position + transform.forward * center, halfExtends, hits, transform.rotation);
+            OnCanBeParried?.Invoke(false);
+
+            for (int i = 0; i < numberOfHits; i++)
+            {
+                CheckHitInfo(hits[i]);
+            }
         }
-        if (archetype.IsPlayer())
+        else
         {
-            Debug.Log(currentAttack.animationClip.name);
-
+            gotParried = false;
+            archetype.archetypeAnimator.CanBeParried(false);
         }
-
     }
     private void CheckHitInfo(Collider hit)
     {
@@ -107,8 +115,9 @@ public class HitBox : MonoBehaviour
             if (opponentsWeapon.canBeParried)
             {
                 OnlyPosture(currentAttack.postureDamage, health);
+                archetype.archetypeAnimator.SuccessfulParry();
+                opponentsWeapon.archetype.hitBox.GotParried();
                 Vector3 direction = opponentsWeapon.transform.position - weapons[0].Position();
-
                 EffectManager.instance.Parry(transform.position + direction * 0.5f + Vector3.up * 0.1f);
             }
         }
