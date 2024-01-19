@@ -48,18 +48,6 @@ public class HitBox : MonoBehaviour
     //Called from animation
     public void Anticipation()
     {
-        if (!archetype.IsPlayer())
-        {
-            if(currentWeapon == ActiveWeapon.left)
-            {
-                EffectManager.instance.Anticipation(weapons[1].Position());
-            }
-            else
-            {
-                EffectManager.instance.Anticipation(weapons[0].Position());
-            }
-            
-        }
         EnableTrail(currentAttack.activeWeapon);
         OnCanBeParried?.Invoke(true);
     }

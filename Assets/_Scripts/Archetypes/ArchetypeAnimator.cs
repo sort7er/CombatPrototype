@@ -119,7 +119,6 @@ public class ArchetypeAnimator : MonoBehaviour
     }
     public void Parry()
     {
-        Debug.Log(1);
         currentState.Parry(this);
     }
     public void Staggered()

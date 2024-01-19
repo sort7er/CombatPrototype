@@ -36,13 +36,16 @@ namespace ArchetypeStates
         #endregion
         public override void Parry(ArchetypeAnimator archetype)
         {
-            Debug.Log(2);
-            archetype.StopFunction();
-            DoParry(archetype);
+            if(!archetype.isAttacking)
+            {
+                archetype.StopFunction();
+                DoParry(archetype);
+            }
         }
 
         private void DoParry(ArchetypeAnimator archetype)
         {
+
             archetype.IsAttacking(archetype.parry[currentParry], 0.1f);
             archetype.InvokeFunction(EndParry, archetype.parry[currentParry].duration);
             UpdateParry();
