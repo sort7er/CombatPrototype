@@ -225,7 +225,7 @@ MonoBehaviour:
     queuePoint: 0
   uniqueInput:
     animationClip: {fileID: 7400000, guid: f16a5d9c4b80ee1438a0819f13bbbfea, type: 2}
-    damageType: 0
+    damageType: 1
     activeWeapon: 2
     attributeAffected: 0
     damage: 50
