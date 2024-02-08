@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437aea52d5ea59c409cdd2370a178811, type: 3}
+  m_Name: Daggers
+  m_EditorClassIdentifier: 
+  idleInput:
+    animationClip: {fileID: 2306454905413886559, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  attacksInput:
+  - animationClip: {fileID: -1609281748187839663, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+  - animationClip: {fileID: 2493344457160333171, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 1
+  - animationClip: {fileID: 4117485373648690037, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+  - animationClip: {fileID: 4481792287802057648, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+  - animationClip: {fileID: 8429281437401963468, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 1
+  uniqueInput:
+    animationClip: {fileID: 1990068141299859498, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 2
+  blockInput:
+    animationClip: {fileID: -1396277398176110326, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 2
+  parryInput:
+  - animationClip: {fileID: 207380724844958318, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 1
+  - animationClip: {fileID: 997996178180188622, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0

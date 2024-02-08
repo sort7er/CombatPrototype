@@ -9,12 +9,12 @@ public class Player : Humanoid
     public InputReader inputReader;
     public CameraController cameraController;
     public PlayerActions playerActions;
+    public Arms hands;
 
 
     protected override void Awake()
     {
         base.Awake();
-        GetReferences();
         EnableMovement();
         inputReader.OnMove += OnMove;
         inputReader.OnJump += Jump;
@@ -35,12 +35,4 @@ public class Player : Humanoid
         movementDirection = transform.forward * input.y + transform.right * input.x;
         base.Move();
     }
-
-    private void GetReferences()
-    {
-        playerActions = GetComponent<PlayerActions>();
-        cameraController = GetComponent<CameraController>();
-        inputReader = GetComponent<InputReader>();
-    }
-
 }

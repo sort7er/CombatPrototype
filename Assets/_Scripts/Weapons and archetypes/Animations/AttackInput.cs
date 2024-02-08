@@ -3,5 +3,5 @@ using Attacks;
 [Serializable]
 public class AttackInput : AnimationInput
 {
-    public Wield activeWeapon;
+    public Wield activeWield;
 }
