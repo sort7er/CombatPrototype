@@ -60,16 +60,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Holster",
-                    "type": "Button",
-                    "id": "b2b9300f-b6d4-47dd-a2e0-5a537cef894a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Fire",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "158eaacb-8468-4d92-aa9c-59b4d1d585dc",
                     "expectedControlType": "Button",
@@ -78,16 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HeavyFire",
-                    "type": "Button",
-                    "id": "13b7caf7-aca5-4325-bf79-f45994add18c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UniqueFire",
+                    "name": "Unique",
                     "type": "Button",
                     "id": "a21cdf56-c43e-4e90-96f4-b3535dd7bd09",
                     "expectedControlType": "Button",
@@ -308,23 +290,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c73e180d-575a-49fd-95b4-2385e5bcdca0",
-                    "path": "<Keyboard>/h",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Holster",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -335,7 +306,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Touch",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -346,7 +317,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -357,7 +328,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -368,84 +339,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "e8b67840-44a7-44e6-a630-66fb65f1ed68",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HeavyFire",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Modifier",
-                    "id": "bfe76245-8657-4c05-9538-639ab5517d97",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "HeavyFire",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Binding",
-                    "id": "dc9e9a23-c1ca-4ccc-8f13-23fc07989185",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "HeavyFire",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "11995722-be48-4aff-a5df-46cc8f719ef2",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "HeavyFire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "149fd1bd-4f2c-4044-9556-e39d6eed81ad",
-                    "path": "<Touchscreen>/primaryTouch/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Touch",
-                    "action": "HeavyFire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bab59b64-07b5-499a-995c-a7f0625f28d8",
-                    "path": "<Joystick>/trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "HeavyFire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "28bb6bc2-4029-45e8-8479-43c8569900cf",
-                    "path": "<XRController>/{PrimaryAction}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "HeavyFire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -456,7 +350,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "UniqueFire",
+                    "action": "Unique",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -467,7 +361,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Touch",
-                    "action": "UniqueFire",
+                    "action": "Unique",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -478,7 +372,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "UniqueFire",
+                    "action": "Unique",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -489,7 +383,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "UniqueFire",
+                    "action": "Unique",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -500,7 +394,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "UniqueFire",
+                    "action": "Unique",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,16 +1,46 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Humanoid
 {
-    public PlayerMovement playerMovement;
-    public CameraController cameraController;
-    public WeaponSelector weaponSelector;
-    public PlayerActions playerAttack;
-    public TargetAssistance targetAssistance;
-    public Health health;
+    private Vector2 input;
 
-    public Vector3 Position()
+
+    [Header("References")]
+    public InputReader inputReader;
+    public CameraController cameraController;
+    public PlayerActions playerActions;
+
+
+    protected override void Awake()
     {
-        return transform.position;
+        base.Awake();
+        GetReferences();
+        EnableMovement();
+        inputReader.OnMove += OnMove;
+        inputReader.OnJump += Jump;
     }
+    private void OnDestroy()
+    {
+        inputReader.OnMove -= OnMove;
+        inputReader.OnJump -= Jump;
+    }
+
+    //Input actions
+    public void OnMove(Vector2 movement)
+    {
+        input = movement;
+    }
+    protected override void Move()
+    {
+        movementDirection = transform.forward * input.y + transform.right * input.x;
+        base.Move();
+    }
+
+    private void GetReferences()
+    {
+        playerActions = GetComponent<PlayerActions>();
+        cameraController = GetComponent<CameraController>();
+        inputReader = GetComponent<InputReader>();
+    }
+
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 using EzySlice;
 using System.Collections.Generic;
 using System;
-using HumanoidTypes;
 
 public class SlicingObject : ModelContainer
 {
@@ -12,31 +11,12 @@ public class SlicingObject : ModelContainer
     [SerializeField] private Transform startSlicePoint;
 
     public List<SlicableObject> cannotSlice { get; private set; } = new();
-    private WeaponSelector weaponSelector;
-    private Archetype archetype;
 
     protected override void Awake()
     {
         isSlicable = true;
     }
 
-    public void OwnerFound(Humanoid newOwner)
-    {
-        archetype = GetComponentInParent<Archetype>();
-        if (newOwner.ownerType == OwnerType.Player)
-        {
-            weaponSelector = FindObjectOfType<Player>().weaponSelector;
-            weaponSelector.OnNewArchetype += NewArchetype;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if(weaponSelector != null)
-        {
-            weaponSelector.OnNewArchetype -= NewArchetype;
-        }
-    }
 
     public override void CheckSlice(SlicableObject sliceble)
     {
@@ -79,17 +59,6 @@ public class SlicingObject : ModelContainer
             Destroy(target.gameObject);
             SliceDone(lowerSlice, upperSlice);
         }
-    }
-    public void NewArchetype(Archetype newArchetype)
-    {
-        if(archetype == newArchetype)
-        {
-            archetype.archetypeAnimator.OnSwingDone += SwingDone;
-        }
-        else
-        {
-            archetype.archetypeAnimator.OnSwingDone -= SwingDone;
-        }        
     }
     public void SwingDone()
     {

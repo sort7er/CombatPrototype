@@ -13,20 +13,22 @@ namespace HumanoidTypes
 
 public class Humanoid : MonoBehaviour
 {
-
-
     [Header("Humanoid")]
     public OwnerType ownerType;
-    [SerializeField] protected float movementSpeed = 10;
-    [SerializeField] protected float groundDistance;
-    [SerializeField] protected float groundDrag;
-    [SerializeField] protected float fallingForce;
-    [SerializeField] protected LayerMask groundLayer;
+    [SerializeField] protected float movementSpeed = 6;
+    [SerializeField] protected float jumpForce = 8;
+    [Range(0, 1)]
+    [SerializeField] protected float airMultiplier = 0.4f;
+    [SerializeField] protected float groundDistance = 0.3f;
+    [SerializeField] protected float groundDrag = 8;
+    [SerializeField] protected float fallingForce = 6;
+    [SerializeField] protected LayerMask groundLayer = 3;
 
     public Health health { get; private set; }
     public Rigidbody rb { get; private set; }
-    protected bool canMove;
 
+    protected bool canMove;
+    protected Vector3 movementDirection;
 
     protected virtual void Awake()
     {
@@ -47,12 +49,12 @@ public class Humanoid : MonoBehaviour
         {
             rb.drag = 0;
         }
+        SpeedControl();
     }
     protected virtual void FixedUpdate()
     {
         if (!GroundCheck())
         {
-            //Falling speed
             rb.AddForce(Vector3.down * fallingForce, ForceMode.Force);
         }
 
@@ -63,8 +65,26 @@ public class Humanoid : MonoBehaviour
     }
     protected virtual void Move()
     {
-
+        if (GroundCheck())
+        {
+            rb.AddForce(movementDirection.normalized * movementSpeed * 10, ForceMode.Force);
+        }
+        else
+        {
+            rb.AddForce(movementDirection.normalized * airMultiplier * movementSpeed * 10, ForceMode.Force);
+        }
     }
+
+    protected virtual void Jump()
+    {
+        if (GroundCheck())
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
     public virtual void Staggered()
     {
 
@@ -82,12 +102,7 @@ public class Humanoid : MonoBehaviour
         }
     }
 
-
-
-    public Vector3 Position()
-    {
-        return transform.position;
-    }
+    //Limits the velocity on the x, z plane
     protected void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0, rb.velocity.z);
@@ -98,6 +113,8 @@ public class Humanoid : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
+
+    //Called from other classes
     public void DisableMovement()
     {
         canMove = false;
@@ -110,5 +127,13 @@ public class Humanoid : MonoBehaviour
     {
         DisableMovement();
         rb.velocity = Vector3.zero;
+    }
+    public Vector3 Position()
+    {
+        return transform.position;
+    }
+    public Quaternion Rotation()
+    {
+        return transform.rotation;
     }
 }

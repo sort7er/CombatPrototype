@@ -5,50 +5,41 @@ using UnityEngine.InputSystem;
 public class InputReader : MonoBehaviour
 {
 
-    public event Action OnFire;
-    public event Action OnHeavyFire;
-    public event Action OnUniqueFire;
+    public event Action<Vector2> OnMove;
+    public event Action OnJump;
+    public event Action OnAttack;
+    public event Action OnUnique;
     public event Action OnNextWeapon;
     public event Action OnPreviousWeapon;
-    public event Action OnHolster;
     public event Action OnBlock;
     public event Action OnParry;
 
 
-    private bool isHeavy;
+    public void Move(InputAction.CallbackContext ctx)
+    {
+        OnMove?.Invoke(ctx.ReadValue<Vector2>());
+    }
 
-    public void Fire(InputAction.CallbackContext ctx)
+    public void Jump(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
-            Invoke(nameof(CheckHeavy), 0.02f);
-        }
-    }
-    public void HeavyFire(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed)
-        {
-            OnHeavyFire?.Invoke();
-            isHeavy = true;
-        }
-    }
-    public void UniqueFire(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed)
-        {
-            OnUniqueFire?.Invoke();
+            OnJump?.Invoke();
         }
     }
 
-    private void CheckHeavy()
+    public void Attack(InputAction.CallbackContext ctx)
     {
-        if(!isHeavy)
+        if (ctx.performed)
         {
-            OnFire?.Invoke();
+            OnAttack?.Invoke();
         }
-        else
+    }
+    public void Unique(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
         {
-            isHeavy= false;
+            OnUnique?.Invoke();
         }
     }
     public void NextWeapon(InputAction.CallbackContext ctx)
@@ -63,13 +54,6 @@ public class InputReader : MonoBehaviour
         if (ctx.performed)
         {
             OnPreviousWeapon?.Invoke();
-        }
-    }
-    public void Holster(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed)
-        {
-            OnHolster?.Invoke();
         }
     }
     public void BlockAndParry(InputAction.CallbackContext ctx)

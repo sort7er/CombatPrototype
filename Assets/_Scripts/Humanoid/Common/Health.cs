@@ -64,7 +64,7 @@ public class Health : MonoBehaviour
         postureRegen = defaultPostureRegen;
     }
 
-    public virtual void TakeDamage(int damage, int postureDamage, Archetype killingArchetype, DamageType incomingDamage = DamageType.Default)
+    public virtual void TakeDamage(int damage, int postureDamage, DamageType incomingDamage = DamageType.Default)
     {
         if (IsDead())
         {
@@ -86,7 +86,7 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            Dead(killingArchetype, incomingDamage);
+            Dead(incomingDamage);
         }
         else if(posture <= 0)
         {
@@ -98,7 +98,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    protected virtual void Dead(Archetype killingArchetype, DamageType incomingDamage)
+    protected virtual void Dead(DamageType incomingDamage)
     {
         OnDeath?.Invoke();
     }
