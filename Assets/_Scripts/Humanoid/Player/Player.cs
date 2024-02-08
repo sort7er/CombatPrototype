@@ -9,7 +9,6 @@ public class Player : Humanoid
     public InputReader inputReader;
     public CameraController cameraController;
     public PlayerActions playerActions;
-    public Arms hands;
 
 
     protected override void Awake()
