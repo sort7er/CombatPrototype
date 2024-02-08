@@ -3,36 +3,26 @@ using Attacks;
 
 namespace Attacks
 {
-    public enum ActiveWeapon
+    public enum Wield
     {
         right,
         left,
         both
     }
-    public enum AttributeAffected
-    {
-        normal,
-        onlyPosture
-    }
+    //public enum AttributeAffected
+    //{
+    //    normal,
+    //    onlyPosture
+    //}
 }
 
 public class Attack : Anim
 {
+    public Wield currentWield;
 
 
-    public int damage;
-    public int postureDamage;
-    public float queuePoint;
-    public ActiveWeapon activeWeapon;
-    public AttributeAffected attributeAffected;
-
-
-    public Attack(AnimationClip clip, int dmg, int postureDmg, float queuePoint, ActiveWeapon activeWeapon, AttributeAffected attributeAffected) : base(clip)
+    public Attack(AnimationClip clip, Wield wield) : base(clip)
     {
-        damage = dmg;
-        postureDamage = postureDmg;
-        this.queuePoint = queuePoint;
-        this.activeWeapon = activeWeapon;
-        this.attributeAffected = attributeAffected;
+        this.currentWield = wield;
     }
 }

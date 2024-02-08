@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
-    [SerializeField] private float parryWindow = 0.1f;
-
     private InputReader inputReader;
 
     private void Awake()
@@ -30,21 +28,20 @@ public class PlayerActions : MonoBehaviour
 
     private void Attack()
     {
-
+        Debug.Log("Attack");
     }
 
     private void Unique()
     {
-
-
+        Debug.Log("Unique");
     }
     private void Block()
     {
-
+        Debug.Log("Block");
     }
 
     private void Parry()
     {
-
+        Debug.Log("Parry");
     }
 }
