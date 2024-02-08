@@ -15,6 +15,10 @@ public abstract class ActionState
     {
 
     }
+    public virtual void CheckChain()
+    {
+
+    }
     public virtual void Unique()
     {
 

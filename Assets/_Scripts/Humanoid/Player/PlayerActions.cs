@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+    [Header("Values")]
+    public float parryWindow = 0.17f;
+
+    [Header("References")]
     public Animator armAnimator;
     public Player player;
     public Weapon startWeapon;
@@ -53,6 +57,10 @@ public class PlayerActions : MonoBehaviour
     public void Parry()
     {
         currentState.Parry();
+    }
+    public void CheckChain()
+    {
+        currentState.CheckChain();
     }
 
     #endregion
