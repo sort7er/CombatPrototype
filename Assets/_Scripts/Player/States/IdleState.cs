@@ -23,5 +23,9 @@ public class IdleState : ActionState
     {
         actions.SwitchState(actions.blockState);
     }
+    public override void Unique()
+    {
+        actions.SwitchState(actions.uniqueState);
+    }
 
 }

@@ -6,6 +6,7 @@ public class UniqueState : ActionState
     {
         base.Enter(actions);
         Debug.Log("Unique");
+        actions.SetAnimation(archetype.unique);
     }
 
 }
