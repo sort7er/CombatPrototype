@@ -122,10 +122,9 @@ GameObject:
   - component: {fileID: 971317887783513776}
   - component: {fileID: 4511747968674823317}
   - component: {fileID: 6291823805362412574}
-  - component: {fileID: 155963201394983984}
-  - component: {fileID: 5754660137233312941}
   - component: {fileID: 8569343081816793612}
   - component: {fileID: 6490405653904770788}
+  - component: {fileID: 4608506369025162612}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -168,7 +167,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2.5
@@ -201,58 +200,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &155963201394983984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172614768507206733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b31efbb15fb46824aa1f3aaef00fe28a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerType: 1
-  movementSpeed: 4
-  groundDistance: 0.2
-  groundDrag: 5
-  fallingForce: 6
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  rotationSlerp: 10
-  waypointDistance: 0.5
-  playerDistance: 5
-  attackCooldown: 0.5
---- !u!114 &5754660137233312941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172614768507206733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d949028ec8e01548a3e8e605b8a460d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHealth: 100
-  healthSlider: {fileID: 2314837235863848679}
-  startPosture: 100
-  postureSlider: {fileID: 4550188560295206518}
-  defaultTimeTillRegen: 4
-  defaultPostureRegen: 20
-  stunnedDuration: 10
-  meshes:
-  - {fileID: 6852626906183478805}
-  - {fileID: 8280782227285894511}
-  prefabs:
-  - {fileID: 5725819523948652768, guid: b20e1344b3764a940b29583d39ec33cc, type: 3}
-  - {fileID: 7400578952299861988, guid: 6e63d61d6c89a7441863ec7b4de4e2e5, type: 3}
-  - {fileID: 3334896440328721665, guid: a50bab49384846c4cbd4f716392a37dc, type: 3}
-  - {fileID: 7698124251612721426, guid: c82e4c9cc847be84e8e1ec891dcb9d9f, type: 3}
-  skull: {fileID: 8246668120917639386}
 --- !u!95 &8569343081816793612
 Animator:
   serializedVersion: 5
@@ -281,7 +228,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172614768507206733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.8
   m_Speed: 3.5
@@ -296,6 +243,25 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4608506369025162612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172614768507206733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c279d2d3f10245540adb142efc38ac49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 100
+  healthSlider: {fileID: 2314837235863848679}
+  startPosture: 100
+  postureSlider: {fileID: 4550188560295206518}
+  defaultTimeTillRegen: 4
+  defaultPostureRegen: 10
+  stunnedDuration: 10
 --- !u!1 &1647575345840479747
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +271,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6447444073157942565}
-  - component: {fileID: 364749980077653960}
   m_Layer: 6
   m_Name: WeaponContainer
   m_TagString: Untagged
@@ -328,18 +293,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 971317887783513776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &364749980077653960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647575345840479747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1e835d31b832c498ee4801db71e067, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2215127327639541583
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +496,7 @@ GameObject:
   - component: {fileID: 5323774989650794951}
   - component: {fileID: 2314837235863848679}
   m_Layer: 5
-  m_Name: HealthSlider
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -758,7 +711,8 @@ GameObject:
   - component: {fileID: 4266468133525514314}
   - component: {fileID: 4672039342023523246}
   - component: {fileID: 6852626906183478805}
-  m_Layer: 10
+  - component: {fileID: 274937411663654699}
+  m_Layer: 6
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,6 +797,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2b66dfbd756c6408ab2d3ea4989fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &274937411663654699
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639412882946511897}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6047434502390318776
 GameObject:
   m_ObjectHideFlags: 0

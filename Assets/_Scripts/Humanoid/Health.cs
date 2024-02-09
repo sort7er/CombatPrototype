@@ -1,18 +1,8 @@
 using System;
 using UnityEngine;
-using HealthRelated;
+using Attacks;
 using UnityEngine.UI;
 using DG.Tweening;
-
-namespace HealthRelated
-{
-    public enum DamageType
-    {
-        Default,
-        Slice,
-        Crumble
-    }
-}
 
 public class Health : MonoBehaviour
 {
@@ -24,8 +14,6 @@ public class Health : MonoBehaviour
     [SerializeField] private float defaultTimeTillRegen = 4;
     [SerializeField] private float defaultPostureRegen = 10;
     [SerializeField] private float stunnedDuration = 10;
-
-    public Humanoid owner { get; private set; }
 
 
     public event Action OnTakeDamage;
@@ -45,7 +33,6 @@ public class Health : MonoBehaviour
     {
         SetUpHealth();
         SetUpPosture();
-        owner = GetComponent<Humanoid>();
     }
 
     private void SetUpHealth()
@@ -64,7 +51,7 @@ public class Health : MonoBehaviour
         postureRegen = defaultPostureRegen;
     }
 
-    public virtual void TakeDamage(int damage, int postureDamage, DamageType incomingDamage = DamageType.Default)
+    public virtual void TakeDamage(int damage, int postureDamage, HitType incomingDamage = HitType.normal)
     {
         if (IsDead())
         {
@@ -98,7 +85,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    protected virtual void Dead(DamageType incomingDamage)
+    protected virtual void Dead(HitType incomingDamage)
     {
         OnDeath?.Invoke();
     }
