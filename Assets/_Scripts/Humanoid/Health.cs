@@ -51,7 +51,7 @@ public class Health : MonoBehaviour
         postureRegen = defaultPostureRegen;
     }
 
-    public virtual void TakeDamage(int damage, int postureDamage, HitType incomingDamage = HitType.normal)
+    public virtual void TakeDamage(Weapon attackingWeapon)
     {
         if (IsDead())
         {
@@ -59,13 +59,13 @@ public class Health : MonoBehaviour
         }
 
         OnTakeDamage?.Invoke();
-        health -=  damage;
+        health -=  attackingWeapon.damage;
         healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
 
 
         CancelInvoke(nameof(StartRegen));
         canRegen = false;
-        posture -= postureDamage;
+        posture -= attackingWeapon.postureDamage;
         postureSlider.DOValue(posture, 0.1f).SetEase(Ease.OutFlash);
         postureRegen = Tools.Remap(health, 0, 100, 1, defaultPostureRegen);
         timeTillRegen = Tools.Remap(health, 0, 100, 10, defaultTimeTillRegen);
@@ -73,7 +73,7 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            Dead(incomingDamage);
+            Dead(attackingWeapon);
         }
         else if(posture <= 0)
         {
@@ -85,7 +85,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    protected virtual void Dead(HitType incomingDamage)
+    protected virtual void Dead(Weapon attackingWeapon)
     {
         OnDeath?.Invoke();
     }

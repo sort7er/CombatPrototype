@@ -32,7 +32,9 @@ public class SlicingWeapon : WeaponModel
     {
         float dist = Vector3.Distance(weapon.transform.position, target.transform.position);
 
-        Vector3 forwardPoint = weapon.transform.position + weapon.transform.forward * dist;
+        Vector3 weaponOffset = transform.position - weapon.transform.position;
+
+        Vector3 forwardPoint = weapon.transform.position + weapon.transform.forward * dist + weaponOffset;
         Vector3 planeNormal = Vector3.Cross(forwardPoint - startPoint.position, direction * 10);
         planeNormal.Normalize();
 
@@ -41,7 +43,6 @@ public class SlicingWeapon : WeaponModel
 
         if (hull != null)
         {
-            Debug.Log(2);
             GameObject upperHull = hull.CreateUpperHull(target.gameObject, target.meshRenderer.material);
             upperHull.transform.position = target.transform.position;
             upperHull.transform.rotation = target.transform.rotation;

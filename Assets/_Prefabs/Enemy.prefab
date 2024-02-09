@@ -167,7 +167,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2.5
@@ -262,6 +262,15 @@ MonoBehaviour:
   defaultTimeTillRegen: 4
   defaultPostureRegen: 10
   stunnedDuration: 10
+  meshes:
+  - {fileID: 6852626906183478805}
+  - {fileID: 8280782227285894511}
+  prefabs:
+  - {fileID: 5725819523948652768, guid: b20e1344b3764a940b29583d39ec33cc, type: 3}
+  - {fileID: 7400578952299861988, guid: 6e63d61d6c89a7441863ec7b4de4e2e5, type: 3}
+  - {fileID: 3334896440328721665, guid: a50bab49384846c4cbd4f716392a37dc, type: 3}
+  - {fileID: 7698124251612721426, guid: c82e4c9cc847be84e8e1ec891dcb9d9f, type: 3}
+  skull: {fileID: 8246668120917639386}
 --- !u!1 &1647575345840479747
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +720,6 @@ GameObject:
   - component: {fileID: 4266468133525514314}
   - component: {fileID: 4672039342023523246}
   - component: {fileID: 6852626906183478805}
-  - component: {fileID: 274937411663654699}
   m_Layer: 6
   m_Name: Graphic
   m_TagString: Untagged
@@ -797,29 +805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2b66dfbd756c6408ab2d3ea4989fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &274937411663654699
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5639412882946511897}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6047434502390318776
 GameObject:
   m_ObjectHideFlags: 0

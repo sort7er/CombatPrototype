@@ -5,26 +5,36 @@ public class HitBox : MonoBehaviour
 
     //Temporary serilizable
     public Transform hitBoxRef;
-
-
-    private Player player;
-    private PlayerActions playerActions;
-
+    private Weapon currentWeapon;
+    private Humanoid owner;
     private Collider[] hits;
+
     private int numberOfHits;
     private void Awake()
     {
-        player = GetComponent<Player>();
-        playerActions = player.playerActions;
         hits = new Collider[10];
+    }
+    private void Start()
+    {
+        //Moved GetOwner to start to ensure that playerActions actually has the current weapon
+        GetOwner();
+    }
+
+    public void GetOwner()
+    {
+        owner = GetComponent<Humanoid>();
+        if(owner is Player player)
+        {
+            currentWeapon = player.playerActions.currentWeapon;
+        }
     }
 
 
-    public void SetHitBox(Vector3 center, Vector3 size)
+    public void SetHitBox(Transform parent, Vector3 localCenter, Vector3 size)
     {
-        hitBoxRef.position = player.cameraController.CameraPosition() + center;
+        hitBoxRef.parent = parent;
+        hitBoxRef.localPosition = localCenter;
         hitBoxRef.localScale = size;
-
     }
 
     //Called from animation
@@ -40,9 +50,21 @@ public class HitBox : MonoBehaviour
     }
     private void CheckHitInfo(Collider hit)
     {
-        if (hit.TryGetComponent(out SlicableMesh mesh))
+        if(hit.TryGetComponent(out Health health))
         {
-            playerActions.currentWeapon.Slice(mesh);
+            if(health != owner.health)
+            {
+                DoDamage(health);
+            }
         }
+        else if (hit.TryGetComponent(out SlicableMesh mesh))
+        {
+            currentWeapon.Slice(mesh);
+        }
+    }
+
+    private void DoDamage(Health health)
+    {
+        health.TakeDamage(currentWeapon);
     }
 }

@@ -3,17 +3,19 @@ using Attacks;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Temporary damage")]
+    public int damage;
+    public int postureDamage;
+
+    [Header("Attacks")]
     public Archetype archetype;
-    public AttackInput closeAbilityInput;
-    public AttackInput throwAbilityInput;
+    [SerializeField] private AttackInput closeAbilityInput;
+    [SerializeField] private AttackInput throwAbilityInput;
 
     [Header("References")]
-    public WeaponModel[] weaponModel;
-
-    //private Anim curAnim;
+    [SerializeField] private WeaponModel[] weaponModel;
     public Humanoid owner { get; private set; }
-
-    private Attack currentAttack;
+    public Attack currentAttack { get; private set; }
 
     private Attack closeAbility;
     private Attack throwAbility;
