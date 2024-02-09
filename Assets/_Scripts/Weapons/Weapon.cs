@@ -1,4 +1,5 @@
 using UnityEngine;
+using Attacks;
 
 public class Weapon : MonoBehaviour
 {
@@ -11,10 +12,8 @@ public class Weapon : MonoBehaviour
 
     //private Anim curAnim;
     public Humanoid owner { get; private set; }
-    private Player player;
-    private HitBox hitBox;
 
-    private Attack curAttack;
+    private Attack currentAttack;
 
     private Attack closeAbility;
     private Attack throwAbility;
@@ -33,18 +32,13 @@ public class Weapon : MonoBehaviour
     }
     public void SetUpAttack(ref Attack attacksToSetUp, AttackInput inputs)
     {
-        attacksToSetUp = new Attack(inputs.animationClip, inputs.activeWield);
+        attacksToSetUp = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType);
     }
 
     //Set from player actions
     public void SetOwner(Humanoid owner, Transform[] parents)
     {
         this.owner = owner;
-        if(owner is Player player)
-        {
-            this.player = player;
-            hitBox = player.hitBox;
-        }
 
         for (int i = 0; i < weaponModel.Length; i++)
         {
@@ -53,27 +47,34 @@ public class Weapon : MonoBehaviour
     }
     public void SetAttack(Attack newAttack)
     {
-        curAttack = newAttack;
+        currentAttack = newAttack;
+    }
+    public void AttackDone()
+    {
+        for (int i = 0; i < slicingWeapons.Length; i++)
+        {
+            weaponModel[i].SwingDone();
+        }
     }
 
     #region Slice related methods
     public void Slice(SlicableMesh mesh)
     {
-        if(curAttack != null && slicingWeapons[0] != null)
+        if(currentAttack != null && currentAttack.hitType == HitType.slice && slicingWeapons[0] != null)
         {
             sliceEnded = false;
-            if (curAttack.currentWield == Attacks.Wield.right)
+            if (currentAttack.currentWield == Wield.right)
             {
-                slicingWeapons[0].CheckSlice(mesh, hitBox);
+                slicingWeapons[0].CheckSlice(mesh);
             }
-            else if (curAttack.currentWield == Attacks.Wield.left)
+            else if (currentAttack.currentWield == Wield.left)
             {
-                slicingWeapons[1].CheckSlice(mesh, hitBox);
+                slicingWeapons[1].CheckSlice(mesh);
             }
             else
             {
                 slicingWeapons[0].OnSliceDone += DelayedSlice;
-                slicingWeapons[0].CheckSlice(mesh, hitBox);
+                slicingWeapons[0].CheckSlice(mesh);
             }
         }
     }
@@ -94,8 +95,8 @@ public class Weapon : MonoBehaviour
         slicingWeapons[0].OnSliceDone -= DelayedSlice;
         if (!sliceEnded)
         {
-            slicingWeapons[1].CheckSlice(mesh1, hitBox);
-            slicingWeapons[1].CheckSlice(mesh2, hitBox);
+            slicingWeapons[1].CheckSlice(mesh1);
+            slicingWeapons[1].CheckSlice(mesh2);
             sliceEnded = true;
         }
     }

@@ -12,33 +12,34 @@ public class SlicingWeapon : WeaponModel
     [SerializeField] private float cutForce = 2000f;
 
     [Header("References")]
-    [SerializeField] protected Transform startPoint;
-    [SerializeField] protected Transform endPoint;
+    [SerializeField] private Weapon weapon;
 
     public List<SlicableMesh> cannotSlice { get; private set; } = new();
 
-    public void CheckSlice(SlicableMesh sliceble, HitBox hitbox)
+    public void CheckSlice(SlicableMesh sliceble)
     {
         if (!cannotSlice.Contains(sliceble))
         {
             //Slice object if not to small
             if (VolumeOfMesh(sliceble.mesh) > 0.15f)
             {
-                Slice(sliceble, hitbox);
+                Slice(sliceble);
             }
         }
     }
 
-    public void Slice(SlicableMesh target, HitBox hitBox)
+    public void Slice(SlicableMesh target)
     {
-        Vector3 planeNormal = Vector3.Cross(endPoint.position - startPoint.position, direction);
+        float dist = Vector3.Distance(weapon.transform.position, target.transform.position);
+
+        Vector3 forwardPoint = weapon.transform.position + weapon.transform.forward * dist;
+        Vector3 planeNormal = Vector3.Cross(forwardPoint - startPoint.position, direction * 10);
         planeNormal.Normalize();
 
-        Debug.Log(1);
 
-        SlicedHull hull = target.gameObject.Slice(endPoint.position, planeNormal);
+        SlicedHull hull = target.gameObject.Slice(forwardPoint, planeNormal);
 
-        if(hull != null)
+        if (hull != null)
         {
             Debug.Log(2);
             GameObject upperHull = hull.CreateUpperHull(target.gameObject, target.meshRenderer.material);
@@ -63,7 +64,7 @@ public class SlicingWeapon : WeaponModel
     {
         OnSliceDone?.Invoke(slicable, slicable2);
     }
-    public void SwingDone()
+    public override void SwingDone()
     {
         cannotSlice.Clear();
     }

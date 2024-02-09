@@ -68,6 +68,7 @@ public class PlayerActions : MonoBehaviour
     public void ActionDone()
     {
         currentState.ActionDone();
+        currentWeapon.AttackDone();
     }
 
     #endregion

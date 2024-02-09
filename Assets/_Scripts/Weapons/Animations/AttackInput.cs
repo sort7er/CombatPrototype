@@ -4,4 +4,5 @@ using Attacks;
 public class AttackInput : AnimationInput
 {
     public Wield activeWield;
+    public HitType hitType;
 }

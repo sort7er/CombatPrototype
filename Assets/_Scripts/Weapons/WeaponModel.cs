@@ -5,11 +5,14 @@ public class WeaponModel : MonoBehaviour
     protected Vector3 lastPos, newPos;
     protected Vector3 direction;
 
+    [SerializeField] protected Transform endPoint;
+    [SerializeField] protected Transform startPoint;
+
     protected virtual void Update()
     {
-        newPos = transform.position;
+        newPos = endPoint.position;
         direction = newPos - lastPos;
-        lastPos = transform.position;
+        lastPos = endPoint.position;
     }
 
     public Vector3 Position()
@@ -24,7 +27,10 @@ public class WeaponModel : MonoBehaviour
     {
         return transform.up;
     }
+    public virtual void SwingDone()
+    {
 
+    }
     public void SetParent(Transform parent)
     {
         transform.parent = parent;
