@@ -3,22 +3,19 @@ using EzySlice;
 using System.Collections.Generic;
 using System;
 
-public class SlicingObject : ModelContainer
+public class SlicingWeapon : WeaponModel
 {
+
+    public event Action<SlicableMesh, SlicableMesh> OnSliceDone;
+
     [Header("Values")]
     [SerializeField] private float cutForce = 2000f;
 
     [SerializeField] private Transform startSlicePoint;
 
-    public List<SlicableObject> cannotSlice { get; private set; } = new();
+    public List<SlicableMesh> cannotSlice { get; private set; } = new();
 
-    protected override void Awake()
-    {
-        isSlicable = true;
-    }
-
-
-    public override void CheckSlice(SlicableObject sliceble)
+    public void CheckSlice(SlicableMesh sliceble)
     {
         if (!cannotSlice.Contains(sliceble))
         {
@@ -30,12 +27,10 @@ public class SlicingObject : ModelContainer
         }
     }
 
-    public void Slice(SlicableObject target)
+    public void Slice(SlicableMesh target)
     {
         Vector3 planeNormal = Vector3.Cross(endSlicePoint.position - startSlicePoint.position, direction);
         planeNormal.Normalize();
-
-
 
 
         SlicedHull hull = target.gameObject.Slice(endSlicePoint.position, planeNormal);
@@ -45,20 +40,24 @@ public class SlicingObject : ModelContainer
             GameObject upperHull = hull.CreateUpperHull(target.gameObject, target.meshRenderer.material);
             upperHull.transform.position = target.transform.position;
             upperHull.transform.rotation = target.transform.rotation;
-            SlicableObject upperSlice = upperHull.AddComponent<SlicableObject>();
+            SlicableMesh upperSlice = upperHull.AddComponent<SlicableMesh>();
             upperSlice.SetUpSlicableObject(ParentManager.instance.meshes, cutForce);
             cannotSlice.Add(upperSlice);
 
             GameObject lowerHull = hull.CreateLowerHull(target.gameObject, target.meshRenderer.material);
             lowerHull.transform.position = target.transform.position;
             lowerHull.transform.rotation = target.transform.rotation;
-            SlicableObject lowerSlice = lowerHull.AddComponent<SlicableObject>();
+            SlicableMesh lowerSlice = lowerHull.AddComponent<SlicableMesh>();
             lowerSlice.SetUpSlicableObject(ParentManager.instance.meshes, cutForce);
             cannotSlice.Add(lowerSlice);
 
             Destroy(target.gameObject);
             SliceDone(lowerSlice, upperSlice);
         }
+    }
+    public void SliceDone(SlicableMesh slicable, SlicableMesh slicable2)
+    {
+        OnSliceDone?.Invoke(slicable, slicable2);
     }
     public void SwingDone()
     {

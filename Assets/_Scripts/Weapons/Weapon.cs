@@ -5,7 +5,7 @@ public class Weapon : MonoBehaviour
     public Archetype archetype;
     public AttackInput closeAbilityInput;
     public AttackInput throwAbilityInput;
-    public Transform[] weaponModels;
+    public WeaponModel[] weaponModel;
 
 
     public Attack closeAbility;
@@ -23,11 +23,9 @@ public class Weapon : MonoBehaviour
     }
     public void SetParent(Transform[] parents)
     {
-        for(int i = 0; i < weaponModels.Length; i++)
+        for(int i = 0; i < weaponModel.Length; i++)
         {
-            weaponModels[i].parent = parents[i];
-            weaponModels[i].localPosition= Vector3.zero;
-            weaponModels[i].localRotation= Quaternion.identity;
+            weaponModel[i].SetParent(parents[i]);
         }
     }
 }

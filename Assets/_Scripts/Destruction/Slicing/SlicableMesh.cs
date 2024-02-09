@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class SlicableObject : MonoBehaviour
+public class SlicableMesh : MonoBehaviour
 {
     [SerializeField] public Material cutMaterial { get; private set; }
 
