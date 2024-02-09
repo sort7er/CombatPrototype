@@ -1,6 +1,7 @@
 public class ParryState : ActionState
 {
     private bool chain;
+    private bool attack;
     private bool parry;
     private int currentParry;
     public override void Enter(PlayerActions actions)
@@ -23,13 +24,31 @@ public class ParryState : ActionState
 
     public override void CheckChain()
     {
-        if (!parry)
+        if (attack)
         {
-            chain = true;
+            actions.StopMethod();
+            actions.SwitchState(actions.attackState);
+        }
+        else if (parry)
+        {
+            DoParry();
         }
         else
         {
-            DoParry();
+            chain = true;
+        }
+    }
+
+    public override void Attack()
+    {
+        if (chain)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.attackState);
+        }
+        else
+        {
+            attack= true;
         }
     }
 
@@ -37,6 +56,7 @@ public class ParryState : ActionState
     {
         chain = false;
         parry = false;
+        attack= false;
         actions.SetAnimation(archetype.parry[currentParry], 0.05f);
         actions.StopMethod();
         actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
