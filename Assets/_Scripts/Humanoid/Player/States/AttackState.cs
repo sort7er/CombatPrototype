@@ -1,10 +1,6 @@
-using UnityEngine;
-
+using Actions;
 public class AttackState : ActionState
 {
-    private bool chain;
-    private bool attack;
-    private bool block;
     private int currentAttack;
 
     public override void Enter(PlayerActions actions)
@@ -16,49 +12,50 @@ public class AttackState : ActionState
 
     public override void Attack()
     {
-        if(!chain)
-        {
-            attack= true;
-        }
-        else
+        if(actionDone)
         {
             StartAttack();
         }
+        else if (canChain && CheckUpcommingAction())
+        {
+            SetUpcommingAction(QueuedAction.Attack);
+        }
+
     }
 
-    public override void CheckChain()
+    public override void ActionDone()
     {
-        if(attack)
+        if(upcommingAction == QueuedAction.Attack)
         {
             StartAttack();
         }
-        else if (block)
+        else if(upcommingAction == QueuedAction.Block)
         {
             actions.StopMethod();
             actions.SwitchState(actions.blockState);
         }
         else
         {
-            chain= true;
+            actionDone= true;
         }
     }
 
     public override void Block()
     {
-        if(chain)
+        if(actionDone)
         {
             actions.StopMethod();
             actions.SwitchState(actions.blockState);
         }
-        else
+        else if(canChain && CheckUpcommingAction())
         {
-            block= true;
+            SetUpcommingAction(QueuedAction.Block);
         }
     }
 
     public override void Parry()
     {
-        if(block)
+        if(upcommingAction == QueuedAction.Block)
         {
             actions.StopMethod();
             actions.SwitchState(actions.parryState);
@@ -67,17 +64,17 @@ public class AttackState : ActionState
 
     private void StartAttack()
     {
-        chain = false;
-        attack= false;
-        block= false; 
+        actionDone = false;
+        canChain= false;
+        SetUpcommingAction(QueuedAction.None);
         actions.SetAnimation(archetype.attacks[currentAttack], 0.15f);
         actions.StopMethod();
-        actions.InvokeMethod(AttackDone, actions.currentAnimation.duration);
+        actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
         UpdateAttack();
     }
 
 
-    private void AttackDone()
+    private void EndAttack()
     {
         actions.SwitchState(actions.idleState);
     }

@@ -1,8 +1,6 @@
+using Actions;
 public class ParryState : ActionState
 {
-    private bool chain;
-    private bool attack;
-    private bool parry;
     private int currentParry;
     public override void Enter(PlayerActions actions)
     {
@@ -12,51 +10,51 @@ public class ParryState : ActionState
 
     public override void Parry()
     {
-        if (!chain)
-        {
-            parry = true;
-        }
-        else
+        if (actionDone)
         {
             DoParry();
         }
+        else if(canChain && CheckUpcommingAction())
+        {
+            SetUpcommingAction(QueuedAction.Parry);
+        }
     }
 
-    public override void CheckChain()
+    public override void ActionDone()
     {
-        if (attack)
+        if (upcommingAction == QueuedAction.Attack)
         {
             actions.StopMethod();
             actions.SwitchState(actions.attackState);
         }
-        else if (parry)
+        else if (upcommingAction == QueuedAction.Parry)
         {
             DoParry();
         }
         else
         {
-            chain = true;
+            actionDone = true;
         }
     }
 
     public override void Attack()
     {
-        if (chain)
+        if (actionDone)
         {
             actions.StopMethod();
             actions.SwitchState(actions.attackState);
         }
-        else
+        else if (canChain && CheckUpcommingAction())
         {
-            attack= true;
+            SetUpcommingAction(QueuedAction.Attack);
         }
     }
 
     private void DoParry()
     {
-        chain = false;
-        parry = false;
-        attack= false;
+        actionDone= false;
+        canChain= false;
+        SetUpcommingAction(QueuedAction.None);
         actions.SetAnimation(archetype.parry[currentParry], 0.05f);
         actions.StopMethod();
         actions.InvokeMethod(EndParry, actions.currentAnimation.duration);

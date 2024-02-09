@@ -60,7 +60,7 @@ public class PlayerActions : MonoBehaviour
     }
     public void CheckChain()
     {
-        currentState.CheckChain();
+        currentState.ActionDone();
     }
 
     #endregion
