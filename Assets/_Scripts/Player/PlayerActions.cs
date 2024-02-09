@@ -13,9 +13,8 @@ public class PlayerActions : MonoBehaviour
     public Weapon startWeapon;
     public Transform[] weaponPos;
     public Weapon currentWeapon { get; private set; }
-
-    public ActionState currentState;
-    public Anim currentAnimation;
+    public ActionState currentState { get; private set; }
+    public Anim currentAnimation { get; private set; }
 
     public IdleState idleState = new IdleState();
     public AttackState attackState = new AttackState();
@@ -29,6 +28,9 @@ public class PlayerActions : MonoBehaviour
     {
         SetUpInput();
         SetNewWeapon(startWeapon);
+    }
+    private void Start()
+    {
         SwitchState(idleState);
     }
 
@@ -60,6 +62,7 @@ public class PlayerActions : MonoBehaviour
     }
     public void OverlapCollider()
     {
+        //curWep.over
         currentState.OverlapCollider();
     }
     public void ActionDone()
@@ -78,6 +81,15 @@ public class PlayerActions : MonoBehaviour
     }
     public void SetAnimation(Anim newAnim, float transition = 0.25f)
     {
+        if(newAnim is Attack attack)
+        {
+            currentWeapon.SetAttack(attack);
+        }
+        else
+        {
+            currentWeapon.SetAttack(null);
+        }
+
         currentAnimation = newAnim;
         armAnimator.CrossFadeInFixedTime(currentAnimation.state, transition);
     }
@@ -102,7 +114,7 @@ public class PlayerActions : MonoBehaviour
     public void SetNewWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
-        currentWeapon.SetParent(weaponPos);
+        currentWeapon.SetOwner(player, weaponPos);
     }
 
     #region Redirects

@@ -9,6 +9,7 @@ public class Player : Humanoid
     public InputReader inputReader;
     public CameraController cameraController;
     public PlayerActions playerActions;
+    public HitBox hitBox;
 
 
     protected override void Awake()

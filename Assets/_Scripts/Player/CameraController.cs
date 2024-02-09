@@ -73,6 +73,14 @@ public class CameraController : MonoBehaviour
             xRotation -= 360;
         }
     }
+    public Vector3 CameraPosition()
+    {
+        return playerCam.position;
+    }
+    public Quaternion CameraRotation()
+    {
+        return playerCam.rotation;
+    }
 
 
 }

@@ -17,28 +17,30 @@ public class SlicingWeapon : WeaponModel
 
     public List<SlicableMesh> cannotSlice { get; private set; } = new();
 
-    public void CheckSlice(SlicableMesh sliceble)
+    public void CheckSlice(SlicableMesh sliceble, HitBox hitbox)
     {
         if (!cannotSlice.Contains(sliceble))
         {
             //Slice object if not to small
             if (VolumeOfMesh(sliceble.mesh) > 0.15f)
             {
-                Slice(sliceble);
+                Slice(sliceble, hitbox);
             }
         }
     }
 
-    public void Slice(SlicableMesh target)
+    public void Slice(SlicableMesh target, HitBox hitBox)
     {
         Vector3 planeNormal = Vector3.Cross(endPoint.position - startPoint.position, direction);
         planeNormal.Normalize();
 
+        Debug.Log(1);
 
         SlicedHull hull = target.gameObject.Slice(endPoint.position, planeNormal);
 
         if(hull != null)
         {
+            Debug.Log(2);
             GameObject upperHull = hull.CreateUpperHull(target.gameObject, target.meshRenderer.material);
             upperHull.transform.position = target.transform.position;
             upperHull.transform.rotation = target.transform.rotation;
