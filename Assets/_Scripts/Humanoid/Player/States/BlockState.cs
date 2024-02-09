@@ -8,7 +8,7 @@ public class BlockState : ActionState
     {
         base.Enter(actions);
         parry = true;
-        actions.SetAnimation(archetype.block);
+        actions.SetAnimation(archetype.block, 0.1f);
         actions.InvokeMethod(Parrying, actions.parryWindow);
     }
 

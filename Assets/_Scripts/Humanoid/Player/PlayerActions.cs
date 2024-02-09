@@ -75,7 +75,7 @@ public class PlayerActions : MonoBehaviour
     public void SetAnimation(Anim newAnim, float transition = 0.25f)
     {
         currentAnimation = newAnim;
-        armAnimator.CrossFade(currentAnimation.state, transition);
+        armAnimator.CrossFadeInFixedTime(currentAnimation.state, transition);
     }
 
     #region Invoking

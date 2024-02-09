@@ -4,6 +4,7 @@ public class AttackState : ActionState
 {
     private bool chain;
     private bool attack;
+    private bool block;
     private int currentAttack;
 
     public override void Enter(PlayerActions actions)
@@ -27,13 +28,40 @@ public class AttackState : ActionState
 
     public override void CheckChain()
     {
-        if(!attack)
+        if(attack)
         {
-            chain= true;
+            StartAttack();
+        }
+        else if (block)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.blockState);
         }
         else
         {
-            StartAttack();
+            chain= true;
+        }
+    }
+
+    public override void Block()
+    {
+        if(chain)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.blockState);
+        }
+        else
+        {
+            block= true;
+        }
+    }
+
+    public override void Parry()
+    {
+        if(block)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.parryState);
         }
     }
 
@@ -41,7 +69,8 @@ public class AttackState : ActionState
     {
         chain = false;
         attack= false;
-        actions.SetAnimation(archetype.attacks[currentAttack], 0.1f);
+        block= false; 
+        actions.SetAnimation(archetype.attacks[currentAttack], 0.15f);
         actions.StopMethod();
         actions.InvokeMethod(AttackDone, actions.currentAnimation.duration);
         UpdateAttack();

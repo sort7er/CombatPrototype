@@ -37,7 +37,7 @@ public class ParryState : ActionState
     {
         chain = false;
         parry = false;
-        actions.SetAnimation(archetype.parry[currentParry], 0.1f);
+        actions.SetAnimation(archetype.parry[currentParry], 0.05f);
         actions.StopMethod();
         actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
         UpdateParry();
