@@ -3,8 +3,12 @@ using UnityEngine;
 public class ArmRedirect : MonoBehaviour
 {
     public PlayerActions actions;
-    public void CheckChain()
+    public void OverlapCollider()
     {
-        actions.CheckChain();
+        actions.OverlapCollider();
+    }
+    public void ActionDone()
+    {
+        actions.ActionDone();
     }
 }

@@ -58,7 +58,11 @@ public class PlayerActions : MonoBehaviour
     {
         currentState.Parry();
     }
-    public void CheckChain()
+    public void OverlapCollider()
+    {
+        currentState.OverlapCollider();
+    }
+    public void ActionDone()
     {
         currentState.ActionDone();
     }
