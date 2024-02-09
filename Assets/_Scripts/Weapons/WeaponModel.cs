@@ -1,20 +1,15 @@
-using System;
 using UnityEngine;
 
 public class WeaponModel : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] protected Transform endSlicePoint;
-
-
     protected Vector3 lastPos, newPos;
     protected Vector3 direction;
 
     protected virtual void Update()
     {
-        newPos = endSlicePoint.position;
+        newPos = transform.position;
         direction = newPos - lastPos;
-        lastPos = endSlicePoint.position;
+        lastPos = transform.position;
     }
 
     public Vector3 Position()

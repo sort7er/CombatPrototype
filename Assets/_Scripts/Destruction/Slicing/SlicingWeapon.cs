@@ -11,7 +11,9 @@ public class SlicingWeapon : WeaponModel
     [Header("Values")]
     [SerializeField] private float cutForce = 2000f;
 
-    [SerializeField] private Transform startSlicePoint;
+    [Header("References")]
+    [SerializeField] protected Transform startPoint;
+    [SerializeField] protected Transform endPoint;
 
     public List<SlicableMesh> cannotSlice { get; private set; } = new();
 
@@ -29,11 +31,11 @@ public class SlicingWeapon : WeaponModel
 
     public void Slice(SlicableMesh target)
     {
-        Vector3 planeNormal = Vector3.Cross(endSlicePoint.position - startSlicePoint.position, direction);
+        Vector3 planeNormal = Vector3.Cross(endPoint.position - startPoint.position, direction);
         planeNormal.Normalize();
 
 
-        SlicedHull hull = target.gameObject.Slice(endSlicePoint.position, planeNormal);
+        SlicedHull hull = target.gameObject.Slice(endPoint.position, planeNormal);
 
         if(hull != null)
         {
