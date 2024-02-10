@@ -21,12 +21,12 @@ public class TargetAssistance : MonoBehaviour
         hitColliders = new Collider[maxColliders];
     }
 
-    public List<Enemy> CheckForEnemies(TargetParamaters paramaters, out int numIdealTarget)
+    public List<Enemy> CheckForEnemies(UniqueAbility uniqueAbility, out int numIdealTarget)
     {
         CleanUpPreviousData();
 
         //Find the targets within the area and put them in the correct list
-        AddTargetsToLists(paramaters.range, paramaters.idealDotProduct, paramaters.acceptedDotProduct);
+        AddTargetsToLists(uniqueAbility.range, uniqueAbility.idealDotProduct, uniqueAbility.acceptedDotProduct);
 
         numIdealTarget = idealTargets.Count;
 
@@ -65,7 +65,6 @@ public class TargetAssistance : MonoBehaviour
                 break;
             }
 
-
             if (newTarget.dotProduct >= idealDotProduct)
             {
                 idealTargets.Add(newTarget);
@@ -74,7 +73,6 @@ public class TargetAssistance : MonoBehaviour
             {
                 otherTargets.Add(newTarget);
             }
-
         }
     }
 
@@ -100,7 +98,6 @@ public class TargetAssistance : MonoBehaviour
 
     private void AddToFinalList()
     {
-
         for (int i = 0; i < idealTargets.Count; i++)
         {
             finalTargets.Add(idealTargets[i].enemy);

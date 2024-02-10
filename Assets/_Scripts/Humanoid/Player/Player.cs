@@ -10,7 +10,8 @@ public class Player : Humanoid
     public CameraController cameraController;
     public PlayerActions playerActions;
     public HitBox hitBox;
-
+    public Health Health;
+    public TargetAssistance targetAssistance;
 
     protected override void Awake()
     {

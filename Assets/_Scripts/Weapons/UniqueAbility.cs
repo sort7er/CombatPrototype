@@ -3,14 +3,17 @@ using UnityEngine;
 
 public abstract class UniqueAbility : MonoBehaviour
 {
+    [Header("Target assistance paramaters")]
+    public float range = 10f;
+    public float idealDotProduct = 0.85f;
+    public float acceptedDotProduct = 0.75f;
+
+
     protected Transform playerTrans;
     protected Rigidbody rb;
     protected Humanoid owner;
     protected CameraController cameraController;
 
-    protected float range;
-    protected float idealDot;
-    protected float acceptedDot;
     //protected List<Enemy> enemies;
 
 
