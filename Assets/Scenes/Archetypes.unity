@@ -447,6 +447,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6490405653904770788, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -460,7 +465,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1172614768507206733, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1932917509}
   m_SourcePrefab: {fileID: 100100000, guid: ca25066036473ca49a73d594b649c74b, type: 3}
 --- !u!4 &262896226 stripped
 Transform:
@@ -2176,6 +2185,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1573709685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1932917503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1172614768507206733, guid: ca25066036473ca49a73d594b649c74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 262896225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1932917509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932917503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658acf5ec0721b34490ec043f277db6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 6
+  jumpForce: 8
+  airMultiplier: 0.4
+  groundDistance: 0.3
+  groundDrag: 8
+  fallingForce: 6
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  rotationSlerp: 10
+  waypointDistance: 1
+  playerDistance: 1
+  attackCooldown: 0.5
 --- !u!1 &1988489008
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,20 +1,8 @@
 using UnityEngine;
-using HumanoidTypes;
-
-
-namespace HumanoidTypes
-{
-    public enum OwnerType
-    {
-        Player,
-        Enemy
-    }
-}
 
 public class Humanoid : MonoBehaviour
 {
     [Header("Humanoid")]
-    public OwnerType ownerType;
     [SerializeField] protected float movementSpeed = 6;
     [SerializeField] protected float jumpForce = 8;
     [Range(0, 1)]
@@ -23,15 +11,15 @@ public class Humanoid : MonoBehaviour
     [SerializeField] protected float groundDrag = 8;
     [SerializeField] protected float fallingForce = 6;
     [SerializeField] protected LayerMask groundLayer = 3;
-
-    public Health health;
     public Rigidbody rb { get; private set; }
+    public Health health { get; private set; }
 
     protected bool canMove;
     protected Vector3 movementDirection;
 
     protected virtual void Awake()
     {
+        health = GetComponent<Health>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -123,6 +111,10 @@ public class Humanoid : MonoBehaviour
     {
         DisableMovement();
         rb.velocity = Vector3.zero;
+    }
+    public void AddForce(Vector3 force)
+    {
+        rb.AddForce(force, ForceMode.Impulse);
     }
     public Vector3 Position()
     {
