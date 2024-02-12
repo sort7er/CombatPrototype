@@ -16,48 +16,51 @@ public class SlicingWeapon : WeaponModel
 
     public List<SlicableMesh> cannotSlice { get; private set; } = new();
 
-    public void CheckSlice(SlicableMesh sliceble)
+    public void CheckSlice(SlicableMesh mesh)
     {
-        if (!cannotSlice.Contains(sliceble))
+        Debug.Log(name + " " + 1);
+        if (!cannotSlice.Contains(mesh))
         {
             //Slice object if not to small
-            if (VolumeOfMesh(sliceble.mesh) > 0.15f)
+            if (VolumeOfMesh(mesh.mesh) > 0.15f)
             {
-                Slice(sliceble);
+                Slice(mesh);
             }
         }
     }
 
-    public void Slice(SlicableMesh target)
+    public void Slice(SlicableMesh mesh)
     {
-        float dist = Vector3.Distance(weapon.transform.position, target.transform.position);
+        float dist = Vector3.Distance(weapon.transform.position, mesh.transform.position);
 
-        Vector3 weaponOffset = transform.position - weapon.transform.position;
-
-        Vector3 forwardPoint = weapon.transform.position + weapon.transform.forward * dist + weaponOffset;
-        Vector3 planeNormal = Vector3.Cross(forwardPoint - startPoint.position, direction * 10);
+        Vector3 forwardPoint = weapon.transform.position + weapon.transform.forward * dist;
+        Vector3 planeNormal = Vector3.Cross(endPoint.position - startPoint.position, direction * 10);
         planeNormal.Normalize();
 
 
-        SlicedHull hull = target.gameObject.Slice(forwardPoint, planeNormal);
+        SlicedHull hull = mesh.gameObject.Slice(endPoint.position, planeNormal);
+
+        Debug.Log(name + " " + 2);
 
         if (hull != null)
         {
-            GameObject upperHull = hull.CreateUpperHull(target.gameObject, target.meshRenderer.material);
-            upperHull.transform.position = target.transform.position;
-            upperHull.transform.rotation = target.transform.rotation;
+
+            Debug.Log(name + " " + 3);
+            GameObject upperHull = hull.CreateUpperHull(mesh.gameObject, mesh.meshRenderer.material);
+            upperHull.transform.position = mesh.transform.position;
+            upperHull.transform.rotation = mesh.transform.rotation;
             SlicableMesh upperSlice = upperHull.AddComponent<SlicableMesh>();
             upperSlice.SetUpSlicableObject(ParentManager.instance.meshes, cutForce);
             cannotSlice.Add(upperSlice);
 
-            GameObject lowerHull = hull.CreateLowerHull(target.gameObject, target.meshRenderer.material);
-            lowerHull.transform.position = target.transform.position;
-            lowerHull.transform.rotation = target.transform.rotation;
+            GameObject lowerHull = hull.CreateLowerHull(mesh.gameObject, mesh.meshRenderer.material);
+            lowerHull.transform.position = mesh.transform.position;
+            lowerHull.transform.rotation = mesh.transform.rotation;
             SlicableMesh lowerSlice = lowerHull.AddComponent<SlicableMesh>();
             lowerSlice.SetUpSlicableObject(ParentManager.instance.meshes, cutForce);
             cannotSlice.Add(lowerSlice);
 
-            Destroy(target.gameObject);
+            Destroy(mesh.gameObject);
             SliceDone(lowerSlice, upperSlice);
         }
     }

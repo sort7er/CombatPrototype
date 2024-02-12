@@ -9,10 +9,11 @@ public class Weapon : MonoBehaviour
 
     [Header("Attacks")]
     public Archetype archetype;
-    [SerializeField] private AttackInput closeAbilityInput;
-    [SerializeField] private AttackInput throwAbilityInput;
+    public UniqueAbility uniqueAbility;
+    //[SerializeField] private AttackInput closeAbilityInput;
+    //[SerializeField] private AttackInput throwAbilityInput;
 
-    [Header("References")]
+    [Header("Weapons")]
     [SerializeField] private WeaponModel[] weaponModel;
     public Humanoid owner { get; private set; }
     public Attack currentAttack { get; private set; }

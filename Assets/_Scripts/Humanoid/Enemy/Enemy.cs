@@ -29,6 +29,11 @@ public class Enemy : Humanoid
 
     }
 
+    public void Takedown()
+    {
+
+    }
+
     //Called from this class
     private void FindReferences()
     {

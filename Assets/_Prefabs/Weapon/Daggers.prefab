@@ -10229,9 +10229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32e435ef9d8519418c31f1f36afc704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endSlicePoint: {fileID: 1970554477377842896}
+  endPoint: {fileID: 1970554477377842896}
+  startPoint: {fileID: 2498854829889633781}
   cutForce: 500
-  startSlicePoint: {fileID: 2498854829889633781}
+  weapon: {fileID: 4573752892181745633}
 --- !u!1 &6815047948248039133
 GameObject:
   m_ObjectHideFlags: 0
@@ -10242,6 +10243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1515025721951193632}
   - component: {fileID: 4573752892181745633}
+  - component: {fileID: 7154469481346446333}
   m_Layer: 0
   m_Name: Daggers
   m_TagString: Untagged
@@ -10257,7 +10259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6815047948248039133}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -10278,16 +10280,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
+  postureDamage: 5
   archetype: {fileID: 11400000, guid: 56d929dbf4a45e24b874c66403ba7e49, type: 2}
-  closeAbilityInput:
-    animationClip: {fileID: 0}
-    activeWield: 0
-  throwAbilityInput:
-    animationClip: {fileID: 0}
-    activeWield: 0
-  weaponModels:
-  - {fileID: 4230354221165853680}
-  - {fileID: 2091220557511435940}
+  uniqueAbility: {fileID: 7154469481346446333}
+  weaponModel:
+  - {fileID: 7785325015696337657}
+  - {fileID: 5311457579088156792}
+--- !u!114 &7154469481346446333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6815047948248039133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10015b5ade2ac1945935367d146cdcde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  idealDotProduct: 0.85
+  acceptedDotProduct: 0.75
 --- !u!1 &6815096003813549096
 GameObject:
   m_ObjectHideFlags: 0
@@ -10536,9 +10550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32e435ef9d8519418c31f1f36afc704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endSlicePoint: {fileID: 5448957464220737982}
+  endPoint: {fileID: 5448957464220737982}
+  startPoint: {fileID: 8438799857526951024}
   cutForce: 500
-  startSlicePoint: {fileID: 8438799857526951024}
+  weapon: {fileID: 4573752892181745633}
 --- !u!1 &8397945128379834403
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UniqueAbility : MonoBehaviour
+public abstract class UniqueAbility: MonoBehaviour
 {
     [Header("Target assistance paramaters")]
     public float range = 10f;
@@ -9,37 +9,27 @@ public abstract class UniqueAbility : MonoBehaviour
     public float acceptedDotProduct = 0.75f;
 
 
-    protected Transform playerTrans;
+    protected Player player;
     protected Rigidbody rb;
-    protected Humanoid owner;
-    protected CameraController cameraController;
+    protected Transform playerTrans;
+    protected CameraController camController;
 
-    //protected List<Enemy> enemies;
-
-
-    //public virtual void ExecuteAbility(PlayerData playerData, TargetAssistanceParams targetAssistanceParams, List<Enemy> enemies)
-    //{
-    //    StorePlayerData(playerData);
-    //    StoreOtherData(targetAssistanceParams, enemies);
-    //}
-    //public virtual void ExecuteAbilityNoTarget(PlayerData playerData)
-    //{
-    //    StorePlayerData(playerData);
-    //}
-
-
-    //private void StorePlayerData(PlayerData playerData)
-    //{
-    //    playerTrans = playerData.transform;
-    //    rb = playerData.rb;
-    //    playerMovement = playerData.playerMovement;
-    //    cameraController = playerData.cameraController;
-    //}
-    //private void StoreOtherData(TargetAssistanceParams targetAssistanceParams, List<Enemy> enemies)
-    //{
-    //    range = targetAssistanceParams.range;
-    //    idealDot = targetAssistanceParams.idealDotProduct;
-    //    acceptedDot = targetAssistanceParams.acceptedDotProduct;
-    //    this.enemies = enemies;
-    //}
+    public virtual void ExecuteAbility(Player player, List<Enemy> enemies)
+    {
+        SetPlayer(player);
+    }
+    public virtual void ExecuteAbilityNoTarget(Player player)
+    {
+        SetPlayer(player);
+    }
+    public void SetPlayer(Player player)
+    {
+        if (this.player == null)
+        {
+            this.player = player;
+            playerTrans = player.transform;
+            camController = player.cameraController;
+            rb = player.rb;
+        }
+    }
 }

@@ -18,50 +18,49 @@ public class UniqueDaggers : UniqueAbility
 
 
 
-    //public override void ExecuteAbility(PlayerData playerData, TargetAssistanceParams targetAssistanceParams, List<Enemy> enemies)
-    //{
-    //    base.ExecuteAbility(playerData, targetAssistanceParams, enemies);
-    //    target = enemies[0].transform.position;
-    //    playerMovement.DisableMovement();
-    //    cameraController.DisableRotation();
+    public override void ExecuteAbility(Player player, List<Enemy> enemies)
+    {
+        base.ExecuteAbility(player, enemies);
+        target = enemies[0].transform.position;
+        player.DisableMovement();
+        player.cameraController.DisableRotation();
 
-    //    Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
-    //    playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
-    //    Invoke(nameof(StartDash), rotationDuration);
-    //    enemies[0].Takedown();
-    //}
+        Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
+        enemies[0].Takedown();
+        playerTrans.DOLookAt(compensatedLookAt, rotationDuration).OnComplete(StartDash);
+        //Invoke(nameof(StartDash), rotationDuration);
+    }
 
-    //public override void ExecuteAbilityNoTarget(PlayerData playerData)
-    //{
-    //    base.ExecuteAbilityNoTarget(playerData);
-    //    playerMovement.DisableMovement();
-    //    Invoke(nameof(StartDashNoTarget), rotationDuration);
-    //}
-    //private void StartDashNoTarget()
-    //{
-    //    cameraController.DisableRotation();
+    public override void ExecuteAbilityNoTarget(Player player)
+    {
+        base.ExecuteAbilityNoTarget(player);
+        player.DisableMovement();
+        Invoke(nameof(StartDashNoTarget), rotationDuration);
+    }
+    private void StartDashNoTarget()
+    {
+        camController.DisableRotation();
+        target = playerTrans.position + playerTrans.forward * 10;
 
-    //    target = playerTrans.position + playerTrans.forward * 10;
+        StartDash();
+    }
+    private void StartDash()
+    {
 
-    //    StartDash();
-    //}
-    //private void StartDash()
-    //{
+        directionToTarget = target - playerTrans.position;
+        dashPos = playerTrans.position + directionToTarget - directionToTarget.normalized;
 
-    //    directionToTarget = target - playerTrans.position;
-    //    dashPos = playerTrans.position + directionToTarget - directionToTarget.normalized;
+        Vector3 compensatedLookAt = new Vector3(dashPos.x, playerTrans.position.y, dashPos.z);
+        playerTrans.DOLookAt(compensatedLookAt, dashDuration * 0.5f);
+        camController.LookAt(compensatedLookAt, dashDuration * 0.5f);
 
-    //    Vector3 compensatedLookAt = new Vector3(dashPos.x, playerTrans.position.y, dashPos.z);
-    //    playerTrans.DOLookAt(compensatedLookAt, dashDuration * 0.5f);
-    //    cameraController.LookAt(compensatedLookAt, dashDuration * 0.5f);
-
-    //    rb.velocity = new Vector3(0, rb.velocity.y, 0);
-    //    rb.DOJump(dashPos, jumpPower, 1, dashDuration).OnComplete(EndDash);
-    //}
-    //private void EndDash()
-    //{
-    //    playerMovement.EnableMovement();
-    //    cameraController.EnableRotation();
-    //}
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        rb.DOJump(dashPos, jumpPower, 1, dashDuration).OnComplete(EndDash);
+    }
+    private void EndDash()
+    {
+        player.EnableMovement();
+        camController.EnableRotation();
+    }
 
 }
