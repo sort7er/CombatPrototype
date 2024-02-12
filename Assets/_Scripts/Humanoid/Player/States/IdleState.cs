@@ -5,15 +5,32 @@ public class IdleState : ActionState
     public override void Enter(PlayerActions actions)
     {
         base.Enter(actions);
-
-        if(archetype.idle == null)
+        if (actions.isMoving)
         {
-            Debug.Log("Bruh");
+            actions.SetAnimation(archetype.walk);
         }
-
-        actions.SetAnimation(archetype.idle);
+        else
+        {
+            actions.SetAnimation(archetype.idle);
+        }
     }
 
+    public override void Moving()
+    {
+        actions.SetAnimation(archetype.walk);
+    }
+    public override void StoppedMoving()
+    {
+        actions.SetAnimation(archetype.idle);
+    }
+    public override void Jump()
+    {
+        actions.SwitchState(actions.jumpState);
+    }
+    public override void Fall()
+    {
+        actions.SwitchState(actions.fallState);
+    }
     public override void Attack()
     {
         actions.SwitchState(actions.attackState);

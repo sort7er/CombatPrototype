@@ -6,6 +6,8 @@ public class InputReader : MonoBehaviour
 {
 
     public event Action<Vector2> OnMove;
+    public event Action OnMoveStarted;
+    public event Action OnMoveStopped;
     public event Action OnJump;
     public event Action OnAttack;
     public event Action OnUnique;
@@ -15,9 +17,23 @@ public class InputReader : MonoBehaviour
     public event Action OnParry;
 
 
+    private bool moveStarted;
+
     public void Move(InputAction.CallbackContext ctx)
     {
         OnMove?.Invoke(ctx.ReadValue<Vector2>());
+        
+        if (ctx.performed && !moveStarted)
+        {
+            moveStarted = true;
+            OnMoveStarted?.Invoke();
+        }
+        else if (ctx.canceled)
+        {
+            moveStarted = false;
+            OnMoveStopped?.Invoke();
+        }
+
     }
 
     public void Jump(InputAction.CallbackContext ctx)

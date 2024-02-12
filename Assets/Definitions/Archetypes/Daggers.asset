@@ -15,6 +15,15 @@ MonoBehaviour:
   idleInput:
     animationClip: {fileID: 2306454905413886559, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+  walkInput:
+    animationClip: {fileID: -8410150932968148978, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  jumpInput:
+    animationClip: {fileID: 2465316803692908098, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  fallInput:
+    animationClip: {fileID: 4341026358616626062, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
   attacksInput:
   - animationClip: {fileID: -1609281748187839663, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}

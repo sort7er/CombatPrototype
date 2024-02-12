@@ -15,14 +15,19 @@ public class PlayerActions : MonoBehaviour
     public Weapon currentWeapon { get; private set; }
     public ActionState currentState { get; private set; }
     public Anim currentAnimation { get; private set; }
+    public bool isMoving { get; private set; }
 
     public IdleState idleState = new IdleState();
+    public JumpState jumpState = new JumpState();
+    public FallState fallState = new FallState();
     public AttackState attackState = new AttackState();
     public UniqueState uniqueState = new UniqueState();
     public BlockState blockState = new BlockState();
     public ParryState parryState = new ParryState();
 
     private InputReader inputReader;
+
+
 
     private void Awake()
     {
@@ -43,6 +48,28 @@ public class PlayerActions : MonoBehaviour
     private void Update()
     {
         currentState.Update();
+    }
+    public void Moving()
+    {
+        isMoving = true;
+        currentState.Moving();
+    }
+    public void StoppedMoving()
+    {
+        isMoving = false;
+        currentState.StoppedMoving();
+    }
+    public void Jumping()
+    {
+        currentState.Jump();
+    }
+    public void Fall()
+    {
+        currentState.Fall();
+    }
+    public void Landing()
+    {
+        currentState.Landing();
     }
     public void Attack()
     {
@@ -127,6 +154,12 @@ public class PlayerActions : MonoBehaviour
         inputReader.OnUnique += Unique;
         inputReader.OnBlock += Block;
         inputReader.OnParry += Parry;
+        inputReader.OnMoveStarted += Moving;
+        inputReader.OnMoveStopped += StoppedMoving;
+
+        player.OnJump += Jumping;
+        player.OnFalling += Fall;
+        player.OnLanding += Landing;
     }
     private void EndInput()
     {
@@ -134,6 +167,12 @@ public class PlayerActions : MonoBehaviour
         inputReader.OnUnique -= Unique;
         inputReader.OnBlock -= Block;
         inputReader.OnParry -= Parry;
+        inputReader.OnMoveStarted -= Moving;
+        inputReader.OnMoveStopped -= StoppedMoving;
+
+        player.OnJump -= Jumping;
+        player.OnFalling -= Fall;
+        player.OnLanding -= Landing;
     }
 
     #endregion

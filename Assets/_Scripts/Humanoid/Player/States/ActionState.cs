@@ -30,6 +30,26 @@ public abstract class ActionState
     {
 
     }
+    public virtual void Moving()
+    {
+
+    }
+    public virtual void StoppedMoving()
+    {
+
+    }
+    public virtual void Jump()
+    {
+
+    }
+    public virtual void Fall()
+    {
+
+    }
+    public virtual void Landing()
+    {
+
+    }
     public virtual void Attack()
     {
 

@@ -1,7 +1,13 @@
+using System;
 using UnityEngine;
 
 public class Humanoid : MonoBehaviour
 {
+
+    public event Action OnJump;
+    public event Action OnFalling;
+    public event Action OnLanding;
+
     [Header("Humanoid")]
     [SerializeField] protected float movementSpeed = 6;
     [SerializeField] protected float jumpForce = 8;
@@ -16,6 +22,10 @@ public class Humanoid : MonoBehaviour
 
     protected bool canMove;
     protected Vector3 movementDirection;
+
+
+    private bool isJumping;
+    private bool isFalling;
 
     protected virtual void Awake()
     {
@@ -34,6 +44,26 @@ public class Humanoid : MonoBehaviour
             rb.drag = 0;
         }
         SpeedControl();
+
+
+
+        //Event checks
+        if (!GroundCheck())
+        {
+            if (!isJumping && !isFalling)
+            {
+                OnFalling?.Invoke();
+            }
+            isJumping = false;
+            isFalling = true;
+        }
+        else if(isFalling && GroundCheck())
+        {
+            OnLanding?.Invoke();
+            isFalling = false;
+        }
+
+
     }
     protected virtual void FixedUpdate()
     {
@@ -66,6 +96,10 @@ public class Humanoid : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+
+            isJumping = true;
+            OnJump?.Invoke();
         }
     }
 
@@ -123,5 +157,9 @@ public class Humanoid : MonoBehaviour
     public Quaternion Rotation()
     {
         return transform.rotation;
+    }
+    public Vector3 Movement()
+    {
+        return movementDirection;
     }
 }
