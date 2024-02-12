@@ -16,6 +16,10 @@ public class SlicingWeapon : WeaponModel
 
     public List<SlicableMesh> cannotSlice { get; private set; } = new();
 
+    //public Transform cube;
+    //public Transform plane;
+
+
     public void CheckSlice(SlicableMesh mesh)
     {
         Debug.Log(name + " " + 1);
@@ -34,11 +38,16 @@ public class SlicingWeapon : WeaponModel
         float dist = Vector3.Distance(weapon.transform.position, mesh.transform.position);
 
         Vector3 forwardPoint = weapon.transform.position + weapon.transform.forward * dist;
-        Vector3 planeNormal = Vector3.Cross(endPoint.position - startPoint.position, direction * 10);
+        Vector3 planeNormal = Vector3.Cross(forwardPoint - startPoint.position, direction);
         planeNormal.Normalize();
 
+        //cube.position = forwardPoint;
+        //plane.position = forwardPoint;
+        //plane.rotation = Quaternion.LookRotation(planeNormal);
+        //plane.Rotate(90, 0, 0, Space.Self);
 
-        SlicedHull hull = mesh.gameObject.Slice(endPoint.position, planeNormal);
+
+        SlicedHull hull = mesh.gameObject.Slice(forwardPoint, planeNormal);
 
         Debug.Log(name + " " + 2);
 

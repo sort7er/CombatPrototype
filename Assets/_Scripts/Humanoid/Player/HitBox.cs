@@ -65,6 +65,7 @@ public class HitBox : MonoBehaviour
 
     private void DoDamage(Health health)
     {
+        currentWeapon.Hit();
         health.TakeDamage(currentWeapon);
     }
 }

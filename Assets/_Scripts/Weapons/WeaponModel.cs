@@ -37,5 +37,11 @@ public class WeaponModel : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
     }
+    public void Hit()
+    {
+        Vector3 planeNormal = Vector3.Cross(endPoint.position - startPoint.position, direction);
+        planeNormal.Normalize();
 
+        EffectManager.instance.Hit(endPoint.position, direction, planeNormal);
+    }
 }

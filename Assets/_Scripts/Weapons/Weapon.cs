@@ -63,7 +63,7 @@ public class Weapon : MonoBehaviour
     #region Slice related methods
     public void Slice(SlicableMesh mesh)
     {
-        if(currentAttack != null && currentAttack.hitType == HitType.slice && slicingWeapons[0] != null)
+        if(currentAttack.hitType == HitType.slice && slicingWeapons[0] != null)
         {
             sliceEnded = false;
             if (currentAttack.currentWield == Wield.right)
@@ -81,7 +81,22 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-
+    public void Hit()
+    {
+        if (currentAttack.currentWield == Wield.right)
+        {
+            weaponModel[0].Hit();
+        }
+        else if (currentAttack.currentWield == Wield.left)
+        {
+            weaponModel[1].Hit();
+        }
+        else
+        {
+            weaponModel[0].Hit();
+            weaponModel[1].Hit();
+        }
+    }
     private void SetUpSlicingWeapons()
     {
         slicingWeapons = new SlicingWeapon[weaponModel.Length];

@@ -22,6 +22,8 @@ public class EnemyHealth : Health
     public override void TakeDamage(Weapon attackingWeapon)
     {
         base.TakeDamage(attackingWeapon);
+
+
         //enemy.Hit();
 
         //Vector3 pushback = transform.position - enemy.player.Position();
