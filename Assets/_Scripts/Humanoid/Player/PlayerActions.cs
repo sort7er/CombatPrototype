@@ -107,7 +107,7 @@ public class PlayerActions : MonoBehaviour
         currentState = state;
         currentState.Enter(this);
     }
-    public void SetAnimation(Anim newAnim, float transition = 0.25f)
+    public void SetAnimation(Anim newAnim, float transition = 0.1f)
     {
         if(newAnim is Attack attack)
         {
