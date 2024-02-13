@@ -5,7 +5,11 @@ public class IdleState : ActionState
     public override void Enter(PlayerActions actions)
     {
         base.Enter(actions);
-        if (actions.isMoving)
+        if (actions.isFalling)
+        {
+            actions.SwitchState(actions.fallState);
+        }
+        else if (actions.isMoving)
         {
             actions.SetAnimation(archetype.walk);
         }

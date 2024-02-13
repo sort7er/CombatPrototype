@@ -16,6 +16,7 @@ public class PlayerActions : MonoBehaviour
     public ActionState currentState { get; private set; }
     public Anim currentAnimation { get; private set; }
     public bool isMoving { get; private set; }
+    public bool isFalling { get; private set; }
 
     public IdleState idleState = new IdleState();
     public JumpState jumpState = new JumpState();
@@ -61,14 +62,17 @@ public class PlayerActions : MonoBehaviour
     }
     public void Jumping()
     {
+        isFalling = true;
         currentState.Jump();
     }
     public void Fall()
     {
+        isFalling = true;
         currentState.Fall();
     }
     public void Landing()
     {
+        isFalling = false;
         currentState.Landing();
     }
     public void Attack()
@@ -107,7 +111,7 @@ public class PlayerActions : MonoBehaviour
         currentState = state;
         currentState.Enter(this);
     }
-    public void SetAnimation(Anim newAnim, float transition = 0.1f)
+    public void SetAnimation(Anim newAnim, float transition = 0.15f)
     {
         if(newAnim is Attack attack)
         {
