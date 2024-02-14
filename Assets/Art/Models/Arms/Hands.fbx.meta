@@ -28,7 +28,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
+    importConstraints: 1
     animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -68,10 +68,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Daggers_Attack_1
-      takeName: ArmRig|Daggers_Attack_1
+      takeName: ArmRig|Daggers_Attack_1_Baked
       internalID: -1609281748187839663
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -91,7 +91,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.31275633
+      - time: 0.21377155
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -99,7 +99,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.7061858
+      - time: 0.38892692
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -113,7 +113,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Daggers_Attack_2
-      takeName: ArmRig|Daggers_Attack_2
+      takeName: ArmRig|Daggers_Attack_2_Baked
       internalID: 2493344457160333171
       firstFrame: 0
       lastFrame: 24
@@ -136,7 +136,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.22872926
+      - time: 0.29725718
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -144,7 +144,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.622093
+      - time: 0.57640773
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -158,7 +158,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Daggers_Attack_3
-      takeName: ArmRig|Daggers_Attack_3_anim
+      takeName: ArmRig|Daggers_Attack_3_Baked
       internalID: 4117485373648690037
       firstFrame: 0
       lastFrame: 34
@@ -181,7 +181,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.1483822
+      - time: 0.2092959
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -203,10 +203,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Daggers_Attack_4
-      takeName: ArmRig|Daggers_Attack_4_anim
+      takeName: ArmRig|Daggers_Attack_4_Baked
       internalID: 4481792287802057648
       firstFrame: 0
-      lastFrame: 34
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -226,7 +226,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2145438
+      - time: 0.28814787
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -234,7 +234,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.47965118
+      - time: 0.57863593
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -248,7 +248,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Daggers_Attack_5
-      takeName: ArmRig|Daggers_Attack_5
+      takeName: ArmRig|Daggers_Attack_5_Baked
       internalID: 8429281437401963468
       firstFrame: 0
       lastFrame: 34
@@ -271,7 +271,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.17884971
+      - time: 0.3032152
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
