@@ -146,8 +146,8 @@ Material:
     - _SrcBlendAlpha: 1
     - _StartColorLerp: 0
     - _Surface: 1
-    - _UV_Color_Lerp_Z: 0
-    - _UV_Scroll_W: 0
+    - _UV_Color_Lerp_Z: 1
+    - _UV_Scroll_W: 1
     - _Width: 0.9
     - _WorkflowMode: 1
     - _ZTest: 4
