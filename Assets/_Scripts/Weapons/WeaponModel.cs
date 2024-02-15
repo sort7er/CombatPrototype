@@ -2,18 +2,16 @@ using UnityEngine;
 
 public class WeaponModel : MonoBehaviour
 {
-    protected Vector3 lastPos, newPos;
-    protected Vector3 direction;
 
-    [SerializeField] protected Transform endPoint;
-    [SerializeField] protected Transform startPoint;
+    [Header("References")]
+    [SerializeField] protected Weapon weapon;
 
-    protected virtual void Update()
-    {
-        newPos = endPoint.position;
-        direction = newPos - lastPos;
-        lastPos = endPoint.position;
-    }
+    //[SerializeField] protected Transform endPoint;
+    //[SerializeField] protected Transform startPoint;
+
+    protected Vector3 startPos;
+
+    //public Transform arrow;
 
     public Vector3 Position()
     {
@@ -21,13 +19,17 @@ public class WeaponModel : MonoBehaviour
     }
     public Vector3 Direction()
     {
-        return direction;
+        return transform.position - startPos;
     }
     public Vector3 UpDir()
     {
         return transform.up;
     }
-    public virtual void SwingDone()
+    public void SetAttackStartPoint()
+    {
+        startPos = transform.position;
+    }
+    public virtual void AttackDone()
     {
 
     }
@@ -37,11 +39,14 @@ public class WeaponModel : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
     }
-    public void Hit()
+    public void Hit(Vector3 hitPoint)
     {
-        Vector3 planeNormal = Vector3.Cross(endPoint.position - startPoint.position, direction);
+        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, Direction());
         planeNormal.Normalize();
 
-        EffectManager.instance.Hit(endPoint.position, direction, planeNormal);
+        //arrow.position = transform.position;
+        //arrow.rotation = Quaternion.LookRotation(Direction());
+
+        EffectManager.instance.Hit(hitPoint, Direction(), planeNormal);
     }
 }

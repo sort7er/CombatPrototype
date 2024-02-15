@@ -111,21 +111,20 @@ public class PlayerActions : MonoBehaviour
         currentState = state;
         currentState.Enter(this);
     }
-    public void SetAnimation(Anim newAnim, float transition = 0.15f)
+    public void SetAnimation(Anim newAnim, float transition = 0.25f)
     {
         if(newAnim is Attack attack)
         {
-            currentWeapon.SetAttack(attack);
+            currentWeapon.Attack(attack);
         }
         else
         {
-            currentWeapon.SetAttack(null);
+            currentWeapon.Attack(null);
         }
 
         currentAnimation = newAnim;
         armAnimator.CrossFadeInFixedTime(currentAnimation.state, transition);
     }
-
     #region Invoking
     public void InvokeMethod(Action function, float waitTime)
     {
@@ -146,7 +145,11 @@ public class PlayerActions : MonoBehaviour
     public void SetNewWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
-        currentWeapon.SetOwner(player, weaponPos);
+        currentWeapon.SetOwner(player, player.cameraController.playerCam, weaponPos);
+    }
+    public void SetAttackStartPoint()
+    {
+        currentWeapon.SetAttackStartPoint();
     }
 
     #region Redirects

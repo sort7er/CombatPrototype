@@ -39,24 +39,34 @@ public class Weapon : MonoBehaviour
     }
 
     //Set from player actions
-    public void SetOwner(Humanoid owner, Transform[] parents)
+    public void SetOwner(Humanoid owner, Transform weaponParent, Transform[] modelParents)
     {
         this.owner = owner;
+        transform.parent = weaponParent;
+        transform.localRotation= Quaternion.identity;
+        transform.localPosition= Vector3.zero;
 
         for (int i = 0; i < weaponModel.Length; i++)
         {
-            weaponModel[i].SetParent(parents[i]);
+            weaponModel[i].SetParent(modelParents[i]);
         }
     }
-    public void SetAttack(Attack newAttack)
+    public void Attack(Attack newAttack)
     {
         currentAttack = newAttack;
+    }
+    public void SetAttackStartPoint()
+    {
+        for (int i = 0; i < slicingWeapons.Length; i++)
+        {
+            weaponModel[i].SetAttackStartPoint();
+        }
     }
     public void AttackDone()
     {
         for (int i = 0; i < slicingWeapons.Length; i++)
         {
-            weaponModel[i].SwingDone();
+            weaponModel[i].AttackDone();
         }
     }
 
@@ -81,20 +91,20 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-    public void Hit()
+    public void Hit(Vector3 hitPoint)
     {
         if (currentAttack.currentWield == Wield.right)
         {
-            weaponModel[0].Hit();
+            weaponModel[0].Hit(hitPoint);
         }
         else if (currentAttack.currentWield == Wield.left)
         {
-            weaponModel[1].Hit();
+            weaponModel[1].Hit(hitPoint);
         }
         else
         {
-            weaponModel[0].Hit();
-            weaponModel[1].Hit();
+            weaponModel[0].Hit(hitPoint);
+            weaponModel[1].Hit(hitPoint);
         }
     }
     private void SetUpSlicingWeapons()

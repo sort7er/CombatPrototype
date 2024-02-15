@@ -11,18 +11,14 @@ public class SlicingWeapon : WeaponModel
     [Header("Values")]
     [SerializeField] private float cutForce = 2000f;
 
-    [Header("References")]
-    [SerializeField] private Weapon weapon;
-
     public List<SlicableMesh> cannotSlice { get; private set; } = new();
 
-    //public Transform cube;
+
     //public Transform plane;
 
 
     public void CheckSlice(SlicableMesh mesh)
     {
-        Debug.Log(name + " " + 1);
         if (!cannotSlice.Contains(mesh))
         {
             //Slice object if not to small
@@ -35,26 +31,21 @@ public class SlicingWeapon : WeaponModel
 
     public void Slice(SlicableMesh mesh)
     {
-        float dist = Vector3.Distance(weapon.transform.position, mesh.transform.position);
-
-        Vector3 forwardPoint = weapon.transform.position + weapon.transform.forward * dist;
-        Vector3 planeNormal = Vector3.Cross(forwardPoint - startPoint.position, direction);
+        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, Direction());
         planeNormal.Normalize();
 
-        //cube.position = forwardPoint;
-        //plane.position = forwardPoint;
+
+        //plane.position = weapon.transform.position;
         //plane.rotation = Quaternion.LookRotation(planeNormal);
         //plane.Rotate(90, 0, 0, Space.Self);
 
 
-        SlicedHull hull = mesh.gameObject.Slice(forwardPoint, planeNormal);
+        SlicedHull hull = mesh.gameObject.Slice(transform.position, planeNormal);
 
-        Debug.Log(name + " " + 2);
 
         if (hull != null)
         {
 
-            Debug.Log(name + " " + 3);
             GameObject upperHull = hull.CreateUpperHull(mesh.gameObject, mesh.meshRenderer.material);
             upperHull.transform.position = mesh.transform.position;
             upperHull.transform.rotation = mesh.transform.rotation;
@@ -77,7 +68,7 @@ public class SlicingWeapon : WeaponModel
     {
         OnSliceDone?.Invoke(slicable, slicable2);
     }
-    public override void SwingDone()
+    public override void AttackDone()
     {
         cannotSlice.Clear();
     }

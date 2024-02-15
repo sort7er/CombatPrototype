@@ -6,10 +6,10 @@ public class UniqueDaggers : UniqueAbility
 {
 
     [Header("Rotation")]
-    private float rotationDuration = 0.3f;
+    private float rotationDuration = 0.45f;
 
     [Header("Dash")]
-    private float dashDuration = 0.5f;
+    private float dashDuration = 0.35f;
     private float jumpPower = 2;
 
     private Vector3 directionToTarget;

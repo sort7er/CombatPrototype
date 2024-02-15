@@ -54,7 +54,7 @@ public class HitBox : MonoBehaviour
         {
             if(health != owner.health)
             {
-                DoDamage(health);
+                DoDamage(health, hit.ClosestPointOnBounds(currentWeapon.transform.position));
             }
         }
         else if (hit.TryGetComponent(out SlicableMesh mesh))
@@ -63,9 +63,9 @@ public class HitBox : MonoBehaviour
         }
     }
 
-    private void DoDamage(Health health)
+    private void DoDamage(Health health, Vector3 hitPoint)
     {
-        currentWeapon.Hit();
+        currentWeapon.Hit(hitPoint);
         health.TakeDamage(currentWeapon);
     }
 }
