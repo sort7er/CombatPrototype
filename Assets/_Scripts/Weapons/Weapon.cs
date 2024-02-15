@@ -113,6 +113,7 @@ public class Weapon : MonoBehaviour
         slicingWeapons[0].OnSliceDone -= DelayedSlice;
         if (!sliceEnded)
         {
+            Debug.Log(1);
             slicingWeapons[1].CheckSlice(mesh1);
             slicingWeapons[1].CheckSlice(mesh2);
             sliceEnded = true;
