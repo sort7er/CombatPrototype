@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Daggers_Idle
+      name: ArmRig|Daggers_Idle
       takeName: ArmRig|Daggers_Idle
       internalID: 2306454905413886559
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 75
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -67,8 +67,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Attack_1
-      takeName: ArmRig|Daggers_Attack_1_Baked
+      name: ArmRig|Daggers_Attack_1
+      takeName: ArmRig|Daggers_Attack_1
       internalID: -1609281748187839663
       firstFrame: 0
       lastFrame: 34
@@ -112,8 +112,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Attack_2
-      takeName: ArmRig|Daggers_Attack_2_Baked
+      name: ArmRig|Daggers_Attack_2
+      takeName: ArmRig|Daggers_Attack_2
       internalID: 2493344457160333171
       firstFrame: 0
       lastFrame: 24
@@ -157,8 +157,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Attack_3
-      takeName: ArmRig|Daggers_Attack_3_Baked
+      name: ArmRig|Daggers_Attack_3
+      takeName: ArmRig|Daggers_Attack_3
       internalID: 4117485373648690037
       firstFrame: 0
       lastFrame: 34
@@ -202,8 +202,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Attack_4
-      takeName: ArmRig|Daggers_Attack_4_Baked
+      name: ArmRig|Daggers_Attack_4
+      takeName: ArmRig|Daggers_Attack_4
       internalID: 4481792287802057648
       firstFrame: 0
       lastFrame: 24
@@ -247,11 +247,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Attack_5
-      takeName: ArmRig|Daggers_Attack_5_Baked
+      name: ArmRig|Daggers_Attack_5
+      takeName: ArmRig|Daggers_Attack_5
       internalID: 8429281437401963468
       firstFrame: 0
-      lastFrame: 34
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -292,7 +292,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Block
+      name: ArmRig|Daggers_Block
       takeName: ArmRig|Daggers_Block
       internalID: -1396277398176110326
       firstFrame: 0
@@ -321,7 +321,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Block_Loop
+      name: ArmRig|Daggers_Block_Loop
       takeName: ArmRig|Daggers_Block_Loop
       internalID: 3449095517409400104
       firstFrame: 0
@@ -350,7 +350,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Unique
+      name: ArmRig|Daggers_Unique
       takeName: ArmRig|Daggers_Unique
       internalID: 1990068141299859498
       firstFrame: 0
@@ -395,7 +395,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Parry_Left
+      name: ArmRig|Daggers_Parry_Left
       takeName: ArmRig|Daggers_Parry_Left
       internalID: 207380724844958318
       firstFrame: 0
@@ -440,7 +440,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Parry_Right
+      name: ArmRig|Daggers_Parry_Right
       takeName: ArmRig|Daggers_Parry_Right
       internalID: 997996178180188622
       firstFrame: 0
@@ -485,11 +485,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Walk_Loop
+      name: ArmRig|Daggers_Walk
       takeName: ArmRig|Daggers_Walk
       internalID: -8410150932968148978
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -514,7 +514,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Jump
+      name: ArmRig|Daggers_Jump
       takeName: ArmRig|Daggers_Jump
       internalID: 2465316803692908098
       firstFrame: 0
@@ -543,7 +543,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daggers_Falling_Loop
+      name: ArmRig|Daggers_Falling
       takeName: ArmRig|Daggers_Falling
       internalID: 4341026358616626062
       firstFrame: 0
