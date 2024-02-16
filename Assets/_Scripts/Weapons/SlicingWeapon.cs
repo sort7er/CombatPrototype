@@ -16,7 +16,6 @@ public class SlicingWeapon : WeaponModel
 
     //public Transform plane;
 
-
     public void CheckSlice(SlicableMesh mesh)
     {
         if (!cannotSlice.Contains(mesh))
@@ -31,7 +30,7 @@ public class SlicingWeapon : WeaponModel
 
     public void Slice(SlicableMesh mesh)
     {
-        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, Direction());
+        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
         planeNormal.Normalize();
 
 
@@ -70,6 +69,7 @@ public class SlicingWeapon : WeaponModel
     }
     public override void AttackDone()
     {
+        base.AttackDone();
         cannotSlice.Clear();
     }
     public float VolumeOfMesh(Mesh mesh)

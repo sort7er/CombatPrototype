@@ -37,7 +37,7 @@ public class Archetype: ScriptableObject
 
     public void SetUpAttack(ref Attack attacksToSetUp, AttackInput inputs)
     {
-        attacksToSetUp = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType);
+        attacksToSetUp = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType, inputs.attackCoords);
     }
 
     public void SetUpAttacks(ref Attack[] attacksToSetUp, AttackInput[] inputs)

@@ -21,10 +21,12 @@ public class Attack : Anim
 {
     public Wield currentWield;
     public HitType hitType;
+    public AttackCoord[] attackCoords;
 
-    public Attack(AnimationClip clip, Wield wield, HitType hitType) : base(clip)
+    public Attack(AnimationClip clip, Wield wield, HitType hitType, AttackCoord[] attackCoords) : base(clip)
     {
         this.currentWield = wield;
         this.hitType = hitType;
+        this.attackCoords = attackCoords;
     }
 }

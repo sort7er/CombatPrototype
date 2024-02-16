@@ -16,12 +16,19 @@ public class EffectManager : MonoBehaviour
     [Header("Parry effect")]
     public ParticleSystem parryEffect;
 
+    [Header("Slice effect")]
+    public int sPoolSize = 10;
+    public ParticleSystem slashEffect;
+
 
     private ParticleSystem[] hit;
     private int currentHit;
 
     private ParticleSystem[] anticipation;
     private int currentAnticipation;
+
+    private ParticleSystem[] slash;
+    private int currentSlash;
 
     private ParticleSystem parry;
 
@@ -34,6 +41,7 @@ public class EffectManager : MonoBehaviour
     private void Start()
     {
         SetUpHitEffect();
+        SetUpSlashEffect();
         SetUpAnticipationEffect();
         SetUpParryEffect();
     }
@@ -47,6 +55,19 @@ public class EffectManager : MonoBehaviour
         {
             hit[i] = Instantiate(hitEffect, ParentManager.instance.effects);
             hit[i].gameObject.SetActive(false);
+        }
+    }
+    private void SetUpSlashEffect()
+    {
+        slash = new ParticleSystem[sPoolSize];
+        currentSlash = 0;
+        Debug.Log(1);
+
+        for (int i = 0; i < sPoolSize; i++)
+        {
+            Debug.Log(2);
+            slash[i] = Instantiate(slashEffect, ParentManager.instance.effects);
+            slash[i].gameObject.SetActive(false);
         }
     }
     private void SetUpAnticipationEffect()
@@ -85,6 +106,28 @@ public class EffectManager : MonoBehaviour
         else
         {
             currentHit = 0;
+        }
+
+    }
+    public void Slash(Vector3 position, Vector3 direction, Vector3 upDirection)
+    {
+        ParticleSystem effect = slash[currentSlash];
+
+        effect.gameObject.SetActive(true);
+
+        effect.transform.position = position;
+        effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
+
+        StartCoroutine(ResetEffect(effect));
+
+
+        if (currentSlash < sPoolSize - 1)
+        {
+            currentSlash++;
+        }
+        else
+        {
+            currentSlash = 0;
         }
 
     }

@@ -119,7 +119,7 @@ public class PlayerActions : MonoBehaviour
         }
         else
         {
-            currentWeapon.Attack(null);
+            currentWeapon.NoAttack();
         }
 
         currentAnimation = newAnim;
@@ -146,10 +146,6 @@ public class PlayerActions : MonoBehaviour
     {
         currentWeapon = weapon;
         currentWeapon.SetOwner(player, player.cameraController.playerCam, weaponPos);
-    }
-    public void SetAttackStartPoint()
-    {
-        currentWeapon.SetAttackStartPoint();
     }
 
     #region Redirects

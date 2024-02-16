@@ -1,5 +1,7 @@
 using UnityEngine;
 using Attacks;
+using System;
+using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour
 {
@@ -21,8 +23,10 @@ public class Weapon : MonoBehaviour
     private Attack closeAbility;
     private Attack throwAbility;
 
+    private List<WeaponModel> weaponModelList = new();
     private SlicingWeapon[] slicingWeapons;
     private bool sliceEnded;
+
 
 
     private void Awake()
@@ -35,7 +39,7 @@ public class Weapon : MonoBehaviour
     }
     public void SetUpAttack(ref Attack attacksToSetUp, AttackInput inputs)
     {
-        attacksToSetUp = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType);
+        attacksToSetUp = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType, inputs.attackCoords);
     }
 
     //Set from player actions
@@ -51,20 +55,22 @@ public class Weapon : MonoBehaviour
             weaponModel[i].SetParent(modelParents[i]);
         }
     }
+    public void NoAttack()
+    {
+        currentAttack = null;
+    }
     public void Attack(Attack newAttack)
     {
         currentAttack = newAttack;
-    }
-    public void SetAttackStartPoint()
-    {
-        for (int i = 0; i < slicingWeapons.Length; i++)
+        SetCurrentWeaponModels();
+        for (int i = 0; i < weaponModelList.Count; i++)
         {
-            weaponModel[i].SetAttackStartPoint();
+            weaponModelList[i].Attack(currentAttack.attackCoords[i]);
         }
     }
     public void AttackDone()
     {
-        for (int i = 0; i < slicingWeapons.Length; i++)
+        for (int i = 0; i < weaponModel.Length; i++)
         {
             weaponModel[i].AttackDone();
         }
@@ -93,18 +99,11 @@ public class Weapon : MonoBehaviour
     }
     public void Hit(Vector3 hitPoint)
     {
-        if (currentAttack.currentWield == Wield.right)
+        SetCurrentWeaponModels();
+
+        for (int i = 0; i < weaponModelList.Count; i++)
         {
-            weaponModel[0].Hit(hitPoint);
-        }
-        else if (currentAttack.currentWield == Wield.left)
-        {
-            weaponModel[1].Hit(hitPoint);
-        }
-        else
-        {
-            weaponModel[0].Hit(hitPoint);
-            weaponModel[1].Hit(hitPoint);
+            weaponModelList[i].Hit(hitPoint);
         }
     }
     private void SetUpSlicingWeapons()
@@ -123,11 +122,31 @@ public class Weapon : MonoBehaviour
         slicingWeapons[0].OnSliceDone -= DelayedSlice;
         if (!sliceEnded)
         {
-            Debug.Log(1);
             slicingWeapons[1].CheckSlice(mesh1);
             slicingWeapons[1].CheckSlice(mesh2);
             sliceEnded = true;
         }
     }
     #endregion
+
+
+
+    private void SetCurrentWeaponModels()
+    {
+        weaponModelList.Clear();
+
+        if (currentAttack.currentWield == Wield.right)
+        {
+            weaponModelList.Add(weaponModel[0]);
+        }
+        else if (currentAttack.currentWield == Wield.left)
+        {
+            weaponModelList.Add(weaponModel[1]);
+        }
+        else
+        {
+            weaponModelList.Add(weaponModel[0]);
+            weaponModelList.Add(weaponModel[1]);
+        }
+    }
 }

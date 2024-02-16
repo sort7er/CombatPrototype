@@ -6,29 +6,35 @@ public class WeaponModel : MonoBehaviour
     [Header("References")]
     [SerializeField] protected Weapon weapon;
 
+    public Transform arrow;
     //[SerializeField] protected Transform endPoint;
     //[SerializeField] protected Transform startPoint;
 
-    protected Vector3 startPos;
-
-    //public Transform arrow;
+    protected AttackCoord attackCoord;
 
     public Vector3 Position()
     {
         return transform.position;
     }
-    public Vector3 Direction()
-    {
-        return transform.position - startPos;
-    }
+    //public Vector3 Direction()
+    //{
+    //    return transform.position - startPos;
+    //}
     public Vector3 UpDir()
     {
         return transform.up;
     }
-    public void SetAttackStartPoint()
+
+    public void Attack(AttackCoord attackCoord)
     {
-        startPos = transform.position;
+        this.attackCoord = attackCoord;
+
+        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
+        planeNormal.Normalize();
+
+        EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal);
     }
+
     public virtual void AttackDone()
     {
 
@@ -41,12 +47,12 @@ public class WeaponModel : MonoBehaviour
     }
     public void Hit(Vector3 hitPoint)
     {
-        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, Direction());
+        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
         planeNormal.Normalize();
 
-        //arrow.position = transform.position;
-        //arrow.rotation = Quaternion.LookRotation(Direction());
+        arrow.position = transform.position;
+        arrow.rotation = Quaternion.LookRotation(attackCoord.Direction(weapon.transform));
 
-        EffectManager.instance.Hit(hitPoint, Direction(), planeNormal);
+        EffectManager.instance.Hit(hitPoint, attackCoord.Direction(weapon.transform), planeNormal);
     }
 }

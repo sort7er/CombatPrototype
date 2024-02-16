@@ -12,8 +12,4 @@ public class ArmRedirect : MonoBehaviour
     {
         player.playerActions.ActionDone();
     }
-    public void SetAttackStartPoint()
-    {
-        player.playerActions.SetAttackStartPoint();
-    }
 }
