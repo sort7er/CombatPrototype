@@ -6,9 +6,7 @@ public class WeaponModel : MonoBehaviour
     [Header("References")]
     [SerializeField] protected Weapon weapon;
 
-    public Transform arrow;
-    //[SerializeField] protected Transform endPoint;
-    //[SerializeField] protected Transform startPoint;
+    //public Transform arrow;
 
     protected AttackCoord attackCoord;
 
@@ -16,23 +14,15 @@ public class WeaponModel : MonoBehaviour
     {
         return transform.position;
     }
-    //public Vector3 Direction()
-    //{
-    //    return transform.position - startPos;
-    //}
+
     public Vector3 UpDir()
     {
         return transform.up;
     }
 
-    public void Attack(AttackCoord attackCoord)
+    public virtual void Attack(AttackCoord attackCoord)
     {
         this.attackCoord = attackCoord;
-
-        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
-        planeNormal.Normalize();
-
-        EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal);
     }
 
     public virtual void AttackDone()
@@ -50,8 +40,8 @@ public class WeaponModel : MonoBehaviour
         Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
         planeNormal.Normalize();
 
-        arrow.position = transform.position;
-        arrow.rotation = Quaternion.LookRotation(attackCoord.Direction(weapon.transform));
+        //arrow.position = transform.position;
+        //arrow.rotation = Quaternion.LookRotation(attackCoord.Direction(weapon.transform));
 
         EffectManager.instance.Hit(hitPoint, attackCoord.Direction(weapon.transform), planeNormal);
     }
