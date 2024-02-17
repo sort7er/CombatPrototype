@@ -61,11 +61,9 @@ public class EffectManager : MonoBehaviour
     {
         slash = new ParticleSystem[sPoolSize];
         currentSlash = 0;
-        Debug.Log(1);
 
         for (int i = 0; i < sPoolSize; i++)
         {
-            Debug.Log(2);
             slash[i] = Instantiate(slashEffect, ParentManager.instance.effects);
             slash[i].gameObject.SetActive(false);
         }

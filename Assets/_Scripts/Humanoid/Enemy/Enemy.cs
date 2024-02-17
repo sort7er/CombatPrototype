@@ -27,6 +27,9 @@ public class Enemy : Humanoid
         base.Awake();
         FindReferences();
 
+        //For now, no navmeshagent
+        agent.enabled = false;
+
     }
 
     public void Takedown()

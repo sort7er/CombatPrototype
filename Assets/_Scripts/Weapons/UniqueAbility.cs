@@ -13,16 +13,19 @@ public abstract class UniqueAbility: MonoBehaviour
     protected Rigidbody rb;
     protected Transform playerTrans;
     protected CameraController camController;
+    protected List<Enemy> enemies;
 
     public virtual void ExecuteAbility(Player player, List<Enemy> enemies)
     {
         SetPlayer(player);
+        SetEnemies(enemies);
     }
     public virtual void ExecuteAbilityNoTarget(Player player)
     {
         SetPlayer(player);
+        NoEnemies();
     }
-    public void SetPlayer(Player player)
+    private void SetPlayer(Player player)
     {
         if (this.player == null)
         {
@@ -30,6 +33,17 @@ public abstract class UniqueAbility: MonoBehaviour
             playerTrans = player.transform;
             camController = player.cameraController;
             rb = player.rb;
+        }
+    }
+    private void SetEnemies(List<Enemy> enemies)
+    {
+        this.enemies = enemies;
+    }
+    private void NoEnemies()
+    {
+        if(enemies != null)
+        {
+            enemies.Clear();
         }
     }
 }

@@ -23,7 +23,7 @@ public class UniqueDaggers : UniqueAbility
         base.ExecuteAbility(player, enemies);
         target = enemies[0].transform.position;
         player.DisableMovement();
-        player.cameraController.DisableRotation();
+        camController.DisableRotation();
 
         Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
         enemies[0].Takedown();

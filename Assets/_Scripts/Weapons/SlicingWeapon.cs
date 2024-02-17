@@ -67,15 +67,6 @@ public class SlicingWeapon : WeaponModel
     {
         OnSliceDone?.Invoke(slicable, slicable2);
     }
-    public override void Attack(AttackCoord attackCoord)
-    {
-        base.Attack(attackCoord);
-
-        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
-        planeNormal.Normalize();
-
-        EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal);
-    }
     public override void AttackDone()
     {
         base.AttackDone();

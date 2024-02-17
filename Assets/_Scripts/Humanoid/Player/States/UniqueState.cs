@@ -1,3 +1,4 @@
+using Actions;
 using System.Collections.Generic;
 
 public class UniqueState : ActionState
@@ -22,15 +23,71 @@ public class UniqueState : ActionState
 
         actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
 
+        actionDone = false;
+        canChain = false;
+
+
     }
 
+    public override void Attack()
+    {
+        if (actionDone)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.attackState);
+        }
+        else if (canChain && CheckUpcommingAction())
+        {
+            SetUpcommingAction(QueuedAction.Attack);
+        }
 
-private void EndAttack()
-{
-    actions.SwitchState(actions.idleState);
-}
+    }
+    public override void Block()
+    {
+        if (actionDone)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.blockState);
+        }
+        else if (canChain && CheckUpcommingAction())
+        {
+            SetUpcommingAction(QueuedAction.Block);
+        }
+    }
 
-private void ClearList()
+    public override void Parry()
+    {
+        if (upcommingAction == QueuedAction.Block)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.parryState);
+        }
+    }
+
+    public override void ActionDone()
+    {
+        if (upcommingAction == QueuedAction.Attack)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.attackState);
+        }
+        else if (upcommingAction == QueuedAction.Block)
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.blockState);
+        }
+        else
+        {
+            actionDone = true;
+        }
+    }
+
+    private void EndAttack()
+    {
+        actions.SwitchState(actions.idleState);
+    }
+
+    private void ClearList()
     {
         if(enemyList == null)
         {

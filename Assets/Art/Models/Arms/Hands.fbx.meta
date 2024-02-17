@@ -641,7 +641,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.30520645
+      - time: 0.3440414
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -649,7 +649,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6086176
+      - time: 0.65473413
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -686,7 +686,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.32136443
+      - time: 0.27039355
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -694,7 +694,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6355476
+      - time: 0.5821495
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -731,7 +731,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2118492
+      - time: 0.41330552
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -739,7 +739,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.50358796
+      - time: 0.5812579
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -784,7 +784,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6301616
+      - time: 0.7054043
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -830,7 +830,7 @@ ModelImporter:
       takeName: ArmRig|Gloves_Block_Loop
       internalID: 4501184616081594559
       firstFrame: 0
-      lastFrame: 121
+      lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -888,7 +888,7 @@ ModelImporter:
       takeName: ArmRig|Gloves_Idle
       internalID: -3961488324379683476
       firstFrame: 0
-      lastFrame: 116
+      lastFrame: 75
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1036,7 +1036,7 @@ ModelImporter:
       takeName: ArmRig|Gloves_Walk
       internalID: -8157842818033780542
       firstFrame: 0
-      lastFrame: 36
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1093,7 +1093,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.73587954
+      - time: 0.51500577
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,

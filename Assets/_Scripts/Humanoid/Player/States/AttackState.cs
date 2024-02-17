@@ -67,7 +67,7 @@ public class AttackState : ActionState
         actionDone = false;
         canChain= false;
         SetUpcommingAction(QueuedAction.None);
-        actions.SetAnimation(archetype.attacks[currentAttack], 0.15f);
+        actions.SetAnimation(archetype.attacks[currentAttack], 0.05f);
         actions.StopMethod();
         actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
         UpdateAttack();

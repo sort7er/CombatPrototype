@@ -64,7 +64,7 @@ MonoBehaviour:
     animationClip: {fileID: 4524404297480415025, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
-    hitType: 0
+    hitType: 2
     attackCoords:
     - localStartPos: {x: 0, y: 0, z: 0}
       localEndPos: {x: 0, y: 0, z: 0}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Attacks;
 
 public class WeaponModel : MonoBehaviour
 {
@@ -23,6 +24,14 @@ public class WeaponModel : MonoBehaviour
     public virtual void Attack(AttackCoord attackCoord)
     {
         this.attackCoord = attackCoord;
+
+        if(weapon.currentAttack.hitType == HitType.slice)
+        {
+            Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
+            planeNormal.Normalize();
+
+            EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal);
+        }
     }
 
     public virtual void AttackDone()
