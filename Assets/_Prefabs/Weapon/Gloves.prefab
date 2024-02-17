@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50f46bc26a1039429c165cedadde1c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 9219312111224446930}
 --- !u!1 &3306098966854555193
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1454110145051335912
 Transform:
   m_ObjectHideFlags: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50f46bc26a1039429c165cedadde1c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 9219312111224446930}
 --- !u!1 &7441193771184867466
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &66891552765440404
 Transform:
   m_ObjectHideFlags: 0
@@ -724,6 +724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca782b5e56895e40a777cee10567dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 2
   idealDotProduct: 0.85
   acceptedDotProduct: 0.75
