@@ -3790,27 +3790,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 243690824}
     m_Modifications:
-    - target: {fileID: 558316155458603694, guid: a96920a7ca4595e41b769bdd0433259d,
-        type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 4991069345542488326}
-    - target: {fileID: 3260961233195471168, guid: a96920a7ca4595e41b769bdd0433259d,
-        type: 3}
-      propertyPath: range
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306098966854555193, guid: a96920a7ca4595e41b769bdd0433259d,
+    - target: {fileID: 1817065193163431976, guid: a96920a7ca4595e41b769bdd0433259d,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5922704958408187636, guid: a96920a7ca4595e41b769bdd0433259d,
-        type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 4991069345542488326}
-    - target: {fileID: 8290355101384928556, guid: a96920a7ca4595e41b769bdd0433259d,
+    - target: {fileID: 5666398396389686449, guid: a96920a7ca4595e41b769bdd0433259d,
         type: 3}
       propertyPath: m_IsActive
       value: 0

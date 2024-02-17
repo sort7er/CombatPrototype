@@ -25,6 +25,7 @@ public class UniqueState : ActionState
 
         actionDone = false;
         canChain = false;
+        SetUpcommingAction(QueuedAction.None);
 
 
     }
