@@ -1,3 +1,4 @@
+using Attacks;
 using System;
 using UnityEngine;
 
@@ -6,6 +7,12 @@ public class AttackCoord
 {
     public Vector3 localStartPos;
     public Vector3 localEndPos;
+
+    public AttackCoord(Vector3 start, Vector3 end)
+    {
+        localStartPos = start;
+        localEndPos= end;
+    }
 
     public Vector3 Direction(Transform relation)
     {

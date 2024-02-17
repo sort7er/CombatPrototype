@@ -25,7 +25,7 @@ public class Attack : Anim
 
     public Attack(AnimationClip clip, Wield wield, HitType hitType, AttackCoord[] attackCoords) : base(clip)
     {
-        this.currentWield = wield;
+        currentWield = wield;
         this.hitType = hitType;
         this.attackCoords = attackCoords;
     }

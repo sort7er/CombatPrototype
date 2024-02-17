@@ -1,3 +1,4 @@
+using Attacks;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Archetype", menuName = "Archetype")]
@@ -35,9 +36,21 @@ public class Archetype: ScriptableObject
         SetUpAttack(ref block, blockInput);
     }
 
-    public void SetUpAttack(ref Attack attacksToSetUp, AttackInput inputs)
+    public void SetUpAttack(ref Attack attack, AttackInput inputs)
     {
-        attacksToSetUp = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType, inputs.attackCoords);
+        if (inputs.attackCoords.Length <= 1 && inputs.activeWield == Wield.both)
+        {
+            inputs.attackCoords = new AttackCoord[2];
+            inputs.attackCoords[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+            inputs.attackCoords[1] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+        else if(inputs.attackCoords.Length == 0)
+        {
+            inputs.attackCoords = new AttackCoord[1];
+            inputs.attackCoords[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+
+        attack = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType, inputs.attackCoords);
     }
 
     public void SetUpAttacks(ref Attack[] attacksToSetUp, AttackInput[] inputs)

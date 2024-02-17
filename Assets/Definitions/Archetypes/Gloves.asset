@@ -61,7 +61,7 @@ MonoBehaviour:
     - localStartPos: {x: 0, y: 0, z: 0}
       localEndPos: {x: 0, y: 0, z: 0}
   uniqueInput:
-    animationClip: {fileID: 1990068141299859498, guid: 42b20035dabf19349a042a4a1009b198,
+    animationClip: {fileID: 4524404297480415025, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 0
@@ -74,6 +74,8 @@ MonoBehaviour:
     activeWield: 2
     hitType: 0
     attackCoords:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
     - localStartPos: {x: 0, y: 0, z: 0}
       localEndPos: {x: 0, y: 0, z: 0}
   parryInput:
