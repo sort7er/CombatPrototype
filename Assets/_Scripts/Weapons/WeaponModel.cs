@@ -24,19 +24,33 @@ public class WeaponModel : MonoBehaviour
     public virtual void Attack(AttackCoord attackCoord)
     {
         this.attackCoord = attackCoord;
+    }
+    public void Effect()
+    {
+        //Transform par = transform.parent;
+        //transform.parent = weapon.transform;
+        //Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", Start: " + transform.localPosition);
+        //transform.parent = par;
 
-        if(weapon.currentAttack.hitType == HitType.slice)
+        if (weapon.currentAttack.hitType == HitType.slice)
         {
             Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
             planeNormal.Normalize();
 
-            EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal);
+            EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal, weapon.transform);
+        }
+        else
+        {
+            EffectManager.instance.Thrust(attackCoord.EndPos(weapon.transform), attackCoord.Direction(weapon.transform), weapon.transform.up, weapon.transform);
         }
     }
 
     public virtual void AttackDone()
     {
-
+        //Transform par = transform.parent;
+        //transform.parent = weapon.transform;
+        //Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", End: " + transform.localPosition);
+        //transform.parent = par;
     }
     public void SetParent(Transform parent)
     {

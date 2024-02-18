@@ -20,6 +20,9 @@ public class EffectManager : MonoBehaviour
     public int sPoolSize = 10;
     public ParticleSystem slashEffect;
 
+    [Header("Slice effect")]
+    public int tPoolSize = 10;
+    public ParticleSystem thrustEffect;
 
     private ParticleSystem[] hit;
     private int currentHit;
@@ -29,6 +32,9 @@ public class EffectManager : MonoBehaviour
 
     private ParticleSystem[] slash;
     private int currentSlash;
+
+    private ParticleSystem[] thrust;
+    private int currentThrust;
 
     private ParticleSystem parry;
 
@@ -44,6 +50,7 @@ public class EffectManager : MonoBehaviour
         SetUpSlashEffect();
         SetUpAnticipationEffect();
         SetUpParryEffect();
+        SetUpThrustEffect();
     }
 
     private void SetUpHitEffect()
@@ -66,6 +73,17 @@ public class EffectManager : MonoBehaviour
         {
             slash[i] = Instantiate(slashEffect, ParentManager.instance.effects);
             slash[i].gameObject.SetActive(false);
+        }
+    }
+    private void SetUpThrustEffect()
+    {
+        thrust = new ParticleSystem[tPoolSize];
+        currentThrust = 0;
+
+        for (int i = 0; i < tPoolSize; i++)
+        {
+            thrust[i] = Instantiate(thrustEffect, ParentManager.instance.effects);
+            thrust[i].gameObject.SetActive(false);
         }
     }
     private void SetUpAnticipationEffect()
@@ -107,11 +125,13 @@ public class EffectManager : MonoBehaviour
         }
 
     }
-    public void Slash(Vector3 position, Vector3 direction, Vector3 upDirection)
+    public void Slash(Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent)
     {
         ParticleSystem effect = slash[currentSlash];
 
         effect.gameObject.SetActive(true);
+
+        effect.transform.parent = parent;
 
         effect.transform.position = position;
         effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
@@ -126,6 +146,30 @@ public class EffectManager : MonoBehaviour
         else
         {
             currentSlash = 0;
+        }
+
+    }
+    public void Thrust(Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent)
+    {
+        ParticleSystem effect = thrust[currentThrust];
+
+        effect.gameObject.SetActive(true);
+
+        effect.transform.parent = parent;
+
+        effect.transform.position = position;
+        effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
+
+        StartCoroutine(ResetEffect(effect));
+
+
+        if (currentThrust < tPoolSize - 1)
+        {
+            currentThrust++;
+        }
+        else
+        {
+            currentThrust = 0;
         }
 
     }
@@ -162,6 +206,7 @@ public class EffectManager : MonoBehaviour
 
         yield return new WaitForSeconds(effectToReset.startLifetime);
         effectToReset.gameObject.SetActive(false);
+        effectToReset.transform.parent = ParentManager.instance.effects;
     }
 
 

@@ -91,9 +91,12 @@ public class PlayerActions : MonoBehaviour
     {
         currentState.Parry();
     }
+    public void ActionStart()
+    {
+        currentWeapon.Effect();
+    }
     public void OverlapCollider()
     {
-        //curWep.over
         currentState.OverlapCollider();
     }
     public void ActionDone()

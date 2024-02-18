@@ -68,6 +68,13 @@ public class Weapon : MonoBehaviour
             weaponModelList[i].Attack(currentAttack.attackCoords[i]);
         }
     }
+    public void Effect()
+    {
+        for (int i = 0; i < weaponModelList.Count; i++)
+        {
+            weaponModelList[i].Effect();
+        }
+    }
     public void AttackDone()
     {
         for (int i = 0; i < weaponModel.Length; i++)
