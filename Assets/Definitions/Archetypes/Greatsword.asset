@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437aea52d5ea59c409cdd2370a178811, type: 3}
+  m_Name: Greatsword
+  m_EditorClassIdentifier: 
+  idleInput:
+    animationClip: {fileID: 7995503512956547553, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  walkInput:
+    animationClip: {fileID: 3093291731163152119, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  jumpInput:
+    animationClip: {fileID: 4463674835093939841, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  fallInput:
+    animationClip: {fileID: -2425608742565463591, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  attacksInput:
+  - animationClip: {fileID: -2321584957460500678, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords: []
+  - animationClip: {fileID: 2965928760296123515, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords: []
+  - animationClip: {fileID: 3160019892141315354, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords: []
+  - animationClip: {fileID: -2063383730236836039, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoords: []
+  - animationClip: {fileID: 3825887496631726413, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords: []
+  uniqueInput:
+    animationClip: {fileID: 5994026566763745332, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords: []
+  blockInput:
+    animationClip: {fileID: 1974942407112668187, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoords: []
+  parryInput:
+  - animationClip: {fileID: 3667930230756408702, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoords: []
+  - animationClip: {fileID: 7323536053874804947, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoords: []
