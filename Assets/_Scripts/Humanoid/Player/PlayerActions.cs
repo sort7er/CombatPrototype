@@ -148,7 +148,7 @@ public class PlayerActions : MonoBehaviour
     public void SetNewWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
-        currentWeapon.SetOwner(player, player.cameraController.playerCam, weaponPos);
+        currentWeapon.SetOwner(player, player.cameraController.camTrans, weaponPos);
     }
 
     #region Redirects

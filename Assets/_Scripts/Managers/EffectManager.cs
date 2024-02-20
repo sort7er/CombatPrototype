@@ -125,7 +125,7 @@ public class EffectManager : MonoBehaviour
         }
 
     }
-    public void Slash(Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent)
+    public void Slash(Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent, float sizeMultiplier = 1f)
     {
         ParticleSystem effect = slash[currentSlash];
 
@@ -135,6 +135,7 @@ public class EffectManager : MonoBehaviour
 
         effect.transform.position = position;
         effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
+        effect.transform.localScale = Vector3.one * sizeMultiplier;
 
         StartCoroutine(ResetEffect(effect));
 
@@ -149,7 +150,7 @@ public class EffectManager : MonoBehaviour
         }
 
     }
-    public void Thrust(Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent)
+    public void Thrust(Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent, float sizeMultiplier = 1f)
     {
         ParticleSystem effect = thrust[currentThrust];
 
@@ -159,6 +160,7 @@ public class EffectManager : MonoBehaviour
 
         effect.transform.position = position;
         effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
+        effect.transform.localScale = Vector3.one * sizeMultiplier;
 
         StartCoroutine(ResetEffect(effect));
 

@@ -6,6 +6,7 @@ public class WeaponModel : MonoBehaviour
 
     [Header("References")]
     [SerializeField] protected Weapon weapon;
+    [SerializeField] protected Transform effectTrans;
 
     //public Transform arrow;
 
@@ -27,30 +28,30 @@ public class WeaponModel : MonoBehaviour
     }
     public void Effect()
     {
-        //Transform par = transform.parent;
-        //transform.parent = weapon.transform;
-        //Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", Start: " + transform.localPosition);
-        //transform.parent = par;
+        Transform par = effectTrans.parent;
+        effectTrans.parent = weapon.transform;
+        Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", Start: " + effectTrans.localPosition);
+        effectTrans.parent = par;
 
-        //if (weapon.currentAttack.hitType == HitType.slice)
-        //{
-        //    Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
-        //    planeNormal.Normalize();
+        if (weapon.currentAttack.hitType == HitType.slice)
+        {
+            Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
+            planeNormal.Normalize();
 
-        //    EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal, weapon.transform);
-        //}
-        //else
-        //{
-        //    EffectManager.instance.Thrust(attackCoord.EndPos(weapon.transform), attackCoord.Direction(weapon.transform), weapon.transform.up, weapon.transform);
-        //}
+            EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal, weapon.transform, weapon.archetype.effectSize);
+        }
+        else
+        {
+            EffectManager.instance.Thrust(attackCoord.EndPos(weapon.transform), attackCoord.Direction(weapon.transform), weapon.transform.up, weapon.transform, weapon.archetype.effectSize);
+        }
     }
 
     public virtual void AttackDone()
     {
-        //Transform par = transform.parent;
-        //transform.parent = weapon.transform;
-        //Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", End: " + transform.localPosition);
-        //transform.parent = par;
+        Transform par = effectTrans.parent;
+        effectTrans.parent = weapon.transform;
+        Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", End: " + effectTrans.localPosition);
+        effectTrans.parent = par;
     }
     public void SetParent(Transform parent)
     {

@@ -8,7 +8,8 @@ public class CameraController : MonoBehaviour
     public float mouseSensitivity = 100f;
 
     [Header("References")]
-    public Transform playerCam;
+    public Camera playerCam;
+    public Transform camTrans;
 
     public bool canRotate { get; private set; }
     
@@ -35,7 +36,7 @@ public class CameraController : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        playerCam.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        camTrans.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         if(canRotate)
         {
@@ -55,19 +56,19 @@ public class CameraController : MonoBehaviour
 
     public void LookAt(Vector3 target, float duration)
     {
-        Vector3 lookDir = target - playerCam.position;
+        Vector3 lookDir = target - camTrans.position;
         Quaternion look = Quaternion.LookRotation(lookDir, Vector3.up);
         Quaternion newLook = Quaternion.Euler(look.eulerAngles.x, 0, 0);
 
-        playerCam.DOLocalRotateQuaternion(newLook, duration).SetEase(Ease.OutSine).OnComplete(LookAtDone);
+        camTrans.DOLocalRotateQuaternion(newLook, duration).SetEase(Ease.OutSine).OnComplete(LookAtDone);
     }
     public void LookAtAngle(float angle, float duration)
     {
-        playerCam.DOLocalRotate(new Vector3(angle, 0, 0), duration).SetEase(Ease.InCirc).OnComplete(LookAtDone);
+        camTrans.DOLocalRotate(new Vector3(angle, 0, 0), duration).SetEase(Ease.InCirc).OnComplete(LookAtDone);
     }
     private void LookAtDone()
     {
-        xRotation = playerCam.transform.eulerAngles.x;
+        xRotation = camTrans.transform.eulerAngles.x;
         if(xRotation > 90)
         {
             xRotation -= 360;
@@ -75,11 +76,11 @@ public class CameraController : MonoBehaviour
     }
     public Vector3 CameraPosition()
     {
-        return playerCam.position;
+        return camTrans.position;
     }
     public Quaternion CameraRotation()
     {
-        return playerCam.rotation;
+        return camTrans.rotation;
     }
 
 

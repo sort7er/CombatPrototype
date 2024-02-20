@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437aea52d5ea59c409cdd2370a178811, type: 3}
   m_Name: Greatsword
   m_EditorClassIdentifier: 
+  effectSize: 2
   idleInput:
     animationClip: {fileID: 7995503512956547553, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
@@ -29,47 +30,65 @@ MonoBehaviour:
       type: 3}
     activeWield: 0
     hitType: 1
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: 2.18, y: -0.62, z: -0.55}
+      localEndPos: {x: -2.12, y: -0.1, z: 1.17}
   - animationClip: {fileID: 2965928760296123515, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 1
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: -0.91, y: 0.08, z: -1.4}
+      localEndPos: {x: 1.73, y: -0.7, z: 1.7}
   - animationClip: {fileID: 3160019892141315354, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 1
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: 1.95, y: -0.83, z: -0.67}
+      localEndPos: {x: -1.66, y: 0.67, z: 1.37}
   - animationClip: {fileID: -2063383730236836039, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 0
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: -0.18, y: -0.21, z: 1.53}
+      localEndPos: {x: -0.13, y: -0.08, z: 2.37}
   - animationClip: {fileID: 3825887496631726413, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 1
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: 0.05, y: 1.4, z: -1.12}
+      localEndPos: {x: -0.28, y: -0.73, z: 2.27}
   uniqueInput:
     animationClip: {fileID: 5994026566763745332, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 1
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: -0.97, y: -0.01, z: -1.41}
+      localEndPos: {x: 1.71, y: -0.15, z: 1.86}
   blockInput:
     animationClip: {fileID: 1974942407112668187, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 0
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
   parryInput:
   - animationClip: {fileID: 3667930230756408702, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 0
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
   - animationClip: {fileID: 7323536053874804947, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 0
-    attackCoords: []
+    attackCoords:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}

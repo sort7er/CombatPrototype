@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Archetype", menuName = "Archetype")]
 public class Archetype: ScriptableObject
 {
+    public float effectSize = 1;
     [SerializeField] private AnimationInput idleInput;
     [SerializeField] private AnimationInput walkInput;
     [SerializeField] private AnimationInput jumpInput;
@@ -12,7 +13,6 @@ public class Archetype: ScriptableObject
     [SerializeField] private AttackInput uniqueInput;
     [SerializeField] private AttackInput blockInput;
     [SerializeField] private AttackInput[] parryInput;
-
 
     public Anim idle;
     public Anim walk;
