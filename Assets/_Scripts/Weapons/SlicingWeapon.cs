@@ -30,7 +30,7 @@ public class SlicingWeapon : WeaponModel
 
     public void Slice(SlicableMesh mesh)
     {
-        Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
+        Vector3 planeNormal = Vector3.Cross(transform.position - effectTrans.position, attackCoord.Direction(weapon.transform));
         planeNormal.Normalize();
 
 

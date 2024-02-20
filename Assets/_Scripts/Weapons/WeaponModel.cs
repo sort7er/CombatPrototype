@@ -28,10 +28,7 @@ public class WeaponModel : MonoBehaviour
     }
     public void Effect()
     {
-        Transform par = effectTrans.parent;
-        effectTrans.parent = weapon.transform;
-        Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", Start: " + effectTrans.localPosition);
-        effectTrans.parent = par;
+        //DisplayAttackCoords("Start");
 
         if (weapon.currentAttack.hitType == HitType.slice)
         {
@@ -48,10 +45,7 @@ public class WeaponModel : MonoBehaviour
 
     public virtual void AttackDone()
     {
-        Transform par = effectTrans.parent;
-        effectTrans.parent = weapon.transform;
-        Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", End: " + effectTrans.localPosition);
-        effectTrans.parent = par;
+        //DisplayAttackCoords("End");
     }
     public void SetParent(Transform parent)
     {
@@ -69,4 +63,25 @@ public class WeaponModel : MonoBehaviour
 
         EffectManager.instance.Hit(hitPoint, attackCoord.Direction(weapon.transform), planeNormal);
     }
+
+    private void DisplayAttackCoords(string prefix)
+    {
+        Transform par = effectTrans.parent;
+        effectTrans.parent = weapon.transform;
+        Vector3 localPos = effectTrans.localPosition;
+
+        Debug.Log(prefix);
+        string copyToClipboard = "Vector3(" + CommaToDot(localPos.x) + ", " + CommaToDot(localPos.y) + ", " + CommaToDot(localPos.z) + ")";
+        Debug.Log(copyToClipboard);
+        GUIUtility.systemCopyBuffer = copyToClipboard;
+
+        //Debug.Log(/*transform.name + ": " + */weapon.currentAttack.animationClip.name + ", " + prefix + ": " + localPos);
+        effectTrans.parent = par;
+    }
+
+    private string CommaToDot(float num)
+    {
+        return num.ToString("F2").Replace(",", ".");
+    }
+
 }
