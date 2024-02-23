@@ -28,7 +28,7 @@ public class WeaponModel : MonoBehaviour
     }
     public void Effect()
     {
-        //DisplayAttackCoords("Start");
+        DisplayAttackCoords("Start");
 
         if (weapon.currentAttack.hitType == HitType.slice)
         {
@@ -70,12 +70,13 @@ public class WeaponModel : MonoBehaviour
         effectTrans.parent = weapon.transform;
         Vector3 localPos = effectTrans.localPosition;
 
-        Debug.Log(prefix);
         string copyToClipboard = "Vector3(" + CommaToDot(localPos.x) + ", " + CommaToDot(localPos.y) + ", " + CommaToDot(localPos.z) + ")";
-        Debug.Log(copyToClipboard);
         GUIUtility.systemCopyBuffer = copyToClipboard;
 
-        //Debug.Log(/*transform.name + ": " + */weapon.currentAttack.animationClip.name + ", " + prefix + ": " + localPos);
+        //Debug.Log(prefix);
+        //Debug.Log(copyToClipboard);
+
+        Debug.Log(/*transform.name + ": " + */weapon.currentAttack.animationClip.name + ", " + prefix + ": " + localPos);
         effectTrans.parent = par;
     }
 

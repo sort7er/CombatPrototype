@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437aea52d5ea59c409cdd2370a178811, type: 3}
+  m_Name: Katana
+  m_EditorClassIdentifier: 
+  effectSize: 1.5
+  idleInput:
+    animationClip: {fileID: 3403855293417621027, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  walkInput:
+    animationClip: {fileID: -3951089431214896070, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  jumpInput:
+    animationClip: {fileID: -7051313451020478464, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  fallInput:
+    animationClip: {fileID: -786171930992647644, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  attacksInput:
+  - animationClip: {fileID: -7028312951816681281, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords:
+    - localStartPos: {x: 0.7, y: 0.41, z: 0.39}
+      localEndPos: {x: -0.58, y: -0.14, z: 0.81}
+  - animationClip: {fileID: -4746149655257733814, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords:
+    - localStartPos: {x: -0.6, y: -0.23, z: 0.19}
+      localEndPos: {x: 0.47, y: 0.13, z: 0.82}
+  - animationClip: {fileID: 4266666029205282561, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords:
+    - localStartPos: {x: 0.64, y: -0.45, z: 0.45}
+      localEndPos: {x: -0.5, y: 0.2, z: 0.67}
+  - animationClip: {fileID: -7480877706448313442, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoords:
+    - localStartPos: {x: -0.4, y: -0.19, z: 0.3}
+      localEndPos: {x: -0.35, y: -0.22, z: 0.98}
+  - animationClip: {fileID: 2796066413103987161, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords:
+    - localStartPos: {x: -0.39, y: 0.15, z: 0.27}
+      localEndPos: {x: 0.47, y: -0.24, z: 0.83}
+  uniqueInput:
+    animationClip: {fileID: 8517039944007959472, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoords:
+    - localStartPos: {x: -0.36, y: -0.47, z: -1.15}
+      localEndPos: {x: 1.02, y: -0.12, z: 0.44}
+  blockInput:
+    animationClip: {fileID: 5057629887150540716, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoords:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+  parryInput:
+  - animationClip: {fileID: 195171706225841785, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoords:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+  - animationClip: {fileID: 6611957224248701231, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoords:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}

@@ -10,31 +10,31 @@ public class UniqueGreatsword : UniqueAbility
 
     private Vector3 target;
 
-    //public override void ExecuteAbility(PlayerData playerData, TargetAssistanceParams targetAssistanceParams, List<Enemy> enemies)
-    //{
-    //    base.ExecuteAbility(playerData, targetAssistanceParams, enemies);
-    //    target = enemies[0].transform.position;
-    //    playerMovement.DisableMovement();
-    //    cameraController.DisableRotation();
+    public override void ExecuteAbility(Player player, List<Enemy> enemies)
+    {
+        base.ExecuteAbility(player, enemies);
+        target = enemies[0].transform.position;
+        player.DisableMovement();
+        camController.DisableRotation();
 
-    //    Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
-    //    playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
+        Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
+        playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
 
-    //    Vector3 compensatedCamLookAt = new Vector3(target.x, target.y + 1.5f, target.z);
-    //    cameraController.LookAt(compensatedCamLookAt, rotationDuration * 0.5f);
+        Vector3 compensatedCamLookAt = new Vector3(target.x, target.y + 1.5f, target.z);
+        camController.LookAt(compensatedCamLookAt, rotationDuration * 0.5f);
 
-    //    Invoke(nameof(EndDash), attackDuration);
-    //}
+        Invoke(nameof(EndDash), attackDuration);
+    }
 
-    //public override void ExecuteAbilityNoTarget(PlayerData playerData)
-    //{
-    //    base.ExecuteAbilityNoTarget(playerData);
-    //    playerMovement.DisableMovement();
-    //    Invoke(nameof(EndDash), attackDuration);
-    //}
-    //private void EndDash()
-    //{
-    //    playerMovement.EnableMovement();
-    //    cameraController.EnableRotation();
-    //}
+    public override void ExecuteAbilityNoTarget(Player player)
+    {
+        base.ExecuteAbilityNoTarget(player);
+        player.DisableMovement();
+        Invoke(nameof(EndDash), attackDuration);
+    }
+    private void EndDash()
+    {
+        player.EnableMovement();
+        camController.EnableRotation();
+    }
 }

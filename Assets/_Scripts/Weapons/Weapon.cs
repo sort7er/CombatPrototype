@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour
 
     private Attack closeAbility;
     private Attack throwAbility;
-
+    
     private List<WeaponModel> weaponModelList = new();
     private SlicingWeapon[] slicingWeapons;
     private bool sliceEnded;
