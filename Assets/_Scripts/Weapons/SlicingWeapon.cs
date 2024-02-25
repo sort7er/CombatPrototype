@@ -11,7 +11,7 @@ public class SlicingWeapon : WeaponModel
     [Header("Values")]
     [SerializeField] private float cutForce = 2000f;
 
-    public List<SlicableMesh> cannotSlice { get; private set; } = new();
+    public List<SlicableMesh> cannotSlice /*{ get; private set; }*/ = new();
 
 
     //public Transform plane;
@@ -28,9 +28,15 @@ public class SlicingWeapon : WeaponModel
         }
     }
 
+    public override void Effect(AttackCoord attackCoord)
+    {
+        base.Effect(attackCoord);
+        cannotSlice.Clear();
+    }
+
     public void Slice(SlicableMesh mesh)
     {
-        Vector3 planeNormal = Vector3.Cross(transform.position - effectTrans.position, attackCoord.Direction(weapon.transform));
+        Vector3 planeNormal = Vector3.Cross((transform.position - effectTrans.position).normalized, attackCoord.Direction(weapon.transform).normalized);
         planeNormal.Normalize();
 
 
@@ -66,11 +72,6 @@ public class SlicingWeapon : WeaponModel
     public void SliceDone(SlicableMesh slicable, SlicableMesh slicable2)
     {
         OnSliceDone?.Invoke(slicable, slicable2);
-    }
-    public override void AttackDone()
-    {
-        base.AttackDone();
-        cannotSlice.Clear();
     }
     public float VolumeOfMesh(Mesh mesh)
     {

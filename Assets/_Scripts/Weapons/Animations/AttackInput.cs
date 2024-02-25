@@ -7,5 +7,6 @@ public class AttackInput : AnimationInput
 {
     public Wield activeWield;
     public HitType hitType;
-    public AttackCoord[] attackCoords;
+    public AttackCoord[] attackCoordsMain;
+    public AttackCoord[] attackCoordsSecondary;
 }

@@ -27,9 +27,9 @@ public class SlicableMesh : MonoBehaviour
     {
         transform.parent = parent;
         gameObject.layer = 7;
-        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
         MeshCollider collider = gameObject.AddComponent<MeshCollider>();
         collider.convex = true;
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
         rb.AddExplosionForce(cutForce, transform.position, 1);
         Destroy(gameObject, 4f);
     }

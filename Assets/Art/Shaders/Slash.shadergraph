@@ -59,6 +59,9 @@
         },
         {
             "m_Id": "131ab999ab214775801a0593fdaa710e"
+        },
+        {
+            "m_Id": "4d6d39c5236d4c8c832bd0b0ac753535"
         }
     ],
     "m_Keywords": [],
@@ -302,6 +305,9 @@
         },
         {
             "m_Id": "6ebcfb5e1ab44e9b99bf0db2f63daf77"
+        },
+        {
+            "m_Id": "2de2b0f0dc644ebf97f00136505f841c"
         }
     ],
     "m_GroupDatas": [],
@@ -417,6 +423,20 @@
                     "m_Id": "f6a7548d86d7426a9c221775915fe64d"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "2de2b0f0dc644ebf97f00136505f841c"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "79d1059842064c91b72a1bc5c8eaa080"
+                },
+                "m_SlotId": 2
             }
         },
         {
@@ -2007,6 +2027,27 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "10f3c945bfa8443396431c9adabb7dae",
+    "m_Id": 0,
+    "m_DisplayName": "MaskOffset",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
     "m_ObjectId": "112a17ce34f0438dae75870d2b67e134",
     "m_Group": {
@@ -3026,6 +3067,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "2de2b0f0dc644ebf97f00136505f841c",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1389.0,
+            "y": 1620.0001220703125,
+            "width": 137.0,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "10f3c945bfa8443396431c9adabb7dae"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "4d6d39c5236d4c8c832bd0b0ac753535"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.RoundedRectangleNode",
     "m_ObjectId": "2e4f34120b604a5681ca2125b0ff6851",
     "m_Group": {
@@ -3936,6 +4013,34 @@
     "m_Value": 0.5,
     "m_DefaultValue": 0.5,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
+    "m_ObjectId": "4d6d39c5236d4c8c832bd0b0ac753535",
+    "m_Guid": {
+        "m_GuidSerialized": "78001e6c-45b3-444a-82e7-9dc869078621"
+    },
+    "m_Name": "MaskOffset",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "MaskOffset",
+    "m_DefaultReferenceName": "_MaskOffset",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
 }
 
 {
@@ -5889,6 +5994,9 @@
         },
         {
             "m_Id": "8e8ac7b812194389ad03f6de88497050"
+        },
+        {
+            "m_Id": "4d6d39c5236d4c8c832bd0b0ac753535"
         },
         {
             "m_Id": "bb3aebf7136c4862af99b24699068c82"

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2351,13 +2351,14 @@ MonoBehaviour:
   poolSize: 10
   hitEffect: {fileID: 2374131030676104551, guid: a596491515056284f8a90c1ce83455a5,
     type: 3}
-  aPoolSize: 5
-  anticipationEffect: {fileID: 2596300488973237882, guid: 8afb655e5a819f7489bb470414722bd5,
-    type: 3}
+  pPoolSize: 3
   parryEffect: {fileID: 2072220472152787142, guid: ef3346c032ece0946a9f5de931d642d3,
     type: 3}
   sPoolSize: 10
   slashEffect: {fileID: 741890676358704174, guid: 16effabdab391ad4498d783dcff5b48b,
+    type: 3}
+  kPoolSize: 10
+  katanaEffect: {fileID: 3251017502524556899, guid: 25734d4e85c502b46917c9634752e22c,
     type: 3}
   tPoolSize: 10
   thrustEffect: {fileID: 8154760823961952146, guid: acc5f9c916216c54985b9844c5198e88,
@@ -3783,18 +3784,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6094994953666628993}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1220762386040904055 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4159671876745688738, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
-    type: 3}
-  m_PrefabInstance: {fileID: 6094994953666628993}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4991069345542488325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3969,12 +3958,12 @@ PrefabInstance:
     - target: {fileID: 7673024915272521969, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.322
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 7673024915272521969, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4137,7 +4126,7 @@ PrefabInstance:
         type: 3}
       propertyPath: startWeapon
       value: 
-      objectReference: {fileID: 1220762386040904055}
+      objectReference: {fileID: 8804452620257668499}
     - target: {fileID: 7272457161204308622, guid: 4e46e8e9580cc62499609d3a69251b49,
         type: 3}
       propertyPath: m_Name
@@ -4179,6 +4168,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4991069345542488325}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8804452620257668499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9219312111224446930, guid: a96920a7ca4595e41b769bdd0433259d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4991069345542488325}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4355325840377090947
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Thrust
-  m_Shader: {fileID: -6465566751694194690, guid: 7a07d28ddcc70714da8523f638eebb1f,
+  m_Name: SlashKatana
+  m_Shader: {fileID: -6465566751694194690, guid: 2a41918fd72964f4cbe30e0374dc3173,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -94,39 +107,47 @@ Material:
     - _CastShadows: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 2
+    - _Core_Height: 0.111
+    - _Core_Scale: 0.64
+    - _Core_Scale_1: 0.5
+    - _Core_Scale_2: 0.5
+    - _Core_Scale_3: 0.5
+    - _Core_Scale_4: 0.5
+    - _Core_Scale_5: 0.5
+    - _Core_Width: 1
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Distortion: 0.51
-    - _Distortion_Scale: 5
+    - _Distortion: 0.37
+    - _Distortion_Scale: 25.74
     - _DstBlend: 10
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Height: 0.5
-    - _Lerp: 1
-    - _LerpSpeed: 0
-    - _MaskSize: 0.429
+    - _Height: 1
+    - _MaskSize: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _Outer_Height: 1
+    - _Outer_Width: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Roundness: 0.1
-    - _Scroll: 0.036
+    - _Roundness: 1.81
+    - _Scroll: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
-    - _StartColorLerp: 0.699
+    - _StartColorLerp: 0
     - _Surface: 1
     - _UV_Color_Lerp_Z: 1
-    - _UV_Scroll_W: 0
+    - _UV_Scroll_W: 1
     - _Width: 0.5
     - _WorkflowMode: 1
     - _ZTest: 4
@@ -134,23 +155,15 @@ Material:
     - _ZWriteControl: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.19215687}
-    - _Distortion_Speed: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CoreColor: {r: 0, g: 1.6348736, b: 2.4335723, a: 1}
+    - _Core_Color: {r: 1.2968179, g: 1.8564861, b: 2.5693963, a: 0.2}
+    - _Distortion_Speed: {r: 1, g: 0, b: 0, a: 0}
     - _Distortion_Tilling: {r: 1, g: 8, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Flash_Color: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 1}
+    - _Flash_Color: {r: 6.3541465, g: 6.3541465, b: 6.3541465, a: 1}
+    - _MaskOffset: {r: 0.48, g: 0, b: 0, a: 0}
+    - _OuterColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Outer_Color: {r: 0.021837696, g: 0.031293202, b: 0.043, a: 0.2}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &1350672025085704168
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 7

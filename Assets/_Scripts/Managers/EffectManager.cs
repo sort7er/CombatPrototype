@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.LightAnchor;
 
 public class EffectManager : MonoBehaviour
 {
@@ -9,34 +10,38 @@ public class EffectManager : MonoBehaviour
     public int poolSize = 10;
     public ParticleSystem hitEffect;
 
-    [Header("Anticipation effect")]
-    public int aPoolSize = 5;
-    public ParticleSystem anticipationEffect;
-    
     [Header("Parry effect")]
+    public int pPoolSize = 3;
     public ParticleSystem parryEffect;
 
     [Header("Slice effect")]
     public int sPoolSize = 10;
     public ParticleSystem slashEffect;
 
-    [Header("Slice effect")]
+    [Header("Katana effect")]
+    public int kPoolSize = 10;
+    public ParticleSystem katanaEffect;
+
+    [Header("Thrust effect")]
     public int tPoolSize = 10;
     public ParticleSystem thrustEffect;
 
     private ParticleSystem[] hit;
     private int currentHit;
 
-    private ParticleSystem[] anticipation;
-    private int currentAnticipation;
-
     private ParticleSystem[] slash;
     private int currentSlash;
+
+
+    private ParticleSystem[] katana;
+    private int currentKatana;
+
 
     private ParticleSystem[] thrust;
     private int currentThrust;
 
-    private ParticleSystem parry;
+    private ParticleSystem[] parry;
+    private int currentParry;
 
 
     private void Awake()
@@ -46,61 +51,22 @@ public class EffectManager : MonoBehaviour
 
     private void Start()
     {
-        SetUpHitEffect();
-        SetUpSlashEffect();
-        SetUpAnticipationEffect();
-        SetUpParryEffect();
-        SetUpThrustEffect();
+        SetUpEffect(hitEffect, ref hit, ref currentHit, poolSize);
+        SetUpEffect(slashEffect, ref slash, ref currentSlash, sPoolSize);
+        SetUpEffect(thrustEffect, ref thrust, ref currentThrust, tPoolSize);
+        SetUpEffect(parryEffect, ref parry, ref currentParry, pPoolSize);
+        SetUpEffect(katanaEffect, ref katana, ref currentKatana, kPoolSize);
     }
-
-    private void SetUpHitEffect()
+    private void SetUpEffect(ParticleSystem prefab, ref ParticleSystem[] array, ref int current, int poolSize)
     {
-        hit = new ParticleSystem[poolSize];
-        currentHit = 0;
+        array = new ParticleSystem[poolSize];
+        current = 0;
 
         for (int i = 0; i < poolSize; i++)
         {
-            hit[i] = Instantiate(hitEffect, ParentManager.instance.effects);
-            hit[i].gameObject.SetActive(false);
+            array[i] = Instantiate(prefab, ParentManager.instance.effects);
+            array[i].gameObject.SetActive(false);
         }
-    }
-    private void SetUpSlashEffect()
-    {
-        slash = new ParticleSystem[sPoolSize];
-        currentSlash = 0;
-
-        for (int i = 0; i < sPoolSize; i++)
-        {
-            slash[i] = Instantiate(slashEffect, ParentManager.instance.effects);
-            slash[i].gameObject.SetActive(false);
-        }
-    }
-    private void SetUpThrustEffect()
-    {
-        thrust = new ParticleSystem[tPoolSize];
-        currentThrust = 0;
-
-        for (int i = 0; i < tPoolSize; i++)
-        {
-            thrust[i] = Instantiate(thrustEffect, ParentManager.instance.effects);
-            thrust[i].gameObject.SetActive(false);
-        }
-    }
-    private void SetUpAnticipationEffect()
-    {
-        anticipation = new ParticleSystem[aPoolSize];
-        currentAnticipation = 0;
-
-        for (int i = 0; i < aPoolSize; i++)
-        {
-            anticipation[i] = Instantiate(anticipationEffect, ParentManager.instance.effects);
-            anticipation[i].gameObject.SetActive(false);
-        }
-    }
-    private void SetUpParryEffect()
-    {
-        parry = Instantiate(parryEffect, ParentManager.instance.effects);
-        parry.gameObject.SetActive(false);
     }
 
     public void Hit(Vector3 position, Vector3 direction, Vector3 upDirection)
@@ -125,9 +91,21 @@ public class EffectManager : MonoBehaviour
         }
 
     }
-    public void Slash(Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent, float sizeMultiplier = 1f)
+    public void Slash(ParticleSystem slash, Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent, float sizeMultiplier = 1f)
     {
-        ParticleSystem effect = slash[currentSlash];
+        ParticleSystem effect;
+
+        if (slash == katanaEffect)
+        {
+            effect = katana[currentKatana];
+            IncreasePool(ref currentKatana, kPoolSize);
+        }
+        else
+        {
+            effect = this.slash[currentSlash];
+            IncreasePool(ref currentSlash, sPoolSize);
+        }
+
 
         effect.gameObject.SetActive(true);
 
@@ -138,21 +116,11 @@ public class EffectManager : MonoBehaviour
         effect.transform.localScale = Vector3.one * sizeMultiplier;
 
         StartCoroutine(ResetEffect(effect));
-
-
-        if (currentSlash < sPoolSize - 1)
-        {
-            currentSlash++;
-        }
-        else
-        {
-            currentSlash = 0;
-        }
-
     }
     public void Thrust(Vector3 position, Vector3 direction, Vector3 upDirection, Transform parent, float sizeMultiplier = 1f)
     {
         ParticleSystem effect = thrust[currentThrust];
+        IncreasePool(ref currentThrust, tPoolSize);
 
         effect.gameObject.SetActive(true);
 
@@ -163,44 +131,18 @@ public class EffectManager : MonoBehaviour
         effect.transform.localScale = Vector3.one * sizeMultiplier;
 
         StartCoroutine(ResetEffect(effect));
-
-
-        if (currentThrust < tPoolSize - 1)
-        {
-            currentThrust++;
-        }
-        else
-        {
-            currentThrust = 0;
-        }
-
     }
-    public void Anticipation(Vector3 position)
+
+    public void Parry(Vector3 position)
     {
-        ParticleSystem effect = anticipation[currentAnticipation];
+        ParticleSystem effect = parry[currentParry];
+
+        IncreasePool(ref currentParry, pPoolSize);
 
         effect.gameObject.SetActive(true);
-
         effect.transform.position = position;
 
         StartCoroutine(ResetEffect(effect));
-
-
-        if (currentAnticipation < aPoolSize - 1)
-        {
-            currentAnticipation++;
-        }
-        else
-        {
-            currentAnticipation = 0;
-        }
-
-    }
-    public void Parry(Vector3 position)
-    {
-        parry.transform.position = position;
-        parry.gameObject.SetActive(true);
-        StartCoroutine(ResetEffect(parry));
     }
 
     private IEnumerator ResetEffect(ParticleSystem effectToReset)
@@ -209,6 +151,18 @@ public class EffectManager : MonoBehaviour
         yield return new WaitForSeconds(effectToReset.startLifetime);
         effectToReset.gameObject.SetActive(false);
         effectToReset.transform.parent = ParentManager.instance.effects;
+    }
+
+    private void IncreasePool(ref int current, int poolSize)
+    {
+        if (current < poolSize - 1)
+        {
+            current++;
+        }
+        else
+        {
+            current = 0;
+        }
     }
 
 

@@ -22,20 +22,22 @@ public class WeaponModel : MonoBehaviour
         return transform.up;
     }
 
-    public virtual void Attack(AttackCoord attackCoord)
+    public virtual void Attack()
+    {
+
+    }
+    public virtual void Effect(AttackCoord attackCoord)
     {
         this.attackCoord = attackCoord;
-    }
-    public void Effect()
-    {
-        DisplayAttackCoords("Start");
+
+        //DisplayAttackCoords("Start");
 
         if (weapon.currentAttack.hitType == HitType.slice)
         {
             Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
             planeNormal.Normalize();
 
-            EffectManager.instance.Slash(attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal, weapon.transform, weapon.archetype.effectSize);
+            EffectManager.instance.Slash(weapon.archetype.slashEffect, attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal, weapon.transform, weapon.archetype.effectSize);
         }
         else
         {
@@ -76,7 +78,7 @@ public class WeaponModel : MonoBehaviour
         //Debug.Log(prefix);
         //Debug.Log(copyToClipboard);
 
-        Debug.Log(/*transform.name + ": " + */weapon.currentAttack.animationClip.name + ", " + prefix + ": " + localPos);
+        Debug.Log(transform.name + ": " + weapon.currentAttack.animationClip.name + ", " + prefix + ": " + localPos);
         effectTrans.parent = par;
     }
 

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Archetype: ScriptableObject
 {
     public float effectSize = 1;
+    public ParticleSystem slashEffect;
+
     [SerializeField] private AnimationInput idleInput;
     [SerializeField] private AnimationInput walkInput;
     [SerializeField] private AnimationInput jumpInput;
@@ -38,19 +40,23 @@ public class Archetype: ScriptableObject
 
     public void SetUpAttack(ref Attack attack, AttackInput inputs)
     {
-        if (inputs.attackCoords.Length <= 1 && inputs.activeWield == Wield.both)
+
+        bool right = inputs.activeWield == Wield.right || inputs.activeWield == Wield.both;
+        bool left = inputs.activeWield == Wield.left || inputs.activeWield == Wield.both;
+
+        if (right && inputs.attackCoordsMain.Length == 0)
         {
-            inputs.attackCoords = new AttackCoord[2];
-            inputs.attackCoords[0] = new AttackCoord(Vector3.zero, Vector3.zero);
-            inputs.attackCoords[1] = new AttackCoord(Vector3.zero, Vector3.zero);
-        }
-        else if(inputs.attackCoords.Length == 0)
-        {
-            inputs.attackCoords = new AttackCoord[1];
-            inputs.attackCoords[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+            inputs.attackCoordsMain = new AttackCoord[1];
+            inputs.attackCoordsMain[0] = new AttackCoord(Vector3.zero, Vector3.zero);
         }
 
-        attack = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType, inputs.attackCoords);
+        if (left && inputs.attackCoordsSecondary.Length == 0)
+        {
+            inputs.attackCoordsSecondary = new AttackCoord[1];
+            inputs.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+
+        attack = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
     }
 
     public void SetUpAttacks(ref Attack[] attacksToSetUp, AttackInput[] inputs)
