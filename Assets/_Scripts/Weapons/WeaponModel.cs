@@ -30,24 +30,34 @@ public class WeaponModel : MonoBehaviour
     {
         this.attackCoord = attackCoord;
 
-        //DisplayAttackCoords("Start");
-
-        if (weapon.currentAttack.hitType == HitType.slice)
+        if(weapon.archetype.showStartPos)
         {
-            Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
-            planeNormal.Normalize();
+            DisplayAttackCoords("Start");
+        }
 
-            EffectManager.instance.Slash(weapon.archetype.slashEffect, attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal, weapon.transform, weapon.archetype.effectSize);
-        }
-        else
+        if(weapon.archetype.showEffect)
         {
-            EffectManager.instance.Thrust(attackCoord.EndPos(weapon.transform), attackCoord.Direction(weapon.transform), weapon.transform.up, weapon.transform, weapon.archetype.effectSize);
+            if (weapon.currentAttack.hitType == HitType.slice)
+            {
+                Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
+                planeNormal.Normalize();
+
+                EffectManager.instance.Slash(weapon.archetype.slashEffect, attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal, weapon.transform, weapon.archetype.effectSize);
+            }
+            else
+            {
+                EffectManager.instance.Thrust(attackCoord.EndPos(weapon.transform), attackCoord.Direction(weapon.transform), weapon.transform.up, weapon.transform, weapon.archetype.effectSize);
+            }
         }
+
     }
 
     public virtual void AttackDone()
     {
-        //DisplayAttackCoords("End");
+        if(weapon.archetype.showEndPos)
+        {
+            DisplayAttackCoords("End");
+        }
     }
     public void SetParent(Transform parent)
     {

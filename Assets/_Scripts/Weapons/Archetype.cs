@@ -4,6 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Archetype", menuName = "Archetype")]
 public class Archetype: ScriptableObject
 {
+    public bool showStartPos;
+    public bool showEndPos;
+    public bool showEffect;
+
     public float effectSize = 1;
     public ParticleSystem slashEffect;
 

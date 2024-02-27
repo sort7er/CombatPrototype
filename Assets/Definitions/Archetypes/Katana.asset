@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437aea52d5ea59c409cdd2370a178811, type: 3}
   m_Name: Katana
   m_EditorClassIdentifier: 
+  showStartPos: 0
+  showEndPos: 0
+  showEffect: 1
   effectSize: 2
   slashEffect: {fileID: 3251017502524556899, guid: 25734d4e85c502b46917c9634752e22c,
     type: 3}

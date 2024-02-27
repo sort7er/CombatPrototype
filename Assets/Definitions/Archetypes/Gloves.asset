@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437aea52d5ea59c409cdd2370a178811, type: 3}
   m_Name: Gloves
   m_EditorClassIdentifier: 
+  showStartPos: 0
+  showEndPos: 0
+  showEffect: 1
   effectSize: 1
+  slashEffect: {fileID: 0}
   idleInput:
     animationClip: {fileID: -3961488324379683476, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
