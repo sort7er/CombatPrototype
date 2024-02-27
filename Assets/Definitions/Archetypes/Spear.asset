@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showStartPos: 0
   showEndPos: 0
-  showEffect: 0
-  effectSize: 1
+  showEffect: 1
+  effectSize: 4
   slashEffect: {fileID: 0}
   idleInput:
     animationClip: {fileID: 9213043166173695205, guid: 42b20035dabf19349a042a4a1009b198,
@@ -51,16 +51,16 @@ MonoBehaviour:
     activeWield: 0
     hitType: 1
     attackCoordsMain:
-    - localStartPos: {x: -2.97, y: -0.86, z: 1.97}
-      localEndPos: {x: 2.8, y: -0.03, z: 2.44}
+    - localStartPos: {x: -1.82, y: -0.57, z: 1.31}
+      localEndPos: {x: 1.82, y: -0.05, z: 1.48}
     attackCoordsSecondary: []
   - animationClip: {fileID: 8514227270186339559, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     activeWield: 0
     hitType: 1
     attackCoordsMain:
-    - localStartPos: {x: 3.37, y: -0.93, z: -0.12}
-      localEndPos: {x: -1.34, y: 2.87, z: -0.21}
+    - localStartPos: {x: 2.06, y: -0.61, z: 0.11}
+      localEndPos: {x: -1.52, y: 0.44, z: 1.64}
     attackCoordsSecondary: []
   - animationClip: {fileID: -5486315337410073290, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
