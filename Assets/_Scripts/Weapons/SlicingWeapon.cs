@@ -2,6 +2,7 @@ using UnityEngine;
 using EzySlice;
 using System.Collections.Generic;
 using System;
+using System.Net;
 
 public class SlicingWeapon : WeaponModel
 {
@@ -11,10 +12,12 @@ public class SlicingWeapon : WeaponModel
     [Header("Values")]
     [SerializeField] private float cutForce = 2000f;
 
-    public List<SlicableMesh> cannotSlice /*{ get; private set; }*/ = new();
+    public List<SlicableMesh> cannotSlice { get; private set; } = new();
 
+    //public Transform arrow;
 
     //public Transform plane;
+    public Transform startPoint;
 
     public void CheckSlice(SlicableMesh mesh)
     {
@@ -36,17 +39,28 @@ public class SlicingWeapon : WeaponModel
 
     public void Slice(SlicableMesh mesh)
     {
-        Vector3 planeNormal = Vector3.Cross((transform.position - effectTrans.position).normalized, attackCoord.Direction(weapon.transform).normalized);
+        Vector3 point = weapon.transform.position + weapon.transform.forward;
+
+        //Vector3 directionToWeaponY = transform.position - weapon.transform.position;
+
+
+        Vector3 finalPoint = GetLocalDown(point, transform.position, weapon.transform);
+
+        //directionToWeaponY = weapon.transform.InverseTransformDirection(directionToWeaponY);
+        //directionToWeaponY.x = directionToWeaponY.z = 0;
+
+        //Vector3 downDir = weapon.transform.TransformDirection(directionToWeaponY);
+
+        //Vector3 finalPoint = point + downDir;
+
+
+
+
+        Vector3 planeNormal = Vector3.Cross(weapon.transform.forward, attackCoord.Direction(weapon.transform).normalized);
         planeNormal.Normalize();
 
 
-        //plane.position = weapon.transform.position;
-        //plane.rotation = Quaternion.LookRotation(planeNormal);
-        //plane.Rotate(90, 0, 0, Space.Self);
-
-
-        SlicedHull hull = mesh.gameObject.Slice(transform.position, planeNormal);
-
+        SlicedHull hull = mesh.gameObject.Slice(finalPoint, planeNormal);
 
         if (hull != null)
         {
@@ -68,6 +82,12 @@ public class SlicingWeapon : WeaponModel
             Destroy(mesh.gameObject);
             SliceDone(lowerSlice, upperSlice);
         }
+    }
+
+    public override void AttackDone()
+    {
+        base.AttackDone();
+        cannotSlice.Clear();
     }
     public void SliceDone(SlicableMesh slicable, SlicableMesh slicable2)
     {
@@ -99,5 +119,19 @@ public class SlicingWeapon : WeaponModel
         float v123 = p1.x * p2.y * p3.z;
 
         return (1.0f / 6.0f) * (-v321 + v231 + v312 - v132 - v213 + v123);
+    }
+
+    private Vector3 GetLocalDown(Vector3 point, Vector3 point2, Transform parent)
+    {
+        Vector3 globalDirection = point2 - parent.position;
+
+        globalDirection = parent.InverseTransformDirection(globalDirection);
+        globalDirection.x = globalDirection.z = 0;
+
+        globalDirection.y = Mathf.Abs(globalDirection.y);
+
+        Vector3 downDir = parent.TransformDirection(globalDirection);
+
+        return point - downDir;
     }
 }

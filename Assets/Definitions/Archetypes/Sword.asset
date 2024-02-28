@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437aea52d5ea59c409cdd2370a178811, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  showStartPos: 0
+  showEndPos: 0
+  showEffect: 1
+  effectSize: 1.5
+  slashEffect: {fileID: 0}
+  idleInput:
+    animationClip: {fileID: 7546363829225106224, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  walkInput:
+    animationClip: {fileID: 3288828200347974880, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  jumpInput:
+    animationClip: {fileID: -2428970136204956298, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  fallInput:
+    animationClip: {fileID: 4939835713230433236, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+  attacksInput:
+  - animationClip: {fileID: -1849374964857553461, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoordsMain:
+    - localStartPos: {x: 0.68, y: -0.24, z: 0.54}
+      localEndPos: {x: -0.74, y: -0.23, z: 0.25}
+    attackCoordsSecondary: []
+  - animationClip: {fileID: -4972910731492738705, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoordsMain:
+    - localStartPos: {x: -0.51, y: -0.22, z: 0.27}
+      localEndPos: {x: 0.96, y: -0.2, z: 0.57}
+    attackCoordsSecondary: []
+  - animationClip: {fileID: 5032655422562970947, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0.57, y: -0.34, z: 1.1}
+      localEndPos: {x: 0.22, y: -0.11, z: 1.58}
+    attackCoordsSecondary: []
+  - animationClip: {fileID: -6528523153938416292, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoordsMain:
+    - localStartPos: {x: 0.39, y: 0.25, z: 0.36}
+      localEndPos: {x: -0.67, y: -0.42, z: 0.47}
+    attackCoordsSecondary: []
+  - animationClip: {fileID: -8919070915938334074, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoordsMain:
+    - localStartPos: {x: -0.33, y: 0.16, z: 0.26}
+      localEndPos: {x: 0.84, y: -0.35, z: 0.5}
+    attackCoordsSecondary: []
+  uniqueInput:
+    animationClip: {fileID: 569589386963522486, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoordsMain:
+    - localStartPos: {x: 0.34, y: 0.25, z: 0.24}
+      localEndPos: {x: 0.22, y: -0.73, z: 0.81}
+    attackCoordsSecondary: []
+  blockInput:
+    animationClip: {fileID: 9222578411887035572, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []
+  parryInput:
+  - animationClip: {fileID: 1492233437738051216, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []
+  - animationClip: {fileID: 8638265843471846437, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []

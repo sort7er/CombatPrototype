@@ -370,8 +370,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6336126338102411866}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08565809, y: 0.8706578, z: 0.15085016, w: 0.46028477}
-  m_LocalPosition: {x: -0.315, y: -0.352, z: 0.665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -394,6 +394,9 @@ MonoBehaviour:
   weapon: {fileID: 4573752892181745633}
   effectTrans: {fileID: 2124155951002263543}
   cutForce: 500
+  arrow: {fileID: 0}
+  plane: {fileID: 0}
+  startPoint: {fileID: 0}
 --- !u!1 &6815047948248039133
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,8 +691,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7698504690666485834}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14238709, y: 0.58664334, z: 0.09909083, w: 0.7910478}
-  m_LocalPosition: {x: 0.315, y: -0.352, z: 0.665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -712,6 +715,9 @@ MonoBehaviour:
   weapon: {fileID: 4573752892181745633}
   effectTrans: {fileID: 3640527303775539708}
   cutForce: 500
+  arrow: {fileID: 0}
+  plane: {fileID: 0}
+  startPoint: {fileID: 0}
 --- !u!1 &8397945128379834403
 GameObject:
   m_ObjectHideFlags: 0

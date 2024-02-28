@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 1919960291706241232}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.796, z: 0}
+  m_LocalPosition: {x: 0, y: 0.853, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,6 +163,9 @@ MonoBehaviour:
   weapon: {fileID: 3028265408452442662}
   effectTrans: {fileID: 1040615476218329794}
   cutForce: 500
+  arrow: {fileID: 0}
+  plane: {fileID: 0}
+  startPoint: {fileID: 0}
 --- !u!1 &3381975169890734413
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 100
   postureDamage: 5
   archetype: {fileID: 11400000, guid: 7124e1b36dbc0bb4fb6d09ac3f6be726, type: 2}
   uniqueAbility: {fileID: 5445004082475378491}
