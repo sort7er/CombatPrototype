@@ -17,7 +17,7 @@ public class SlicingWeapon : WeaponModel
     //public Transform arrow;
 
     //public Transform plane;
-    public Transform startPoint;
+    //public Transform startPoint;
 
     public void CheckSlice(SlicableMesh mesh)
     {
@@ -44,7 +44,7 @@ public class SlicingWeapon : WeaponModel
         //Vector3 directionToWeaponY = transform.position - weapon.transform.position;
 
 
-        Vector3 finalPoint = GetLocalDown(point, transform.position, weapon.transform);
+        Vector3 finalPoint = GetLocalXY(point, transform.position, weapon.transform);
 
         //directionToWeaponY = weapon.transform.InverseTransformDirection(directionToWeaponY);
         //directionToWeaponY.x = directionToWeaponY.z = 0;
@@ -121,17 +121,15 @@ public class SlicingWeapon : WeaponModel
         return (1.0f / 6.0f) * (-v321 + v231 + v312 - v132 - v213 + v123);
     }
 
-    private Vector3 GetLocalDown(Vector3 point, Vector3 point2, Transform parent)
+    private Vector3 GetLocalXY(Vector3 point, Vector3 point2, Transform parent)
     {
         Vector3 globalDirection = point2 - parent.position;
 
         globalDirection = parent.InverseTransformDirection(globalDirection);
-        globalDirection.x = globalDirection.z = 0;
-
-        globalDirection.y = Mathf.Abs(globalDirection.y);
+        globalDirection.z = 0;
 
         Vector3 downDir = parent.TransformDirection(globalDirection);
 
-        return point - downDir;
+        return point + downDir;
     }
 }
