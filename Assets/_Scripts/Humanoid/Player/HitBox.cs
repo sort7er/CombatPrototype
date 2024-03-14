@@ -1,3 +1,4 @@
+using DynamicMeshCutter;
 using UnityEngine;
 
 public class HitBox : MonoBehaviour
@@ -62,7 +63,7 @@ public class HitBox : MonoBehaviour
                 DoDamage(health, hit.ClosestPointOnBounds(currentWeapon.transform.position));
             }
         }
-        else if (hit.TryGetComponent(out SlicableMesh mesh))
+        else if (hit.TryGetComponent(out MeshTarget mesh))
         {
             currentWeapon.Slice(mesh);
         }

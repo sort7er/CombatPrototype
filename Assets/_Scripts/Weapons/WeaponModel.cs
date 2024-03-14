@@ -11,7 +11,6 @@ public class WeaponModel : MonoBehaviour
     //public Transform arrow;
 
     protected AttackCoord attackCoord;
-
     public Vector3 Position()
     {
         return transform.position;

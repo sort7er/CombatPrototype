@@ -1,5 +1,6 @@
 using UnityEngine;
 using Attacks;
+using DynamicMeshCutter;
 
 public class Weapon : MonoBehaviour
 {
@@ -116,23 +117,23 @@ public class Weapon : MonoBehaviour
     }
 
     #region Slice related methods
-    public void Slice(SlicableMesh mesh)
+    public void Slice(MeshTarget mesh)
     {
         if(currentAttack.hitType == HitType.slice && slicingWeapons[0] != null)
         {
             sliceEnded = false;
             if (currentAttack.currentWield == Wield.right)
             {
-                slicingWeapons[0].CheckSlice(mesh);
+                slicingWeapons[0].Slice(mesh);
             }
             else if (currentAttack.currentWield == Wield.left)
             {
-                slicingWeapons[1].CheckSlice(mesh);
+                slicingWeapons[1].Slice(mesh);
             }
             else
             {
-                slicingWeapons[0].OnSliceDone += DelayedSlice;
-                slicingWeapons[0].CheckSlice(mesh);
+                slicingWeapons[0].OnMeshCreated += DelayedSlice;
+                slicingWeapons[0].Slice(mesh);
             }
         }
     }
@@ -148,14 +149,17 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-    private void DelayedSlice(SlicableMesh mesh1, SlicableMesh mesh2)
+    private void DelayedSlice(MeshCreationData data)
     {
-        slicingWeapons[0].OnSliceDone -= DelayedSlice;
+        slicingWeapons[0].OnMeshCreated -= DelayedSlice;
+
         if (!sliceEnded)
         {
-            slicingWeapons[1].CheckSlice(mesh1);
-            slicingWeapons[1].CheckSlice(mesh2);
             sliceEnded = true;
+            for(int i = 0; i < data.CreatedTargets.Length; i++)
+            {
+                slicingWeapons[1].Slice(data.CreatedTargets[i]);
+            }
         }
     }
 

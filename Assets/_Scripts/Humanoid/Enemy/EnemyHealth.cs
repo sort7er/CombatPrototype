@@ -2,11 +2,12 @@ using UnityEngine;
 using Attacks;
 using UnityEngine.UI;
 using DG.Tweening;
+using DynamicMeshCutter;
 
 public class EnemyHealth : Health
 {
     [Header("For slice death")]
-    [SerializeField] private SlicableMesh[] meshes;
+    [SerializeField] private MeshTarget[] meshes;
     [Header("For crumble death")]
     [SerializeField] private ShardContainer[] prefabs;
 
@@ -39,6 +40,7 @@ public class EnemyHealth : Health
         {
             for (int i = 0; i < meshes.Length; i++)
             {
+                meshes[i].transform.parent = ParentManager.instance.meshes;
                 attackingWeapon.Slice(meshes[i]);
             }
         }

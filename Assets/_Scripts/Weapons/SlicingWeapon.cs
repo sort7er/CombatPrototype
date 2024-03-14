@@ -1,124 +1,57 @@
 using UnityEngine;
-using EzySlice;
-using System.Collections.Generic;
 using System;
-using System.Net;
+using DynamicMeshCutter;
 
-public class SlicingWeapon : WeaponModel
+[RequireComponent(typeof(Cutter))]
+public class SlicingWeapon : WeaponModel 
 {
 
-    public event Action<SlicableMesh, SlicableMesh> OnSliceDone;
+    public event Action<MeshCreationData> OnMeshCreated;
 
     [Header("Values")]
     [SerializeField] private float cutForce = 2000f;
+    [SerializeField] private float volumeThreshold;
 
-    public List<SlicableMesh> cannotSlice { get; private set; } = new();
+    [Header("References")]
+    [SerializeField] private Cutter cutter;
 
     //public Transform arrow;
 
     //public Transform plane;
     //public Transform startPoint;
 
-    public void CheckSlice(SlicableMesh mesh)
-    {
-        if (!cannotSlice.Contains(mesh))
-        {
-            //Slice object if not to small
-            if (VolumeOfMesh(mesh.mesh) > 0.15f)
-            {
-                Slice(mesh);
-            }
-        }
-    }
-
     public override void Effect(AttackCoord attackCoord)
     {
         base.Effect(attackCoord);
-        cannotSlice.Clear();
     }
 
-    public void Slice(SlicableMesh mesh)
+    public void Slice(MeshTarget mesh)
     {
         Vector3 point = weapon.transform.position + weapon.transform.forward;
-
-        //Vector3 directionToWeaponY = transform.position - weapon.transform.position;
-
-
         Vector3 finalPoint = GetLocalXY(point, transform.position, weapon.transform);
-
-        //directionToWeaponY = weapon.transform.InverseTransformDirection(directionToWeaponY);
-        //directionToWeaponY.x = directionToWeaponY.z = 0;
-
-        //Vector3 downDir = weapon.transform.TransformDirection(directionToWeaponY);
-
-        //Vector3 finalPoint = point + downDir;
-
-
-
 
         Vector3 planeNormal = Vector3.Cross(weapon.transform.forward, attackCoord.Direction(weapon.transform).normalized);
         planeNormal.Normalize();
 
+        
+        cutter.Cut(mesh, finalPoint, planeNormal, null, OnCreated);
 
-        SlicedHull hull = mesh.gameObject.Slice(finalPoint, planeNormal);
-
-        if (hull != null)
-        {
-
-            GameObject upperHull = hull.CreateUpperHull(mesh.gameObject, mesh.meshRenderer.material);
-            upperHull.transform.position = mesh.transform.position;
-            upperHull.transform.rotation = mesh.transform.rotation;
-            SlicableMesh upperSlice = upperHull.AddComponent<SlicableMesh>();
-            upperSlice.SetUpSlicableObject(ParentManager.instance.meshes, cutForce);
-            cannotSlice.Add(upperSlice);
-
-            GameObject lowerHull = hull.CreateLowerHull(mesh.gameObject, mesh.meshRenderer.material);
-            lowerHull.transform.position = mesh.transform.position;
-            lowerHull.transform.rotation = mesh.transform.rotation;
-            SlicableMesh lowerSlice = lowerHull.AddComponent<SlicableMesh>();
-            lowerSlice.SetUpSlicableObject(ParentManager.instance.meshes, cutForce);
-            cannotSlice.Add(lowerSlice);
-
-            Destroy(mesh.gameObject);
-            SliceDone(lowerSlice, upperSlice);
-        }
+        //plane.position = finalPoint;
+        //plane.rotation = Quaternion.LookRotation(planeNormal);
+        //plane.Rotate(90, 0, 0);
     }
-
     public override void AttackDone()
     {
         base.AttackDone();
-        cannotSlice.Clear();
     }
-    public void SliceDone(SlicableMesh slicable, SlicableMesh slicable2)
+    private void OnCreated(Info info, MeshCreationData data)
     {
-        OnSliceDone?.Invoke(slicable, slicable2);
-    }
-    public float VolumeOfMesh(Mesh mesh)
-    {
-        float volume = 0;
+        OnMeshCreated?.Invoke(data);
 
-        Vector3[] vertices = mesh.vertices;
-        int[] triangles = mesh.triangles;
-
-        for (int i = 0; i < triangles.Length; i += 3)
+        for (int i = 0; i < data.CreatedObjects.Length; i++)
         {
-            Vector3 p1 = vertices[triangles[i + 0]];
-            Vector3 p2 = vertices[triangles[i + 1]];
-            Vector3 p3 = vertices[triangles[i + 2]];
-            volume += SignedVolumeOfTriangle(p1, p2, p3);
+            SetUpSlicableObject(data.CreatedObjects[i], cutForce);
         }
-        return Mathf.Abs(volume);
-    }
-    private float SignedVolumeOfTriangle(Vector3 p1, Vector3 p2, Vector3 p3)
-    {
-        float v321 = p3.x * p2.y * p1.z;
-        float v231 = p2.x * p3.y * p1.z;
-        float v312 = p3.x * p1.y * p2.z;
-        float v132 = p1.x * p3.y * p2.z;
-        float v213 = p2.x * p1.y * p3.z;
-        float v123 = p1.x * p2.y * p3.z;
-
-        return (1.0f / 6.0f) * (-v321 + v231 + v312 - v132 - v213 + v123);
     }
 
     private Vector3 GetLocalXY(Vector3 point, Vector3 point2, Transform parent)
@@ -131,5 +64,24 @@ public class SlicingWeapon : WeaponModel
         Vector3 downDir = parent.TransformDirection(globalDirection);
 
         return point + downDir;
+    }
+
+    public void SetUpSlicableObject(GameObject mesh, float cutForce = 500f)
+    {
+        mesh.transform.parent = ParentManager.instance.meshes;
+
+        for(int i = 0; i < mesh.transform.childCount; i++)
+        {
+            //if (Tools.VolumeOfMesh(mesh.transform.GetChild(i).gameObject.GetComponent<MeshFilter>().mesh) < volumeThreshold)
+            //{
+            //}
+                mesh.transform.GetChild(i).gameObject.layer = 7;
+
+        }
+
+        Rigidbody rb = mesh.GetComponent<Rigidbody>();
+
+        rb.AddExplosionForce(cutForce, transform.position, 1);
+        Destroy(mesh, 4f);
     }
 }
