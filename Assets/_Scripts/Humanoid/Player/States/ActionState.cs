@@ -1,4 +1,5 @@
 using Actions;
+using UnityEngine;
 
 namespace Actions
 {
@@ -77,12 +78,9 @@ public abstract class ActionState
 
     public void SetReferences(PlayerActions actions)
     {
-        if(this.actions == null)
-        {
-            this.actions = actions;
-            weapon = actions.currentWeapon;
-            archetype = actions.currentWeapon.archetype;
-        }
+        this.actions = actions;
+        weapon = actions.currentWeapon;
+        archetype = actions.currentWeapon.archetype;
     }
 
     public bool CheckUpcommingAction()

@@ -10,7 +10,7 @@ public class PlayerActions : MonoBehaviour
     [Header("References")]
     public Animator armAnimator;
     public Player player;
-    public Weapon startWeapon;
+    //public Weapon startWeapon;
     public Transform[] weaponPos;
     public Weapon currentWeapon { get; private set; }
     public ActionState currentState { get; private set; }
@@ -33,7 +33,7 @@ public class PlayerActions : MonoBehaviour
     private void Awake()
     {
         SetUpInput();
-        SetNewWeapon(startWeapon);
+        //SetNewWeapon(startWeapon);
     }
     private void Start()
     {
@@ -125,6 +125,7 @@ public class PlayerActions : MonoBehaviour
             currentWeapon.NoAttack();
         }
 
+
         currentAnimation = newAnim;
         armAnimator.CrossFadeInFixedTime(currentAnimation.state, transition);
     }
@@ -147,8 +148,22 @@ public class PlayerActions : MonoBehaviour
     //Called from other classes
     public void SetNewWeapon(Weapon weapon)
     {
+        CancelInvoke(nameof(Delay));
+        if (currentWeapon != null)
+        {
+            currentWeapon.Hidden();
+        }
+
         currentWeapon = weapon;
         currentWeapon.SetOwner(player, player.cameraController.camTrans, weaponPos);
+        player.hitBox.SetCurrentWeapon();
+        currentWeapon.Vissible();
+        Invoke(nameof(Delay), 0.02f);
+    }
+
+    private void Delay()
+    {
+        SwitchState(idleState);
     }
 
     #region Redirects

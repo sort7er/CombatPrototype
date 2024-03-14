@@ -158,5 +158,21 @@ public class Weapon : MonoBehaviour
             sliceEnded = true;
         }
     }
+
+    public void Vissible()
+    {
+        for (int i = 0; i < weaponModel.Length; i++)
+        {
+            weaponModel[i].gameObject.SetActive(true);
+        }
+    }
+    public void Hidden()
+    {
+        for (int i = 0; i < weaponModel.Length; i++)
+        {
+            weaponModel[i].gameObject.SetActive(false);
+        }
+    }
+
     #endregion
 }

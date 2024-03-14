@@ -23,7 +23,12 @@ public class HitBox : MonoBehaviour
     public void GetOwner()
     {
         owner = GetComponent<Humanoid>();
-        if(owner is Player player)
+        SetCurrentWeapon();
+    }
+
+    public void SetCurrentWeapon()
+    {
+        if (owner is Player player)
         {
             currentWeapon = player.playerActions.currentWeapon;
         }
