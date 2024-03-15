@@ -34,4 +34,27 @@ public static class Tools
 
         return (1.0f / 6.0f) * (-v321 + v231 + v312 - v132 - v213 + v123);
     }
+
+    public static Vector3 GetLocalXY(Vector3 point, Vector3 point2, Transform parent)
+    {
+        Vector3 globalDirection = point2 - parent.position;
+
+        globalDirection = parent.InverseTransformDirection(globalDirection);
+        globalDirection.z = 0;
+
+        Vector3 downDir = parent.TransformDirection(globalDirection);
+
+        return point + downDir;
+    }
+    public static Vector3 GetLocalY(Vector3 point, Vector3 point2, Transform parent)
+    {
+        Vector3 globalDirection = point2 - parent.position;
+
+        globalDirection = parent.InverseTransformDirection(globalDirection);
+        globalDirection.z = globalDirection.x = 0;
+
+        Vector3 downDir = parent.TransformDirection(globalDirection);
+
+        return point + downDir;
+    }
 }

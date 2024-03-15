@@ -1500,14 +1500,14 @@ ModelImporter:
       takeName: ArmRig|Greatsword_Block_Loop
       internalID: 6401264365992381809
       firstFrame: 0
-      lastFrame: 79
+      lastFrame: 101
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -2097,8 +2097,8 @@ ModelImporter:
       name: ArmRig|Katana_Block_Loop
       takeName: ArmRig|Katana_Block_Loop
       internalID: 6236175899539719447
-      firstFrame: 0
-      lastFrame: 59
+      firstFrame: 20
+      lastFrame: 78
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -2822,8 +2822,8 @@ ModelImporter:
       name: ArmRig|Spear_Block_Loop
       takeName: ArmRig|Spear_Block_Loop
       internalID: 4393353029084850357
-      firstFrame: 0
-      lastFrame: 59
+      firstFrame: 20
+      lastFrame: 78
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -297,7 +297,17 @@ PrefabInstance:
     - target: {fileID: 5311457579088156792, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
       propertyPath: volumeThreshold
-      value: 0.05
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311457579088156792, guid: a7fbf9fe8923747479728b128f6a5099,
+        type: 3}
+      propertyPath: cuttingThreshold
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311457579088156792, guid: a7fbf9fe8923747479728b128f6a5099,
+        type: 3}
+      propertyPath: collisionThreshold
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 6815047948248039133, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
@@ -312,7 +322,17 @@ PrefabInstance:
     - target: {fileID: 7785325015696337657, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
       propertyPath: volumeThreshold
-      value: 0.05
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7785325015696337657, guid: a7fbf9fe8923747479728b128f6a5099,
+        type: 3}
+      propertyPath: cuttingThreshold
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7785325015696337657, guid: a7fbf9fe8923747479728b128f6a5099,
+        type: 3}
+      propertyPath: collisionThreshold
+      value: 0.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3891,7 +3911,17 @@ PrefabInstance:
     - target: {fileID: 2700884317227071543, guid: 7f5cfbe96748cd949a422c5258c65a37,
         type: 3}
       propertyPath: volumeThreshold
-      value: 0.05
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2700884317227071543, guid: 7f5cfbe96748cd949a422c5258c65a37,
+        type: 3}
+      propertyPath: cuttingThreshold
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2700884317227071543, guid: 7f5cfbe96748cd949a422c5258c65a37,
+        type: 3}
+      propertyPath: collisionThreshold
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 5488350683097944370, guid: 7f5cfbe96748cd949a422c5258c65a37,
         type: 3}
@@ -3996,8 +4026,23 @@ PrefabInstance:
       objectReference: {fileID: 137844614}
     - target: {fileID: 2438398294680331325, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
+      propertyPath: cutForce
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438398294680331325, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
+        type: 3}
       propertyPath: volumeThreshold
-      value: 0.05
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438398294680331325, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
+        type: 3}
+      propertyPath: cuttingThreshold
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438398294680331325, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
+        type: 3}
+      propertyPath: collisionThreshold
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3026634092081624687, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
@@ -4098,7 +4143,17 @@ PrefabInstance:
     - target: {fileID: 1988374782880518190, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
       propertyPath: volumeThreshold
-      value: 0.05
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988374782880518190, guid: cc3e8d7332e11814f92f77cf51ea9a96,
+        type: 3}
+      propertyPath: cuttingThreshold
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988374782880518190, guid: cc3e8d7332e11814f92f77cf51ea9a96,
+        type: 3}
+      propertyPath: collisionThreshold
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3028265408452442662, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
@@ -4413,7 +4468,17 @@ PrefabInstance:
     - target: {fileID: 7866468117987079907, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
         type: 3}
       propertyPath: volumeThreshold
-      value: 0.05
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7866468117987079907, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
+        type: 3}
+      propertyPath: cuttingThreshold
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7866468117987079907, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
+        type: 3}
+      propertyPath: collisionThreshold
+      value: 0.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
