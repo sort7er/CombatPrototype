@@ -7,7 +7,7 @@ public class SlicingController : MonoBehaviour
     public DynamicRagdoll dynamicRagdoll;
     public Animator animator;
 
-    public bool isDead;
+    public bool isDead { get; private set; }
 
     private Weapon weapon;
     public void Slice(Weapon attackingWeapon)
