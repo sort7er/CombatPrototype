@@ -74,7 +74,7 @@ public class HitBox : MonoBehaviour
         {
             currentWeapon.Slice(mesh);
         }
-        else if(hit.TryGetComponent(out DynamicRagdollPart ragdollPart))
+        if(hit.TryGetComponent(out DynamicRagdollPart ragdollPart))
         {
             AddToList(ragdollPart);
         }
@@ -94,9 +94,8 @@ public class HitBox : MonoBehaviour
         {
             if (!slicingControllers.Contains(slicingController))
             {
-                if(slicingController.animator == null)
+                if(slicingController.isDead)
                 {
-                    //This is a bad check, might have to change it later
                     slicingControllers.Add(slicingController);
                 }
             }
@@ -107,6 +106,7 @@ public class HitBox : MonoBehaviour
         for(int i = 0; i < slicingControllers.Count; i++)
         {
             currentWeapon.Slice(slicingControllers[i].meshTarget);
+            Debug.Log("yup");
         }
     }
 }

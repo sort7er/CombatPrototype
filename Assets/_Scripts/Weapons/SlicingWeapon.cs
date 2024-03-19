@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using DynamicMeshCutter;
+using System.Xml.Linq;
 
 [RequireComponent(typeof(Cutter))]
 public class SlicingWeapon : WeaponModel 
@@ -62,6 +63,10 @@ public class SlicingWeapon : WeaponModel
         {
             Debug.Log("hmm");
         }
+        if (meshTarget == null)
+        {
+            Debug.Log("hmm 2");
+        }
         cutter.Cut(meshTarget, finalPoint, planeNormal, null, OnCreated);
 
     }
@@ -70,40 +75,54 @@ public class SlicingWeapon : WeaponModel
     {
         OnMeshCreated?.Invoke(data);
 
-        for (int i = 0; i < data.CreatedTargets.Length; i++)
-        {
-            SetUpTargets(data.CreatedTargets[i]);
-        }
+        MeshCreation.TranslateCreatedObjects(info, data.CreatedObjects, data.CreatedTargets, cutter.Separation);
+
         for (int i = 0; i < data.CreatedObjects.Length; i++)
         {
             SetUpObjects(data.CreatedObjects[i], cutForce);
         }
+
+        for (int i = 0; i < data.CreatedTargets.Length; i++)
+        {
+            SetUpTargets(data.CreatedTargets[i]);
+        }
+
     }
 
 
+    public void SetUpObjects(GameObject meshObject, float cutForce = 500f)
+    {
+        meshObject.transform.parent = ParentManager.instance.meshes;
+
+        Tools.SetLayerForAllChildren(meshObject, 7);
+
+        Rigidbody rb = meshObject.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.AddExplosionForce(cutForce, attackCoord.EndPos(weapon.transform), 1);
+        }
+
+        Destroy(meshObject, 4f);
+    }
 
     public void SetUpTargets(MeshTarget meshTarget)
     {
         if (meshTarget.TryGetComponent<MeshFilter>(out MeshFilter meshFilter))
         {
+            //7 is ignoreplayer and 9 is ragdoll
             if (Tools.VolumeOfMesh(meshFilter.mesh) < collisionThreshold)
             {
                 meshTarget.gameObject.layer = 7;
             }
+            else
+            {
+                meshTarget.gameObject.layer = 9;
+            }
+            Debug.Log(Tools.VolumeOfMesh(meshFilter.mesh));
         }
     }
-    public void SetUpObjects(GameObject meshObject, float cutForce = 500f)
-    {
-        meshObject.transform.parent = ParentManager.instance.meshes;
-        Rigidbody rb = meshObject.GetComponent<Rigidbody>();
 
-        if(rb != null)
-        {
-            rb.AddExplosionForce(cutForce, transform.position, 1);
-        }
-
-        Destroy(meshObject, 4f);
-    }
 
     private Mesh GetMesh(MeshTarget meshTarget)
     {

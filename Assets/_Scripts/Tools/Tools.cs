@@ -57,4 +57,17 @@ public static class Tools
 
         return point + downDir;
     }
+    public static void SetLayerForAllChildren(GameObject parentGameObject, int layer)
+    {
+        parentGameObject.layer = layer;
+        foreach (Transform child in parentGameObject.transform)
+        {
+            child.gameObject.layer = layer;
+
+            Transform _HasChildren = child.GetComponentInChildren<Transform>();
+            if (_HasChildren != null)
+                SetLayerForAllChildren(child.gameObject, layer);
+
+        }
+    }
 }

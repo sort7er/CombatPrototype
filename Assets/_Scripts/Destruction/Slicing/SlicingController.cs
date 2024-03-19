@@ -7,25 +7,21 @@ public class SlicingController : MonoBehaviour
     public DynamicRagdoll dynamicRagdoll;
     public Animator animator;
 
+    public bool isDead;
+
     private Weapon weapon;
-
-
     public void Slice(Weapon attackingWeapon)
     {
-        CancelInvoke(nameof(Delay));
 
         weapon = attackingWeapon;
         transform.parent = ParentManager.instance.meshes;
 
-        Invoke(nameof(Delay), 0.05f);
-    }
-    private void Delay()
-    {
         if (dynamicRagdoll != null)
         {
             EnableRagdoll();
         }
 
+        isDead = true;
         weapon.Slice(meshTarget);
     }
 

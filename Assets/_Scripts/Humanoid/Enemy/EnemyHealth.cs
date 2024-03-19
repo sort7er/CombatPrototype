@@ -38,7 +38,6 @@ public class EnemyHealth : Health
 
         if (attackingWeapon.currentAttack.hitType == HitType.slice)
         {
-            Debug.Log(attackingWeapon);
             slicingController.Slice(attackingWeapon);
         }
         else if (attackingWeapon.currentAttack.hitType == HitType.crumble)
