@@ -7,7 +7,7 @@ using DynamicMeshCutter;
 public class EnemyHealth : Health
 {
     [Header("For slice death")]
-    [SerializeField] private MeshTarget[] meshes;
+    [SerializeField] private SlicingController slicingController;
     [Header("For crumble death")]
     [SerializeField] private ShardContainer[] prefabs;
 
@@ -38,11 +38,7 @@ public class EnemyHealth : Health
 
         if (attackingWeapon.currentAttack.hitType == HitType.slice)
         {
-            for (int i = 0; i < meshes.Length; i++)
-            {
-                meshes[i].transform.parent = ParentManager.instance.meshes;
-                attackingWeapon.Slice(meshes[i]);
-            }
+            slicingController.Slice(attackingWeapon);
         }
         else if (attackingWeapon.currentAttack.hitType == HitType.crumble)
         {

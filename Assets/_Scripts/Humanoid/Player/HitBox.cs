@@ -1,4 +1,5 @@
 using DynamicMeshCutter;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HitBox : MonoBehaviour
@@ -9,6 +10,8 @@ public class HitBox : MonoBehaviour
     private Weapon currentWeapon;
     private Humanoid owner;
     private Collider[] hits;
+
+    private List<SlicingController> slicingControllers = new();
 
     private int numberOfHits;
     private void Awake()
@@ -48,11 +51,15 @@ public class HitBox : MonoBehaviour
     {
         numberOfHits = Physics.OverlapBoxNonAlloc(hitBoxRef.position, hitBoxRef.localScale * 0.5f, hits, hitBoxRef.rotation);
 
+        slicingControllers.Clear();
 
         for (int i = 0; i < numberOfHits; i++)
         {
             CheckHitInfo(hits[i]);
         }
+
+        SliceRagdoll();
+
     }
     private void CheckHitInfo(Collider hit)
     {
@@ -67,11 +74,39 @@ public class HitBox : MonoBehaviour
         {
             currentWeapon.Slice(mesh);
         }
+        else if(hit.TryGetComponent(out DynamicRagdollPart ragdollPart))
+        {
+            AddToList(ragdollPart);
+        }
     }
 
     private void DoDamage(Health health, Vector3 hitPoint)
     {
         currentWeapon.Hit(hitPoint);
         health.TakeDamage(currentWeapon);
+    }
+
+    private void AddToList(DynamicRagdollPart part)
+    {
+        SlicingController slicingController = part.GetComponentInParent<SlicingController>();
+
+        if(slicingController != null)
+        {
+            if (!slicingControllers.Contains(slicingController))
+            {
+                if(slicingController.animator == null)
+                {
+                    //This is a bad check, might have to change it later
+                    slicingControllers.Add(slicingController);
+                }
+            }
+        }
+    }
+    private void SliceRagdoll()
+    {
+        for(int i = 0; i < slicingControllers.Count; i++)
+        {
+            currentWeapon.Slice(slicingControllers[i].meshTarget);
+        }
     }
 }

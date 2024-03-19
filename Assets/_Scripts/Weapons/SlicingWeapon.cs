@@ -26,19 +26,21 @@ public class SlicingWeapon : WeaponModel
         base.Effect(attackCoord);
     }
 
-    public void Slice(MeshTarget mesh)
+    public void Slice(MeshTarget meshTarget)
     {
-        if(mesh.TryGetComponent<MeshFilter>(out MeshFilter meshFilter))
+        Mesh mesh = GetMesh(meshTarget);
+
+        if (mesh != null)
         {
-            if (Tools.VolumeOfMesh(meshFilter.mesh) < cuttingThreshold)
+            if (!VolumeCheck(mesh))
             {
                 return;
             }
         }
-        else
-        {
-            return;
-        }
+
+
+
+
         Vector3 point = weapon.transform.position + weapon.transform.forward;
 
         //Change slicing mode depending on if its dual wield or not
@@ -56,8 +58,7 @@ public class SlicingWeapon : WeaponModel
         Vector3 planeNormal = Vector3.Cross(weapon.transform.forward, attackCoord.Direction(weapon.transform).normalized);
         planeNormal.Normalize();
 
-        
-        cutter.Cut(mesh, finalPoint, planeNormal, null, OnCreated);
+        cutter.Cut(meshTarget, finalPoint, planeNormal, null, OnCreated);
 
     }
 
@@ -78,24 +79,54 @@ public class SlicingWeapon : WeaponModel
         meshParent.parent = ParentManager.instance.meshes;
         meshParent.gameObject.layer = 7;
 
-        for(int i = 0; i < meshParent.childCount; i++)
-        {
-            if(meshParent.GetChild(i).TryGetComponent<MeshFilter>(out MeshFilter meshFilter))
-            {
-                if (Tools.VolumeOfMesh(meshFilter.mesh) < collisionThreshold)
-                {
-                    meshParent.GetChild(i).gameObject.layer = 7;
-                }
-            }
-            else
-            {
-                Debug.Log("Ait");
-            }
-        }
+        //for(int i = 0; i < meshParent.childCount; i++)
+        //{
+        //    if(meshParent.GetChild(i).TryGetComponent<MeshFilter>(out MeshFilter meshFilter))
+        //    {
+        //        if (Tools.VolumeOfMesh(meshFilter.mesh) < collisionThreshold)
+        //        {
+        //            meshParent.GetChild(i).gameObject.layer = 7;
+        //        }
+        //    }
+        //}
 
-        Rigidbody rb = meshParent.GetComponent<Rigidbody>();
+        //Rigidbody rb = meshParent.GetComponent<Rigidbody>();
 
-        rb.AddExplosionForce(cutForce, transform.position, 1);
+        //rb.AddExplosionForce(cutForce, transform.position, 1);
         Destroy(meshParent.gameObject, 4f);
     }
+
+    private Mesh GetMesh(MeshTarget meshTarget)
+    {
+        MeshFilter meshFilter = meshTarget.GetComponent<MeshFilter>();
+        
+        if(meshFilter != null)
+        {
+            return meshFilter.mesh;
+        }
+
+        SkinnedMeshRenderer skinnedMeshRenderer = meshTarget.GetComponent<SkinnedMeshRenderer>();
+
+        if(skinnedMeshRenderer != null)
+        {
+            return skinnedMeshRenderer.sharedMesh;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private bool VolumeCheck(Mesh mesh)
+    {
+        if (Tools.VolumeOfMesh(mesh) > cuttingThreshold)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }
