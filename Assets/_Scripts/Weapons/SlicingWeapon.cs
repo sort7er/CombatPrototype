@@ -58,6 +58,10 @@ public class SlicingWeapon : WeaponModel
         Vector3 planeNormal = Vector3.Cross(weapon.transform.forward, attackCoord.Direction(weapon.transform).normalized);
         planeNormal.Normalize();
 
+        if(weapon.currentAttack == null)
+        {
+            Debug.Log("hmm");
+        }
         cutter.Cut(meshTarget, finalPoint, planeNormal, null, OnCreated);
 
     }
@@ -66,34 +70,39 @@ public class SlicingWeapon : WeaponModel
     {
         OnMeshCreated?.Invoke(data);
 
+        for (int i = 0; i < data.CreatedTargets.Length; i++)
+        {
+            SetUpTargets(data.CreatedTargets[i]);
+        }
         for (int i = 0; i < data.CreatedObjects.Length; i++)
         {
-            SetUpSlicableObject(data.CreatedObjects[i].transform, cutForce);
+            SetUpObjects(data.CreatedObjects[i], cutForce);
         }
     }
 
 
 
-    public void SetUpSlicableObject(Transform meshParent, float cutForce = 500f)
+    public void SetUpTargets(MeshTarget meshTarget)
     {
-        meshParent.parent = ParentManager.instance.meshes;
-        meshParent.gameObject.layer = 7;
+        if (meshTarget.TryGetComponent<MeshFilter>(out MeshFilter meshFilter))
+        {
+            if (Tools.VolumeOfMesh(meshFilter.mesh) < collisionThreshold)
+            {
+                meshTarget.gameObject.layer = 7;
+            }
+        }
+    }
+    public void SetUpObjects(GameObject meshObject, float cutForce = 500f)
+    {
+        meshObject.transform.parent = ParentManager.instance.meshes;
+        Rigidbody rb = meshObject.GetComponent<Rigidbody>();
 
-        //for(int i = 0; i < meshParent.childCount; i++)
-        //{
-        //    if(meshParent.GetChild(i).TryGetComponent<MeshFilter>(out MeshFilter meshFilter))
-        //    {
-        //        if (Tools.VolumeOfMesh(meshFilter.mesh) < collisionThreshold)
-        //        {
-        //            meshParent.GetChild(i).gameObject.layer = 7;
-        //        }
-        //    }
-        //}
+        if(rb != null)
+        {
+            rb.AddExplosionForce(cutForce, transform.position, 1);
+        }
 
-        //Rigidbody rb = meshParent.GetComponent<Rigidbody>();
-
-        //rb.AddExplosionForce(cutForce, transform.position, 1);
-        Destroy(meshParent.gameObject, 4f);
+        Destroy(meshObject, 4f);
     }
 
     private Mesh GetMesh(MeshTarget meshTarget)

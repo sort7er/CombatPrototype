@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8371205450821293093}
   - component: {fileID: 2700884317227071543}
+  - component: {fileID: 760918139730487238}
   m_Layer: 10
   m_Name: ModelContainer
   m_TagString: Untagged
@@ -50,6 +51,26 @@ MonoBehaviour:
   weapon: {fileID: 5488350683097944370}
   effectTrans: {fileID: 1401963931859176227}
   cutForce: 500
+  collisionThreshold: 0.07
+  cuttingThreshold: 0.02
+  cutter: {fileID: 760918139730487238}
+--- !u!114 &760918139730487238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025162660021947077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c636af73fce48f4682aa6631efef662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Separation: 0.07
+  DestroyTargets: 1
+  UseAsync: 1
+  VertexCreationThreshold: 0
+  DefaultMaterial: {fileID: 0}
 --- !u!1 &2611058917272595343
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 100
   postureDamage: 5
   archetype: {fileID: 11400000, guid: 375a60b974efc004b9253e1ffb9b85c5, type: 2}
   uniqueAbility: {fileID: 1777186540068720542}

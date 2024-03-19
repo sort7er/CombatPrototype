@@ -355,6 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2091220557511435940}
   - component: {fileID: 5311457579088156792}
+  - component: {fileID: 7379343983475164731}
   m_Layer: 0
   m_Name: LeftModelContainer
   m_TagString: Untagged
@@ -395,6 +396,26 @@ MonoBehaviour:
   weapon: {fileID: 4573752892181745633}
   effectTrans: {fileID: 2124155951002263543}
   cutForce: 500
+  collisionThreshold: 0.07
+  cuttingThreshold: 0.02
+  cutter: {fileID: 7379343983475164731}
+--- !u!114 &7379343983475164731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336126338102411866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c636af73fce48f4682aa6631efef662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Separation: 0.03
+  DestroyTargets: 1
+  UseAsync: 1
+  VertexCreationThreshold: 0
+  DefaultMaterial: {fileID: 0}
 --- !u!1 &6815047948248039133
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 100
   postureDamage: 5
   archetype: {fileID: 11400000, guid: 56d929dbf4a45e24b874c66403ba7e49, type: 2}
   uniqueAbility: {fileID: 7154469481346446333}
@@ -674,6 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4230354221165853680}
   - component: {fileID: 7785325015696337657}
+  - component: {fileID: 9200099550644547093}
   m_Layer: 0
   m_Name: RightModelContainer
   m_TagString: Untagged
@@ -714,6 +736,26 @@ MonoBehaviour:
   weapon: {fileID: 4573752892181745633}
   effectTrans: {fileID: 3640527303775539708}
   cutForce: 500
+  collisionThreshold: 0.07
+  cuttingThreshold: 0.02
+  cutter: {fileID: 9200099550644547093}
+--- !u!114 &9200099550644547093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698504690666485834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c636af73fce48f4682aa6631efef662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Separation: 0.03
+  DestroyTargets: 1
+  UseAsync: 1
+  VertexCreationThreshold: 0
+  DefaultMaterial: {fileID: 0}
 --- !u!1 &8397945128379834403
 GameObject:
   m_ObjectHideFlags: 0

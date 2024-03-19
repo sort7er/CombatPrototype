@@ -38,6 +38,7 @@ public class EnemyHealth : Health
 
         if (attackingWeapon.currentAttack.hitType == HitType.slice)
         {
+            Debug.Log(attackingWeapon);
             slicingController.Slice(attackingWeapon);
         }
         else if (attackingWeapon.currentAttack.hitType == HitType.crumble)
@@ -48,7 +49,7 @@ public class EnemyHealth : Health
             Vector3 direction = transform.position - attackingWeapon.owner.Position();
             container.Blast(direction * 2);
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
     }
     protected override void DrainedPosture()

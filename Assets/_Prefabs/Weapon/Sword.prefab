@@ -360,6 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 180209635579454276}
   - component: {fileID: 7866468117987079907}
+  - component: {fileID: 3111109106283239059}
   m_Layer: 0
   m_Name: ModelContainer
   m_TagString: Untagged
@@ -400,6 +401,26 @@ MonoBehaviour:
   weapon: {fileID: 7306791833661894271}
   effectTrans: {fileID: 6262848330320557472}
   cutForce: 500
+  collisionThreshold: 0.07
+  cuttingThreshold: 0.02
+  cutter: {fileID: 3111109106283239059}
+--- !u!114 &3111109106283239059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5209122876792462664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c636af73fce48f4682aa6631efef662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Separation: 0.05
+  DestroyTargets: 1
+  UseAsync: 1
+  VertexCreationThreshold: 0
+  DefaultMaterial: {fileID: 0}
 --- !u!1 &8319801475492901941
 GameObject:
   m_ObjectHideFlags: 0
