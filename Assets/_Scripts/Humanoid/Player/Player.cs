@@ -43,7 +43,7 @@ public class Player : Humanoid
     {
         base.Update();
 
-        movement = Vector2.Lerp(movement, input, Time.deltaTime * 10);
+        movement = Vector2.Lerp(movement, input, Time.deltaTime * 5);
 
         playerActions.SetMovement(movement);
     }

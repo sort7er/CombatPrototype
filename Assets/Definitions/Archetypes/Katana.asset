@@ -21,9 +21,7 @@ MonoBehaviour:
   idleInput:
     animationClip: {fileID: 3403855293417621027, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-  walkInput:
-    animationClip: {fileID: -3951089431214896070, guid: 42b20035dabf19349a042a4a1009b198,
-      type: 3}
+  walkInput: ArmRig|Katana_Walk
   jumpInput:
     animationClip: {fileID: -7051313451020478464, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}

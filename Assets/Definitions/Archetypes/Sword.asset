@@ -20,9 +20,7 @@ MonoBehaviour:
   idleInput:
     animationClip: {fileID: 7546363829225106224, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-  walkInput:
-    animationClip: {fileID: 3288828200347974880, guid: 42b20035dabf19349a042a4a1009b198,
-      type: 3}
+  walkInput: ArmRig|Sword_Walk
   jumpInput:
     animationClip: {fileID: -2428970136204956298, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
