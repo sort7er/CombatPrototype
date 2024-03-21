@@ -12,7 +12,7 @@ public class Archetype: ScriptableObject
     public ParticleSystem slashEffect;
 
     [SerializeField] private AnimationInput idleInput;
-    [SerializeField] private AnimationInput walkInput;
+    [SerializeField] private string walkInput;
     [SerializeField] private AnimationInput jumpInput;
     [SerializeField] private AnimationInput fallInput;
     [SerializeField] private AttackInput[] attacksInput;
@@ -32,7 +32,7 @@ public class Archetype: ScriptableObject
     public void SetUpAnimations()
     {
         idle = new Anim(idleInput.animationClip);
-        walk = new Anim(walkInput.animationClip);
+        walk = new Anim(walkInput);
         jump = new Anim(jumpInput.animationClip);
         fall = new Anim(fallInput.animationClip);
 

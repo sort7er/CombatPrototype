@@ -13,4 +13,8 @@ public class Anim
         duration = animationClip.length;
         state = Animator.StringToHash(animationClip.name);
     }
+    public Anim(string stateName)
+    {
+        state = Animator.StringToHash(stateName);
+    }
 }

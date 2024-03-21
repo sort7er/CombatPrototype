@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : Humanoid
 {
     private Vector2 input;
+    private Vector2 movement;
 
 
     [Header("References")]
@@ -18,6 +19,7 @@ public class Player : Humanoid
     {
         base.Awake();
         EnableMovement();
+        input = Vector2.zero;
         inputReader.OnMove += OnMove;
         inputReader.OnJump += Jump;
     }
@@ -36,5 +38,13 @@ public class Player : Humanoid
     {
         movementDirection = transform.forward * input.y + transform.right * input.x;
         base.Move();
+    }
+    protected override void Update()
+    {
+        base.Update();
+
+        movement = Vector2.Lerp(movement, input, Time.deltaTime * 10);
+
+        playerActions.SetMovement(movement);
     }
 }

@@ -119,7 +119,6 @@ public class SlicingWeapon : WeaponModel
             {
                 meshTarget.gameObject.layer = 9;
             }
-            Debug.Log(Tools.VolumeOfMesh(meshFilter.mesh));
         }
     }
 

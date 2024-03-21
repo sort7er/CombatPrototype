@@ -114,6 +114,12 @@ public class PlayerActions : MonoBehaviour
         currentState = state;
         currentState.Enter(this);
     }
+
+    public void SetMovement(Vector2 movement)
+    {
+        armAnimator.SetFloat("MovementX", movement.x);
+        armAnimator.SetFloat("MovementZ", movement.y);
+    }
     public void SetAnimation(Anim newAnim, float transition = 0.25f)
     {
         if(newAnim is Attack attack)
