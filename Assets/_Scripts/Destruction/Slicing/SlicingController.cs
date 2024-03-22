@@ -4,10 +4,10 @@ using UnityEngine;
 public class SlicingController : MonoBehaviour
 {
     public MeshTarget meshTarget;
-    public DynamicRagdoll dynamicRagdoll;
-    public Animator animator;
+    //public DynamicRagdoll dynamicRagdoll;
+    //public Animator animator;
 
-    public bool isDead { get; private set; }
+    //public bool isDead { get; private set; }
 
     private Weapon weapon;
     public void Slice(Weapon attackingWeapon)
@@ -16,18 +16,18 @@ public class SlicingController : MonoBehaviour
         weapon = attackingWeapon;
         transform.parent = ParentManager.instance.meshes;
 
-        if (dynamicRagdoll != null)
-        {
-            EnableRagdoll();
-        }
+        //if (dynamicRagdoll != null)
+        //{
+        //    EnableRagdoll();
+        //}
 
-        isDead = true;
+        //isDead = true;
         weapon.Slice(meshTarget);
     }
 
-    private void EnableRagdoll()
-    {
-        animator.enabled = false;
-        dynamicRagdoll.IsRagdollKinematic= false;
-    }
+    //private void EnableRagdoll()
+    //{
+    //    animator.enabled = false;
+    //    dynamicRagdoll.IsRagdollKinematic= false;
+    //}
 }

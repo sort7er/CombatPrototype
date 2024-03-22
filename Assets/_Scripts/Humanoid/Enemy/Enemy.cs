@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace EnemyAI
 {
@@ -11,17 +12,18 @@ namespace EnemyAI
         [SerializeField] private float navMeshRefreshRate = 0.2f;
         [SerializeField] private float waypointDistance = 1f;
         [SerializeField] private float rotationSlerp = 10;
-        public float playerDistance = 1f;
+        public float playerDistance = 2f;
 
         [Header("Attacking")]
         [SerializeField] private float attackCooldown;
 
 
-        public Animator enemyAnim;
+        public EnemyAnimator enemyAnimator;
         public Player player { get; private set; }
         public NavMeshAgent agent { get; private set; }
         public NavMeshPath currentPath { get; private set; }
         public Vector3 currentTarget { get; private set; }
+        public Vector3 lookAtTarget { get; private set; }
 
         //State machine
         public EnemyState currentState;
@@ -101,11 +103,21 @@ namespace EnemyAI
             }
             LookAtTarget(target);
         }
+        public float CalculateDotProduct()
+        {
+            Vector3 directionToLookAt = lookAtTarget - transform.position;
+            Vector3 directionToTarget = currentTarget - transform.position;
+
+            Vector3 perp = Vector3.Cross(directionToLookAt.normalized, directionToTarget.normalized);
+
+            return Vector3.Dot(perp, Vector3.up);
+        }
 
         //Called from this class
         private void LookAtTarget(Vector3 target)
         {
-            Vector3 alteredPlayerPos = new Vector3(target.x, transform.position.y, target.z);
+            lookAtTarget = target;
+            Vector3 alteredPlayerPos = new Vector3(lookAtTarget.x, transform.position.y, lookAtTarget.z);
             Vector3 playerDirection = alteredPlayerPos - transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);

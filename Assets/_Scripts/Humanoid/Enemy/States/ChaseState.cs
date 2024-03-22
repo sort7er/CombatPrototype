@@ -7,7 +7,8 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
-            Debug.Log("Hola");
+            enemy.EnableMovement();
+            enemy.enemyAnimator.SetWalking(true);
         }
 
         public override void Update()
@@ -16,6 +17,7 @@ namespace EnemyAI
 
             if(Vector3.Distance(player.Position(), enemy.Position()) < enemy.playerDistance)
             {
+                enemy.enemyAnimator.SetWalking(false);
                 enemy.SwitchState(enemy.attackState);
             }
             else

@@ -58,7 +58,7 @@ public class HitBox : MonoBehaviour
             CheckHitInfo(hits[i]);
         }
 
-        SliceRagdoll();
+        //SliceRagdoll();
 
     }
     private void CheckHitInfo(Collider hit)
@@ -74,10 +74,10 @@ public class HitBox : MonoBehaviour
         {
             currentWeapon.Slice(mesh);
         }
-        if(hit.TryGetComponent(out DynamicRagdollPart ragdollPart))
-        {
-            AddToList(ragdollPart);
-        }
+        //if(hit.TryGetComponent(out DynamicRagdollPart ragdollPart))
+        //{
+        //    AddToList(ragdollPart);
+        //}
     }
 
     private void DoDamage(Health health, Vector3 hitPoint)
@@ -86,27 +86,27 @@ public class HitBox : MonoBehaviour
         health.TakeDamage(currentWeapon);
     }
 
-    private void AddToList(DynamicRagdollPart part)
-    {
-        SlicingController slicingController = part.GetComponentInParent<SlicingController>();
+    //private void AddToList(DynamicRagdollPart part)
+    //{
+    //    SlicingController slicingController = part.GetComponentInParent<SlicingController>();
 
-        if(slicingController != null)
-        {
-            if (!slicingControllers.Contains(slicingController))
-            {
-                if(slicingController.isDead)
-                {
-                    slicingControllers.Add(slicingController);
-                }
-            }
-        }
-    }
-    private void SliceRagdoll()
-    {
-        for(int i = 0; i < slicingControllers.Count; i++)
-        {
-            currentWeapon.Slice(slicingControllers[i].meshTarget);
-            Debug.Log("yup");
-        }
-    }
+    //    if(slicingController != null)
+    //    {
+    //        if (!slicingControllers.Contains(slicingController))
+    //        {
+    //            if(slicingController.isDead)
+    //            {
+    //                slicingControllers.Add(slicingController);
+    //            }
+    //        }
+    //    }
+    //}
+    //private void SliceRagdoll()
+    //{
+    //    for(int i = 0; i < slicingControllers.Count; i++)
+    //    {
+    //        currentWeapon.Slice(slicingControllers[i].meshTarget);
+    //        Debug.Log("yup");
+    //    }
+    //}
 }

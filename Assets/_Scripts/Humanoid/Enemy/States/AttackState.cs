@@ -7,6 +7,7 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
+            enemy.DisableMovement();
         }
 
         public override void Update()
