@@ -1,15 +1,19 @@
 using UnityEngine;
 
-public class FallState : ActionState
+namespace Actions
 {
-    public override void Enter(PlayerActions actions)
+    public class FallState : ActionState
     {
-        base.Enter(actions);
-        actions.SetAnimation(archetype.fall);
-    }
+        public override void Enter(PlayerActions actions)
+        {
+            base.Enter(actions);
+            actions.SetAnimation(archetype.fall);
+        }
 
-    public override void Landing()
-    {
-        actions.SwitchState(actions.idleState);
+        public override void Landing()
+        {
+            actions.SwitchState(actions.idleState);
+        }
     }
 }
+

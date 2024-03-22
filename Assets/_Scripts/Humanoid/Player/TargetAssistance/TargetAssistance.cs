@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using EnemyAI;
 
 public class TargetAssistance : MonoBehaviour
 {

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Actions;
 
 public class Player : Humanoid
 {

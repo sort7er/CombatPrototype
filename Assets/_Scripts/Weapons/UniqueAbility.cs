@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using EnemyAI;
 public abstract class UniqueAbility: MonoBehaviour
 {
     [Header("Target assistance paramaters")]

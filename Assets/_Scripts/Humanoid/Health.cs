@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
     [SerializeField] private float defaultPostureRegen = 10;
     [SerializeField] private float stunnedDuration = 10;
 
+    [SerializeField] private Humanoid owner;
+
 
     public event Action OnTakeDamage;
     public event Action OnPostureDrained;
@@ -57,6 +59,10 @@ public class Health : MonoBehaviour
         {
             return;
         }
+
+        Vector3 direction = transform.position - attackingWeapon.owner.Position();
+
+        owner.AddForce(direction.normalized * attackingWeapon.pushbackForce);
 
         OnTakeDamage?.Invoke();
         health -=  attackingWeapon.damage;

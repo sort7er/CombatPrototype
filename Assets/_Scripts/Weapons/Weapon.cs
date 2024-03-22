@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     [Header("Temporary damage")]
     public int damage;
     public int postureDamage;
+    public float pushbackForce;
 
     [Header("Attacks")]
     public Archetype archetype;

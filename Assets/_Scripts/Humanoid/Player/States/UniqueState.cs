@@ -1,99 +1,104 @@
 using Actions;
+using EnemyAI;
 using System.Collections.Generic;
 
-public class UniqueState : ActionState
+namespace Actions
 {
-    private List<Enemy> enemyList;
-    public override void Enter(PlayerActions actions)
+    public class UniqueState : ActionState
     {
-        base.Enter(actions);
-        actions.SetAnimation(archetype.unique);
-        ClearList();
-        enemyList = actions.player.targetAssistance.CheckForEnemies(actions.currentWeapon.uniqueAbility);
-
-
-        if (enemyList.Count > 0)
+        private List<Enemy> enemyList;
+        public override void Enter(PlayerActions actions)
         {
-            actions.currentWeapon.uniqueAbility.ExecuteAbility(actions.player, enemyList);
-        }
-        else
-        {
-            actions.currentWeapon.uniqueAbility.ExecuteAbilityNoTarget(actions.player);
-        }
-
-        actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
-
-        actionDone = false;
-        canChain = false;
-        SetUpcommingAction(QueuedAction.None);
+            base.Enter(actions);
+            actions.SetAnimation(archetype.unique);
+            ClearList();
+            enemyList = actions.player.targetAssistance.CheckForEnemies(actions.currentWeapon.uniqueAbility);
 
 
-    }
+            if (enemyList.Count > 0)
+            {
+                actions.currentWeapon.uniqueAbility.ExecuteAbility(actions.player, enemyList);
+            }
+            else
+            {
+                actions.currentWeapon.uniqueAbility.ExecuteAbilityNoTarget(actions.player);
+            }
 
-    public override void Attack()
-    {
-        if (actionDone)
-        {
-            actions.StopMethod();
-            actions.SwitchState(actions.attackState);
-        }
-        else if (canChain && CheckUpcommingAction())
-        {
-            SetUpcommingAction(QueuedAction.Attack);
+            actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
+
+            actionDone = false;
+            canChain = false;
+            SetUpcommingAction(QueuedAction.None);
+
+
         }
 
-    }
-    public override void Block()
-    {
-        if (actionDone)
+        public override void Attack()
         {
-            actions.StopMethod();
-            actions.SwitchState(actions.blockState);
-        }
-        else if (canChain && CheckUpcommingAction())
-        {
-            SetUpcommingAction(QueuedAction.Block);
-        }
-    }
+            if (actionDone)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.attackState);
+            }
+            else if (canChain && CheckUpcommingAction())
+            {
+                SetUpcommingAction(QueuedAction.Attack);
+            }
 
-    public override void Parry()
-    {
-        if (upcommingAction == QueuedAction.Block)
-        {
-            actions.StopMethod();
-            actions.SwitchState(actions.parryState);
         }
-    }
+        public override void Block()
+        {
+            if (actionDone)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.blockState);
+            }
+            else if (canChain && CheckUpcommingAction())
+            {
+                SetUpcommingAction(QueuedAction.Block);
+            }
+        }
 
-    public override void ActionDone()
-    {
-        if (upcommingAction == QueuedAction.Attack)
+        public override void Parry()
         {
-            actions.StopMethod();
-            actions.SwitchState(actions.attackState);
+            if (upcommingAction == QueuedAction.Block)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.parryState);
+            }
         }
-        else if (upcommingAction == QueuedAction.Block)
-        {
-            actions.StopMethod();
-            actions.SwitchState(actions.blockState);
-        }
-        else
-        {
-            actionDone = true;
-        }
-    }
 
-    private void EndAttack()
-    {
-        actions.SwitchState(actions.idleState);
-    }
-
-    private void ClearList()
-    {
-        if(enemyList == null)
+        public override void ActionDone()
         {
-            enemyList = new();
+            if (upcommingAction == QueuedAction.Attack)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.attackState);
+            }
+            else if (upcommingAction == QueuedAction.Block)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.blockState);
+            }
+            else
+            {
+                actionDone = true;
+            }
         }
-        enemyList.Clear();
+
+        private void EndAttack()
+        {
+            actions.SwitchState(actions.idleState);
+        }
+
+        private void ClearList()
+        {
+            if (enemyList == null)
+            {
+                enemyList = new();
+            }
+            enemyList.Clear();
+        }
     }
 }
+

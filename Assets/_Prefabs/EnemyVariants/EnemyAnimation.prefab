@@ -208,7 +208,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1172614768507206733}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.8
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -240,6 +240,7 @@ MonoBehaviour:
   defaultTimeTillRegen: 4
   defaultPostureRegen: 10
   stunnedDuration: 10
+  owner: {fileID: 5937715972609921831}
   slicingController: {fileID: 1202089067501227902}
   prefabs:
   - {fileID: 5725819523948652768, guid: b20e1344b3764a940b29583d39ec33cc, type: 3}
@@ -259,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658acf5ec0721b34490ec043f277db6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 6
+  movementSpeed: 3
   jumpForce: 8
   airMultiplier: 0.4
   groundDistance: 0.3
@@ -268,10 +269,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  navMeshRefreshRate: 0.2
   rotationSlerp: 10
-  waypointDistance: 1
+  waypointDistance: 0.3
   playerDistance: 1
   attackCooldown: 0.5
+  enemyAnim: {fileID: 673460386413115561}
 --- !u!1 &2215127327639541583
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +974,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 653cb55ba7023d943b1276b304253837, type: 3}
+--- !u!95 &673460386413115561 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5905242663156424913, guid: 653cb55ba7023d943b1276b304253837,
+    type: 3}
+  m_PrefabInstance: {fileID: 6389268997050259576}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1202089067501227902 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5189716797625095942, guid: 653cb55ba7023d943b1276b304253837,

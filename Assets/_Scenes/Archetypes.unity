@@ -344,7 +344,12 @@ PrefabInstance:
     - target: {fileID: 4573752892181745633, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
       propertyPath: damage
-      value: 25
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573752892181745633, guid: a7fbf9fe8923747479728b128f6a5099,
+        type: 3}
+      propertyPath: pushbackForce
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6815047948248039133, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
@@ -854,25 +859,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAnimation (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
+    - target: {fileID: 1172614768507206733, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.289
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -948,25 +958,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAnimation (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
+    - target: {fileID: 1172614768507206733, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.289
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1755,25 +1770,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAnimation (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
+    - target: {fileID: 1172614768507206733, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.289
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2589,7 +2609,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: bc1a992e81b0d2049b47696f5895748c, type: 2}
   m_BuildHeightMesh: 0
@@ -3098,25 +3118,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAnimation (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
+    - target: {fileID: 1172614768507206733, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.289
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 6668259574354605991, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3860,6 +3885,11 @@ PrefabInstance:
       propertyPath: damage
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 5488350683097944370, guid: 7f5cfbe96748cd949a422c5258c65a37,
+        type: 3}
+      propertyPath: pushbackForce
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5702633665709738025, guid: 7f5cfbe96748cd949a422c5258c65a37,
         type: 3}
       propertyPath: m_Name
@@ -3948,6 +3978,11 @@ PrefabInstance:
       propertyPath: damage
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 9219312111224446930, guid: a96920a7ca4595e41b769bdd0433259d,
+        type: 3}
+      propertyPath: pushbackForce
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4016,6 +4051,11 @@ PrefabInstance:
       propertyPath: damage
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 4159671876745688738, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
+        type: 3}
+      propertyPath: pushbackForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4861395527885083912, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
       propertyPath: m_Name
@@ -4056,6 +4096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: damage
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028265408452442662, guid: cc3e8d7332e11814f92f77cf51ea9a96,
+        type: 3}
+      propertyPath: pushbackForce
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5584585408387378420, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
@@ -4341,6 +4386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: damage
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306791833661894271, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
+        type: 3}
+      propertyPath: pushbackForce
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

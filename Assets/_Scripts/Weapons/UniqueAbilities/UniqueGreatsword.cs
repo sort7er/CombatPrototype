@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using EnemyAI;
 
 public class UniqueGreatsword : UniqueAbility
 {
