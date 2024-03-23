@@ -7,6 +7,8 @@ public class EnemyAnimator : MonoBehaviour
     public float strafeThreshold = 0.25f;
     public Enemy enemy;
     public Animator animator { get; private set; }
+
+    private float lerp;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -17,9 +19,9 @@ public class EnemyAnimator : MonoBehaviour
     {
         float dot = enemy.CalculateDotProduct();
 
-        Debug.Log(dot);
+        lerp = Mathf.Lerp(lerp, dot, Time.deltaTime * 5);
 
-        animator.SetFloat("MovementX", dot);
+        animator.SetFloat("MovementX", lerp);
 
         //if (dot + strafeThreshold < 0)
         //{
