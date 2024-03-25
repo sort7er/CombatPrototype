@@ -17,6 +17,10 @@ namespace EnemyAI
         [Header("Attacking")]
         [SerializeField] private float attackCooldown;
 
+        [Header("Weapons")]
+        [SerializeField] private Transform[] weaponPos;
+        [SerializeField] private Weapon startWeapon;
+
 
         public EnemyAnimator enemyAnimator;
         public Player player { get; private set; }
@@ -45,7 +49,10 @@ namespace EnemyAI
             SwitchState(chaseState);
 
         }
-
+        private void Start()
+        {
+            startWeapon.SetOwner(this, transform, weaponPos);
+        }
         private void FindReferences()
         {
             currentPath = new NavMeshPath();
