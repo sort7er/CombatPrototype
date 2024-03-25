@@ -2854,6 +2854,11 @@ PrefabInstance:
       propertyPath: startWeapon
       value: 
       objectReference: {fileID: 1025256597}
+    - target: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2873,11 +2878,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7373597278405865351, guid: ca25066036473ca49a73d594b649c74b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
