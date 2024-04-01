@@ -7,6 +7,7 @@ namespace EnemyAI
         public Enemy enemy;
         public NavMeshAgent agent;
         public Player player;
+        public Weapon currentWeapon;
 
         public virtual void Enter(Enemy enemy)
         {
@@ -23,6 +24,7 @@ namespace EnemyAI
                 this.enemy = enemy;
                 agent = enemy.agent;
                 player = enemy.player;
+                currentWeapon = enemy.currentWeapon;
             }
         }
     }

@@ -26,9 +26,16 @@ public class Attack : Anim
 
     public Attack(AnimationClip clip, Wield wield, HitType hitType, AttackCoord[] attackCoordsMain, AttackCoord[] attackCoordsSecondary) : base(clip)
     {
-        currentWield = wield;
-        this.hitType = hitType;
-        this.attackCoordsMain = attackCoordsMain;
-        this.attackCoordsSecondary = attackCoordsSecondary;
+        if(clip != null)
+        {
+            currentWield = wield;
+            this.hitType = hitType;
+            this.attackCoordsMain = attackCoordsMain;
+            this.attackCoordsSecondary = attackCoordsSecondary;
+        }
+        else
+        {
+            Debug.Log("Missing Attack");
+        }
     }
 }

@@ -11,6 +11,7 @@ public class Archetype: ScriptableObject
     public float effectSize = 1;
     public ParticleSystem slashEffect;
 
+    [Header("Player")]
     [SerializeField] private AnimationInput idleInput;
     [SerializeField] private string walkInput;
     [SerializeField] private AnimationInput jumpInput;
@@ -20,6 +21,11 @@ public class Archetype: ScriptableObject
     [SerializeField] private AttackInput blockInput;
     [SerializeField] private AttackInput[] parryInput;
 
+
+    [Header("Enemy")]
+    [SerializeField] private AttackInput[] enemyAttacksInput;
+    [SerializeField] private AttackInput[] enemyParrysInput;
+
     public Anim idle;
     public Anim walk;
     public Anim jump;
@@ -28,6 +34,9 @@ public class Archetype: ScriptableObject
     public Attack unique;
     public Attack block;
     public Attack[] parry;
+
+    public Attack[] enemyAttacks;
+    public Attack[] enemyParrys;
 
     public void SetUpAnimations()
     {
@@ -40,6 +49,10 @@ public class Archetype: ScriptableObject
         SetUpAttacks(ref parry, parryInput);
         SetUpAttack(ref unique, uniqueInput);
         SetUpAttack(ref block, blockInput);
+
+        SetUpAttacks(ref enemyAttacks, enemyAttacksInput);
+        SetUpAttacks(ref enemyParrys, enemyParrysInput);
+
     }
 
     public void SetUpAttack(ref Attack attack, AttackInput inputs)

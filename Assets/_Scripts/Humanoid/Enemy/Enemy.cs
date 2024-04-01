@@ -1,8 +1,9 @@
+using Actions;
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace EnemyAI
 {
@@ -11,8 +12,9 @@ namespace EnemyAI
         [Header("Navigation")]
         [SerializeField] private float navMeshRefreshRate = 0.2f;
         [SerializeField] private float waypointDistance = 1f;
-        [SerializeField] private float rotationSlerp = 10;
+        [SerializeField] private float rotationSlerp = 10;       
         public float playerDistance = 2f;
+        public float runDistance = 8f;
 
         [Header("Attacking")]
         [SerializeField] private float attackCooldown;
@@ -21,8 +23,13 @@ namespace EnemyAI
         [SerializeField] private Transform[] weaponPos;
         [SerializeField] private Weapon startWeapon;
 
-
         public EnemyAnimator enemyAnimator;
+
+
+        public Weapon currentWeapon { get; private set; }
+        public EnemyState currentState { get; private set; }
+        public Anim currentAnimation { get; private set; }
+
         public Player player { get; private set; }
         public NavMeshAgent agent { get; private set; }
         public NavMeshPath currentPath { get; private set; }
@@ -30,7 +37,6 @@ namespace EnemyAI
         public Vector3 lookAtTarget { get; private set; }
 
         //State machine
-        public EnemyState currentState;
         public ChaseState chaseState = new ChaseState();
         public AttackState attackState = new AttackState();
         //public StaggeredState staggeredState = new StaggeredState();
@@ -38,20 +44,21 @@ namespace EnemyAI
 
         private int currentCorner;
         private float refreshRateTimer;
+        private float animatorRunSpeed;
+        private bool isRunning;
         
         protected override void Awake()
         {
             base.Awake();
             FindReferences();
 
-            //For now, no navmeshagent
+            currentWeapon = startWeapon;
             agent.enabled = false;
             SwitchState(chaseState);
-
         }
         private void Start()
         {
-            startWeapon.SetOwner(this, transform, weaponPos);
+            currentWeapon.SetOwner(this, transform, weaponPos);
         }
         private void FindReferences()
         {
@@ -64,6 +71,21 @@ namespace EnemyAI
         {
             base.Update();
             currentState.Update();
+            AnimationSpeed();
+
+        }
+        private void AnimationSpeed()
+        {
+            if (isRunning)
+            {
+                animatorRunSpeed = Mathf.Lerp(animatorRunSpeed, 1, Time.deltaTime * 5);
+
+            }
+            else
+            {
+                animatorRunSpeed = Mathf.Lerp(animatorRunSpeed, 0, Time.deltaTime * 5);
+            }
+            enemyAnimator.animator.SetFloat("MovementZ", animatorRunSpeed);
         }
 
         public void Takedown()
@@ -119,6 +141,20 @@ namespace EnemyAI
 
             return Vector3.Dot(perp, Vector3.up);
         }
+        public void SetAnimation(Anim newAnim, float transition = 0.25f)
+        {
+            if (newAnim is Attack attack)
+            {
+                currentWeapon.Attack(attack);
+            }
+            else
+            {
+                currentWeapon.NoAttack();
+            }
+
+            currentAnimation = newAnim;
+            enemyAnimator.animator.CrossFadeInFixedTime(currentAnimation.state, transition);
+        }
 
         //Called from this class
         private void LookAtTarget(Vector3 target)
@@ -141,7 +177,30 @@ namespace EnemyAI
         {
             return agent.CalculatePath(target, currentPath);
         }
+        public void SpeedByDist(float dist)
+        {
 
+            if(dist > runDistance)
+            {
+                if (!isRunning)
+                {
+                    isRunning = true;
+                    SetSpeed(6);
+                }
+            }
+            else
+            {
+                if(isRunning && dist < playerDistance + 2)
+                {
+                    isRunning= false;
+                    SetSpeed(3);
+
+                }
+            }
+        }
+
+
+        
         //Called from other scripts
         public void InvokeFunction(Action function, float waitTime)
         {

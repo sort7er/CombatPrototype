@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,10 +7,11 @@ public class CameraController : MonoBehaviour
 {
     [Header("Values")]
     public float mouseSensitivity = 100f;
+    public float cameraInterpolation = 50;
 
     [Header("References")]
-    public Camera playerCam;
     public Transform camTrans;
+    public Transform camTarget;
 
     public bool canRotate { get; private set; }
     
@@ -30,20 +32,31 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-
         float mouseY = input.y * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        camTrans.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        //camTrans.rotation = Quaternion.Euler(xRotation, 0, 0);
 
-        if(canRotate)
+
+        if (canRotate)
         {
             float mouseX = input.x * mouseSensitivity * Time.deltaTime;
             transform.Rotate(Vector3.up * mouseX);
         }
+
+        Quaternion targetRotation = Quaternion.Euler(xRotation, camTarget.eulerAngles.y, 0);
+
+        camTrans.rotation = Quaternion.Slerp(camTrans.rotation, targetRotation, Time.deltaTime * cameraInterpolation);
+
+        Quaternion rotationToReset = Quaternion.Euler(camTrans.eulerAngles.x, camTrans.eulerAngles.y, 0);
+        camTrans.rotation = rotationToReset;
+
+        camTrans.position = Vector3.Lerp(camTrans.position, camTarget.position, Time.deltaTime * cameraInterpolation);
+
     }
+
 
     public void DisableRotation()
     {

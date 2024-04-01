@@ -9,7 +9,7 @@ public class Humanoid : MonoBehaviour
     public event Action OnLanding;
 
     [Header("Humanoid")]
-    [SerializeField] protected float movementSpeed = 6;
+    [SerializeField] protected float startSpeed = 6;
     [SerializeField] protected float jumpForce = 8;
     [Range(0, 1)]
     [SerializeField] protected float airMultiplier = 0.4f;
@@ -24,11 +24,13 @@ public class Humanoid : MonoBehaviour
     protected Vector3 movementDirection;
 
 
+    private float movementSpeed;
     private bool isJumping;
     private bool isFalling;
 
     protected virtual void Awake()
     {
+        movementSpeed = startSpeed;
         health = GetComponent<Health>();
         rb = GetComponent<Rigidbody>();
     }
@@ -101,6 +103,10 @@ public class Humanoid : MonoBehaviour
             isJumping = true;
             OnJump?.Invoke();
         }
+    }
+    protected virtual void SetSpeed(float newSpeed)
+    {
+        movementSpeed = newSpeed;
     }
 
     public virtual void Staggered()

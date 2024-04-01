@@ -15,13 +15,16 @@ namespace EnemyAI
         {
             base.Update();
 
-            if(Vector3.Distance(player.Position(), enemy.Position()) < enemy.playerDistance)
+            float dist = Vector3.Distance(player.Position(), enemy.Position());
+
+            if (dist < enemy.playerDistance)
             {
                 enemy.enemyAnimator.SetWalking(false);
                 enemy.SwitchState(enemy.attackState);
             }
             else
             {
+                enemy.SpeedByDist(dist);
                 enemy.SetTarget(player.Position());
             }
         }

@@ -20,7 +20,7 @@ namespace EnemyAI
             }
             else
             {
-                Debug.Log("Arrg!");
+                Debug.Log(enemy.currentWeapon.archetype.enemyAttacks[0].animationClip.name);
             }
         }
     }

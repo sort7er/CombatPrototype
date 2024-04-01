@@ -117,3 +117,35 @@ MonoBehaviour:
     attackCoordsSecondary:
     - localStartPos: {x: 0, y: 0, z: 0}
       localEndPos: {x: 0, y: 0, z: 0}
+  enemyAttacksInput:
+  - animationClip: {fileID: -3184109133750201913, guid: b32b55151f7a85c46b95b412b82b3791,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoordsMain: []
+    attackCoordsSecondary: []
+  - animationClip: {fileID: 2017401011171540966, guid: b32b55151f7a85c46b95b412b82b3791,
+      type: 3}
+    activeWield: 0
+    hitType: 1
+    attackCoordsMain: []
+    attackCoordsSecondary: []
+  - animationClip: {fileID: -2737572153472715835, guid: b32b55151f7a85c46b95b412b82b3791,
+      type: 3}
+    activeWield: 1
+    hitType: 1
+    attackCoordsMain: []
+    attackCoordsSecondary: []
+  - animationClip: {fileID: 1902256852952496267, guid: b32b55151f7a85c46b95b412b82b3791,
+      type: 3}
+    activeWield: 1
+    hitType: 1
+    attackCoordsMain: []
+    attackCoordsSecondary: []
+  - animationClip: {fileID: -4297695678032263159, guid: b32b55151f7a85c46b95b412b82b3791,
+      type: 3}
+    activeWield: 2
+    hitType: 1
+    attackCoordsMain: []
+    attackCoordsSecondary: []
+  enemyParrysInput: []

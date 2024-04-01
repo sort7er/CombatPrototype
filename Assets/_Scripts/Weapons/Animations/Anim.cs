@@ -9,9 +9,17 @@ public class Anim
 
     public Anim(AnimationClip clip)
     {
-        animationClip = clip;
-        duration = animationClip.length;
-        state = Animator.StringToHash(animationClip.name);
+        if(clip != null)
+        {
+            animationClip = clip;
+            duration = animationClip.length;
+            state = Animator.StringToHash(animationClip.name);
+        }
+        else
+        {
+            Debug.Log("Missing clip");
+        }
+
     }
     public Anim(string stateName)
     {
