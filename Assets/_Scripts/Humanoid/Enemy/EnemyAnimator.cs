@@ -42,5 +42,12 @@ public class EnemyAnimator : MonoBehaviour
     {
         animator.SetBool("Walking", isWalking);
     }
-
+    public void AttackEvent()
+    {
+        enemy.hitbox.OverlapCollider();
+    }
+    public void AttackEffect()
+    {
+        enemy.currentWeapon.Effect();
+    }
 }

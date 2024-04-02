@@ -66,6 +66,9 @@ public class WeaponModel : MonoBehaviour
     }
     public void Hit(Vector3 hitPoint)
     {
+        Debug.Log(weapon);
+        Debug.Log(attackCoord);
+
         Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
         planeNormal.Normalize();
 

@@ -1534,7 +1534,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.30120724
+        functionName: AttackEffect
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.33157757
+        functionName: AttackEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1655,7 +1671,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.26238525
+        functionName: AttackEffect
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.28697824
+        functionName: AttackEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1776,7 +1808,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.29777083
+        functionName: AttackEffect
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.32634464
+        functionName: AttackEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1897,7 +1945,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.2526541
+        functionName: AttackEffect
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.2867128
+        functionName: AttackEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -2018,7 +2082,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.37181485
+        functionName: AttackEffect
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.40321976
+        functionName: AttackEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

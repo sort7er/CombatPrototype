@@ -463,8 +463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 20
   postureDamage: 5
+  pushbackForce: 1
   archetype: {fileID: 11400000, guid: 56d929dbf4a45e24b874c66403ba7e49, type: 2}
   uniqueAbility: {fileID: 7154469481346446333}
   weaponModel:

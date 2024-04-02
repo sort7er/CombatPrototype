@@ -73,7 +73,7 @@ public class Archetype: ScriptableObject
             inputs.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
         }
 
-        attack = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
+        attack = new Attack(inputs.animationClip, inputs.exitTime, inputs.transitionDuration, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
     }
 
     public void SetUpAttacks(ref Attack[] attacksToSetUp, AttackInput[] inputs)

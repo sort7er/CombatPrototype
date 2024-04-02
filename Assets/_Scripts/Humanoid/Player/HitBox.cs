@@ -1,6 +1,7 @@
 using DynamicMeshCutter;
 using System.Collections.Generic;
 using UnityEngine;
+using EnemyAI;
 
 public class HitBox : MonoBehaviour
 {
@@ -35,6 +36,10 @@ public class HitBox : MonoBehaviour
         if (owner is Player player)
         {
             currentWeapon = player.playerActions.currentWeapon;
+        }
+        if(owner is Enemy enemy)
+        {
+            currentWeapon = enemy.currentWeapon;
         }
     }
 

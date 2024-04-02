@@ -14,6 +14,7 @@ namespace EnemyAI
         [SerializeField] private float waypointDistance = 1f;
         [SerializeField] private float rotationSlerp = 10;       
         public float playerDistance = 2f;
+        public float playerDistanceThreshold = 1f;
         public float runDistance = 8f;
 
         [Header("Attacking")]
@@ -24,6 +25,7 @@ namespace EnemyAI
         [SerializeField] private Weapon startWeapon;
 
         public EnemyAnimator enemyAnimator;
+        public HitBox hitbox;
 
 
         public Weapon currentWeapon { get; private set; }
@@ -190,7 +192,7 @@ namespace EnemyAI
             }
             else
             {
-                if(isRunning && dist < playerDistance + 2)
+                if(isRunning && dist < playerDistance + playerDistanceThreshold)
                 {
                     isRunning= false;
                     SetSpeed(3);

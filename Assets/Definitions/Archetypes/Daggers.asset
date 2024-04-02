@@ -20,16 +20,24 @@ MonoBehaviour:
   idleInput:
     animationClip: {fileID: 2306454905413886559, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
   walkInput: ArmRig|Daggers_Walk
   jumpInput:
     animationClip: {fileID: 2465316803692908098, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
   fallInput:
     animationClip: {fileID: 4341026358616626062, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
   attacksInput:
   - animationClip: {fileID: -1609281748187839663, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -40,6 +48,8 @@ MonoBehaviour:
       localEndPos: {x: 0, y: 0, z: 0}
   - animationClip: {fileID: 2493344457160333171, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -50,6 +60,8 @@ MonoBehaviour:
       localEndPos: {x: 0, y: 0, z: 0}
   - animationClip: {fileID: 4117485373648690037, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 1
     hitType: 1
     attackCoordsMain: []
@@ -58,6 +70,8 @@ MonoBehaviour:
       localEndPos: {x: 0.42, y: -0.22, z: 0.65}
   - animationClip: {fileID: 4481792287802057648, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 1
     hitType: 1
     attackCoordsMain: []
@@ -66,6 +80,8 @@ MonoBehaviour:
       localEndPos: {x: -1.02, y: -0.23, z: 0.68}
   - animationClip: {fileID: 8429281437401963468, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 2
     hitType: 1
     attackCoordsMain:
@@ -77,6 +93,8 @@ MonoBehaviour:
   uniqueInput:
     animationClip: {fileID: 1990068141299859498, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 2
     hitType: 1
     attackCoordsMain:
@@ -88,6 +106,8 @@ MonoBehaviour:
   blockInput:
     animationClip: {fileID: -1396277398176110326, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 2
     hitType: 0
     attackCoordsMain:
@@ -99,6 +119,8 @@ MonoBehaviour:
   parryInput:
   - animationClip: {fileID: 207380724844958318, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 1
     hitType: 0
     attackCoordsMain:
@@ -109,6 +131,8 @@ MonoBehaviour:
       localEndPos: {x: 0, y: 0, z: 0}
   - animationClip: {fileID: 997996178180188622, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
     activeWield: 0
     hitType: 0
     attackCoordsMain:
@@ -120,30 +144,40 @@ MonoBehaviour:
   enemyAttacksInput:
   - animationClip: {fileID: -3184109133750201913, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
+    exitTime: 0.7325639
+    transitionDuration: 0.3021576
     activeWield: 0
     hitType: 1
     attackCoordsMain: []
     attackCoordsSecondary: []
   - animationClip: {fileID: 2017401011171540966, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
+    exitTime: 0.7279121
+    transitionDuration: 0.3147935
     activeWield: 0
     hitType: 1
     attackCoordsMain: []
     attackCoordsSecondary: []
   - animationClip: {fileID: -2737572153472715835, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
+    exitTime: 0.7237384
+    transitionDuration: 0.3417622
     activeWield: 1
     hitType: 1
     attackCoordsMain: []
     attackCoordsSecondary: []
   - animationClip: {fileID: 1902256852952496267, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
+    exitTime: 0.7267373
+    transitionDuration: 0.3330863
     activeWield: 1
     hitType: 1
     attackCoordsMain: []
     attackCoordsSecondary: []
   - animationClip: {fileID: -4297695678032263159, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
+    exitTime: 0.6838149
+    transitionDuration: 0.3257034
     activeWield: 2
     hitType: 1
     attackCoordsMain: []
