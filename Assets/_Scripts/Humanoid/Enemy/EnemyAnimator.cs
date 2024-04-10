@@ -9,6 +9,14 @@ public class EnemyAnimator : MonoBehaviour
     public Animator animator { get; private set; }
 
     private float lerp;
+
+    private bool parry;
+    private bool perfectParry;
+    private bool tooLate;
+    private float parryTime;
+    private float perfectParryTime;
+    private float tooLateTime;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -36,18 +44,59 @@ public class EnemyAnimator : MonoBehaviour
         //    Debug.Log("Forward");
         //}
 
+        if(parry)
+        {
+            parryTime += Time.deltaTime;
+        }
+        if (perfectParry)
+        {
+            perfectParryTime += Time.deltaTime;
+        }
+        if(tooLate)
+        {
+            tooLateTime += Time.deltaTime;
+        }
+
+
+
     }
 
     public void SetWalking(bool isWalking)
     {
         animator.SetBool("Walking", isWalking);
     }
-    public void AttackEvent()
+
+    //Events in order
+    public void Parry()
     {
-        enemy.hitbox.OverlapCollider();
+        parry = true;
+    }
+    public void PerfectParry()
+    {
+        perfectParry = true;
     }
     public void AttackEffect()
     {
+        tooLate= true;
         enemy.currentWeapon.Effect();
     }
+    public void AttackEvent()
+    {
+
+        perfectParry = false;
+        parry = false;
+        tooLate = false;
+
+        enemy.SetAttackData(parryTime, perfectParryTime, tooLateTime);
+        enemy.hitbox.OverlapCollider();
+
+        parryTime = 0;
+        tooLateTime = 0;
+        perfectParryTime = 0;
+    }
+    public void AttackDone()
+    {
+        enemy.currentWeapon.AttackDone();
+    }
+
 }

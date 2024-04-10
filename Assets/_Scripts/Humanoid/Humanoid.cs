@@ -20,13 +20,24 @@ public class Humanoid : MonoBehaviour
     public Rigidbody rb { get; private set; }
     public Health health { get; private set; }
 
+    //This is when the owner is parrying
+    public float parryTimer { get; private set; }
+
+    //This is when reciving an attack
+    public float parryTime { get; private set; }
+    public float perfectParryTime { get; private set; }
+    public float tooLateTime { get; private set; }
+
     protected bool canMove;
+    
     protected Vector3 movementDirection;
 
 
     private float movementSpeed;
     private bool isJumping;
     private bool isFalling;
+
+
 
     protected virtual void Awake()
     {
@@ -167,5 +178,16 @@ public class Humanoid : MonoBehaviour
     public Vector3 Movement()
     {
         return movementDirection;
+    }
+
+    public void UpdateParryTimer(float time)
+    {
+        parryTimer = time;
+    }
+    public void SetAttackData(float parryTime, float perfectParryTime, float tooLateTime)
+    {
+        this.parryTime = parryTime;
+        this.perfectParryTime = perfectParryTime;
+        this.tooLateTime = tooLateTime;
     }
 }

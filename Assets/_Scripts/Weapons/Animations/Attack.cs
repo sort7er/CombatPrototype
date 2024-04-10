@@ -19,22 +19,31 @@ namespace Attacks
 
 public class Attack : Anim
 {
+    public int damage;
+    public int postureDamage;
     public Wield currentWield;
     public HitType hitType;
     public AttackCoord[] attackCoordsMain;
     public AttackCoord[] attackCoordsSecondary;
 
-    public Attack(AnimationClip clip, Wield wield, HitType hitType, AttackCoord[] attackCoordsMain, AttackCoord[] attackCoordsSecondary) : base(clip)
+    public Attack(AnimationClip clip, int damage, int postureDamage, Wield wield, HitType hitType, AttackCoord[] attackCoordsMain, AttackCoord[] attackCoordsSecondary) : base(clip)
     {
+        this.damage = damage;
+        this.postureDamage = postureDamage;
         currentWield = wield;
         this.hitType = hitType;
         this.attackCoordsMain = attackCoordsMain;
         this.attackCoordsSecondary = attackCoordsSecondary;
     }
-    public Attack(AnimationClip clip, float exitTime, float transitionDuration, Wield wield, HitType hitType, AttackCoord[] attackCoordsMain, AttackCoord[] attackCoordsSecondary) : base(clip, exitTime, transitionDuration)
+    public Attack(AnimationClip clip, int damage, int postureDamage, float exitTime, float transitionDuration, Wield wield, HitType hitType, AttackCoord[] attackCoordsMain, AttackCoord[] attackCoordsSecondary) : base(clip, exitTime, transitionDuration)
     {
+        this.damage = damage;
+        this.postureDamage = postureDamage;
         currentWield = wield;
         this.hitType = hitType;
+
+        
+
         this.attackCoordsMain = attackCoordsMain;
         this.attackCoordsSecondary = attackCoordsSecondary;
     }

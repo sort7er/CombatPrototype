@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour
     }
     public void SetUpAttack(ref Attack attacksToSetUp, AttackInput inputs)
     {
-        attacksToSetUp = new Attack(inputs.animationClip, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
+        attacksToSetUp = new Attack(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
     }
 
     //Set from player actions
@@ -73,23 +73,27 @@ public class Weapon : MonoBehaviour
         rightIncluded = currentAttack.currentWield == Wield.right || currentAttack.currentWield == Wield.both;
         leftIncluded = currentAttack.currentWield == Wield.left || currentAttack.currentWield == Wield.both;
 
+        UpdateAttackCoords();
+
     }
     public void Effect()
     {
         if (rightIncluded)
         {
-            weaponModel[0].Effect(currentAttack.attackCoordsMain[rightEffect]);
+            weaponModel[0].Effect();
             rightEffect++;
         }
         
         if (leftIncluded)
         {
-            if(currentAttack.attackCoordsSecondary == null)
-            {
-                Debug.Log(currentAttack.animationClip.name);
-            }
-            weaponModel[1].Effect(currentAttack.attackCoordsSecondary[leftEffect]);
+            weaponModel[1].Effect();
             leftEffect++;
+        }
+
+        //Only update attack coords if there are more than one stike in an attack
+        if(currentAttack.attackCoordsMain.Length > rightEffect || currentAttack.attackCoordsSecondary.Length > leftEffect)
+        {
+            UpdateAttackCoords();
         }
     }
 
@@ -114,6 +118,17 @@ public class Weapon : MonoBehaviour
         if (leftIncluded)
         {
             weaponModel[1].Hit(hitPoint);
+        }
+    }
+    private void UpdateAttackCoords()
+    {
+        if (rightIncluded)
+        {
+            weaponModel[0].SetAttackCoord(currentAttack.attackCoordsMain[rightEffect]);
+        }
+        if (leftIncluded)
+        {
+            weaponModel[1].SetAttackCoord(currentAttack.attackCoordsSecondary[leftEffect]);
         }
     }
 

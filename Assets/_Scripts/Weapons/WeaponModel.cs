@@ -25,10 +25,14 @@ public class WeaponModel : MonoBehaviour
     {
 
     }
-    public virtual void Effect(AttackCoord attackCoord)
+
+    public void SetAttackCoord(AttackCoord attackCoord)
     {
         this.attackCoord = attackCoord;
+    }
 
+    public virtual void Effect()
+    {
         if(weapon.archetype.showStartPos)
         {
             DisplayAttackCoords("Start");
@@ -38,7 +42,11 @@ public class WeaponModel : MonoBehaviour
         {
             if (weapon.currentAttack.hitType == HitType.slice)
             {
-                Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
+                Vector3 ajustedPosition = transform.position;
+
+                ajustedPosition.y = weapon.transform.position.y;
+
+                Vector3 planeNormal = Vector3.Cross(weapon.transform.forward, attackCoord.Direction(weapon.transform));
                 planeNormal.Normalize();
 
                 EffectManager.instance.Slash(weapon.archetype.slashEffect, attackCoord.MiddlePoint(weapon.transform), weapon.transform.forward, planeNormal, weapon.transform, weapon.archetype.effectSize);
@@ -66,14 +74,9 @@ public class WeaponModel : MonoBehaviour
     }
     public void Hit(Vector3 hitPoint)
     {
-        Debug.Log(weapon);
-        Debug.Log(attackCoord);
-
         Vector3 planeNormal = Vector3.Cross(transform.position - weapon.transform.position, attackCoord.Direction(weapon.transform));
         planeNormal.Normalize();
 
-        //arrow.position = transform.position;
-        //arrow.rotation = Quaternion.LookRotation(attackCoord.Direction(weapon.transform));
 
         EffectManager.instance.Hit(hitPoint, attackCoord.Direction(weapon.transform), planeNormal);
     }

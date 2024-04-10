@@ -5,6 +5,8 @@ using Attacks;
 [Serializable]
 public class AttackInput : AnimationInput
 {
+    public int damage;
+    public int postureDamage;
     public Wield activeWield;
     public HitType hitType;
     public AttackCoord[] attackCoordsMain;

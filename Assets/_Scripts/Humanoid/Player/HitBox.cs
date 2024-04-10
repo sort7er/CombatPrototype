@@ -87,8 +87,7 @@ public class HitBox : MonoBehaviour
 
     private void DoDamage(Health health, Vector3 hitPoint)
     {
-        currentWeapon.Hit(hitPoint);
-        health.TakeDamage(currentWeapon);
+        health.TakeDamage(currentWeapon, hitPoint);
     }
 
     //private void AddToList(DynamicRagdollPart part)

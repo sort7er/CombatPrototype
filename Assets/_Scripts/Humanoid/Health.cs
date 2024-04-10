@@ -53,25 +53,34 @@ public class Health : MonoBehaviour
         postureRegen = defaultPostureRegen;
     }
 
-    public virtual void TakeDamage(Weapon attackingWeapon)
-    {
+    public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
+    {  
+
         if (IsDead())
         {
             return;
         }
+
+        if(owner is Player)
+        {
+            CheckForParry(attackingWeapon.owner);
+        }
+
+
+        attackingWeapon.Hit(hitPoint);
 
         Vector3 direction = transform.position - attackingWeapon.owner.Position();
 
         owner.AddForce(direction.normalized * attackingWeapon.pushbackForce);
 
         OnTakeDamage?.Invoke();
-        health -=  attackingWeapon.damage;
+        health -= attackingWeapon.currentAttack.damage;
         healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
 
 
         CancelInvoke(nameof(StartRegen));
         canRegen = false;
-        posture -= attackingWeapon.postureDamage;
+        posture -= attackingWeapon.currentAttack.postureDamage;
         postureSlider.DOValue(posture, 0.1f).SetEase(Ease.OutFlash);
         postureRegen = Tools.Remap(health, 0, 100, 1, defaultPostureRegen);
         timeTillRegen = Tools.Remap(health, 0, 100, 10, defaultTimeTillRegen);
@@ -88,6 +97,26 @@ public class Health : MonoBehaviour
         else
         {
             Invoke(nameof(StartRegen), timeTillRegen);
+        }
+    }
+
+    public void CheckForParry(Humanoid attacker)
+    {
+        if(owner.parryTimer < attacker.tooLateTime)
+        {
+            Debug.Log("Too Late");
+        }
+        else if(owner.parryTimer < attacker.perfectParryTime)
+        {
+            Debug.Log("Perfect parry");
+        }
+        else if (owner.parryTimer < attacker.parryTime)
+        {
+            Debug.Log("Parry");
+        }
+        else
+        {
+            Debug.Log("Too early");
         }
     }
 

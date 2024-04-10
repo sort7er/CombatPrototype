@@ -22,9 +22,9 @@ public class SlicingWeapon : WeaponModel
     //public Transform plane;
     //public Transform startPoint;
 
-    public override void Effect(AttackCoord attackCoord)
+    public override void Effect()
     {
-        base.Effect(attackCoord);
+        base.Effect();
     }
 
     public void Slice(MeshTarget meshTarget)

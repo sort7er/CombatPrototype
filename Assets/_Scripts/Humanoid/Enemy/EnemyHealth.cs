@@ -20,9 +20,9 @@ public class EnemyHealth : Health
         skull.gameObject.SetActive(false);
     }
 
-    public override void TakeDamage(Weapon attackingWeapon)
+    public override void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
     {
-        base.TakeDamage(attackingWeapon);
+        base.TakeDamage(attackingWeapon, hitPoint);
 
 
         //enemy.Hit();

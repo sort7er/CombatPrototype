@@ -1,16 +1,23 @@
 using Actions;
+using UnityEngine;
 
 namespace Actions
 {
     public class ParryState : ActionState
     {
         private int currentParry;
+        private float parryTimer;
         public override void Enter(PlayerActions actions)
         {
             base.Enter(actions);
             DoParry();
         }
-
+        public override void Update()
+        {
+            base.Update();
+            parryTimer += Time.deltaTime;
+            actions.player.UpdateParryTimer(parryTimer);
+        }
         public override void Parry()
         {
             if (actionDone)
@@ -28,6 +35,7 @@ namespace Actions
             if (upcommingAction == QueuedAction.Attack)
             {
                 actions.StopMethod();
+                actions.player.UpdateParryTimer(0);
                 actions.SwitchState(actions.attackState);
             }
             else if (upcommingAction == QueuedAction.Parry)
@@ -45,6 +53,7 @@ namespace Actions
             if (actionDone)
             {
                 actions.StopMethod();
+                actions.player.UpdateParryTimer(0);
                 actions.SwitchState(actions.attackState);
             }
             else if (canChain && CheckUpcommingAction())
@@ -57,6 +66,7 @@ namespace Actions
         {
             actionDone = false;
             canChain = false;
+            parryTimer = 0;
             SetUpcommingAction(QueuedAction.None);
             actions.SetAnimation(archetype.parry[currentParry], 0.05f);
             actions.StopMethod();
@@ -67,6 +77,7 @@ namespace Actions
         private void EndParry()
         {
             actions.SwitchState(actions.idleState);
+            actions.player.UpdateParryTimer(0);
         }
 
         private void UpdateParry()
