@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GateToOpen : MonoBehaviour
+public class Gate : MonoBehaviour
 {
     public InputReader reader;
 
@@ -11,22 +11,22 @@ public class GateToOpen : MonoBehaviour
 
     private void Awake()
     {
-        reader.OnNextWeapon += OpenGate;
-        reader.OnPreviousWeapon += CloseGate;
+        reader.OnNextWeapon += Open;
+        reader.OnPreviousWeapon += Close;
     }
     private void OnDestroy()
     {
-        reader.OnNextWeapon -= OpenGate;
-        reader.OnPreviousWeapon -= CloseGate;
+        reader.OnNextWeapon -= Open;
+        reader.OnPreviousWeapon -= Close;
     }
 
 
 
-    public void OpenGate()
+    public virtual void Open()
     {
         gateAnim.SetBool("Open",true);
     }
-    public void CloseGate()
+    public virtual void Close()
     {
         gateAnim.SetBool("Open", false);
     }
