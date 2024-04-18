@@ -17,6 +17,8 @@ public class CameraController : MonoBehaviour
     private Vector2 input;
     private float xRotation = 0f;
 
+    private float lastx;
+
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -31,18 +33,19 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+
         float mouseY = input.y * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        //camTrans.rotation = Quaternion.Euler(xRotation, 0, 0);
 
 
         if (canRotate)
         {
             float mouseX = input.x * mouseSensitivity * Time.deltaTime;
             transform.Rotate(Vector3.up * mouseX);
+
+            lastx = mouseX;
         }
 
         Quaternion targetRotation = Quaternion.Euler(xRotation, camTarget.eulerAngles.y, 0);
