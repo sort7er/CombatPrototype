@@ -53,6 +53,12 @@ public class Health : MonoBehaviour
         postureRegen = defaultPostureRegen;
     }
 
+    public virtual void TakeDamage(int damage, int postureDamage = 0)
+    {
+        WhenLosingHealth(damage, postureDamage);
+        CheckHealthStatus(null);
+    }
+
     public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
     {  
 
@@ -73,24 +79,40 @@ public class Health : MonoBehaviour
 
         owner.AddForce(direction.normalized * attackingWeapon.pushbackForce);
 
-        OnTakeDamage?.Invoke();
-        health -= attackingWeapon.currentAttack.damage;
-        healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
+        WhenLosingHealth(attackingWeapon.currentAttack.damage, attackingWeapon.currentAttack.postureDamage);
 
+        CheckHealthStatus(attackingWeapon);
+    }
+
+    private void WhenLosingHealth(int damage, int postureDamage = 0)
+    {
+        OnTakeDamage?.Invoke();
+        health -= damage;
+        healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
 
         CancelInvoke(nameof(StartRegen));
         canRegen = false;
-        posture -= attackingWeapon.currentAttack.postureDamage;
+        posture -= postureDamage;
         postureSlider.DOValue(posture, 0.1f).SetEase(Ease.OutFlash);
         postureRegen = Tools.Remap(health, 0, 100, 1, defaultPostureRegen);
         timeTillRegen = Tools.Remap(health, 0, 100, 10, defaultTimeTillRegen);
+    }
 
+    private void CheckHealthStatus(Weapon weapon)
+    {
         if (health <= 0)
         {
             health = 0;
-            Dead(attackingWeapon);
+            if (weapon != null)
+            {
+                Dead(weapon);
+            }
+            else
+            {
+                Dead();
+            }
         }
-        else if(posture <= 0)
+        else if (posture <= 0)
         {
             DrainedPosture();
         }
@@ -119,10 +141,15 @@ public class Health : MonoBehaviour
             Debug.Log("Too early");
         }
     }
+    
+    public virtual void Dead()
+    {
+        OnDeath?.Invoke();
+    }
 
     protected virtual void Dead(Weapon attackingWeapon)
     {
-        OnDeath?.Invoke();
+        Dead();
     }
 
     protected virtual void DrainedPosture()

@@ -158,9 +158,8 @@ public class Humanoid : MonoBehaviour
     {
         canMove = true;
     }
-    public void ImmediateStop()
+    public void ResetForce()
     {
-        DisableMovement();
         rb.velocity = Vector3.zero;
     }
     public void AddForce(Vector3 force)
@@ -178,6 +177,12 @@ public class Humanoid : MonoBehaviour
     public Vector3 Movement()
     {
         return movementDirection;
+    }
+
+    public void SetTransform(Transform newTransform)
+    {
+        transform.position = newTransform.position;
+        transform.rotation = newTransform.rotation;
     }
 
     public void UpdateParryTimer(float time)

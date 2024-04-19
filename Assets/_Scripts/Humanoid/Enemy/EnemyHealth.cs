@@ -32,6 +32,12 @@ public class EnemyHealth : Health
 
     }
 
+    public override void Dead()
+    {
+        base.Dead();
+        gameObject.SetActive(false);
+    }
+
     protected override void Dead(Weapon attackingWeapon)
     {
         base.Dead(attackingWeapon);
@@ -48,7 +54,7 @@ public class EnemyHealth : Health
             Vector3 direction = transform.position - attackingWeapon.owner.Position();
             container.Blast(direction * 2);
         }
-        gameObject.SetActive(false);
+        Dead();
 
     }
     protected override void DrainedPosture()
