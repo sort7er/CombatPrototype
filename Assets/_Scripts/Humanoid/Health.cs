@@ -55,7 +55,7 @@ public class Health : MonoBehaviour
 
     public virtual void TakeDamage(int damage, int postureDamage = 0)
     {
-        WhenLosingHealth(damage, postureDamage);
+        MinusHealth(damage, postureDamage);
         CheckHealthStatus(null);
     }
 
@@ -72,19 +72,18 @@ public class Health : MonoBehaviour
             CheckForParry(attackingWeapon.owner);
         }
 
-
         attackingWeapon.Hit(hitPoint);
 
         Vector3 direction = transform.position - attackingWeapon.owner.Position();
 
         owner.AddForce(direction.normalized * attackingWeapon.pushbackForce);
 
-        WhenLosingHealth(attackingWeapon.currentAttack.damage, attackingWeapon.currentAttack.postureDamage);
+        MinusHealth(attackingWeapon.currentAttack.damage, attackingWeapon.currentAttack.postureDamage);
 
         CheckHealthStatus(attackingWeapon);
     }
 
-    private void WhenLosingHealth(int damage, int postureDamage = 0)
+    private void MinusHealth(int damage, int postureDamage = 0)
     {
         OnTakeDamage?.Invoke();
         health -= damage;

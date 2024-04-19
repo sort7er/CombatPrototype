@@ -40,8 +40,6 @@ public class EnemyHealth : Health
 
     protected override void Dead(Weapon attackingWeapon)
     {
-        base.Dead(attackingWeapon);
-
         if (attackingWeapon.currentAttack.hitType == HitType.slice)
         {
             slicingController.Slice(attackingWeapon);
@@ -54,8 +52,7 @@ public class EnemyHealth : Health
             Vector3 direction = transform.position - attackingWeapon.owner.Position();
             container.Blast(direction * 2);
         }
-        Dead();
-
+        base.Dead(attackingWeapon); 
     }
     protected override void DrainedPosture()
     {

@@ -20,16 +20,26 @@ MonoBehaviour:
   idleInput:
     animationClip: {fileID: 7546363829225106224, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
   walkInput: ArmRig|Sword_Walk
   jumpInput:
     animationClip: {fileID: -2428970136204956298, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
   fallInput:
     animationClip: {fileID: 4939835713230433236, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
   attacksInput:
   - animationClip: {fileID: -1849374964857553461, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 50
+    postureDamage: 20
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -38,6 +48,10 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: -4972910731492738705, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 50
+    postureDamage: 20
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -46,6 +60,10 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: 5032655422562970947, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 60
+    postureDamage: 30
     activeWield: 0
     hitType: 0
     attackCoordsMain:
@@ -54,6 +72,10 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: -6528523153938416292, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 50
+    postureDamage: 20
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -62,6 +84,10 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: -8919070915938334074, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 50
+    postureDamage: 20
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -71,6 +97,10 @@ MonoBehaviour:
   uniqueInput:
     animationClip: {fileID: 569589386963522486, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 50
+    postureDamage: 20
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -80,6 +110,10 @@ MonoBehaviour:
   blockInput:
     animationClip: {fileID: 9222578411887035572, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 0
+    postureDamage: 0
     activeWield: 0
     hitType: 0
     attackCoordsMain:
@@ -89,6 +123,10 @@ MonoBehaviour:
   parryInput:
   - animationClip: {fileID: 1492233437738051216, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 0
+    postureDamage: 0
     activeWield: 0
     hitType: 0
     attackCoordsMain:
@@ -97,9 +135,15 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: 8638265843471846437, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+    exitTime: 0
+    transitionDuration: 0
+    damage: 0
+    postureDamage: 0
     activeWield: 0
     hitType: 0
     attackCoordsMain:
     - localStartPos: {x: 0, y: 0, z: 0}
       localEndPos: {x: 0, y: 0, z: 0}
     attackCoordsSecondary: []
+  enemyAttacksInput: []
+  enemyParrysInput: []

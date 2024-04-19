@@ -1,10 +1,7 @@
-using Actions;
-using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace EnemyAI
 {

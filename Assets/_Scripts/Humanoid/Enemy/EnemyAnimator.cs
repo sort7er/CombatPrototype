@@ -6,7 +6,7 @@ public class EnemyAnimator : MonoBehaviour
 {
     public float strafeThreshold = 0.25f;
     public Enemy enemy;
-    public Animator animator { get; private set; }
+    public Animator animator;
 
     private float lerp;
 
@@ -16,11 +16,6 @@ public class EnemyAnimator : MonoBehaviour
     private float parryTime;
     private float perfectParryTime;
     private float tooLateTime;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
 
     private void Update()
@@ -63,6 +58,11 @@ public class EnemyAnimator : MonoBehaviour
 
     public void SetWalking(bool isWalking)
     {
+        if(animator == null)
+        {
+            Debug.Log(name);
+        }
+
         animator.SetBool("Walking", isWalking);
     }
 
