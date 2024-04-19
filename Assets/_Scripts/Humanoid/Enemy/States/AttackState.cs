@@ -14,7 +14,11 @@ namespace EnemyAI
             enemy.DisableMovement();
             currentAttack= 0;
             transition= 0;
-            attacksLength = currentWeapon.archetype.enemyAttacks.Length;
+
+            if (enemy.CheckForWeapon())
+            {
+                attacksLength = currentWeapon.archetype.enemyAttacks.Length;
+            }
         }
 
         public override void Update()
@@ -27,7 +31,7 @@ namespace EnemyAI
             }
             else
             {
-                if (!attacking)
+                if (!attacking && enemy.CheckForWeapon())
                 {
                     Attack();
                 }
@@ -76,6 +80,8 @@ namespace EnemyAI
         {
             return Vector3.Distance(player.Position(), enemy.Position());
         }
+
+
     }
 
 

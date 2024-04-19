@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace EnemyAI
 {
@@ -60,7 +61,10 @@ namespace EnemyAI
         }
         private void Start()
         {
-            currentWeapon.SetOwner(this, transform, weaponPos);
+            if (CheckForWeapon())
+            {
+                currentWeapon.SetOwner(this, transform, weaponPos);
+            }
         }
         private void FindReferences()
         {
@@ -116,6 +120,18 @@ namespace EnemyAI
         }
 
         //Called from the state machine
+
+        public bool CheckForWeapon()
+        {
+            if (currentWeapon != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void SwitchState(EnemyState state)
         {
             currentState = state;
