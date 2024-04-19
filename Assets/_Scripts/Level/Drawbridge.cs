@@ -8,6 +8,11 @@ public class Drawbridge : Gate
 
     private bool done;
 
+    private void Awake()
+    {
+        Close();
+    }
+
     private void Update()
     {
         if (!done)

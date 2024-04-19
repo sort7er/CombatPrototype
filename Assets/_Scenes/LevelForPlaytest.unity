@@ -3265,6 +3265,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 182854646}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &184877789 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1022955506828619469, guid: be413a6060d8c3246912b36734e1d330,
+    type: 3}
+  m_PrefabInstance: {fileID: 6216893449669265456}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eabcc9ce79a51045afa62d71ae99220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &185507700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9442,6 +9454,20 @@ MonoBehaviour:
   - {fileID: 821802186}
   - {fileID: 67671746}
   - {fileID: 270289345}
+  villageEnemies:
+  - {fileID: 1678484753}
+  - {fileID: 1193101522}
+  - {fileID: 1097949211}
+  - {fileID: 2010472254}
+  courtyardEnemies: []
+  churchEnemies: []
+  watchtowerEnemies: []
+  drawbridge: {fileID: 1570322450}
+  gates:
+  - {fileID: 890880402}
+  - {fileID: 184877789}
+  - {fileID: 939860051}
+  - {fileID: 1797817805}
 --- !u!1 &595639279
 GameObject:
   m_ObjectHideFlags: 0
@@ -13322,6 +13348,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 885087158}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &890880402 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7622806315523610537, guid: cd5bed9596f3c7d4a974a3477a6ae348,
+    type: 3}
+  m_PrefabInstance: {fileID: 5556208417757861483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eabcc9ce79a51045afa62d71ae99220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &895271914
 GameObject:
   m_ObjectHideFlags: 0
@@ -13820,6 +13858,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 838c0bef810bfe94d8e33947c3cba7c6, type: 3}
+--- !u!114 &939860051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1022955506828619469, guid: be413a6060d8c3246912b36734e1d330,
+    type: 3}
+  m_PrefabInstance: {fileID: 1759650305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eabcc9ce79a51045afa62d71ae99220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &946070017
 GameObject:
   m_ObjectHideFlags: 0
@@ -14888,6 +14938,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2399491502457680967, guid: 6355e9a12329ed947886c89f944f0877,
+        type: 3}
+      propertyPath: m_Name
+      value: GateToWatchtower
+      objectReference: {fileID: 0}
     - target: {fileID: 6848608085049841296, guid: 6355e9a12329ed947886c89f944f0877,
         type: 3}
       propertyPath: reader
@@ -15822,6 +15877,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1097326542}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1097949211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 906216590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658acf5ec0721b34490ec043f277db6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1102236424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17021,6 +17088,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1179063530}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1193101522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 858733983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658acf5ec0721b34490ec043f277db6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1196185217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21302,6 +21381,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1763199930179452705}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1570322450 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7327228510252554794, guid: c8cba3a2be6dca54a9dc126904a4c0e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1763199930179452705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bbc57d17a3a2d4fae8ca70d2446280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1573260157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22693,6 +22784,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1677470893}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1678484753 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1170415424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658acf5ec0721b34490ec043f277db6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1679153337
 GameObject:
   m_ObjectHideFlags: 0
@@ -23709,6 +23812,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8103616851461917722, guid: be413a6060d8c3246912b36734e1d330,
+        type: 3}
+      propertyPath: m_Name
+      value: GateToChurch
+      objectReference: {fileID: 0}
     - target: {fileID: 8204111245531557653, guid: be413a6060d8c3246912b36734e1d330,
         type: 3}
       propertyPath: m_Enabled
@@ -24019,6 +24127,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 459442626}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1797817805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6848608085049841296, guid: 6355e9a12329ed947886c89f944f0877,
+    type: 3}
+  m_PrefabInstance: {fileID: 1038606774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eabcc9ce79a51045afa62d71ae99220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1799477026
 GameObject:
   m_ObjectHideFlags: 0
@@ -25954,6 +26074,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2008181057}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2010472254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374396082}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658acf5ec0721b34490ec043f277db6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2021263638
 GameObject:
   m_ObjectHideFlags: 0
@@ -29067,6 +29199,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1697353476795725182, guid: cd5bed9596f3c7d4a974a3477a6ae348,
+        type: 3}
+      propertyPath: m_Name
+      value: GateToCourtyard
+      objectReference: {fileID: 0}
     - target: {fileID: 2409662196761951081, guid: cd5bed9596f3c7d4a974a3477a6ae348,
         type: 3}
       propertyPath: m_Layer
@@ -29225,6 +29362,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8103616851461917722, guid: be413a6060d8c3246912b36734e1d330,
+        type: 3}
+      propertyPath: m_Name
+      value: GateToBridge
       objectReference: {fileID: 0}
     - target: {fileID: 8204111245531557653, guid: be413a6060d8c3246912b36734e1d330,
         type: 3}

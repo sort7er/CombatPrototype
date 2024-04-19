@@ -2,23 +2,11 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    public InputReader reader;
 
     public Animator gateAnim;
     public AudioSource gateAS;
     public AudioClip[] openAC;
     public AudioClip[] closeAC;
-
-    private void Awake()
-    {
-        reader.OnNextWeapon += Open;
-        reader.OnPreviousWeapon += Close;
-    }
-    private void OnDestroy()
-    {
-        reader.OnNextWeapon -= Open;
-        reader.OnPreviousWeapon -= Close;
-    }
 
 
 
