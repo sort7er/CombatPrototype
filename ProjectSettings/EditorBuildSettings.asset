@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Archetypes.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/_Scenes/Main menu.unity
+    guid: 626dbf636a8c00c4699607c51541b016
+  - enabled: 1
+    path: Assets/_Scenes/LevelForPlaytest.unity
+    guid: 7854ccc6431c9fa46a14d8c892acdd96
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
