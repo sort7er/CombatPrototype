@@ -1,11 +1,10 @@
 using EnemyAI;
+using RunSettings;
 using System;
 using UnityEngine;
 
 public class LevelProgression : MonoBehaviour
 {
-
-
     [Header("Spawning")]
     [SerializeField] private Transform[] spawnPoints;
 
@@ -19,6 +18,8 @@ public class LevelProgression : MonoBehaviour
     [Header("Gates")]
     public Drawbridge drawbridge;
     public Gate[] gates;
+
+    public GameTracking gameTracking;
 
     public Transform currentSpawn { get; private set; }
 
@@ -93,7 +94,7 @@ public class LevelProgression : MonoBehaviour
     }
     private void WatchtowerCompleted()
     {
-        Debug.Log("Well done");
+        gameTracking.Finished();
     }
 
     //Triggers
