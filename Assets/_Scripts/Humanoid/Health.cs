@@ -3,6 +3,8 @@ using UnityEngine;
 using Attacks;
 using UnityEngine.UI;
 using DG.Tweening;
+using SlashABit.UI.HudElements;
+using RunSettings;
 
 public class Health : MonoBehaviour
 {
@@ -16,6 +18,11 @@ public class Health : MonoBehaviour
     [SerializeField] private float stunnedDuration = 10;
 
     [SerializeField] private Humanoid owner;
+    [SerializeField] private CanvasGroup canvasGroupHealth;
+    [SerializeField] private CanvasGroup canvasGroupPosture;
+
+    private ActiveHudHandler<int> hudHandlerHealth;
+    private ActiveHudHandler<float> hudHandlerPosture;
 
 
     public event Action OnTakeDamage;
@@ -33,6 +40,8 @@ public class Health : MonoBehaviour
 
     protected virtual void Awake()
     {
+        hudHandlerHealth = new ActiveHudHandler<int>(3, canvasGroupHealth);
+        hudHandlerPosture = new ActiveHudHandler<float>(3, canvasGroupPosture);
         SetUpHealth();
         SetUpPosture();
     }
@@ -74,6 +83,8 @@ public class Health : MonoBehaviour
 
         attackingWeapon.Hit(hitPoint);
 
+
+
         Vector3 direction = transform.position - attackingWeapon.owner.Position();
 
         owner.AddForce(direction.normalized * attackingWeapon.pushbackForce);
@@ -82,6 +93,9 @@ public class Health : MonoBehaviour
 
         CheckHealthStatus(attackingWeapon);
     }
+
+    
+
 
     private void MinusHealth(int damage, int postureDamage = 0)
     {
@@ -200,7 +214,10 @@ public class Health : MonoBehaviour
                 posture = 100;
             }
         }
-        
+
+        hudHandlerHealth.Update(RunManager.activeHud, health);
+        hudHandlerPosture.Update(RunManager.activeHud, posture);
+
     }
     protected void SetHealth(int newHealth)
     {

@@ -13,6 +13,16 @@ public class GameTracking : MonoBehaviour
     {
         currentRunType = RunManager.currentRunType;
         timePlayed = RunManager.timePlayed;
+
+        if(currentRunType == RunType.AB)
+        {
+            RunManager.SetActive(false);
+        }
+        else
+        {
+            RunManager.SetActive(true);
+        }
+
     }
 
 

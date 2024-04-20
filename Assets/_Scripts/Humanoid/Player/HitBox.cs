@@ -17,7 +17,7 @@ public class HitBox : MonoBehaviour
     private int numberOfHits;
     private void Awake()
     {
-        hits = new Collider[10];
+        hits = new Collider[100];
     }
     private void Start()
     {

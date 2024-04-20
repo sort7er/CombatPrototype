@@ -12,6 +12,8 @@ namespace RunSettings
         public static RunType currentRunType;
         public static float timePlayed;
 
+        public static bool activeHud;
+
         public static void StartRun(RunType runType)
         {
             currentRunType = runType;
@@ -27,6 +29,11 @@ namespace RunSettings
         public static float GetTimer()
         {
             return timePlayed;
+        }
+
+        public static void SetActive(bool state)
+        {
+            activeHud = state;
         }
     }
 }

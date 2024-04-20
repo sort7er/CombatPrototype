@@ -243,6 +243,9 @@ MonoBehaviour:
   defaultPostureRegen: 10
   stunnedDuration: 10
   owner: {fileID: 5937715972609921831}
+  canvasGroupHealth: {fileID: 4475623680375129514}
+  canvasGroupPosture: {fileID: 5944523749011281183}
+  activeHUD: 0
   slicingController: {fileID: 9064183171304532476}
   prefabs:
   - {fileID: 5725819523948652768, guid: b20e1344b3764a940b29583d39ec33cc, type: 3}
@@ -411,7 +414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.99}
+  m_AnchoredPosition: {x: 0, y: 2.661}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2602374761257582138
@@ -499,6 +502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5323774989650794951}
   - component: {fileID: 2314837235863848679}
+  - component: {fileID: 4475623680375129514}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -578,6 +582,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &4475623680375129514
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328606858949203465}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3517631871616481364
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9163567989702420183}
   - component: {fileID: 4550188560295206518}
+  - component: {fileID: 5944523749011281183}
   m_Layer: 5
   m_Name: PostureBar
   m_TagString: Untagged
@@ -734,6 +751,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &5944523749011281183
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5006280462856821562}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6047434502390318776
 GameObject:
   m_ObjectHideFlags: 0
