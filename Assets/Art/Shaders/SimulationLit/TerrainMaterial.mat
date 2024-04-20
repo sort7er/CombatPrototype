@@ -143,7 +143,7 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _BiPlanarSize: 0.5
-    - _BiPlanarStrength: 0.9
+    - _BiPlanarStrength: 0.8
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
