@@ -60,6 +60,7 @@ public class HitBox : MonoBehaviour
 
         for (int i = 0; i < numberOfHits; i++)
         {
+            Debug.Log(hits[i]);
             CheckHitInfo(hits[i]);
         }
 

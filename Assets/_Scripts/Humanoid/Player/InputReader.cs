@@ -15,6 +15,7 @@ public class InputReader : MonoBehaviour
     public event Action OnPreviousWeapon;
     public event Action OnBlock;
     public event Action OnParry;
+    public event Action OnPause;
 
 
     private bool moveStarted;
@@ -81,6 +82,13 @@ public class InputReader : MonoBehaviour
         if (ctx.canceled)
         {
             OnParry?.Invoke();
+        }
+    }
+    public void Pause(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OnPause?.Invoke();
         }
     }
 }

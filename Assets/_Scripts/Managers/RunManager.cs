@@ -31,7 +31,7 @@ namespace RunSettings
             return timePlayed;
         }
 
-        public static void SetActive(bool state)
+        public static void SetActiveHUD(bool state)
         {
             activeHud = state;
         }

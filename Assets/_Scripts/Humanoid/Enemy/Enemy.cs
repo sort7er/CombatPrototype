@@ -52,7 +52,9 @@ namespace EnemyAI
             base.Awake();
             FindReferences();
 
-            currentWeapon = startWeapon;
+
+
+            currentWeapon = Instantiate(startWeapon);
             agent.enabled = false;
             SwitchState(chaseState);
         }

@@ -339,7 +339,8 @@ MonoBehaviour:
   weaponPos:
   - {fileID: 5386840715973219261}
   - {fileID: 2525827288816242268}
-  startWeapon: {fileID: 0}
+  startWeapon: {fileID: 4573752892181745633, guid: a7fbf9fe8923747479728b128f6a5099,
+    type: 3}
   enemyAnimator: {fileID: 2164448996637774504}
   hitbox: {fileID: 7278276694183487644}
 --- !u!114 &7278276694183487644

@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
     public Transform camTarget;
 
     public bool canRotate { get; private set; }
+
+    private bool followMouse;
     
     private Vector2 input;
     private float xRotation = 0f;
@@ -21,7 +23,7 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        FollowMouse();
         canRotate = true;
     }
 
@@ -33,29 +35,32 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-
-        float mouseY = input.y * mouseSensitivity * Time.deltaTime;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-
-        if (canRotate)
+        if(followMouse)
         {
-            float mouseX = input.x * mouseSensitivity * Time.deltaTime;
-            transform.Rotate(Vector3.up * mouseX);
+            float mouseY = input.y * mouseSensitivity * Time.deltaTime;
 
-            lastx = mouseX;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+
+            if (canRotate)
+            {
+                float mouseX = input.x * mouseSensitivity * Time.deltaTime;
+                transform.Rotate(Vector3.up * mouseX);
+
+                lastx = mouseX;
+            }
+
+            Quaternion targetRotation = Quaternion.Euler(xRotation, camTarget.eulerAngles.y, 0);
+
+            camTrans.rotation = Quaternion.Slerp(camTrans.rotation, targetRotation, Time.deltaTime * cameraInterpolation);
+
+            Quaternion rotationToReset = Quaternion.Euler(camTrans.eulerAngles.x, camTrans.eulerAngles.y, 0);
+            camTrans.rotation = rotationToReset;
+
+            camTrans.position = Vector3.Lerp(camTrans.position, camTarget.position, Time.deltaTime * cameraInterpolation);
         }
 
-        Quaternion targetRotation = Quaternion.Euler(xRotation, camTarget.eulerAngles.y, 0);
-
-        camTrans.rotation = Quaternion.Slerp(camTrans.rotation, targetRotation, Time.deltaTime * cameraInterpolation);
-
-        Quaternion rotationToReset = Quaternion.Euler(camTrans.eulerAngles.x, camTrans.eulerAngles.y, 0);
-        camTrans.rotation = rotationToReset;
-
-        camTrans.position = Vector3.Lerp(camTrans.position, camTarget.position, Time.deltaTime * cameraInterpolation);
 
     }
 
@@ -96,6 +101,16 @@ public class CameraController : MonoBehaviour
     public Quaternion CameraRotation()
     {
         return camTrans.rotation;
+    }
+    public void FollowMouse()
+    {
+        followMouse = true;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void DontFollowMouse()
+    {
+        followMouse = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
 
