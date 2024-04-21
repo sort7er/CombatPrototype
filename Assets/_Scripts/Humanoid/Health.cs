@@ -1,29 +1,35 @@
 using System;
 using UnityEngine;
-using Attacks;
 using UnityEngine.UI;
 using DG.Tweening;
 using SlashABit.UI.HudElements;
 using RunSettings;
+using TMPro;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private int startHealth = 100;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private CanvasGroup canvasGroupHealth;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     [SerializeField] private int startPosture = 100;
-    [SerializeField] private Slider postureSlider;
-    [SerializeField] private float defaultTimeTillRegen = 4;
+    [SerializeField] private RectTransform[] postureImages;
+    [SerializeField] private CanvasGroup canvasGroupPosture;
+    [SerializeField] private TextMeshProUGUI postureText;
+
+
+    [SerializeField] private float defaultTimeTillRegen = 2;
     [SerializeField] private float defaultPostureRegen = 10;
     [SerializeField] private float stunnedDuration = 10;
 
     [SerializeField] private Humanoid owner;
-    [SerializeField] private CanvasGroup canvasGroupHealth;
-    [SerializeField] private CanvasGroup canvasGroupPosture;
 
     private ActiveHudHandler<int> hudHandlerHealth;
     private ActiveHudHandler<float> hudHandlerPosture;
 
+
+    private Vector2 postureStartSize;
 
     public event Action OnTakeDamage;
     public event Action OnPostureDrained;
@@ -52,14 +58,18 @@ public class Health : MonoBehaviour
         healthSlider.minValue = 0;
         healthSlider.maxValue = health;
         healthSlider.value = health;
+        healthText.text = health.ToString() + "/" + startHealth.ToString();
     }
     private void SetUpPosture()
     {
+        postureStartSize = new Vector2(200, 10);
+
         posture = startPosture;
-        postureSlider.minValue = 0;
-        postureSlider.maxValue = startPosture;
-        postureSlider.value = posture;
+
+        postureImages[0].sizeDelta = postureImages[1].sizeDelta = postureStartSize;
+
         postureRegen = defaultPostureRegen;
+        postureText.text = posture.ToString() + "/" + startPosture.ToString();
     }
 
     public virtual void TakeDamage(int damage, int postureDamage = 0)
@@ -102,13 +112,18 @@ public class Health : MonoBehaviour
         OnTakeDamage?.Invoke();
         health -= damage;
         healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
+        healthText.text = health.ToString() + "/" + startHealth.ToString();
 
         CancelInvoke(nameof(StartRegen));
         canRegen = false;
         posture -= postureDamage;
-        postureSlider.DOValue(posture, 0.1f).SetEase(Ease.OutFlash);
-        postureRegen = Tools.Remap(health, 0, 100, 1, defaultPostureRegen);
-        timeTillRegen = Tools.Remap(health, 0, 100, 10, defaultTimeTillRegen);
+
+        //postureSlider.DOValue(posture, 0.1f).SetEase(Ease.OutFlash);
+
+        SetPostureImages(posture);
+        postureRegen = Tools.Remap(health, 0, startHealth, 1, defaultPostureRegen);
+        timeTillRegen = Tools.Remap(health, 0, startHealth, 6, defaultTimeTillRegen);
+        postureText.text = posture.ToString("F0") + "/" + startPosture.ToString("F0");
     }
 
     private void CheckHealthStatus(Weapon weapon)
@@ -168,7 +183,7 @@ public class Health : MonoBehaviour
     protected virtual void DrainedPosture()
     {
         healthSlider.gameObject.SetActive(false);
-        postureSlider.gameObject.SetActive(false);
+        //postureSlider.gameObject.SetActive(false);
         storedHealth = health;
         OnPostureDrained?.Invoke();
         Invoke(nameof(StaggerDone), stunnedDuration);
@@ -177,7 +192,7 @@ public class Health : MonoBehaviour
     protected virtual void StaggerDone()
     {
         healthSlider.gameObject.SetActive(true);
-        postureSlider.gameObject.SetActive(true);
+        //postureSlider.gameObject.SetActive(true);
         health = storedHealth;
         OnStaggerDone?.Invoke();
         StartRegen();
@@ -206,7 +221,7 @@ public class Health : MonoBehaviour
             if (posture < 100)
             {
                 posture += postureRegen * Time.deltaTime;
-                postureSlider.value = posture;
+                SetPostureImages(posture);
 
             }
             else
@@ -222,5 +237,18 @@ public class Health : MonoBehaviour
     protected void SetHealth(int newHealth)
     {
         health = newHealth;
+    }
+
+    private void SetPostureImages(float posture)
+    {
+        float postureValue = Tools.Remap(posture, 0, startPosture, 0, 200);
+
+        postureText.text = posture.ToString("F0") + "/" + startPosture.ToString("F0");
+
+        for (int i = 0; i < postureImages.Length; i++)
+        {
+            postureImages[i].DOSizeDelta(new Vector2(postureValue, 10), 0.1f).SetEase(Ease.OutFlash);
+        }
+
     }
 }

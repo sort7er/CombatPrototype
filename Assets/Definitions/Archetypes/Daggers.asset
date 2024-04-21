@@ -160,8 +160,8 @@ MonoBehaviour:
       type: 3}
     exitTime: 0.7325639
     transitionDuration: 0.3021576
-    damage: 0
-    postureDamage: 0
+    damage: 20
+    postureDamage: 10
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -172,8 +172,8 @@ MonoBehaviour:
       type: 3}
     exitTime: 0.7279121
     transitionDuration: 0.3147935
-    damage: 0
-    postureDamage: 0
+    damage: 20
+    postureDamage: 10
     activeWield: 0
     hitType: 1
     attackCoordsMain:
@@ -184,8 +184,8 @@ MonoBehaviour:
       type: 3}
     exitTime: 0.7237384
     transitionDuration: 0.3417622
-    damage: 0
-    postureDamage: 0
+    damage: 20
+    postureDamage: 10
     activeWield: 1
     hitType: 1
     attackCoordsMain: []
@@ -196,8 +196,8 @@ MonoBehaviour:
       type: 3}
     exitTime: 0.7267373
     transitionDuration: 0.3330863
-    damage: 0
-    postureDamage: 0
+    damage: 20
+    postureDamage: 10
     activeWield: 1
     hitType: 1
     attackCoordsMain: []
@@ -208,8 +208,8 @@ MonoBehaviour:
       type: 3}
     exitTime: 0.6838149
     transitionDuration: 0.3257034
-    damage: 0
-    postureDamage: 0
+    damage: 40
+    postureDamage: 20
     activeWield: 2
     hitType: 1
     attackCoordsMain:

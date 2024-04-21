@@ -59,14 +59,7 @@ public class SlicingWeapon : WeaponModel
         Vector3 planeNormal = Vector3.Cross(weapon.transform.forward, attackCoord.Direction(weapon.transform).normalized);
         planeNormal.Normalize();
 
-        if(weapon.currentAttack == null)
-        {
-            Debug.Log("hmm");
-        }
-        if (meshTarget == null)
-        {
-            Debug.Log("hmm 2");
-        }
+
         cutter.Cut(meshTarget, finalPoint, planeNormal, null, OnCreated);
 
     }

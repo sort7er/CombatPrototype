@@ -1,9 +1,14 @@
 using RunSettings;
+using System;
+using TMPro;
 using UnityEngine;
 
 public class GameTracking : MonoBehaviour
 {
     private RunType currentRunType;
+    public TextMeshProUGUI runTypeText;
+    public TextMeshProUGUI seconds;
+    public TextMeshProUGUI minutes;
 
     private float timePlayed;
 
@@ -16,10 +21,12 @@ public class GameTracking : MonoBehaviour
 
         if(currentRunType == RunType.AB)
         {
+            runTypeText.text = "A - B";
             RunManager.SetActive(false);
         }
         else
         {
+            runTypeText.text = "B - A";
             RunManager.SetActive(true);
         }
 
@@ -31,6 +38,7 @@ public class GameTracking : MonoBehaviour
         if (!finished)
         {
             timePlayed += Time.deltaTime;
+            ConvertToMinutesAndSeconds(timePlayed);
         }
     }
 
@@ -42,6 +50,12 @@ public class GameTracking : MonoBehaviour
     {
         finished = true;
         Debug.Log("Time played: " + timePlayed);
+    }
+
+    public void ConvertToMinutesAndSeconds(float time)
+    {
+        minutes.text = "<mspace=.9em>" + TimeSpan.FromSeconds(time).Minutes.ToString();
+        seconds.text = "<mspace=.9em>" + TimeSpan.FromSeconds(time).Seconds.ToString();
     }
 
 
