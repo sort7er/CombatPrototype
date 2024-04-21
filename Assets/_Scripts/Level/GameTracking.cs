@@ -17,7 +17,7 @@ public class GameTracking : MonoBehaviour
     public PauseScreen pauseScreen;
     public Health playerHealth;
 
-    private float timePlayed;
+    public float timePlayed { get; private set; }
 
     private bool finished;
 
