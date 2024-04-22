@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,14 +16,15 @@ public class CameraController : MonoBehaviour
     public bool canRotate { get; private set; }
 
     private bool followMouse;
-    
+
+    private Player player;
     private Vector2 input;
     private float xRotation = 0f;
 
-    private float lastx;
 
     void Awake()
     {
+        player = GetComponent<Player>();
         FollowMouse();
         canRotate = true;
     }
@@ -46,9 +48,8 @@ public class CameraController : MonoBehaviour
             if (canRotate)
             {
                 float mouseX = input.x * mouseSensitivity * Time.deltaTime;
-                transform.Rotate(Vector3.up * mouseX);
 
-                lastx = mouseX;
+                player.SetRotateDirection(Vector3.up * mouseX);
 
                 Quaternion targetRotation = Quaternion.Euler(xRotation, camTarget.eulerAngles.y, 0);
 
@@ -70,6 +71,8 @@ public class CameraController : MonoBehaviour
     public void DisableRotation()
     {
         canRotate = false;
+
+        player.SetRotateDirection(Vector3.zero);
     }
     public void EnableRotation()
     {

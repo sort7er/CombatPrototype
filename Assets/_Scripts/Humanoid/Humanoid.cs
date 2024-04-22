@@ -30,8 +30,11 @@ public class Humanoid : MonoBehaviour
     public float tooLateTime { get; private set; }
 
     protected bool canMove;
+    protected bool canRotate;
+
     
     protected Vector3 movementDirection;
+    protected Vector3 rotationDirection;
 
 
     private float movementSpeed;
@@ -89,6 +92,7 @@ public class Humanoid : MonoBehaviour
         if (canMove)
         {
             Move();
+            Rotate();
         }
     }
     protected virtual void Move()
@@ -101,6 +105,11 @@ public class Humanoid : MonoBehaviour
         {
             rb.AddForce(movementDirection.normalized * airMultiplier * movementSpeed * 10, ForceMode.Force);
         }
+    }
+
+    protected virtual void Rotate()
+    {
+        rb.angularVelocity = rotationDirection;
     }
 
     protected virtual void Jump()
@@ -159,6 +168,15 @@ public class Humanoid : MonoBehaviour
     {
         canMove = true;
     }
+    public void DisableRotation()
+    {
+        rb.angularVelocity= Vector3.zero;
+        canRotate = false;
+    }
+    public void EnableRotation()
+    {
+        canRotate = true;
+    }
     public void ResetForce()
     {
         rb.velocity = Vector3.zero;
@@ -166,6 +184,17 @@ public class Humanoid : MonoBehaviour
     public void AddForce(Vector3 force)
     {
         rb.AddForce(force, ForceMode.Impulse);
+    }
+    public void SetRotateDirection(Vector3 direction)
+    {
+        rotationDirection = direction;
+    }
+    public void SetRotation(Quaternion rotation)
+    {
+        if(canRotate)
+        {
+            rb.MoveRotation(rotation);
+        }
     }
     public Vector3 Position()
     {
