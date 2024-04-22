@@ -14,6 +14,7 @@ public class GameTracking : MonoBehaviour
     public TextMeshProUGUI minutes;
 
     public GameObject HUD, switchMessage, endMessage, deadScreen;
+    public GameObject okButton;
     public TextMeshProUGUI messageText;
     public CameraController cameraController;
     public PauseScreen pauseScreen;
@@ -112,11 +113,16 @@ public class GameTracking : MonoBehaviour
     }
     public void ShowMessage(string message)
     {
+        okButton.SetActive(false);
         OnlySwitchMessage();
         cameraController.DontFollowMouse();
         messageText.text = message;
         pauseScreen.CannotPause();
-        pauseScreen.SetPausedTimescale();
+        Invoke(nameof(ShowOk), 1.5f);
+    }
+    private void ShowOk()
+    {
+        okButton.SetActive(true);
     }
     public void PlayerDead()
     {

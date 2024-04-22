@@ -10,14 +10,14 @@ public class HitBox : MonoBehaviour
     public Transform hitBoxRef;
     private Weapon currentWeapon;
     private Humanoid owner;
-    private Collider[] hits;
+    public  Collider[] hits;
 
     private List<SlicingController> slicingControllers = new();
 
     private int numberOfHits;
     private void Awake()
     {
-        hits = new Collider[100];
+        hits = new Collider[10];
     }
     private void Start()
     {
@@ -61,6 +61,11 @@ public class HitBox : MonoBehaviour
         for (int i = 0; i < numberOfHits; i++)
         {
             CheckHitInfo(hits[i]);
+        }
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i] = null;
         }
 
     }

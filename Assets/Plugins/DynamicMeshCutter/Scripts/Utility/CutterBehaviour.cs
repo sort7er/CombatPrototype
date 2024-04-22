@@ -217,6 +217,7 @@ namespace DynamicMeshCutter
             VirtualPlane plane = new VirtualPlane(localP, localN, worldPosition, worldNormal);
             Info info = new Info(target, plane, onCut, onCreated, boxedUserData);
 
+            Debug.Log(AsyncWorker);
 
 
             if (!UseAsync)

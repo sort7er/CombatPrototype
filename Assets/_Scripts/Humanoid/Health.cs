@@ -49,28 +49,32 @@ public class Health : MonoBehaviour
         hudHandlerHealth = new ActiveHudHandler<int>(3, canvasGroupHealth);
         hudHandlerPosture = new ActiveHudHandler<float>(3, canvasGroupPosture);
         SetUpHealth();
-        SetUpPosture();
+        //SetUpPosture();
     }
 
-    private void SetUpHealth()
+    public void SetUpHealth()
     {
+        healthSlider.DOKill();
         health = startHealth;
         healthSlider.minValue = 0;
         healthSlider.maxValue = health;
         healthSlider.value = health;
         healthText.text = health.ToString() + "/" + startHealth.ToString();
     }
-    private void SetUpPosture()
-    {
-        postureStartSize = new Vector2(200, 10);
+    //public void SetUpPosture()
+    //{
+    //    postureStartSize = new Vector2(200, 10);
 
-        posture = startPosture;
+    //    posture = startPosture;
 
-        postureImages[0].sizeDelta = postureImages[1].sizeDelta = postureStartSize;
+    //    postureImages[0].DOKill();
+    //    postureImages[1].DOKill();
 
-        postureRegen = defaultPostureRegen;
-        postureText.text = posture.ToString() + "/" + startPosture.ToString();
-    }
+    //    postureImages[0].sizeDelta = postureImages[1].sizeDelta = postureStartSize;
+
+    //    postureRegen = defaultPostureRegen;
+    //    postureText.text = posture.ToString() + "/" + startPosture.ToString();
+    //}
 
     public virtual void TakeDamage(int damage, int postureDamage = 0)
     {
@@ -109,16 +113,16 @@ public class Health : MonoBehaviour
         healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
         healthText.text = health.ToString() + "/" + startHealth.ToString();
 
-        CancelInvoke(nameof(StartRegen));
-        canRegen = false;
-        posture -= postureDamage;
+        //CancelInvoke(nameof(StartRegen));
+        //canRegen = false;
+        //posture -= postureDamage;
 
-        //postureSlider.DOValue(posture, 0.1f).SetEase(Ease.OutFlash);
+        ////postureSlider.DOValue(posture, 0.1f).SetEase(Ease.OutFlash);
 
-        SetPostureImages(posture);
-        postureRegen = Tools.Remap(health, 0, startHealth, 1, defaultPostureRegen);
-        timeTillRegen = Tools.Remap(health, 0, startHealth, 6, defaultTimeTillRegen);
-        postureText.text = posture.ToString("F0") + "/" + startPosture.ToString("F0");
+        //SetPostureImages(posture);
+        //postureRegen = Tools.Remap(health, 0, startHealth, 1, defaultPostureRegen);
+        //timeTillRegen = Tools.Remap(health, 0, startHealth, 6, defaultTimeTillRegen);
+        //postureText.text = posture.ToString("F0") + "/" + startPosture.ToString("F0");
     }
 
     private void CheckHealthStatus(Weapon weapon)
@@ -135,14 +139,14 @@ public class Health : MonoBehaviour
                 Dead();
             }
         }
-        else if (posture <= 0)
-        {
-            DrainedPosture();
-        }
-        else
-        {
-            Invoke(nameof(StartRegen), timeTillRegen);
-        }
+        //else if (posture <= 0)
+        //{
+        //    DrainedPosture();
+        //}
+        //else
+        //{
+        //    Invoke(nameof(StartRegen), timeTillRegen);
+        //}
     }
 
     public void CheckForParry(Humanoid attacker)
@@ -211,22 +215,22 @@ public class Health : MonoBehaviour
     }
     private void Update()
     {
-        if (canRegen)
-        {
-            if (posture < 100)
-            {
-                posture += postureRegen * Time.deltaTime;
-                SetPostureImages(posture);
+        //if (canRegen)
+        //{
+        //    if (posture < 100)
+        //    {
+        //        posture += postureRegen * Time.deltaTime;
+        //        SetPostureImages(posture);
 
-            }
-            else
-            {
-                posture = 100;
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        posture = 100;
+        //    }
+        //}
 
         hudHandlerHealth.Update(RunManager.activeHud, health);
-        hudHandlerPosture.Update(RunManager.activeHud, posture);
+        //hudHandlerPosture.Update(RunManager.activeHud, posture);
 
     }
     protected void SetHealth(int newHealth)

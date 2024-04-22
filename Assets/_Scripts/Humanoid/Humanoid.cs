@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -125,7 +126,7 @@ public class Humanoid : MonoBehaviour
 
     }
 
-    protected bool GroundCheck()
+    public bool GroundCheck()
     {
         if (Physics.CheckSphere(transform.position, groundDistance, groundLayer))
         {
@@ -181,8 +182,13 @@ public class Humanoid : MonoBehaviour
 
     public void SetTransform(Transform newTransform)
     {
+        canMove = false;
+        transform.DOKill();
+        ResetForce();
         transform.position = newTransform.position;
         transform.rotation = newTransform.rotation;
+        canMove= true;
+
     }
 
     public void UpdateParryTimer(float time)

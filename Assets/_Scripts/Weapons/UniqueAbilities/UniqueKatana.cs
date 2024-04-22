@@ -13,51 +13,69 @@ public class UniqueKatana : UniqueAbility
 
     private Vector3 directionToTarget;
     private Vector3 dashPos;
-    private Vector3 target;
+    private Transform enemyTrans;
+    private Vector3 targetPosition;
+
     public override void ExecuteAbility(Player player, List<Enemy> enemies)
     {
         base.ExecuteAbility(player, enemies);
-        target = enemies[0].transform.position;
+        enemyTrans = enemies[0].transform;
+        targetPosition= enemyTrans.position;
         player.DisableMovement();
         camController.DisableRotation();
 
-        Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
+        Vector3 compensatedLookAt = new Vector3(enemyTrans.position.x, playerTrans.position.y, enemyTrans.position.z);
         playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
-        Invoke(nameof(StartDash), rotationDuration * 3);
+
+        LookAtTarget(rotationDuration);
+
+        Invoke(nameof(SetDirection), rotationDuration * 3);
+    }
+    private void SetDirection()
+    {
+        targetPosition = enemyTrans.position;
+        StartDash();
     }
 
     public override void ExecuteAbilityNoTarget(Player player)
     {
         base.ExecuteAbilityNoTarget(player);
         player.DisableMovement();
-        Invoke(nameof(StartDashNoTarget), rotationDuration * 3);
+        Invoke(nameof(SetDirectionNoTarget), rotationDuration * 3);
     }
-    private void StartDashNoTarget()
+    private void SetDirectionNoTarget()
     {
         camController.DisableRotation();
 
-        target = playerTrans.position + playerTrans.forward * 10;
+        targetPosition = playerTrans.position + playerTrans.forward * 10;
 
         StartDash();
     }
 
+
     private void StartDash()
     {
-        directionToTarget = target - playerTrans.position;
+        directionToTarget = targetPosition - playerTrans.position;
         dashPos = playerTrans.position + directionToTarget - directionToTarget.normalized * 1.5f;
 
-        Vector3 compensatedLookAt = new Vector3(dashPos.x, playerTrans.position.y, dashPos.z);
+        Vector3 compensatedLookAt = new Vector3(dashPos.x, playerTrans.position.y, dashPos.z) + player.transform.forward;
         playerTrans.DOLookAt(compensatedLookAt, dashDuration * 0.5f);
 
-        Vector3 compensatedCamLookAt = new Vector3(target.x, target.y + 1.3f, target.z);
-        camController.LookAt(compensatedCamLookAt, dashDuration * 0.5f);
+        LookAtTarget(dashDuration * 0.5f);
 
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
         rb.DOMove(dashPos, dashDuration).OnComplete(EndDash);
     }
+
     private void EndDash()
     {
         player.EnableMovement();
         camController.EnableRotation();
+    }
+
+    private void LookAtTarget(float duration)
+    {
+        Vector3 compensatedCamLookAt = new Vector3(targetPosition.x, targetPosition.y + 1.3f, targetPosition.z);
+        camController.LookAt(compensatedCamLookAt, duration);
     }
 }

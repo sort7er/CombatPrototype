@@ -5,6 +5,8 @@ public class PauseScreen : MonoBehaviour
 {
     public InputReader inputReader;
     public GameTracking gameTracking;
+    public Player player;
+    public LevelProgression levelProgression;
     public CameraController cameraController;
     public bool pause { get; private set; }
 
@@ -58,6 +60,13 @@ public class PauseScreen : MonoBehaviour
     {
         gameTracking.Restart();
         SceneManager.LoadScene(1);
+    }
+    public void RestartCheckpoint()
+    {
+        gameTracking.ShowHUD();
+        player.health.SetUpHealth();
+        //player.health.SetUpPosture();
+        player.SetTransform(levelProgression.currentSpawn);
     }
     public void Exit()
     {

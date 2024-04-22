@@ -22,6 +22,7 @@ public class LevelProgression : MonoBehaviour
     public ListElement objective;
 
     public Transform currentSpawn { get; private set; }
+    public int currentSpawnIndex { get; private set; }
 
     private int villageEnemiesKilled;
     private int courtyardEnemiesKilled;
@@ -133,28 +134,36 @@ public class LevelProgression : MonoBehaviour
     private void WatchtowerCompleted()
     {
         objective.Completed(WatchtowerString(), "");
+        Invoke(nameof(SlightDelay), 0.05f);
+    }
+    private void SlightDelay()
+    {
         gameTracking.Finished();
     }
 
     //Triggers
     public void EnterVillage()
     {
-        SetSpawn(0);
+        currentSpawnIndex = 0;
+        SetSpawn(currentSpawnIndex);
     }
     public void EnterCourtyard()
     {
         objective.Completed("Get to the courtyard", CourtyardString());
-        SetSpawn(1);
+        currentSpawnIndex = 1;
+        SetSpawn(currentSpawnIndex);
     }
     public void EnterChurch()
     {
         objective.Completed("Get to the church", ChurchString());
-        SetSpawn(2);
+        currentSpawnIndex = 2;
+        SetSpawn(currentSpawnIndex);
     }
     public void EnterWatchtower()
     {
         objective.Completed("Get to the watchtower", WatchtowerString());
-        SetSpawn(3);
+        currentSpawnIndex = 3;
+        SetSpawn(currentSpawnIndex);
     }
 
     //Speed up functions

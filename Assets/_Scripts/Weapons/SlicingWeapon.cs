@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using DynamicMeshCutter;
-using System.Xml.Linq;
 
 [RequireComponent(typeof(Cutter))]
 public class SlicingWeapon : WeaponModel 
@@ -60,7 +59,7 @@ public class SlicingWeapon : WeaponModel
         planeNormal.Normalize();
 
 
-        cutter.Cut(meshTarget, finalPoint, planeNormal, null, OnCreated);
+        cutter.Cut(meshTarget, finalPoint, planeNormal, null, OnCreated, null);
 
     }
 

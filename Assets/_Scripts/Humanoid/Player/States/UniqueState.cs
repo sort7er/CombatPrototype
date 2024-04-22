@@ -1,4 +1,3 @@
-using Actions;
 using EnemyAI;
 using System.Collections.Generic;
 
@@ -10,6 +9,8 @@ namespace Actions
         public override void Enter(PlayerActions actions)
         {
             base.Enter(actions);
+            actions.canUseUnique = false;
+            actions.unique.Using();
             actions.SetAnimation(archetype.unique);
             ClearList();
             enemyList = actions.player.targetAssistance.CheckForEnemies(actions.currentWeapon.uniqueAbility);
@@ -70,6 +71,8 @@ namespace Actions
 
         public override void ActionDone()
         {
+            actions.StartUniqueCooldown();
+
             if (upcommingAction == QueuedAction.Attack)
             {
                 actions.StopMethod();

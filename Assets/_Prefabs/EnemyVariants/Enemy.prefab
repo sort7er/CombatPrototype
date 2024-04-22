@@ -127,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8506298171641754353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -332,6 +332,7 @@ MonoBehaviour:
   navMeshRefreshRate: 0.2
   waypointDistance: 0.3
   rotationSlerp: 20
+  DistanceBeforeChase: 5
   playerDistance: 1.5
   playerDistanceThreshold: 1
   runDistance: 8
@@ -356,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxRef: {fileID: 8774165566527624692}
+  hits: []
 --- !u!1 &1571892669174148053
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ namespace Actions
         [Header("References")]
         public Animator armAnimator;
         public Player player;
+        public Unique unique;
         //public Weapon startWeapon;
         public Transform[] weaponPos;
         public Weapon currentWeapon { get; private set; }
@@ -29,6 +30,10 @@ namespace Actions
         public ParryState parryState = new ParryState();
 
         private InputReader inputReader;
+
+
+        public float uniqueCoolDown { get; private set; } = 8f;
+        [HideInInspector] public bool canUseUnique = true;
 
 
 
@@ -83,7 +88,10 @@ namespace Actions
         }
         public void Unique()
         {
-            currentState.Unique();
+            if(canUseUnique)
+            {
+                currentState.Unique();
+            }
         }
         public void Block()
         {
@@ -111,6 +119,17 @@ namespace Actions
 
 
         //Called from state machine
+
+        public void StartUniqueCooldown()
+        {
+            unique.Loading();
+            Invoke(nameof(UniqueCooldownDone), uniqueCoolDown);
+        }
+        private void UniqueCooldownDone()
+        {
+            unique.Active();
+            canUseUnique = true;
+        }
         public void SwitchState(ActionState state)
         {
             currentState = state;

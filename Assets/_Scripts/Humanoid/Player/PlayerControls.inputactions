@@ -399,7 +399,7 @@
                 {
                     "name": "",
                     "id": "2873e72d-0a06-414e-b905-ed7a9c98b673",
-                    "path": "<Mouse>/forwardButton",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
