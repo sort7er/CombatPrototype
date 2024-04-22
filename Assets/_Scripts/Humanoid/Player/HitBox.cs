@@ -88,6 +88,18 @@ public class HitBox : MonoBehaviour
 
     private void DoDamage(Health health, Vector3 hitPoint)
     {
+        if (!health.IsDead())
+        {
+            if (owner is Player)
+            {
+                GameTracking.instance.AddDamageDealt(currentWeapon.currentAttack.damage);
+            }
+            if (health.owner is Player)
+            {
+                GameTracking.instance.AddDamageReceived(currentWeapon.currentAttack.damage);
+            }
+        }
+        
         health.TakeDamage(currentWeapon, hitPoint);
     }
 

@@ -9,26 +9,23 @@ namespace RunSettings
     }
     public static class RunManager
     {
-        public static RunType currentRunType;
-        public static float timePlayed;
-
         public static bool activeHud;
+        public static RunInfo currentRunInfo;
 
         public static void StartRun(RunType runType)
         {
-            currentRunType = runType;
-            timePlayed = 0;
+            currentRunInfo = new RunInfo(runType, 0, 0, 0, 0);
         }
         
         //If run resets, call this first
-        public static void SetTimer(float currentTime)
+        public static void SetData(RunInfo runInfo)
         {
-            timePlayed = currentTime;
+            currentRunInfo = runInfo;
         }
 
-        public static float GetTimer()
+        public static RunInfo GetTimer()
         {
-            return timePlayed;
+            return currentRunInfo;
         }
 
         public static void SetActiveHUD(bool state)

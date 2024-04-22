@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public static class Tools
@@ -69,5 +70,10 @@ public static class Tools
                 SetLayerForAllChildren(child.gameObject, layer);
 
         }
+    }
+    public static int DirCount(string location)
+    {
+        DirectoryInfo d = new DirectoryInfo(location);
+        return d.GetFiles().Length;
     }
 }

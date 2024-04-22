@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float defaultPostureRegen = 10;
     [SerializeField] private float stunnedDuration = 10;
 
-    [SerializeField] private Humanoid owner;
+    public Humanoid owner;
 
     private ActiveHudHandler<int> hudHandlerHealth;
     private ActiveHudHandler<float> hudHandlerPosture;
@@ -84,11 +84,6 @@ public class Health : MonoBehaviour
         if (IsDead())
         {
             return;
-        }
-
-        if(owner is Player)
-        {
-            CheckForParry(attackingWeapon.owner);
         }
 
         attackingWeapon.Hit(hitPoint);

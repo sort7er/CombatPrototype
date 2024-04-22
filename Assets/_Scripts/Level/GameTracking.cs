@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameTracking : MonoBehaviour
 {
-    private RunType currentRunType;
+    public static GameTracking instance;
+
+    private RunInfo currentRunInfo;
     public TextMeshProUGUI runTypeText;
     public TextMeshProUGUI seconds;
     public TextMeshProUGUI minutes;
@@ -16,18 +18,28 @@ public class GameTracking : MonoBehaviour
     public CameraController cameraController;
     public PauseScreen pauseScreen;
     public Health playerHealth;
+    public EndMessage endClass;
 
     public float timePlayed { get; private set; }
+    public int numDeath { get; private set; }
+    public int damageDealt { get; private set; }
+    public int damageReceived { get; private set; }
 
     private bool finished;
 
     private void Awake()
     {
-        currentRunType = RunManager.currentRunType;
-        timePlayed = RunManager.timePlayed;
+        instance = this;
+
+        currentRunInfo = RunManager.currentRunInfo;
+        timePlayed = currentRunInfo.secondsPlayed;
+        numDeath = currentRunInfo.numDeath;
+        damageDealt = currentRunInfo.damageDealt;
+        damageReceived = currentRunInfo.damageReceived;
+
         playerHealth.OnDeath += PlayerDead;
 
-        if(currentRunType == RunType.AB)
+        if(currentRunInfo.runType == RunType.AB)
         {
             runTypeText.text = "A - B : Permanent";
             RunManager.SetActiveHUD(false);
@@ -54,7 +66,7 @@ public class GameTracking : MonoBehaviour
     }
     public void SwitchHUD()
     {
-        if(currentRunType == RunType.AB)
+        if(currentRunInfo.runType == RunType.AB)
         {
             runTypeText.text = "A - B : Active";
             ShowMessage("Now the hud will switch to the active variant");
@@ -69,12 +81,20 @@ public class GameTracking : MonoBehaviour
     }
     public void Restart()
     {
-        RunManager.SetTimer(timePlayed);
+        SetCurrentInfo(timePlayed, numDeath, damageDealt, damageReceived);
+        RunManager.SetData(currentRunInfo);
     }
     public void Finished()
     {
         finished = true;
-        ExitMessage();
+
+        SetCurrentInfo(timePlayed, numDeath, damageDealt, damageReceived);
+
+        OnlyEndMessage();
+        endClass.SetEndInfo(currentRunInfo);
+        cameraController.DontFollowMouse();
+        pauseScreen.CannotPause();
+        pauseScreen.SetPausedTimescale();
     }
 
     public void ConvertToMinutesAndSeconds(float time)
@@ -98,17 +118,11 @@ public class GameTracking : MonoBehaviour
         pauseScreen.CannotPause();
         pauseScreen.SetPausedTimescale();
     }
-    public void ExitMessage()
-    {
-        OnlyEndMessage();
-        cameraController.DontFollowMouse();
-        pauseScreen.CannotPause();
-        pauseScreen.SetPausedTimescale();
-    }
     public void PlayerDead()
     {
         cameraController.DontFollowMouse();
         pauseScreen.CannotPause();
+        numDeath++;
         OnlyDeadScreen();
         pauseScreen.SetPausedTimescale();
     }
@@ -145,5 +159,19 @@ public class GameTracking : MonoBehaviour
         endMessage.SetActive(false);
         deadScreen.SetActive(true);
     }
-
+    public void SetCurrentInfo(float time, int numDeath, int dealt, int received)
+    {
+        currentRunInfo.secondsPlayed = time;
+        currentRunInfo.numDeath = numDeath;
+        currentRunInfo.damageDealt = dealt;
+        currentRunInfo.damageReceived = received;
+    }
+    public void AddDamageDealt(int newDamage)
+    {
+        damageDealt += newDamage;
+    }
+    public void AddDamageReceived(int newDamage)
+    {
+        damageReceived += newDamage;
+    }
 }

@@ -39,7 +39,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 34
+    damage: 100
     postureDamage: 20
     activeWield: 0
     hitType: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 34
+    damage: 100
     postureDamage: 20
     activeWield: 0
     hitType: 1
