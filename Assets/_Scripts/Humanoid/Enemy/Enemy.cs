@@ -1,3 +1,4 @@
+using Actions;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -10,7 +11,9 @@ namespace EnemyAI
         [Header("Navigation")]
         [SerializeField] private float navMeshRefreshRate = 0.2f;
         [SerializeField] private float waypointDistance = 1f;
-        [SerializeField] private float rotationSlerp = 10;       
+        [SerializeField] private float rotationSlerp = 10;
+
+        public float DistanceBeforeChase = 5f;
         public float playerDistance = 2f;
         public float playerDistanceThreshold = 1f;
         public float runDistance = 8f;
@@ -37,6 +40,7 @@ namespace EnemyAI
         public Vector3 lookAtTarget { get; private set; }
 
         //State machine
+        public IdleState idleState = new IdleState();
         public ChaseState chaseState = new ChaseState();
         public AttackState attackState = new AttackState();
         //public StaggeredState staggeredState = new StaggeredState();
@@ -52,11 +56,11 @@ namespace EnemyAI
             base.Awake();
             FindReferences();
 
-
+            SetSpeed(3);
 
             currentWeapon = Instantiate(startWeapon);
             agent.enabled = false;
-            SwitchState(chaseState);
+            SwitchState(idleState);
         }
         private void Start()
         {
@@ -196,7 +200,6 @@ namespace EnemyAI
         }
         public void SpeedByDist(float dist)
         {
-
             if(dist > runDistance)
             {
                 if (!isRunning)

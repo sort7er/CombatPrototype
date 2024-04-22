@@ -60,11 +60,8 @@ public class HitBox : MonoBehaviour
 
         for (int i = 0; i < numberOfHits; i++)
         {
-            Debug.Log(hits[i]);
             CheckHitInfo(hits[i]);
         }
-
-        //SliceRagdoll();
 
     }
     private void CheckHitInfo(Collider hit)
@@ -80,10 +77,6 @@ public class HitBox : MonoBehaviour
         {
             currentWeapon.Slice(mesh);
         }
-        //if(hit.TryGetComponent(out DynamicRagdollPart ragdollPart))
-        //{
-        //    AddToList(ragdollPart);
-        //}
     }
 
     private void DoDamage(Health health, Vector3 hitPoint)
@@ -102,28 +95,4 @@ public class HitBox : MonoBehaviour
         
         health.TakeDamage(currentWeapon, hitPoint);
     }
-
-    //private void AddToList(DynamicRagdollPart part)
-    //{
-    //    SlicingController slicingController = part.GetComponentInParent<SlicingController>();
-
-    //    if(slicingController != null)
-    //    {
-    //        if (!slicingControllers.Contains(slicingController))
-    //        {
-    //            if(slicingController.isDead)
-    //            {
-    //                slicingControllers.Add(slicingController);
-    //            }
-    //        }
-    //    }
-    //}
-    //private void SliceRagdoll()
-    //{
-    //    for(int i = 0; i < slicingControllers.Count; i++)
-    //    {
-    //        currentWeapon.Slice(slicingControllers[i].meshTarget);
-    //        Debug.Log("yup");
-    //    }
-    //}
 }
