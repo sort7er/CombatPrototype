@@ -52,6 +52,9 @@ public class Humanoid : MonoBehaviour
 
     protected virtual void Update()
     {
+
+        Debug.Log(transform.position);
+
         if (GroundCheck())
         {
             rb.drag = groundDrag;
@@ -211,13 +214,10 @@ public class Humanoid : MonoBehaviour
 
     public void SetTransform(Transform newTransform)
     {
-        canMove = false;
-        transform.DOKill();
-        ResetForce();
+        rb.position = newTransform.position;
+        rb.rotation = newTransform.rotation;
         transform.position = newTransform.position;
         transform.rotation = newTransform.rotation;
-        canMove= true;
-
     }
 
     public void UpdateParryTimer(float time)

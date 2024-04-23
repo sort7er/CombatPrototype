@@ -63,10 +63,9 @@ public class PauseScreen : MonoBehaviour
     }
     public void RestartCheckpoint()
     {
+        player.SetTransform(levelProgression.currentSpawn);
         gameTracking.ShowHUD();
         player.health.SetUpHealth();
-        //player.health.SetUpPosture();
-        player.SetTransform(levelProgression.currentSpawn);
     }
     public void Exit()
     {

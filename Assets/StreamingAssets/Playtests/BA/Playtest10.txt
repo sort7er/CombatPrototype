@@ -1,5 +1,0 @@
-Time played: 2 : 5 
- Number of deaths: 0 
- Damage dealt: 2372 
- Damage received: 60 
- 
