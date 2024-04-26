@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using EnemyAI;
+using TMPro;
+
 public abstract class UniqueAbility: MonoBehaviour
 {
     [Header("Target assistance paramaters")]
@@ -14,6 +16,9 @@ public abstract class UniqueAbility: MonoBehaviour
     protected Transform playerTrans;
     protected CameraController camController;
     protected List<Enemy> enemies;
+
+    protected Transform enemyTrans;
+    protected Vector3 targetPosition;
 
     public virtual void ExecuteAbility(Player player, List<Enemy> enemies)
     {
@@ -45,5 +50,10 @@ public abstract class UniqueAbility: MonoBehaviour
         {
             enemies.Clear();
         }
+    }
+    protected void LookAtTarget(float duration)
+    {
+        Vector3 compensatedCamLookAt = new Vector3(targetPosition.x, targetPosition.y + 1.3f, targetPosition.z);
+        camController.LookAt(compensatedCamLookAt, duration);
     }
 }

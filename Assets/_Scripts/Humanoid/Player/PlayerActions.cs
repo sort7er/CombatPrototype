@@ -193,6 +193,18 @@ namespace Actions
             SwitchState(idleState);
         }
 
+        public bool CanSwitchWeapon()
+        {
+            if(currentState == attackState || currentState == parryState || currentState == blockState || currentState == uniqueState)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         #region Redirects
         private void SetUpInput()
         {

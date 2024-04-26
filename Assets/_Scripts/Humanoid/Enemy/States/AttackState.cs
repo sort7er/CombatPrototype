@@ -12,7 +12,6 @@ namespace EnemyAI
         {
             base.Enter(enemy);
             enemy.DisableMovement();
-            enemy.DisableRotation();
             currentAttack = 0;
             transition= 0;
 

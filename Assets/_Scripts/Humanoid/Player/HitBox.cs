@@ -10,7 +10,7 @@ public class HitBox : MonoBehaviour
     public Transform hitBoxRef;
     private Weapon currentWeapon;
     private Humanoid owner;
-    public  Collider[] hits;
+    private  Collider[] hits;
 
     private List<SlicingController> slicingControllers = new();
 
@@ -86,18 +86,23 @@ public class HitBox : MonoBehaviour
 
     private void DoDamage(Health health, Vector3 hitPoint)
     {
-        if (!health.IsDead())
+        if (!health.IsDead() && GameTracking.instance != null)
         {
-            if (owner is Player)
-            {
-                GameTracking.instance.AddDamageDealt(currentWeapon.currentAttack.damage);
-            }
-            if (health.owner is Player)
-            {
-                GameTracking.instance.AddDamageReceived(currentWeapon.currentAttack.damage);
-            }
+            DoGameTracking(health);
         }
         
         health.TakeDamage(currentWeapon, hitPoint);
+    }
+
+    private void DoGameTracking(Health health)
+    {
+        if (owner is Player)
+        {
+            GameTracking.instance.AddDamageDealt(currentWeapon.currentAttack.damage);
+        }
+        if (health.owner is Player)
+        {
+            GameTracking.instance.AddDamageReceived(currentWeapon.currentAttack.damage);
+        }
     }
 }

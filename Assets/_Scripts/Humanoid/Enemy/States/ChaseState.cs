@@ -7,7 +7,6 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
-            enemy.EnableRotation();
             enemy.EnableMovement();
             enemy.enemyAnimator.SetWalking(true);
         }

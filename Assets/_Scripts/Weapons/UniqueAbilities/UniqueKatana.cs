@@ -13,8 +13,6 @@ public class UniqueKatana : UniqueAbility
 
     private Vector3 directionToTarget;
     private Vector3 dashPos;
-    private Transform enemyTrans;
-    private Vector3 targetPosition;
 
     public override void ExecuteAbility(Player player, List<Enemy> enemies)
     {
@@ -71,11 +69,5 @@ public class UniqueKatana : UniqueAbility
     {
         player.EnableMovement();
         camController.EnableRotation();
-    }
-
-    private void LookAtTarget(float duration)
-    {
-        Vector3 compensatedCamLookAt = new Vector3(targetPosition.x, targetPosition.y + 1.3f, targetPosition.z);
-        camController.LookAt(compensatedCamLookAt, duration);
     }
 }

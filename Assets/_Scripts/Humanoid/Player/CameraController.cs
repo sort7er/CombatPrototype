@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
             {
                 float mouseX = input.x * mouseSensitivity * Time.deltaTime;
 
-                player.SetRotateDirection(Vector3.up * mouseX);
+                player.SetRotation(Quaternion.Euler(player.rb.rotation.eulerAngles + Vector3.up * mouseX));
 
                 Quaternion targetRotation = Quaternion.Euler(xRotation, camTarget.eulerAngles.y, 0);
 
@@ -61,18 +61,24 @@ public class CameraController : MonoBehaviour
 
             
 
-            camTrans.position = Vector3.Lerp(camTrans.position, camTarget.position, Time.deltaTime * cameraInterpolation);
+            //camTrans.position = Vector3.Lerp(camTrans.position, camTarget.position, Time.deltaTime * cameraInterpolation);
         }
 
 
+    }
+
+    private void LateUpdate()
+    {
+        if (followMouse)
+        {
+            camTrans.position = camTarget.position;
+        }
     }
 
 
     public void DisableRotation()
     {
         canRotate = false;
-
-        player.SetRotateDirection(Vector3.zero);
     }
     public void EnableRotation()
     {

@@ -32,7 +32,12 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void NextWeapon()
     {
-        if(currentWeapon < weapons.Length - 1)
+        if (!player.playerActions.CanSwitchWeapon())
+        {
+            return;
+        }
+
+        if (currentWeapon < weapons.Length - 1)
         {
             currentWeapon++;
         }
@@ -45,6 +50,11 @@ public class WeaponSwitcher : MonoBehaviour
     }
     private void PreviousWeapon()
     {
+        if (!player.playerActions.CanSwitchWeapon())
+        {
+            return;
+        }
+
         if (currentWeapon > 0)
         {
             currentWeapon--;
