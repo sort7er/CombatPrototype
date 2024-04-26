@@ -8,6 +8,14 @@ using TMPro;
 
 public class Health : MonoBehaviour
 {
+    public enum ParryType
+    {
+        None,
+        Parry,
+        PerfectParry
+    }
+
+
     [SerializeField] private int startHealth = 100;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private CanvasGroup canvasGroupHealth;
@@ -42,14 +50,14 @@ public class Health : MonoBehaviour
 
     protected int storedHealth;
 
-    private bool canRegen;
+    private bool canRegenPosture;
 
     protected virtual void Awake()
     {
         hudHandlerHealth = new ActiveHudHandler<int>(3, canvasGroupHealth);
         hudHandlerPosture = new ActiveHudHandler<float>(3, canvasGroupPosture);
         SetUpHealth();
-        //SetUpPosture();
+        SetUpPosture();
     }
 
     public void SetUpHealth()
@@ -61,71 +69,113 @@ public class Health : MonoBehaviour
         healthSlider.value = health;
         healthText.text = health.ToString() + "/" + startHealth.ToString();
     }
-    //public void SetUpPosture()
-    //{
-    //    postureStartSize = new Vector2(200, 10);
+    public void SetUpPosture()
+    {
+        postureStartSize = new Vector2(200, 10);
 
-    //    posture = startPosture;
+        posture = startPosture;
 
-    //    postureImages[0].DOKill();
-    //    postureImages[1].DOKill();
+        postureImages[0].DOKill();
+        postureImages[1].DOKill();
 
-    //    postureImages[0].sizeDelta = postureImages[1].sizeDelta = postureStartSize;
+        postureImages[0].sizeDelta = postureImages[1].sizeDelta = postureStartSize;
 
-    //    postureRegen = defaultPostureRegen;
-    //    postureText.text = posture.ToString() + "/" + startPosture.ToString();
-    //}
+        postureRegen = defaultPostureRegen;
+        postureText.text = posture.ToString() + "/" + startPosture.ToString();
+    }
 
     public virtual void TakeDamage(int damage, int postureDamage = 0)
     {
-        MinusHealth(damage, postureDamage);
-        CheckHealthStatus(null);
+        MinusHealth(damage);
+        CheckStatus(null);
     }
 
     public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
-    {  
+    {
+
 
         if (IsDead())
         {
             return;
         }
 
-        attackingWeapon.Hit(hitPoint);
+        ParryType parry = CheckForParry(attackingWeapon.owner);
 
+        Debug.Log(hitPoint);
 
+        if(parry == ParryType.None)
+        {
+            MinusHealth(attackingWeapon.currentAttack.damage);
+            MinusPosture(attackingWeapon.currentAttack.postureDamage);
+            attackingWeapon.Hit(hitPoint);
+        }
+        else if(parry == ParryType.PerfectParry)
+        {
+            MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.2f));
+            Debug.Log(attackingWeapon.owner + " should change state to be stunned now");
+            EffectManager.instance.PerfectParry(hitPoint);
+        }
+        else
+        {
+            MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.5f));
+            EffectManager.instance.Parry(hitPoint);
+        }
 
         Vector3 direction = transform.position - attackingWeapon.owner.Position();
-
         owner.AddForce(direction.normalized * attackingWeapon.pushbackForce);
 
-        MinusHealth(attackingWeapon.currentAttack.damage, attackingWeapon.currentAttack.postureDamage);
-
-        CheckHealthStatus(attackingWeapon);
+        CheckStatus(attackingWeapon);
     }
 
-    
 
+    public ParryType CheckForParry(Humanoid attacker)
+    {
+        //Debug.Log("Parry timer: " + owner.parryTimer + ". Too late: " + attacker.tooLateTime + ". Perfect: " + attacker.perfectParryTime + ". Parry: " + attacker.parryTime);
 
-    private void MinusHealth(int damage, int postureDamage = 0)
+        if (owner.parryTimer < attacker.tooLateTime)
+        {
+            Debug.Log("Too Late");
+            return ParryType.None;
+        }
+        else if (owner.parryTimer < attacker.perfectParryTime)
+        {
+            Debug.Log("Perfect parry");
+            return ParryType.PerfectParry;
+        }
+        else if (owner.parryTimer < attacker.parryTime)
+        {
+            Debug.Log("Parry");
+            return ParryType.Parry;
+        }
+        else
+        {
+            Debug.Log("Too early");
+            return ParryType.None;
+        }
+    }
+
+    private void MinusHealth(int damage)
     {
         OnTakeDamage?.Invoke();
         health -= damage;
         healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
         healthText.text = health.ToString() + "/" + startHealth.ToString();
-
-        //CancelInvoke(nameof(StartRegen));
-        //canRegen = false;
-        //posture -= postureDamage;
-
-        ////postureSlider.DOValue(posture, 0.1f).SetEase(Ease.OutFlash);
-
-        //SetPostureImages(posture);
-        //postureRegen = Tools.Remap(health, 0, startHealth, 1, defaultPostureRegen);
-        //timeTillRegen = Tools.Remap(health, 0, startHealth, 6, defaultTimeTillRegen);
-        //postureText.text = posture.ToString("F0") + "/" + startPosture.ToString("F0");
     }
 
-    private void CheckHealthStatus(Weapon weapon)
+    private void MinusPosture(int postureDamage)
+    {
+        CancelInvoke(nameof(StartRegenPosture));
+        canRegenPosture = false;
+        posture -= postureDamage;
+
+
+        SetPostureImages(posture);
+        postureRegen = Tools.Remap(health, 0, startHealth, 1, defaultPostureRegen);
+        timeTillRegen = Tools.Remap(health, 0, startHealth, 6, defaultTimeTillRegen);
+        postureText.text = posture.ToString("F0") + "/" + startPosture.ToString("F0");
+    }
+
+    private void CheckStatus(Weapon weapon)
     {
         if (health <= 0)
         {
@@ -139,35 +189,17 @@ public class Health : MonoBehaviour
                 Dead();
             }
         }
-        //else if (posture <= 0)
-        //{
-        //    DrainedPosture();
-        //}
-        //else
-        //{
-        //    Invoke(nameof(StartRegen), timeTillRegen);
-        //}
-    }
-
-    public void CheckForParry(Humanoid attacker)
-    {
-        if(owner.parryTimer < attacker.tooLateTime)
+        else if (posture <= 0)
         {
-            Debug.Log("Too Late");
-        }
-        else if(owner.parryTimer < attacker.perfectParryTime)
-        {
-            Debug.Log("Perfect parry");
-        }
-        else if (owner.parryTimer < attacker.parryTime)
-        {
-            Debug.Log("Parry");
+            DrainedPosture();
         }
         else
         {
-            Debug.Log("Too early");
+            Invoke(nameof(StartRegenPosture), timeTillRegen);
         }
     }
+
+
     
     public virtual void Dead()
     {
@@ -181,20 +213,21 @@ public class Health : MonoBehaviour
 
     protected virtual void DrainedPosture()
     {
+        posture = 0;
         healthSlider.gameObject.SetActive(false);
-        //postureSlider.gameObject.SetActive(false);
+        canvasGroupPosture.gameObject.SetActive(false);
         storedHealth = health;
         OnPostureDrained?.Invoke();
         Invoke(nameof(StaggerDone), stunnedDuration);
-
+        Debug.Log(owner);
     }
     protected virtual void StaggerDone()
     {
         healthSlider.gameObject.SetActive(true);
-        //postureSlider.gameObject.SetActive(true);
+        canvasGroupPosture.gameObject.SetActive(true);
         health = storedHealth;
         OnStaggerDone?.Invoke();
-        StartRegen();
+        StartRegenPosture();
     }
 
     public bool IsDead()
@@ -209,28 +242,28 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void StartRegen()
+    private void StartRegenPosture()
     {
-        canRegen = true;
+        canRegenPosture = true;
     }
     private void Update()
     {
-        //if (canRegen)
-        //{
-        //    if (posture < 100)
-        //    {
-        //        posture += postureRegen * Time.deltaTime;
-        //        SetPostureImages(posture);
+        if (canRegenPosture)
+        {
+            if (posture < 100)
+            {
+                posture += postureRegen * Time.deltaTime;
+                SetPostureImages(posture);
 
-        //    }
-        //    else
-        //    {
-        //        posture = 100;
-        //    }
-        //}
+            }
+            else
+            {
+                posture = 100;
+            }
+        }
 
         hudHandlerHealth.Update(RunManager.activeHud, health);
-        //hudHandlerPosture.Update(RunManager.activeHud, posture);
+        hudHandlerPosture.Update(RunManager.activeHud, posture);
 
     }
     protected void SetHealth(int newHealth)

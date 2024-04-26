@@ -2,6 +2,7 @@ using DynamicMeshCutter;
 using System.Collections.Generic;
 using UnityEngine;
 using EnemyAI;
+using Actions;
 
 public class HitBox : MonoBehaviour
 {
@@ -54,6 +55,13 @@ public class HitBox : MonoBehaviour
     //Called from animation
     public void OverlapCollider()
     {
+        //Need to check for parry instead of not call this method, to still be able to chain attacks after parry
+        if (CheckIfParry())
+        {
+            return;
+        }
+
+
         numberOfHits = Physics.OverlapBoxNonAlloc(hitBoxRef.position, hitBoxRef.localScale * 0.5f, hits, hitBoxRef.rotation);
 
         slicingControllers.Clear();
@@ -75,7 +83,7 @@ public class HitBox : MonoBehaviour
         {
             if(health != owner.health)
             {
-                DoDamage(health, hit.ClosestPointOnBounds(currentWeapon.transform.position));
+                DoDamage(health, hit.ClosestPointOnBounds(currentWeapon.weaponPos));
             }
         }
         else if (hit.TryGetComponent(out MeshTarget mesh))
@@ -104,5 +112,25 @@ public class HitBox : MonoBehaviour
         {
             GameTracking.instance.AddDamageReceived(currentWeapon.currentAttack.damage);
         }
+    }
+    private bool CheckIfParry()
+    {
+        if (owner is Player player)
+        {
+            ActionState state = player.playerActions.currentState;
+            if (state == player.playerActions.parryState)
+            {
+                return true;
+            }
+        }
+        if (owner is Enemy enemy)
+        {
+            EnemyState state = enemy.currentState;
+            if (state == enemy.parryState)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

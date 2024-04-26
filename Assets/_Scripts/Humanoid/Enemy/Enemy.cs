@@ -1,4 +1,3 @@
-using Actions;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -43,6 +42,7 @@ namespace EnemyAI
         public IdleState idleState = new IdleState();
         public ChaseState chaseState = new ChaseState();
         public AttackState attackState = new AttackState();
+        public ParryState parryState = new ParryState();
         //public StaggeredState staggeredState = new StaggeredState();
         //public TakedownState takedownState = new TakedownState();
 

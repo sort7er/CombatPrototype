@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.LightAnchor;
 
 public class EffectManager : MonoBehaviour
 {
@@ -11,8 +10,12 @@ public class EffectManager : MonoBehaviour
     public ParticleSystem hitEffect;
 
     [Header("Parry effect")]
-    public int pPoolSize = 3;
+    public int pPoolSize = 4;
     public ParticleSystem parryEffect;
+
+    [Header("Perfect parry effect")]
+    public int ppPoolsize = 3;
+    public ParticleSystem perfectParryEffect;
 
     [Header("Slice effect")]
     public int sPoolSize = 10;
@@ -32,7 +35,6 @@ public class EffectManager : MonoBehaviour
     private ParticleSystem[] slash;
     private int currentSlash;
 
-
     private ParticleSystem[] katana;
     private int currentKatana;
 
@@ -43,6 +45,8 @@ public class EffectManager : MonoBehaviour
     private ParticleSystem[] parry;
     private int currentParry;
 
+    private ParticleSystem[] perfectParry;
+    private int currentPerfectParry;
 
     private void Awake()
     {
@@ -54,8 +58,9 @@ public class EffectManager : MonoBehaviour
         SetUpEffect(hitEffect, ref hit, ref currentHit, poolSize);
         SetUpEffect(slashEffect, ref slash, ref currentSlash, sPoolSize);
         SetUpEffect(thrustEffect, ref thrust, ref currentThrust, tPoolSize);
-        SetUpEffect(parryEffect, ref parry, ref currentParry, pPoolSize);
         SetUpEffect(katanaEffect, ref katana, ref currentKatana, kPoolSize);
+        SetUpEffect(parryEffect, ref parry, ref currentParry, pPoolSize);
+        SetUpEffect(perfectParryEffect, ref perfectParry, ref currentPerfectParry, pPoolSize);
     }
     private void SetUpEffect(ParticleSystem prefab, ref ParticleSystem[] array, ref int current, int poolSize)
     {
@@ -76,6 +81,7 @@ public class EffectManager : MonoBehaviour
         effect.gameObject.SetActive(true);
 
         effect.transform.position = position;
+
         effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
 
         StartCoroutine(ResetEffect(effect));
@@ -138,6 +144,17 @@ public class EffectManager : MonoBehaviour
         ParticleSystem effect = parry[currentParry];
 
         IncreasePool(ref currentParry, pPoolSize);
+
+        effect.gameObject.SetActive(true);
+        effect.transform.position = position;
+
+        StartCoroutine(ResetEffect(effect));
+    }
+    public void PerfectParry(Vector3 position)
+    {
+        ParticleSystem effect = perfectParry[currentPerfectParry];
+
+        IncreasePool(ref currentPerfectParry, ppPoolsize);
 
         effect.gameObject.SetActive(true);
         effect.transform.position = position;

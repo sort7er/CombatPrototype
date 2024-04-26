@@ -13,7 +13,7 @@ namespace Actions
         public Animator armAnimator;
         public Player player;
         public Unique unique;
-        //public Weapon startWeapon;
+
         public Transform[] weaponPos;
         public Weapon currentWeapon { get; private set; }
         public ActionState currentState { get; private set; }
@@ -40,7 +40,6 @@ namespace Actions
         private void Awake()
         {
             SetUpInput();
-            //SetNewWeapon(startWeapon);
         }
         private void Start()
         {

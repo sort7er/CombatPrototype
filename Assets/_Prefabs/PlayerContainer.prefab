@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7874439766578228357}
   m_Layer: 10
-  m_Name: CameraController
+  m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8612583063523447023}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -292,6 +292,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -517,7 +519,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8909807585341415763
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -531,6 +533,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -563,6 +566,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2580337900123133110}
     m_Modifications:
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
+      value: 6281935f-4402-49da-9799-cd49f4fd5f73
+      objectReference: {fileID: 0}
+    - target: {fileID: 804369259779988857, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
+      value: 'Player/Pause[/Keyboard/escape]'
+      objectReference: {fileID: 0}
     - target: {fileID: 2481343924331421528, guid: 4e46e8e9580cc62499609d3a69251b49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -618,6 +636,21 @@ PrefabInstance:
       propertyPath: camTrans
       value: 
       objectReference: {fileID: 7874439766578228357}
+    - target: {fileID: 5156418192644007235, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: cameraInterpolation
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828263464891706022, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 884603581358853836}
+    - target: {fileID: 6828263464891706022, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: postureImages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7184959094642092623, guid: 4e46e8e9580cc62499609d3a69251b49,
         type: 3}
       propertyPath: armAnimator
@@ -625,12 +658,12 @@ PrefabInstance:
       objectReference: {fileID: 8909807585341415763}
     - target: {fileID: 7184959094642092623, guid: 4e46e8e9580cc62499609d3a69251b49,
         type: 3}
-      propertyPath: weaponPos.Array.data[0]
+      propertyPath: 'weaponPos.Array.data[0]'
       value: 
       objectReference: {fileID: 7950107662376369536}
     - target: {fileID: 7184959094642092623, guid: 4e46e8e9580cc62499609d3a69251b49,
         type: 3}
-      propertyPath: weaponPos.Array.data[1]
+      propertyPath: 'weaponPos.Array.data[1]'
       value: 
       objectReference: {fileID: 583540263084144039}
     - target: {fileID: 7272457161204308622, guid: 4e46e8e9580cc62499609d3a69251b49,

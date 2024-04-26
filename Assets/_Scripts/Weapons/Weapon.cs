@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
     [Header("Weapons")]
     [SerializeField] private WeaponModel[] weaponModel;
     public Humanoid owner { get; private set; }
+
+    public Vector3 weaponPos { get; private set; }
     public Attack currentAttack { get; private set; }
 
     private Attack closeAbility;
@@ -73,8 +75,8 @@ public class Weapon : MonoBehaviour
         rightIncluded = currentAttack.currentWield == Wield.right || currentAttack.currentWield == Wield.both;
         leftIncluded = currentAttack.currentWield == Wield.left || currentAttack.currentWield == Wield.both;
 
-        UpdateAttackCoords();
 
+        UpdateAttackCoords();
     }
     public void Effect()
     {
@@ -125,10 +127,15 @@ public class Weapon : MonoBehaviour
         if (rightIncluded)
         {
             weaponModel[0].SetAttackCoord(currentAttack.attackCoordsMain[rightEffect]);
+            weaponPos = currentAttack.attackCoordsMain[rightEffect].MiddlePoint(transform);
         }
         if (leftIncluded)
         {
             weaponModel[1].SetAttackCoord(currentAttack.attackCoordsSecondary[leftEffect]);
+            if (!rightIncluded)
+            {
+                weaponPos = currentAttack.attackCoordsSecondary[leftEffect].MiddlePoint(transform);
+            }
         }
     }
 

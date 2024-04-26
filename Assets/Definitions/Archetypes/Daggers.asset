@@ -38,7 +38,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 40
+    damage: 30
     postureDamage: 34
     activeWield: 0
     hitType: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 40
+    damage: 30
     postureDamage: 34
     activeWield: 0
     hitType: 1
@@ -62,7 +62,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 40
+    damage: 30
     postureDamage: 34
     activeWield: 1
     hitType: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 40
+    damage: 30
     postureDamage: 34
     activeWield: 1
     hitType: 1
@@ -86,7 +86,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 80
+    damage: 50
     postureDamage: 50
     activeWield: 2
     hitType: 1
