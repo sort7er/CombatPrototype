@@ -101,8 +101,6 @@ public class Health : MonoBehaviour
 
         ParryType parry = CheckForParry(attackingWeapon.owner);
 
-        Debug.Log(hitPoint);
-
         if(parry == ParryType.None)
         {
             MinusHealth(attackingWeapon.currentAttack.damage);
@@ -130,21 +128,25 @@ public class Health : MonoBehaviour
 
     public ParryType CheckForParry(Humanoid attacker)
     {
-        //Debug.Log("Parry timer: " + owner.parryTimer + ". Too late: " + attacker.tooLateTime + ". Perfect: " + attacker.perfectParryTime + ". Parry: " + attacker.parryTime);
+        Debug.Log("Parry timer: " + owner.parryTimer + ". Too late: " + attacker.tooLateTime + ". Perfect: " + attacker.perfectParryTime + ". Parry: " + attacker.parryTime);
 
-        if (owner.parryTimer < attacker.tooLateTime)
+        //if (owner.parryTimer < attacker.tooLateTime)
+        //{
+        //    Debug.Log("Too Late");
+        //    return ParryType.None;
+        //}
+        if (owner.parryTimer == 0)
         {
-            Debug.Log("Too Late");
+            Debug.Log("No parry");
             return ParryType.None;
         }
         else if (owner.parryTimer < attacker.perfectParryTime)
         {
-            Debug.Log("Perfect parry");
+            //Debug.Log("Perfect parry");
             return ParryType.PerfectParry;
         }
         else if (owner.parryTimer < attacker.parryTime)
         {
-            Debug.Log("Parry");
             return ParryType.Parry;
         }
         else

@@ -6,9 +6,19 @@ public class AudioPlayer : MonoBehaviour
 
     public AudioClip[] clips;
 
+    public bool randomPitch = false;
+    public bool playOnEnable = false;
+
     private int lastRnd;
 
-    public bool playOnEnable = false;
+    private float startPitch;
+    private float pitchRange;
+
+    private void Awake()
+    {
+        startPitch = audioSource.pitch;
+        pitchRange = 0.1f;
+    }
 
     private void OnEnable()
     {
@@ -34,6 +44,15 @@ public class AudioPlayer : MonoBehaviour
                 rnd = Random.Range(0, clips.Length);
             }
         }
+
+        audioSource.pitch = startPitch;
+
+        if (randomPitch)
+        {
+            audioSource.pitch += Random.Range(-pitchRange, pitchRange);
+        }
+
+
 
 
         audioSource.clip = clips[rnd];

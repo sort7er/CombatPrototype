@@ -77,7 +77,7 @@ public class EnemyAnimator : MonoBehaviour
     }
     public void AttackEffect()
     {
-        tooLate= true;
+        //tooLate= true;
         enemy.currentWeapon.Effect();
     }
     public void AttackEvent()

@@ -165,7 +165,7 @@ public class EffectManager : MonoBehaviour
     private IEnumerator ResetEffect(ParticleSystem effectToReset)
     {
 
-        yield return new WaitForSeconds(effectToReset.startLifetime);
+        yield return new WaitForSeconds(effectToReset.duration);
         effectToReset.gameObject.SetActive(false);
         effectToReset.transform.parent = ParentManager.instance.effects;
     }
