@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroupPosture;
     [SerializeField] private TextMeshProUGUI postureText;
 
-
+    [Header("Stunned")]
     [SerializeField] private float defaultTimeTillRegen = 2;
     [SerializeField] private float defaultPostureRegen = 10;
     [SerializeField] private float stunnedDuration = 10;
@@ -165,8 +165,7 @@ public class Health : MonoBehaviour
     {
         OnTakeDamage?.Invoke();
         health -= damage;
-        healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
-        healthText.text = health.ToString() + "/" + startHealth.ToString();
+        SetHealth(health);
     }
 
     private void MinusPosture(int postureDamage)
@@ -186,7 +185,6 @@ public class Health : MonoBehaviour
     {
         if (health <= 0)
         {
-            health = 0;
             if (weapon != null)
             {
                 Dead(weapon);
@@ -198,6 +196,7 @@ public class Health : MonoBehaviour
         }
         else if (posture <= 0)
         {
+            posture= 0;
             DrainedPosture();
         }
         else
@@ -220,7 +219,6 @@ public class Health : MonoBehaviour
 
     protected virtual void DrainedPosture()
     {
-        posture = 0;
         if (!postureDrained)
         {
             postureDrained = true;
@@ -236,8 +234,6 @@ public class Health : MonoBehaviour
         postureDrained = false;
         healthSlider.gameObject.SetActive(true);
         canvasGroupPosture.gameObject.SetActive(true);
-        Debug.Log(storedHealth);
-        health = storedHealth;
         OnStaggerDone?.Invoke();
         StartRegenPosture();
     }
@@ -281,6 +277,8 @@ public class Health : MonoBehaviour
     protected void SetHealth(int newHealth)
     {
         health = newHealth;
+        healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
+        healthText.text = health.ToString() + "/" + startHealth.ToString();
     }
 
     private void SetPostureImages(float posture)

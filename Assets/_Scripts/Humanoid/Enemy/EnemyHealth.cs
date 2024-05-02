@@ -66,5 +66,6 @@ public class EnemyHealth : Health
         base.StaggerDone();
         skull.transform.DOKill();
         skull.gameObject.SetActive(false);
+        SetHealth(storedHealth);
     }
 }
