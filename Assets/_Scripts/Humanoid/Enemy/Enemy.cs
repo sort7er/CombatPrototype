@@ -43,7 +43,8 @@ namespace EnemyAI
         public ChaseState chaseState = new ChaseState();
         public AttackState attackState = new AttackState();
         public ParryState parryState = new ParryState();
-        //public StaggeredState staggeredState = new StaggeredState();
+        public StaggeredState staggeredState = new StaggeredState();
+        public StunnedState stunnedState = new StunnedState();
         //public TakedownState takedownState = new TakedownState();
 
         private int currentCorner;
