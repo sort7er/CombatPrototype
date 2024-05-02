@@ -1,5 +1,7 @@
+using EnemyAI;
 using System.IO;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public static class Tools
 {
@@ -76,4 +78,25 @@ public static class Tools
         DirectoryInfo d = new DirectoryInfo(location);
         return d.GetFiles().Length;
     }
+
+
+    //Exclusive to combatprototype for slash a bit
+
+    public static Enemy GetEnemy(Humanoid owner)
+    {
+        if (owner is Enemy enemy)
+        {
+            return enemy;
+        }
+        else return null;
+    }
+    public static Player GetPlayer(Humanoid owner)
+    {
+        if (owner is Player player)
+        {
+            return player;
+        }
+        else return null;
+    }
+
 }

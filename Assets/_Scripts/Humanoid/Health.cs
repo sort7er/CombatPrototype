@@ -17,12 +17,12 @@ public class Health : MonoBehaviour
     }
 
 
-    [SerializeField] private int startHealth = 100;
+    [SerializeField] protected int startHealth = 100;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private CanvasGroup canvasGroupHealth;
     [SerializeField] private TextMeshProUGUI healthText;
 
-    [SerializeField] private int startPosture = 100;
+    [SerializeField] protected int startPosture = 100;
     [SerializeField] private RectTransform[] postureImages;
     [SerializeField] private CanvasGroup canvasGroupPosture;
     [SerializeField] private TextMeshProUGUI postureText;
@@ -30,7 +30,6 @@ public class Health : MonoBehaviour
     [Header("Stunned")]
     [SerializeField] private float defaultTimeTillRegen = 2;
     [SerializeField] private float defaultPostureRegen = 10;
-    [SerializeField] private float stunnedDuration = 10;
 
     public Humanoid owner;
 
@@ -95,12 +94,10 @@ public class Health : MonoBehaviour
 
     public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
     {
-
-
-        if (IsDead())
-        {
-            return;
-        }
+        //if (IsDead())
+        //{
+        //    return;
+        //}
 
         ParryType parry = CheckForParry(attackingWeapon.owner);
 
@@ -113,9 +110,9 @@ public class Health : MonoBehaviour
         else if(parry == ParryType.PerfectParry)
         {
             MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.2f));
-            Debug.Log(attackingWeapon.owner + " should change state to be stunned now");
             EffectManager.instance.PerfectParry(hitPoint);
-            attackingWeapon.owner.health.TakeDamage(0, GetOwnersWeapon().currentAttack.postureDamage * 2);
+            attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(GetOwnersWeapon().currentAttack.postureDamage * 1.3f));
+            Tools.GetEnemy(attackingWeapon.owner).Staggered();
         }
         else
         {
@@ -172,13 +169,12 @@ public class Health : MonoBehaviour
     {
         CancelInvoke(nameof(StartRegenPosture));
         canRegenPosture = false;
+
         posture -= postureDamage;
+        SetPosture(posture);
 
-
-        SetPostureImages(posture);
         postureRegen = Tools.Remap(health, 0, startHealth, 1, defaultPostureRegen);
         timeTillRegen = Tools.Remap(health, 0, startHealth, 6, defaultTimeTillRegen);
-        postureText.text = posture.ToString("F0") + "/" + startPosture.ToString("F0");
     }
 
     private void CheckStatus(Weapon weapon)
@@ -226,7 +222,7 @@ public class Health : MonoBehaviour
             canvasGroupPosture.gameObject.SetActive(false);
             storedHealth = health;
             OnPostureDrained?.Invoke();
-            Invoke(nameof(StaggerDone), stunnedDuration);
+            Invoke(nameof(StaggerDone), Tools.GetEnemy(owner).stunnedDuration);
         }
     }
     protected virtual void StaggerDone()
@@ -280,6 +276,12 @@ public class Health : MonoBehaviour
         healthSlider.DOValue(health, 0.1f).SetEase(Ease.OutFlash);
         healthText.text = health.ToString() + "/" + startHealth.ToString();
     }
+    protected void SetPosture(float newPosture)
+    {
+        posture = newPosture;
+        SetPostureImages(posture);
+        postureText.text = posture.ToString("F0") + "/" + startPosture.ToString("F0");
+    }
 
     private void SetPostureImages(float posture)
     {
@@ -294,7 +296,25 @@ public class Health : MonoBehaviour
 
     }
 
-    private Weapon GetOwnersWeapon()
+    protected Enemy GetEnemy()
+    {
+        if(owner is Enemy enemy)
+        {
+            return enemy;
+        }
+        else return null;
+    }
+
+    protected Player GetPlayer()
+    {
+        if (owner is Player player)
+        {
+            return player;
+        }
+        else return null;
+    }
+
+    protected Weapon GetOwnersWeapon()
     {
         if(owner is Player player)
         {

@@ -129,11 +129,6 @@ public class Humanoid : MonoBehaviour
         movementSpeed = newSpeed;
     }
 
-    public virtual void Staggered()
-    {
-
-    }
-
     public bool GroundCheck()
     {
         if (Physics.CheckSphere(transform.position, groundDistance, groundLayer))

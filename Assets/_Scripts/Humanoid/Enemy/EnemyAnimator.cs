@@ -65,6 +65,11 @@ public class EnemyAnimator : MonoBehaviour
 
         animator.SetBool("Walking", isWalking);
     }
+    public void SetAnimatorBool(string name, bool state)
+    {
+        animator.SetBool(name, state);
+    }
+
 
     //Events in order
     public void Parry()

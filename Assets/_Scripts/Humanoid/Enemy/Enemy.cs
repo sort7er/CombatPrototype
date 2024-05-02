@@ -20,6 +20,9 @@ namespace EnemyAI
         [Header("Attacking")]
         [SerializeField] private float attackCooldown;
 
+        [Header("Stunned")]
+        public float stunnedDuration = 4;
+
         [Header("Weapons")]
         [SerializeField] private Transform[] weaponPos;
         [SerializeField] private Weapon startWeapon;
@@ -97,11 +100,23 @@ namespace EnemyAI
             }
             enemyAnimator.animator.SetFloat("MovementZ", animatorRunSpeed);
         }
+        #region Signals to state machine
+        public void Staggered()
+        {
+            currentState.Staggered();
+        }
+
+        public void Stunned()
+        {
+            currentState.Stunned();
+        }
 
         public void Takedown()
         {
-
+            currentState.Takedown();
         }
+
+        #endregion
 
         protected override void Move()
         {
@@ -141,7 +156,7 @@ namespace EnemyAI
             currentState = state;
             currentState.Enter(this);
         }
-        public void SetTarget(Vector3 target)
+        public void SetTarget(Vector3 walkToTarger, Vector3 lookAtTarget)
         {
             if (refreshRateTimer < navMeshRefreshRate)
             {
@@ -149,10 +164,10 @@ namespace EnemyAI
             }
             else
             {
-                MoveTo(target);
+                MoveTo(walkToTarger);
                 refreshRateTimer = 0;
             }
-            LookAtTarget(target);
+            LookAtTarget(lookAtTarget);
         }
         public float CalculateDotProduct()
         {

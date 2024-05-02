@@ -25,7 +25,7 @@ namespace EnemyAI
             else
             {
                 enemy.SpeedByDist(dist);
-                enemy.SetTarget(player.Position());
+                enemy.SetTarget(player.Position(), player.Position());
             }
         }
     }

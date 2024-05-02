@@ -17,6 +17,18 @@ namespace EnemyAI
         {
 
         }
+        public virtual void Staggered()
+        {
+
+        }
+        public virtual void Stunned()
+        {
+
+        }
+        public virtual void Takedown()
+        {
+
+        }
         private void SetReferences(Enemy enemy)
         {
             if (this.enemy == null)

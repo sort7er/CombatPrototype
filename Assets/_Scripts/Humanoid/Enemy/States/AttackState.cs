@@ -81,6 +81,20 @@ namespace EnemyAI
             return Vector3.Distance(player.Position(), enemy.Position());
         }
 
+        public override void Staggered()
+        {
+            AttackDone();
+            enemy.StopFunction();
+            enemy.SwitchState(enemy.staggeredState);
+        }
+
+        public override void Stunned()
+        {
+            AttackDone();
+            enemy.StopFunction();
+            enemy.SwitchState(enemy.stunnedState);
+        }
+
 
     }
 

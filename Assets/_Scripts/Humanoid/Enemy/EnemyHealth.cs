@@ -2,7 +2,7 @@ using UnityEngine;
 using Attacks;
 using UnityEngine.UI;
 using DG.Tweening;
-using DynamicMeshCutter;
+using EnemyAI;
 
 public class EnemyHealth : Health
 {
@@ -60,6 +60,7 @@ public class EnemyHealth : Health
         skull.gameObject.SetActive(true);
         skull.transform.DOPunchScale(Vector3.one * 0.1f, 3f).SetLoops(-1);
         SetHealth(1);
+        Tools.GetEnemy(owner).Stunned();
     }
     protected override void StaggerDone()
     {
@@ -67,5 +68,7 @@ public class EnemyHealth : Health
         skull.transform.DOKill();
         skull.gameObject.SetActive(false);
         SetHealth(storedHealth);
+        SetPosture(startPosture * 0.5f);
+
     }
 }
