@@ -5,6 +5,7 @@ using DG.Tweening;
 using SlashABit.UI.HudElements;
 using RunSettings;
 using TMPro;
+using EnemyAI;
 
 public class Health : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class Health : MonoBehaviour
     protected int storedHealth;
 
     private bool canRegenPosture;
+    private bool postureDrained;
 
     protected virtual void Awake()
     {
@@ -84,9 +86,10 @@ public class Health : MonoBehaviour
         postureText.text = posture.ToString() + "/" + startPosture.ToString();
     }
 
-    public virtual void TakeDamage(int damage, int postureDamage = 0)
+    public virtual void TakeDamage(int damage, int postureDamage)
     {
         MinusHealth(damage);
+        MinusPosture(postureDamage);
         CheckStatus(null);
     }
 
@@ -112,11 +115,13 @@ public class Health : MonoBehaviour
             MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.2f));
             Debug.Log(attackingWeapon.owner + " should change state to be stunned now");
             EffectManager.instance.PerfectParry(hitPoint);
+            attackingWeapon.owner.health.TakeDamage(0, GetOwnersWeapon().currentAttack.postureDamage * 2);
         }
         else
         {
             MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.5f));
             EffectManager.instance.Parry(hitPoint);
+            attackingWeapon.owner.health.TakeDamage(0, GetOwnersWeapon().currentAttack.postureDamage);
         }
 
         Vector3 direction = transform.position - attackingWeapon.owner.Position();
@@ -128,7 +133,7 @@ public class Health : MonoBehaviour
 
     public ParryType CheckForParry(Humanoid attacker)
     {
-        Debug.Log("Parry timer: " + owner.parryTimer + ". Too late: " + attacker.tooLateTime + ". Perfect: " + attacker.perfectParryTime + ". Parry: " + attacker.parryTime);
+        //Debug.Log("Parry timer: " + owner.parryTimer + ". Too late: " + attacker.tooLateTime + ". Perfect: " + attacker.perfectParryTime + ". Parry: " + attacker.parryTime);
 
         //if (owner.parryTimer < attacker.tooLateTime)
         //{
@@ -137,7 +142,7 @@ public class Health : MonoBehaviour
         //}
         if (owner.parryTimer == 0)
         {
-            Debug.Log("No parry");
+            //Debug.Log("No parry");
             return ParryType.None;
         }
         else if (owner.parryTimer < attacker.perfectParryTime)
@@ -151,7 +156,7 @@ public class Health : MonoBehaviour
         }
         else
         {
-            Debug.Log("Too early");
+            //Debug.Log("Too early");
             return ParryType.None;
         }
     }
@@ -216,17 +221,22 @@ public class Health : MonoBehaviour
     protected virtual void DrainedPosture()
     {
         posture = 0;
-        healthSlider.gameObject.SetActive(false);
-        canvasGroupPosture.gameObject.SetActive(false);
-        storedHealth = health;
-        OnPostureDrained?.Invoke();
-        Invoke(nameof(StaggerDone), stunnedDuration);
-        Debug.Log(owner);
+        if (!postureDrained)
+        {
+            postureDrained = true;
+            healthSlider.gameObject.SetActive(false);
+            canvasGroupPosture.gameObject.SetActive(false);
+            storedHealth = health;
+            OnPostureDrained?.Invoke();
+            Invoke(nameof(StaggerDone), stunnedDuration);
+        }
     }
     protected virtual void StaggerDone()
     {
+        postureDrained = false;
         healthSlider.gameObject.SetActive(true);
         canvasGroupPosture.gameObject.SetActive(true);
+        Debug.Log(storedHealth);
         health = storedHealth;
         OnStaggerDone?.Invoke();
         StartRegenPosture();
@@ -284,5 +294,21 @@ public class Health : MonoBehaviour
             postureImages[i].DOSizeDelta(new Vector2(postureValue, 10), 0.1f).SetEase(Ease.OutFlash);
         }
 
+    }
+
+    private Weapon GetOwnersWeapon()
+    {
+        if(owner is Player player)
+        {
+            return player.playerActions.currentWeapon;
+        }
+        else if(owner is Enemy enemy)
+        {
+            return enemy.currentWeapon;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
