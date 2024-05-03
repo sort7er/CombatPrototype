@@ -112,6 +112,9 @@ public class Health : MonoBehaviour
             MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.2f));
             EffectManager.instance.PerfectParry(hitPoint);
             attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(GetOwnersWeapon().currentAttack.postureDamage * 1.3f));
+            
+            //This only works when player is the owner
+            Tools.GetPlayer(owner).playerActions.SuccessfulParry();
             Tools.GetEnemy(attackingWeapon.owner).Staggered();
         }
         else
@@ -119,6 +122,9 @@ public class Health : MonoBehaviour
             MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.5f));
             EffectManager.instance.Parry(hitPoint);
             attackingWeapon.owner.health.TakeDamage(0, GetOwnersWeapon().currentAttack.postureDamage);
+
+            //This only works when player is the owner
+            Tools.GetPlayer(owner).playerActions.SuccessfulParry();
         }
 
         Vector3 direction = transform.position - attackingWeapon.owner.Position();

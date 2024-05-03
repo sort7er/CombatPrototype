@@ -70,8 +70,26 @@ namespace Actions
             SetUpcommingAction(QueuedAction.None);
             actions.SetAnimation(archetype.parry[currentParry], 0.05f);
             actions.StopMethod();
+            //actions.InvokeMethod(CanParryAgain, 0.5f);
             actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
             UpdateParry();
+        }
+        private void CanParryAgain()
+        {
+            if (upcommingAction == QueuedAction.Attack)
+            {
+                actions.StopMethod();
+                actions.player.UpdateParryTimer(0);
+                actions.SwitchState(actions.attackState);
+            }
+            else if (upcommingAction == QueuedAction.Parry)
+            {
+                DoParry();
+            }
+            else
+            {
+                actionDone = true;
+            }
         }
 
         private void EndParry()

@@ -12,7 +12,8 @@ namespace EnemyAI
         {
             base.Enter(enemy);
             enemy.DisableMovement();
-            currentAttack = 0;
+
+            currentAttack = Random.Range(0, 4);
             transition= 0;
 
             if (enemy.CheckForWeapon())

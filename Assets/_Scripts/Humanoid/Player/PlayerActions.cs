@@ -100,6 +100,10 @@ namespace Actions
         {
             currentState.Parry();
         }
+        public void SuccessfulParry()
+        {
+            currentState.ActionDone();
+        }
         public void ActionStart()
         {
             currentWeapon.Effect();
