@@ -28,6 +28,12 @@ namespace EnemyAI
                 enemy.SetTarget(player.Position(), player.Position());
             }
         }
+
+        public override void Stunned()
+        {
+            enemy.enemyAnimator.SetWalking(false);
+            enemy.SwitchState(enemy.stunnedState);
+        }
     }
 }
 

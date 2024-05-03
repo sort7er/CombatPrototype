@@ -100,35 +100,46 @@ public class Health : MonoBehaviour
         //}
 
         ParryType parry = CheckForParry(attackingWeapon.owner);
+        Vector3 direction = transform.position - attackingWeapon.owner.Position();
+        
+        int damage = attackingWeapon.currentAttack.damage;
+        int postureDamage = attackingWeapon.currentAttack.postureDamage;
 
-        if(parry == ParryType.None)
+
+        if (parry == ParryType.None)
         {
-            MinusHealth(attackingWeapon.currentAttack.damage);
-            MinusPosture(attackingWeapon.currentAttack.postureDamage);
+            MinusHealth(damage);
+            MinusPosture(postureDamage);
             attackingWeapon.Hit(hitPoint);
-        }
-        else if(parry == ParryType.PerfectParry)
-        {
-            MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.2f));
-            EffectManager.instance.PerfectParry(hitPoint);
-            attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(GetOwnersWeapon().currentAttack.postureDamage * 1.3f));
-            
-            //This only works when player is the owner
-            Tools.GetPlayer(owner).playerActions.SuccessfulParry();
-            Tools.GetEnemy(attackingWeapon.owner).Staggered();
+            owner.AddForce(direction.normalized * attackingWeapon.pushbackForce);
+
         }
         else
         {
-            MinusPosture(Mathf.FloorToInt(attackingWeapon.currentAttack.postureDamage * 0.5f));
-            EffectManager.instance.Parry(hitPoint);
-            attackingWeapon.owner.health.TakeDamage(0, GetOwnersWeapon().currentAttack.postureDamage);
+            float receivedMultiplier;
+            float giveMultiplier;
+
+            if(parry == ParryType.PerfectParry)
+            {
+                receivedMultiplier = 0.2f;
+                giveMultiplier = 1.3f;
+                EffectManager.instance.PerfectParry(hitPoint);
+                Tools.GetEnemy(attackingWeapon.owner).Staggered();
+            }
+            else
+            {
+                EffectManager.instance.Parry(hitPoint);
+                receivedMultiplier = 0.5f;
+                giveMultiplier = 1f;
+            }
 
             //This only works when player is the owner
             Tools.GetPlayer(owner).playerActions.SuccessfulParry();
-        }
+            MinusPosture(Mathf.FloorToInt(postureDamage * receivedMultiplier));
 
-        Vector3 direction = transform.position - attackingWeapon.owner.Position();
-        owner.AddForce(direction.normalized * attackingWeapon.pushbackForce);
+            attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(GetOwnersWeapon().currentAttack.postureDamage * giveMultiplier));
+            attackingWeapon.owner.AddForce(-direction.normalized * attackingWeapon.pushbackForce);
+        }
 
         CheckStatus(attackingWeapon);
     }
