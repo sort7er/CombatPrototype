@@ -40,17 +40,21 @@ ModelImporter:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
-      scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_5'
+      scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
+      animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_5'
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Run'
+      has translation animation that will be discarded.\n\t'mixamorig:RightFoot'
+      has scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Parry_Left'
       has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightToeBase'
-      has scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Staggered'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftFoot'
+      has scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
+      animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
+      that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Staggered' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has
+      translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
       scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
       animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
@@ -72,42 +76,28 @@ ModelImporter:
       animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation
       that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
       be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Enemy_Run' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:RightToeBase' has scale animation
-      that will be discarded.\n\nClip 'Armature|Enemy_Staggered' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has
-      translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
-      scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
-      that will be discarded.\n\nClip 'Armature|Enemy_Strafe_Run' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation
+      discarded.\n\nClip 'Armature|Enemy_Staggered' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has translation
+      animation that will be discarded.\n\t'mixamorig:RightShoulder' has translation
+      animation that will be discarded.\n\t'mixamorig:LeftFoot' has scale animation
       that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
       be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Enemy_Strafe_Walk' has import animation warnings
+      discarded.\n\nClip 'Armature|Enemy_Strafe_Run' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'mixamorig:LeftFoot' has scale animation
       that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation that
       will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will be
       discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be discarded.\n\nClip
-      'Armature|Enemy_Temp' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightFoot'
-      has scale animation that will be discarded.\n\nClip 'Armature|Old_Enemy_Daggers_Attack_2'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightFoot'
-      has scale animation that will be discarded.\n\t'mixamorig:RightToeBase' has
-      scale animation that will be discarded.\n\nClip 'Armature|Old_Enemy_Daggers_Attack_3'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\nClip 'Armature|Old_Enemy_Daggers_Attack_4'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftFoot'
-      has scale animation that will be discarded.\n"
+      'Armature|Enemy_Strafe_Walk' has import animation warnings that might lower
+      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
+      quality.\n\t'mixamorig:LeftFoot' has scale animation that will be discarded.\n\t'mixamorig:LeftToeBase'
+      has scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
+      animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
+      that will be discarded.\n\nClip 'Armature|Enemy_Temp' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightFoot' has
+      scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -367,7 +357,7 @@ ModelImporter:
       takeName: Armature|Enemy_Daggers_Attack_1
       internalID: 2336536588777169427
       firstFrame: 0
-      lastFrame: 69
+      lastFrame: 46
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -387,7 +377,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.11920108
+      - time: 0.2516712
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -395,7 +385,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.22101569
+      - time: 0.36244994
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -403,7 +393,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.24755034
+      - time: 0.36657426
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -411,7 +401,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.29507476
+      - time: 0.44945723
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -419,7 +409,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3241981
+      - time: 0.47858056
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -528,7 +518,7 @@ ModelImporter:
       takeName: Armature|Enemy_Daggers_Attack_2
       internalID: 7009840049564391593
       firstFrame: 0
-      lastFrame: 69
+      lastFrame: 44
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -548,7 +538,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.121812575
+      - time: 0.25029862
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -556,7 +546,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.21828888
+      - time: 0.38213354
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -564,7 +554,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.24286233
+      - time: 0.39176673
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -572,7 +562,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.27658865
+      - time: 0.4498954
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -580,7 +570,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2909939
+      - time: 0.46430066
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -689,7 +679,7 @@ ModelImporter:
       takeName: Armature|Enemy_Daggers_Attack_3
       internalID: 5966936115862150239
       firstFrame: 0
-      lastFrame: 69
+      lastFrame: 46
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -709,7 +699,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.12099174
+      - time: 0.2499758
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -717,7 +707,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.21772097
+      - time: 0.36363733
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -725,7 +715,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.24140444
+      - time: 0.3708865
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -733,7 +723,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.30483764
+      - time: 0.45025596
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -741,7 +731,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.34517696
+      - time: 0.49059528
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -850,7 +840,7 @@ ModelImporter:
       takeName: Armature|Enemy_Daggers_Attack_4
       internalID: -2159151155153476095
       firstFrame: 0
-      lastFrame: 69
+      lastFrame: 46
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -870,7 +860,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.12011465
+      - time: 0.25059274
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -878,7 +868,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2026391
+      - time: 0.3605076
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -886,7 +876,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2341839
+      - time: 0.366156
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -894,7 +884,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.28049338
+      - time: 0.45927823
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -902,7 +892,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.29895577
+      - time: 0.47774062
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1011,7 +1001,7 @@ ModelImporter:
       takeName: Armature|Enemy_Daggers_Attack_5
       internalID: 6015854654974080187
       firstFrame: 0
-      lastFrame: 74
+      lastFrame: 46
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1031,7 +1021,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.22372644
+      - time: 0.2904595
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1039,7 +1029,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.33639544
+      - time: 0.40860662
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1047,7 +1037,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36688462
+      - time: 0.41519138
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1055,7 +1045,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.42500824
+      - time: 0.4847692
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1063,7 +1053,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.46809042
+      - time: 0.5278514
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,

@@ -74,6 +74,10 @@ namespace Actions
         {
 
         }
+        public virtual void SuccessfulParry()
+        {
+
+        }
 
         public void SetReferences(PlayerActions actions)
         {

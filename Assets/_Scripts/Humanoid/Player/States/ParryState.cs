@@ -1,4 +1,3 @@
-using Actions;
 using UnityEngine;
 
 namespace Actions
@@ -47,6 +46,10 @@ namespace Actions
                 actionDone = true;
             }
         }
+        public override void SuccessfulParry()
+        {
+            ActionDone();
+        }
 
         public override void Attack()
         {
@@ -70,32 +73,33 @@ namespace Actions
             SetUpcommingAction(QueuedAction.None);
             actions.SetAnimation(archetype.parry[currentParry], 0.05f);
             actions.StopMethod();
-            //actions.InvokeMethod(CanParryAgain, 0.5f);
+            //actions.InvokeMethod(CanParryAgain, 0.7f);
             actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
             UpdateParry();
         }
-        private void CanParryAgain()
-        {
-            if (upcommingAction == QueuedAction.Attack)
-            {
-                actions.StopMethod();
-                actions.player.UpdateParryTimer(0);
-                actions.SwitchState(actions.attackState);
-            }
-            else if (upcommingAction == QueuedAction.Parry)
-            {
-                DoParry();
-            }
-            else
-            {
-                actionDone = true;
-            }
-        }
+        //private void CanParryAgain()
+        //{
+        //    if (upcommingAction == QueuedAction.Attack)
+        //    {
+        //        actions.StopMethod();
+        //        actions.player.UpdateParryTimer(0);
+        //        actions.SwitchState(actions.attackState);
+        //    }
+        //    else if (upcommingAction == QueuedAction.Parry)
+        //    {
+        //        DoParry();
+        //    }
+        //    else
+        //    {
+        //        actionDone = true;
+        //    }
+        //}
 
         private void EndParry()
         {
-            actions.SwitchState(actions.idleState);
+            actions.StopMethod();
             actions.player.UpdateParryTimer(0);
+            actions.SwitchState(actions.idleState);
         }
 
         private void UpdateParry()

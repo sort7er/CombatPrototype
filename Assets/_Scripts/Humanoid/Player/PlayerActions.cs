@@ -102,7 +102,7 @@ namespace Actions
         }
         public void SuccessfulParry()
         {
-            currentState.ActionDone();
+            currentState.SuccessfulParry();
         }
         public void ActionStart()
         {
