@@ -299,7 +299,6 @@ MonoBehaviour:
   postureText: {fileID: 6785822137820149398}
   defaultTimeTillRegen: 4
   defaultPostureRegen: 10
-  stunnedDuration: 10
   owner: {fileID: 5937715972609921831}
   slicingController: {fileID: 9064183171304532476}
   prefabs:
@@ -333,10 +332,11 @@ MonoBehaviour:
   waypointDistance: 0.3
   rotationSlerp: 20
   DistanceBeforeChase: 5
-  playerDistance: 1.5
+  playerDistance: 2.25
   playerDistanceThreshold: 1
   runDistance: 8
   attackCooldown: 0.5
+  stunnedDuration: 4
   weaponPos:
   - {fileID: 5386840715973219261}
   - {fileID: 2525827288816242268}
@@ -1315,8 +1315,8 @@ Transform:
   m_GameObject: {fileID: 8781966761244033074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 1}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 1.5, z: 1.25}
+  m_LocalScale: {x: 2, y: 2, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 971317887783513776}
