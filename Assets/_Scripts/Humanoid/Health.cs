@@ -222,7 +222,15 @@ public class Health : MonoBehaviour
             canvasGroupPosture.gameObject.SetActive(false);
             storedHealth = health;
             OnPostureDrained?.Invoke();
-            Invoke(nameof(StaggerDone), Tools.GetEnemy(owner).stunnedDuration);
+
+            float duration = 4;
+
+            if(owner is Enemy enemy)
+            {
+                duration = Tools.GetEnemy(owner).stunnedDuration;
+            }
+
+            Invoke(nameof(StaggerDone), duration);
         }
     }
     protected virtual void StaggerDone()

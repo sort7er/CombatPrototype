@@ -128,7 +128,7 @@ MonoBehaviour:
     exitTime: 0
     transitionDuration: 0
     damage: 0
-    postureDamage: 0
+    postureDamage: 40
     activeWield: 0
     hitType: 0
     attackCoordsMain:
@@ -142,7 +142,7 @@ MonoBehaviour:
     exitTime: 0
     transitionDuration: 0
     damage: 0
-    postureDamage: 0
+    postureDamage: 40
     activeWield: 0
     hitType: 0
     attackCoordsMain:
@@ -153,3 +153,11 @@ MonoBehaviour:
       localEndPos: {x: 0, y: 0, z: 0}
   enemyAttacksInput: []
   enemyParrysInput: []
+  enemyStaggeredInput:
+    animationClip: {fileID: 0}
+    exitTime: 0
+    transitionDuration: 0
+  enemyStunnedInput:
+    animationClip: {fileID: 0}
+    exitTime: 0
+    transitionDuration: 0
