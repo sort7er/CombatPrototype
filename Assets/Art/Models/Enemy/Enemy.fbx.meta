@@ -385,7 +385,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36244994
+      - time: 0.35059223
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -393,7 +393,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36657426
+      - time: 0.36920932
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -546,7 +546,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.38213354
+      - time: 0.3518305
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -554,7 +554,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.39176673
+      - time: 0.37200388
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -707,7 +707,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36363733
+      - time: 0.3517796
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -868,7 +868,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3605076
+      - time: 0.35128495
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -876,7 +876,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.366156
+      - time: 0.37406114
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1029,7 +1029,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.40860662
+      - time: 0.39411387
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1037,7 +1037,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.41519138
+      - time: 0.41650888
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,

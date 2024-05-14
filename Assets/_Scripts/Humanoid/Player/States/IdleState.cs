@@ -40,10 +40,17 @@ namespace Actions
         {
             actions.SwitchState(actions.attackState);
         }
-
         public override void Block()
         {
             actions.SwitchState(actions.blockState);
+        }
+        public override void Parry()
+        {
+            actions.SwitchState(actions.parryState);
+        }
+        public override void PerfectParry()
+        {
+            actions.SwitchState(actions.perfectParryState);
         }
         public override void Unique()
         {

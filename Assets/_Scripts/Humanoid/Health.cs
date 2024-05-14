@@ -125,19 +125,19 @@ public class Health : MonoBehaviour
                 giveMultiplier = 1.3f;
                 EffectManager.instance.PerfectParry(hitPoint);
                 Tools.GetEnemy(attackingWeapon.owner).Staggered();
+                Tools.GetPlayer(owner).playerActions.PerfectParry();
             }
             else
             {
                 EffectManager.instance.Parry(hitPoint);
                 receivedMultiplier = 0.5f;
                 giveMultiplier = 1f;
+                Tools.GetPlayer(owner).playerActions.Parry();
             }
 
-            //This only works when player is the owner
-            Tools.GetPlayer(owner).playerActions.SuccessfulParry();
             MinusPosture(Mathf.FloorToInt(postureDamage * receivedMultiplier));
 
-            attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(GetOwnersWeapon().currentAttack.postureDamage * giveMultiplier));
+            attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(GetOwnersWeapon().postureDamage * giveMultiplier));
             attackingWeapon.owner.AddForce(-direction.normalized * attackingWeapon.pushbackForce);
         }
 
@@ -159,12 +159,12 @@ public class Health : MonoBehaviour
             //Debug.Log("No parry");
             return ParryType.None;
         }
-        else if (owner.parryTimer < attacker.perfectParryTime)
+        else if (owner.parryTimer < attacker.attackPerfectParryWindow)
         {
             //Debug.Log("Perfect parry");
             return ParryType.PerfectParry;
         }
-        else if (owner.parryTimer < attacker.parryTime)
+        else if (owner.parryTimer < attacker.attackParryWindow)
         {
             return ParryType.Parry;
         }
@@ -190,7 +190,7 @@ public class Health : MonoBehaviour
         posture -= postureDamage;
         SetPosture(posture);
 
-        postureRegen = Tools.Remap(health, 0, startHealth, 1, defaultPostureRegen);
+        postureRegen = Tools.Remap(health, 0, startPosture, 1, defaultPostureRegen);
         timeTillRegen = Tools.Remap(health, 0, startHealth, 6, defaultTimeTillRegen);
     }
 
@@ -279,7 +279,7 @@ public class Health : MonoBehaviour
     {
         if (canRegenPosture)
         {
-            if (posture < 100)
+            if (posture < startPosture)
             {
                 posture += postureRegen * Time.deltaTime;
                 SetPostureImages(posture);
@@ -287,7 +287,7 @@ public class Health : MonoBehaviour
             }
             else
             {
-                posture = 100;
+                posture = startPosture;
             }
         }
 

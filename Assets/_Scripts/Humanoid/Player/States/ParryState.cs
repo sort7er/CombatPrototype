@@ -4,28 +4,43 @@ namespace Actions
 {
     public class ParryState : ActionState
     {
-        private int currentParry;
-        private float parryTimer;
         public override void Enter(PlayerActions actions)
         {
             base.Enter(actions);
-            DoParry();
+
+            canChain = true;
+            actionDone = false;
+            SetUpcommingAction(QueuedAction.None);
+
+            actions.SetAnimation(archetype.parry[actions.GetCurrentParry()], 0.05f);
+            actions.StopMethod();
+            actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
         }
-        public override void Update()
-        {
-            base.Update();
-            parryTimer += Time.deltaTime;
-            actions.player.UpdateParryTimer(parryTimer);
-        }
-        public override void Parry()
+
+        public override void Attack()
         {
             if (actionDone)
             {
-                DoParry();
+                actions.StopMethod();
+                actions.player.ResetParryTimer();
+                actions.SwitchState(actions.attackState);
             }
-            else if (canChain && CheckUpcommingAction())
+            else if (CheckUpcommingAction())
             {
-                SetUpcommingAction(QueuedAction.Parry);
+                SetUpcommingAction(QueuedAction.Attack);
+            }
+        }
+
+        public override void Block()
+        {
+            if(actionDone)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.blockState);
+            }
+            else if (CheckUpcommingAction())
+            {
+                SetUpcommingAction(QueuedAction.Block);
             }
         }
 
@@ -34,84 +49,25 @@ namespace Actions
             if (upcommingAction == QueuedAction.Attack)
             {
                 actions.StopMethod();
-                actions.player.UpdateParryTimer(0);
+                actions.player.ResetParryTimer();
                 actions.SwitchState(actions.attackState);
             }
-            else if (upcommingAction == QueuedAction.Parry)
+            else if (upcommingAction == QueuedAction.Block)
             {
-                DoParry();
+                actions.StopMethod();
+                actions.SwitchState(actions.blockState);
             }
             else
             {
                 actionDone = true;
             }
         }
-        public override void SuccessfulParry()
-        {
-            ActionDone();
-        }
-
-        public override void Attack()
-        {
-            if (actionDone)
-            {
-                actions.StopMethod();
-                actions.player.UpdateParryTimer(0);
-                actions.SwitchState(actions.attackState);
-            }
-            else if (canChain && CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Attack);
-            }
-        }
-
-        private void DoParry()
-        {
-            actionDone = false;
-            canChain = false;
-            parryTimer = 0;
-            SetUpcommingAction(QueuedAction.None);
-            actions.SetAnimation(archetype.parry[currentParry], 0.05f);
-            actions.StopMethod();
-            //actions.InvokeMethod(CanParryAgain, 0.7f);
-            actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
-            UpdateParry();
-        }
-        //private void CanParryAgain()
-        //{
-        //    if (upcommingAction == QueuedAction.Attack)
-        //    {
-        //        actions.StopMethod();
-        //        actions.player.UpdateParryTimer(0);
-        //        actions.SwitchState(actions.attackState);
-        //    }
-        //    else if (upcommingAction == QueuedAction.Parry)
-        //    {
-        //        DoParry();
-        //    }
-        //    else
-        //    {
-        //        actionDone = true;
-        //    }
-        //}
 
         private void EndParry()
         {
             actions.StopMethod();
-            actions.player.UpdateParryTimer(0);
+            actions.player.ResetParryTimer();
             actions.SwitchState(actions.idleState);
-        }
-
-        private void UpdateParry()
-        {
-            if (currentParry == 0)
-            {
-                currentParry = 1;
-            }
-            else
-            {
-                currentParry = 0;
-            }
         }
     }
 

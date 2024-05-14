@@ -41,7 +41,7 @@ namespace Actions
                 actions.StopMethod();
                 actions.SwitchState(actions.attackState);
             }
-            else if (canChain && CheckUpcommingAction())
+            else if (CheckUpcommingAction())
             {
                 SetUpcommingAction(QueuedAction.Attack);
             }
@@ -54,7 +54,7 @@ namespace Actions
                 actions.StopMethod();
                 actions.SwitchState(actions.blockState);
             }
-            else if (canChain && CheckUpcommingAction())
+            else if (CheckUpcommingAction())
             {
                 SetUpcommingAction(QueuedAction.Block);
             }

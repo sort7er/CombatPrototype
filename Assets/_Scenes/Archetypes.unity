@@ -3997,7 +3997,7 @@ PrefabInstance:
     - target: {fileID: 4608506369025162612, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: startPosture
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4608506369025162612, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}

@@ -70,11 +70,15 @@ namespace Actions
         {
 
         }
+        public virtual void BlockRelease()
+        {
+
+        }
         public virtual void Parry()
         {
 
         }
-        public virtual void SuccessfulParry()
+        public virtual void PerfectParry()
         {
 
         }
@@ -88,7 +92,7 @@ namespace Actions
 
         public bool CheckUpcommingAction()
         {
-            if (upcommingAction == QueuedAction.None)
+            if (upcommingAction == QueuedAction.None && canChain)
             {
                 return true;
             }

@@ -7,7 +7,6 @@ namespace Actions
     public class PlayerActions : MonoBehaviour
     {
         [Header("Values")]
-        public float parryWindow = 0.17f;
 
         [Header("References")]
         public Animator armAnimator;
@@ -28,13 +27,16 @@ namespace Actions
         public UniqueState uniqueState = new UniqueState();
         public BlockState blockState = new BlockState();
         public ParryState parryState = new ParryState();
+        public PerfectParryState perfectParryState = new PerfectParryState();
+        public ParryAttackState parryAttackState = new ParryAttackState();
 
         private InputReader inputReader;
 
 
+
+        public int currentParry { get; private set; }
         public float uniqueCoolDown { get; private set; } = 8f;
         [HideInInspector] public bool canUseUnique = true;
-
 
 
         private void Awake()
@@ -96,13 +98,17 @@ namespace Actions
         {
             currentState.Block();
         }
+        public void BlockRelease()
+        {
+            currentState.BlockRelease();
+        }
         public void Parry()
         {
             currentState.Parry();
         }
-        public void SuccessfulParry()
+        public void PerfectParry()
         {
-            currentState.SuccessfulParry();
+            currentState.PerfectParry();
         }
         public void ActionStart()
         {
@@ -158,6 +164,18 @@ namespace Actions
 
             currentAnimation = newAnim;
             armAnimator.CrossFadeInFixedTime(currentAnimation.state, transition);
+        }
+        public int GetCurrentParry()
+        {
+            if (currentParry == 0)
+            {
+                currentParry = 1;
+            }
+            else
+            {
+                currentParry = 0;
+            }
+            return currentParry;
         }
         #region Invoking
         public void InvokeMethod(Action function, float waitTime)
@@ -216,9 +234,9 @@ namespace Actions
             inputReader.OnAttack += Attack;
             inputReader.OnUnique += Unique;
             inputReader.OnBlock += Block;
-            inputReader.OnParry += Parry;
             inputReader.OnMoveStarted += Moving;
             inputReader.OnMoveStopped += StoppedMoving;
+            inputReader.OnBlockRelease += BlockRelease;
 
             player.OnJump += Jumping;
             player.OnFalling += Fall;
@@ -229,9 +247,9 @@ namespace Actions
             inputReader.OnAttack -= Attack;
             inputReader.OnUnique -= Unique;
             inputReader.OnBlock -= Block;
-            inputReader.OnParry -= Parry;
             inputReader.OnMoveStarted -= Moving;
             inputReader.OnMoveStopped -= StoppedMoving;
+            inputReader.OnBlockRelease -= BlockRelease;
 
             player.OnJump -= Jumping;
             player.OnFalling -= Fall;

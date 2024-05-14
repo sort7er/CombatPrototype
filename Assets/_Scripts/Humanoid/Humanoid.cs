@@ -22,12 +22,14 @@ public class Humanoid : MonoBehaviour
     public Health health { get; private set; }
 
     //This is when the owner is parrying
+    private bool startParryTimer;
+    private float parryTimerLimit = 1;
     public float parryTimer { get; private set; }
 
     //This is when reciving an attack
-    public float parryTime { get; private set; }
-    public float perfectParryTime { get; private set; }
-    public float tooLateTime { get; private set; }
+    public float attackParryWindow { get; private set; }
+    public float attackPerfectParryWindow { get; private set; }
+    public float attackTooLateWindow { get; private set; }
 
     protected bool canMove;
 
@@ -77,6 +79,20 @@ public class Humanoid : MonoBehaviour
         {
             OnLanding?.Invoke();
             isFalling = false;
+        }
+
+        //Parry timer
+        if (startParryTimer)
+        {
+            if(parryTimer < parryTimerLimit)
+            {
+                parryTimer += Time.deltaTime;
+            }
+            else
+            {
+                ResetParryTimer();
+                startParryTimer = false;
+            }
         }
 
 
@@ -194,15 +210,23 @@ public class Humanoid : MonoBehaviour
         transform.position = newTransform.position;
         transform.rotation = newTransform.rotation;
     }
-
-    public void UpdateParryTimer(float time)
+    public void StartParryTimer()
     {
-        parryTimer = time;
+        startParryTimer= true;
+        ResetParryTimer();
     }
+    public void ResetParryTimer()
+    {
+        parryTimer = 0;
+    }
+    //public void UpdateParryTimer(float time)
+    //{
+    //    parryTimer = time;
+    //}
     public void SetAttackData(float parryTime, float perfectParryTime, float tooLateTime)
     {
-        this.parryTime = parryTime;
-        this.perfectParryTime = perfectParryTime;
-        this.tooLateTime = tooLateTime;
+        attackParryWindow = parryTime;
+        attackPerfectParryWindow = perfectParryTime;
+        attackTooLateWindow = tooLateTime;
     }
 }

@@ -4,34 +4,58 @@ namespace Actions
 {
     public class BlockState : ActionState
     {
-        private bool parry;
-
         public override void Enter(PlayerActions actions)
         {
             base.Enter(actions);
-            parry = true;
+            actionDone = false;
+            SetUpcommingAction(QueuedAction.None);
+            actions.InvokeMethod(CanRelease, 0.4f);
             actions.SetAnimation(archetype.block, 0.1f);
-            actions.InvokeMethod(Parrying, actions.parryWindow);
+            actions.player.StartParryTimer();
+
+        }
+
+
+        public override void BlockRelease()
+        {
+            if (!actionDone)
+            {
+                SetUpcommingAction(QueuedAction.Block);
+            }
+            else
+            {
+                EndBlock();
+            }
+        }
+        private void CanRelease()
+        {
+            if(upcommingAction == QueuedAction.Block)
+            {
+                EndBlock();
+            }
+            else
+            {
+                actionDone = true;
+            }
         }
 
         public override void Parry()
         {
-            if (parry)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.parryState);
-            }
-            else
-            {
-                actions.SwitchState(actions.idleState);
-            }
+            actions.StopMethod();
+            actions.SwitchState(actions.parryState);
         }
 
-        private void Parrying()
+        public override void PerfectParry()
         {
-            parry = false;
+            actions.StopMethod();
+            actions.SwitchState(actions.perfectParryState);
         }
 
+        private void EndBlock()
+        {
+            actions.StopMethod();
+            actions.SwitchState(actions.idleState);
+        }
     }
 
 }

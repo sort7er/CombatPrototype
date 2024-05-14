@@ -19,13 +19,24 @@ namespace Actions
             {
                 StartAttack();
             }
-            else if (canChain && CheckUpcommingAction())
+            else if (CheckUpcommingAction())
             {
                 SetUpcommingAction(QueuedAction.Attack);
             }
 
         }
-
+        public override void Block()
+        {
+            if (actionDone)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.blockState);
+            }
+            else if (CheckUpcommingAction())
+            {
+                SetUpcommingAction(QueuedAction.Block);
+            }
+        }
         public override void ActionDone()
         {
             if (upcommingAction == QueuedAction.Attack)
@@ -40,28 +51,6 @@ namespace Actions
             else
             {
                 actionDone = true;
-            }
-        }
-
-        public override void Block()
-        {
-            if (actionDone)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
-            }
-            else if (canChain && CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Block);
-            }
-        }
-
-        public override void Parry()
-        {
-            if (upcommingAction == QueuedAction.Block)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.parryState);
             }
         }
 
