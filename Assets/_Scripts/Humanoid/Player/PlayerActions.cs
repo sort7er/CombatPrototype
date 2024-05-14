@@ -7,6 +7,7 @@ namespace Actions
     public class PlayerActions : MonoBehaviour
     {
         [Header("Values")]
+        public float blockWaitTime = 0;
 
         [Header("References")]
         public Animator armAnimator;
@@ -57,6 +58,7 @@ namespace Actions
         #region Signal states
         private void Update()
         {
+            Debug.Log(currentState);
             currentState.Update();
         }
         public void Moving()

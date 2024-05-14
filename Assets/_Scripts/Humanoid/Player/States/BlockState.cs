@@ -9,10 +9,14 @@ namespace Actions
             base.Enter(actions);
             actionDone = false;
             SetUpcommingAction(QueuedAction.None);
-            actions.InvokeMethod(CanRelease, 0.4f);
+            actions.InvokeMethod(BlockAnimationOver, archetype.block.duration);
             actions.SetAnimation(archetype.block, 0.1f);
             actions.player.StartParryTimer();
 
+        }
+        private void BlockAnimationOver()
+        {
+            actions.InvokeMethod(CanRelease, actions.blockWaitTime);
         }
 
 

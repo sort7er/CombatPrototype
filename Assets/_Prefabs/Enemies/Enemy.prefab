@@ -297,7 +297,7 @@ MonoBehaviour:
   - {fileID: 2399077659830189868}
   canvasGroupPosture: {fileID: 3928518776306028120}
   postureText: {fileID: 6785822137820149398}
-  defaultTimeTillRegen: 4
+  defaultTimeTillRegen: 1.5
   defaultPostureRegen: 10
   owner: {fileID: 5937715972609921831}
   slicingController: {fileID: 9064183171304532476}
@@ -330,7 +330,7 @@ MonoBehaviour:
     m_Bits: 8
   navMeshRefreshRate: 0.2
   waypointDistance: 0.3
-  rotationSlerp: 20
+  rotationSlerp: 10
   DistanceBeforeChase: 5
   playerDistance: 2.25
   playerDistanceThreshold: 1

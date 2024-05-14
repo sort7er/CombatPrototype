@@ -274,7 +274,7 @@ MonoBehaviour:
       localEndPos: {x: -0.65, y: 1.25, z: 0.28}
   enemyParrysInput: []
   enemyStaggeredInput:
-    animationClip: {fileID: 3327815822666972354, guid: b32b55151f7a85c46b95b412b82b3791,
+    animationClip: {fileID: -8189259034056763840, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
     exitTime: 0
     transitionDuration: 0
