@@ -35,6 +35,7 @@ namespace Actions
 
 
         public int currentParry { get; private set; }
+        public int currentPerfectParry { get; private set; }
         public float uniqueCoolDown { get; private set; } = 8f;
         [HideInInspector] public bool canUseUnique = true;
 
@@ -176,6 +177,17 @@ namespace Actions
                 currentParry = 0;
             }
             return currentParry;
+        }
+        public void SetCurrentPerfectParry()
+        {
+            if (currentPerfectParry == 0)
+            {
+                currentPerfectParry = 1;
+            }
+            else
+            {
+                currentPerfectParry = 0;
+            }
         }
         #region Invoking
         public void InvokeMethod(Action function, float waitTime)

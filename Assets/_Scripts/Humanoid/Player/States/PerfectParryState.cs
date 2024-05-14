@@ -11,8 +11,8 @@ namespace Actions
             canChain = true;
             actionDone = false;
             SetUpcommingAction(QueuedAction.None);
-
-            actions.SetAnimation(archetype.parry[2], 0.05f);
+            actions.SetCurrentPerfectParry();
+            actions.SetAnimation(archetype.perfectParry[actions.currentPerfectParry], 0.05f);
             actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
         }
 

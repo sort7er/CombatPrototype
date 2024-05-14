@@ -385,7 +385,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35059223
+      - time: 0.3492747
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -546,7 +546,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3518305
+      - time: 0.34787795
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -707,7 +707,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3517796
+      - time: 0.34782705
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -868,7 +868,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35128495
+      - time: 0.34864992
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1029,7 +1029,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.39411387
+      - time: 0.3967489
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,

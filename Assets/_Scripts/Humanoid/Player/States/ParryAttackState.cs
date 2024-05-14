@@ -12,7 +12,7 @@ namespace Actions
             canChain = false;
 
             SetUpcommingAction(QueuedAction.None);
-            actions.SetAnimation(archetype.parryfollowUpAttack, 0.05f);
+            actions.SetAnimation(archetype.parryfollowUpAttack[actions.currentPerfectParry], 0.05f);
             actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
         }
 
