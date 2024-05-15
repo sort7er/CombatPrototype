@@ -21,20 +21,18 @@ ModelImporter:
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has
       translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
-      scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
-      that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_2' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has
-      translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
-      scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
-      that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_3' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has
-      translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
+      has translation animation that will be discarded.\n\t'mixamorig:RightFoot'
+      has scale animation that will be discarded.\n\t'mixamorig:RightToeBase' has
+      scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_2'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
+      has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
+      has translation animation that will be discarded.\n\t'mixamorig:RightFoot'
+      has scale animation that will be discarded.\n\t'mixamorig:RightToeBase' has
+      scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_3'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
+      has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
       has translation animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_4'
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
@@ -44,7 +42,10 @@ ModelImporter:
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Staggered'
+      has translation animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Run'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightToeBase'
+      has scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Staggered'
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
@@ -62,34 +63,31 @@ ModelImporter:
       animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation
       that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
       be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Enemy_Staggered' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has translation
-      animation that will be discarded.\n\t'mixamorig:RightShoulder' has translation
-      animation that will be discarded.\n\t'mixamorig:LeftFoot' has scale animation
+      discarded.\n\nClip 'Armature|Enemy_Run' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'mixamorig:RightToeBase' has scale animation
+      that will be discarded.\n\nClip 'Armature|Enemy_Staggered' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has
+      translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
+      scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
+      animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
+      that will be discarded.\n\nClip 'Armature|Enemy_Strafe_Run' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftFoot' has scale
+      animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation
       that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
       be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Enemy_Strafe_Run' has import animation warnings
+      discarded.\n\nClip 'Armature|Enemy_Strafe_Walk' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'mixamorig:LeftFoot' has scale animation
       that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation that
       will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will be
       discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be discarded.\n\nClip
-      'Armature|Enemy_Strafe_Walk' has import animation warnings that might lower
-      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
-      quality.\n\t'mixamorig:LeftFoot' has scale animation that will be discarded.\n\t'mixamorig:LeftToeBase'
-      has scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
-      that will be discarded.\n\nClip 'Armature|Enemy_Temp' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightFoot' has
-      scale animation that will be discarded.\n\nClip 'Armature|OldEnemy_Daggers_Staggered'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:RightFoot'
-      has scale animation that will be discarded.\n\t'mixamorig:RightToeBase' has
-      scale animation that will be discarded.\n"
+      'Armature|Enemy_Temp' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightFoot'
+      has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -510,7 +508,7 @@ ModelImporter:
       takeName: Armature|Enemy_Daggers_Attack_2
       internalID: 7009840049564391593
       firstFrame: 0
-      lastFrame: 44
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
