@@ -9,9 +9,21 @@ namespace Actions
         public override void Enter(PlayerActions actions)
         {
             base.Enter(actions);
-            actions.canUseUnique = false;
-            actions.unique.Using();
+            ResetValuesAttack();
             actions.SetAnimation(archetype.unique);
+            actions.canUseUnique = false;
+
+            //This is for the UI
+            actions.unique.Using();
+
+            //List of enemies
+            GetEnemies();
+
+            actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
+        }
+
+        private void GetEnemies()
+        {
             ClearList();
             enemyList = actions.player.targetAssistance.CheckForEnemies(actions.currentWeapon.uniqueAbility);
 
@@ -24,22 +36,21 @@ namespace Actions
             {
                 actions.currentWeapon.uniqueAbility.ExecuteAbilityNoTarget(actions.player);
             }
-
-            actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
-
-            actionDone = false;
-            canChain = false;
-            SetUpcommingAction(QueuedAction.None);
-
-
+        }
+        private void ClearList()
+        {
+            if (enemyList == null)
+            {
+                enemyList = new();
+            }
+            enemyList.Clear();
         }
 
         public override void Attack()
         {
             if (actionDone)
             {
-                actions.StopMethod();
-                actions.SwitchState(actions.attackState);
+                LeaveState(actions.attackState);
             }
             else if (CheckUpcommingAction())
             {
@@ -51,21 +62,11 @@ namespace Actions
         {
             if (actionDone)
             {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
+                LeaveState(actions.blockState);
             }
             else if (CheckUpcommingAction())
             {
                 SetUpcommingAction(QueuedAction.Block);
-            }
-        }
-
-        public override void Parry()
-        {
-            if (upcommingAction == QueuedAction.Block)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.parryState);
             }
         }
 
@@ -75,13 +76,11 @@ namespace Actions
 
             if (upcommingAction == QueuedAction.Attack)
             {
-                actions.StopMethod();
-                actions.SwitchState(actions.attackState);
+                LeaveState(actions.attackState);
             }
             else if (upcommingAction == QueuedAction.Block)
             {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
+                LeaveState(actions.blockState);
             }
             else
             {
@@ -92,15 +91,6 @@ namespace Actions
         private void EndAttack()
         {
             actions.SwitchState(actions.idleState);
-        }
-
-        private void ClearList()
-        {
-            if (enemyList == null)
-            {
-                enemyList = new();
-            }
-            enemyList.Clear();
         }
     }
 }

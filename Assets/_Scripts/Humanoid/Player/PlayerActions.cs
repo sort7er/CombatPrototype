@@ -167,6 +167,10 @@ namespace Actions
             currentAnimation = newAnim;
             armAnimator.CrossFadeInFixedTime(currentAnimation.state, transition);
         }
+        public void SetAnimatorBool(string parameter, bool state)
+        {
+            armAnimator.SetBool(parameter, state);
+        }
         public int GetCurrentParry()
         {
             if (currentParry == 0)

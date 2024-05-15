@@ -12,66 +12,37 @@ namespace Actions
             currentAttack = 0;
             StartAttack();
         }
-
+        #region Queuing methods 
         public override void Attack()
         {
-            if (actionDone)
-            {
-                StartAttack();
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Attack);
-            }
-
+            QueueAttack(StartAttack);
         }
         public override void Block()
         {
-            if (actionDone)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Block);
-            }
+            QueueBlock(() => LeaveState(actions.blockState));
         }
         public override void ActionDone()
         {
-            if (upcommingAction == QueuedAction.Attack)
-            {
-                StartAttack();
-            }
-            else if (upcommingAction == QueuedAction.Block)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
-            }
-            else
-            {
-                actionDone = true;
-            }
+            QueueActionDone(StartAttack, () => LeaveState(actions.blockState));
         }
+        #endregion
 
         private void StartAttack()
         {
-            actionDone = false;
-            canChain = false;
-            SetUpcommingAction(QueuedAction.None);
+            ResetValuesAttack();
             actions.SetAnimation(archetype.attacks[currentAttack], 0.05f);
             actions.StopMethod();
             actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
-            UpdateAttack();
+            UpdateCurrentAttack();
         }
 
 
         private void EndAttack()
         {
-            actions.SwitchState(actions.idleState);
+            LeaveState(actions.idleState);
         }
 
-        private void UpdateAttack()
+        private void UpdateCurrentAttack()
         {
             if (currentAttack < archetype.attacks.Length - 1)
             {

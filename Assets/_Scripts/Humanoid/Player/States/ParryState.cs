@@ -8,66 +8,36 @@ namespace Actions
         {
             base.Enter(actions);
 
-            canChain = true;
-            actionDone = false;
-            SetUpcommingAction(QueuedAction.None);
+            ResetValues();
 
             actions.SetAnimation(archetype.parry[actions.GetCurrentParry()], 0.05f);
             actions.StopMethod();
             actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
         }
-
+        #region Queuing methods 
         public override void Attack()
         {
-            if (actionDone)
-            {
-                actions.StopMethod();
-                actions.player.ResetParryTimer();
-                actions.SwitchState(actions.attackState);
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Attack);
-            }
+            QueueAttack(DoAttack);
         }
-
         public override void Block()
         {
-            if(actionDone)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Block);
-            }
+            QueueBlock(() => LeaveState(actions.blockState));
         }
-
         public override void ActionDone()
         {
-            if (upcommingAction == QueuedAction.Attack)
-            {
-                actions.StopMethod();
-                actions.player.ResetParryTimer();
-                actions.SwitchState(actions.attackState);
-            }
-            else if (upcommingAction == QueuedAction.Block)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
-            }
-            else
-            {
-                actionDone = true;
-            }
+            QueueActionDone(DoAttack, () => LeaveState(actions.blockState));
+        }
+        #endregion
+
+        private void DoAttack()
+        {
+            actions.player.ResetParryTimer();
+            LeaveState(actions.attackState);
         }
 
         private void EndParry()
         {
-            actions.StopMethod();
-            actions.player.ResetParryTimer();
-            actions.SwitchState(actions.idleState);
+            LeaveState(actions.idleState);
         }
     }
 

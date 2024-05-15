@@ -8,61 +8,30 @@ namespace Actions
         {
             base.Enter(actions);
 
-            actionDone = false;
-            canChain = false;
-
-            SetUpcommingAction(QueuedAction.None);
+            ResetValuesAttack();
             actions.SetAnimation(archetype.parryfollowUpAttack[actions.currentPerfectParry], 0.05f);
             actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
         }
 
 
+        #region Queuing methods 
         public override void Attack()
         {
-            if (actionDone)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.attackState);
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Attack);
-            }
-
+            QueueAttack(() => LeaveState(actions.attackState));
         }
+        public override void Block()
+        {
+            QueueBlock(() => LeaveState(actions.blockState));
+        }
+        public override void ActionDone()
+        {
+            QueueActionDone(() => LeaveState(actions.attackState), () => LeaveState(actions.blockState));
+        }
+        #endregion
         public override void OverlapCollider()
         {
             base.OverlapCollider();
             actions.player.AddForce(actions.transform.forward * 20);
-        }
-        public override void Block()
-        {
-            if (actionDone)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Block);
-            }
-        }
-        public override void ActionDone()
-        {
-            if (upcommingAction == QueuedAction.Attack)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.attackState);
-            }
-            else if (upcommingAction == QueuedAction.Block)
-            {
-                actions.StopMethod();
-                actions.SwitchState(actions.blockState);
-            }
-            else
-            {
-                actionDone = true;
-            }
         }
 
         private void EndAttack()
