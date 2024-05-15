@@ -4,12 +4,12 @@ public class Billboard : MonoBehaviour
 {
     private Transform camTrans;
 
-    private void Awake()
+    public virtual void Awake()
     {
         camTrans = Camera.main.transform;
     }
 
-    void Update()
+    public virtual void Update()
     {
         transform.rotation= camTrans.rotation;
     }

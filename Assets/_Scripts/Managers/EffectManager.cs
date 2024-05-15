@@ -14,8 +14,12 @@ public class EffectManager : MonoBehaviour
     public ParticleSystem parryEffect;
 
     [Header("Perfect parry effect")]
-    public int ppPoolsize = 3;
+    public int ppPoolSize = 3;
     public ParticleSystem perfectParryEffect;
+
+    [Header("Parry feedback effect")]
+    public int pfPoolSize = 3;
+    public ParryFeedback parryFeedbackEffect;
 
     [Header("Slice effect")]
     public int sPoolSize = 10;
@@ -48,6 +52,9 @@ public class EffectManager : MonoBehaviour
     private ParticleSystem[] perfectParry;
     private int currentPerfectParry;
 
+    private ParryFeedback[] parryFeedback;
+    private int currentParryFeedback;
+
     private void Awake()
     {
         instance = this;
@@ -61,6 +68,7 @@ public class EffectManager : MonoBehaviour
         SetUpEffect(katanaEffect, ref katana, ref currentKatana, kPoolSize);
         SetUpEffect(parryEffect, ref parry, ref currentParry, pPoolSize);
         SetUpEffect(perfectParryEffect, ref perfectParry, ref currentPerfectParry, pPoolSize);
+        SetUpFeedback(parryFeedbackEffect, ref parryFeedback, ref currentParryFeedback, pfPoolSize);
     }
     private void SetUpEffect(ParticleSystem prefab, ref ParticleSystem[] array, ref int current, int poolSize)
     {
@@ -73,6 +81,18 @@ public class EffectManager : MonoBehaviour
             array[i].gameObject.SetActive(false);
         }
     }
+    private void SetUpFeedback(ParryFeedback prefab, ref ParryFeedback[] array, ref int current, int poolSize)
+    {
+        array = new ParryFeedback[poolSize];
+        current = 0;
+
+        for (int i = 0; i < poolSize; i++)
+        {
+            array[i] = Instantiate(prefab, ParentManager.instance.effects);
+            array[i].gameObject.SetActive(false);
+        }
+    }
+
 
     public void Hit(Vector3 position, Vector3 direction, Vector3 upDirection)
     {
@@ -154,12 +174,25 @@ public class EffectManager : MonoBehaviour
     {
         ParticleSystem effect = perfectParry[currentPerfectParry];
 
-        IncreasePool(ref currentPerfectParry, ppPoolsize);
+        IncreasePool(ref currentPerfectParry, ppPoolSize);
 
         effect.gameObject.SetActive(true);
         effect.transform.position = position;
 
         StartCoroutine(ResetEffect(effect));
+    }
+    public void ParryFeedback(Vector3 position, string feedback)
+    {
+        ParryFeedback pFeedback = parryFeedback[currentParryFeedback];
+
+
+        IncreasePool(ref currentParryFeedback, pfPoolSize);
+
+        pFeedback.gameObject.SetActive(true);
+        pFeedback.transform.position = position;
+        pFeedback.StartFeedback(feedback);
+
+        StartCoroutine(ResetEffect(pFeedback.gameObject, pFeedback.Duration()));
     }
 
     private IEnumerator ResetEffect(ParticleSystem effectToReset)
@@ -168,6 +201,13 @@ public class EffectManager : MonoBehaviour
         yield return new WaitForSeconds(effectToReset.duration);
         effectToReset.gameObject.SetActive(false);
         effectToReset.transform.parent = ParentManager.instance.effects;
+    }
+    private IEnumerator ResetEffect(GameObject go, float duration)
+    {
+
+        yield return new WaitForSeconds(duration);
+        go.SetActive(false);
+        go.transform.parent = ParentManager.instance.effects;
     }
 
     private void IncreasePool(ref int current, int poolSize)

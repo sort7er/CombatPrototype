@@ -99,7 +99,7 @@ public class Health : MonoBehaviour
         //    return;
         //}
 
-        ParryType parry = CheckForParry(attackingWeapon.owner);
+        ParryType parry = CheckForParry(attackingWeapon.owner, hitPoint);
         Vector3 direction = transform.position - attackingWeapon.owner.Position();
         
         int damage = attackingWeapon.currentAttack.damage;
@@ -145,23 +145,17 @@ public class Health : MonoBehaviour
     }
 
 
-    public ParryType CheckForParry(Humanoid attacker)
+    public ParryType CheckForParry(Humanoid attacker, Vector3 hitPoint)
     {
         //Debug.Log("Parry timer: " + owner.parryTimer + ". Too late: " + attacker.tooLateTime + ". Perfect: " + attacker.perfectParryTime + ". Parry: " + attacker.parryTime);
 
-        //if (owner.parryTimer < attacker.tooLateTime)
-        //{
-        //    Debug.Log("Too Late");
-        //    return ParryType.None;
-        //}
+
         if (owner.parryTimer == 0)
         {
-            //Debug.Log("No parry");
             return ParryType.None;
         }
         else if (owner.parryTimer < attacker.attackPerfectParryWindow)
         {
-            //Debug.Log("Perfect parry");
             return ParryType.PerfectParry;
         }
         else if (owner.parryTimer < attacker.attackParryWindow)
@@ -170,7 +164,7 @@ public class Health : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Too early");
+            EffectManager.instance.ParryFeedback(hitPoint, "TOO EARLY!");
             return ParryType.None;
         }
     }
