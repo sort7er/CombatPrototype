@@ -58,7 +58,6 @@ namespace Actions
         #region Signal states
         private void Update()
         {
-            Debug.Log(currentState);
             currentState.Update();
         }
         public void Moving()

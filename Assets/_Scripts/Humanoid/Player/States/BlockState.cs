@@ -16,9 +16,22 @@ namespace Actions
         }
         private void BlockAnimationOver()
         {
-            actions.InvokeMethod(CanRelease, actions.blockWaitTime);
+            // Can change this to use block wait time from actions instead
+            actions.InvokeMethod(CanRelease, archetype.block.duration);
         }
+        public override void Attack()
+        {
+            if (actionDone)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.attackState);
+            }
+            else if (CheckUpcommingAction())
+            {
+                SetUpcommingAction(QueuedAction.Attack);
+            }
 
+        }
 
         public override void BlockRelease()
         {
@@ -33,7 +46,12 @@ namespace Actions
         }
         private void CanRelease()
         {
-            if(upcommingAction == QueuedAction.Block)
+            if (upcommingAction == QueuedAction.Attack)
+            {
+                actions.StopMethod();
+                actions.SwitchState(actions.attackState);
+            }
+            else if (upcommingAction == QueuedAction.Block)
             {
                 EndBlock();
             }
