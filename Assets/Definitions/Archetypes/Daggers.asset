@@ -101,8 +101,8 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 0
-    postureDamage: 0
+    damage: 100
+    postureDamage: 100
     activeWield: 2
     hitType: 1
     attackCoordsMain:
@@ -185,7 +185,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 1
+    damage: 50
     postureDamage: 40
     activeWield: 2
     hitType: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
       type: 3}
     exitTime: 0
     transitionDuration: 0
-    damage: 1
+    damage: 50
     postureDamage: 40
     activeWield: 2
     hitType: 0

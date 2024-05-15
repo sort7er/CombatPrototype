@@ -46,51 +46,24 @@ namespace Actions
             enemyList.Clear();
         }
 
+        #region Queuing methods 
         public override void Attack()
         {
-            if (actionDone)
-            {
-                LeaveState(actions.attackState);
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Attack);
-            }
-
+            QueueAttack(() => LeaveState(actions.attackState));
         }
         public override void Block()
         {
-            if (actionDone)
-            {
-                LeaveState(actions.blockState);
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Block);
-            }
+            QueueBlock(() => LeaveState(actions.blockState));
         }
-
         public override void ActionDone()
         {
-            actions.StartUniqueCooldown();
-
-            if (upcommingAction == QueuedAction.Attack)
-            {
-                LeaveState(actions.attackState);
-            }
-            else if (upcommingAction == QueuedAction.Block)
-            {
-                LeaveState(actions.blockState);
-            }
-            else
-            {
-                actionDone = true;
-            }
+            QueueActionDone(() => LeaveState(actions.attackState), () => LeaveState(actions.blockState));
         }
+        #endregion
 
         private void EndAttack()
         {
-            actions.SwitchState(actions.idleState);
+            LeaveState(actions.idleState);
         }
     }
 }
