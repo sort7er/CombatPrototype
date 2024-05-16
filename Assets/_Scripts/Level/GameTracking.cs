@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Stats;
 
 public class GameTracking : MonoBehaviour
 {

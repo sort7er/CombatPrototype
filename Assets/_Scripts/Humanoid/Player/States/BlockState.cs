@@ -18,7 +18,7 @@ namespace Actions
         #region Queuing methods
         public override void Attack()
         {
-            QueueAttack(() => LeaveState(actions.attackState));
+            QueueAttack(() => LeaveStateAndDo(actions.attackState, NotBlocking));
         }
         public override void BlockRelease()
         {
@@ -26,23 +26,28 @@ namespace Actions
         }
         private void CanRelease()
         {
-            QueueActionDone(() => LeaveState(actions.attackState), null, EndBlocking);
+            actions.player.IsBlocking();
+            QueueActionDone(() => LeaveStateAndDo(actions.attackState, NotBlocking), null, EndBlocking);
         }
         #endregion
 
         public override void Parry()
         {
-            LeaveState(actions.parryState);
+            LeaveStateAndDo(actions.parryState, NotBlocking);
         }
 
         public override void PerfectParry()
         {
-            LeaveState(actions.perfectParryState);
+            LeaveStateAndDo(actions.perfectParryState, NotBlocking);
         }
 
         private void EndBlocking()
         {
-            LeaveState(actions.idleState);
+            LeaveStateAndDo(actions.idleState, NotBlocking);
+        }
+        private void NotBlocking()
+        {
+            actions.player.IsNotBlocking();
         }
     }
 

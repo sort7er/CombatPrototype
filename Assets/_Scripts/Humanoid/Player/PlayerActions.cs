@@ -58,6 +58,7 @@ namespace Actions
         #region Signal states
         private void Update()
         {
+            //Debug.Log("Current state: " + currentState);
             currentState.Update();
         }
         public void Moving()
@@ -194,6 +195,7 @@ namespace Actions
                 currentPerfectParry = 0;
             }
         }
+
         #region Invoking
         public void InvokeMethod(Action function, float waitTime)
         {

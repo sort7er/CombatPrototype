@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using Actions;
+using Stats;
 
 public class Player : Humanoid
 {
@@ -47,5 +47,21 @@ public class Player : Humanoid
         movement = Vector2.Lerp(movement, input, Time.deltaTime * 5);
 
         playerActions.SetMovement(movement);
+    }
+    public override void Parry()
+    {
+        playerActions.Parry();
+    }
+    public override void PerfectParry()
+    {
+        playerActions.PerfectParry();
+    }
+    public override void Stunned()
+    {
+
+    }
+    public override void Staggered()
+    {
+
     }
 }

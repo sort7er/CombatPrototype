@@ -1,6 +1,6 @@
-using DG.Tweening;
 using System;
 using UnityEngine;
+using Stats;
 
 public class Humanoid : MonoBehaviour
 {
@@ -18,6 +18,9 @@ public class Humanoid : MonoBehaviour
     [SerializeField] protected float groundDrag = 8;
     [SerializeField] protected float fallingForce = 6;
     [SerializeField] protected LayerMask groundLayer = 3;
+
+    [Header("Stunned")]
+    public float stunnedDuration;
     public Rigidbody rb { get; private set; }
     public Health health { get; private set; }
 
@@ -30,6 +33,8 @@ public class Humanoid : MonoBehaviour
     public float attackParryWindow { get; private set; }
     public float attackPerfectParryWindow { get; private set; }
     public float attackTooLateWindow { get; private set; }
+
+    public bool isBlocking { get; private set; }
 
     protected bool canMove;
 
@@ -169,6 +174,26 @@ public class Humanoid : MonoBehaviour
         }
     }
 
+    //Common methods that can be used to signal a state machine
+
+    public virtual void Stunned()
+    {
+
+    }
+    public virtual void Staggered()
+    {
+
+    }
+    public virtual void Parry()
+    {
+
+    }
+    public virtual void PerfectParry()
+    {
+
+    }
+
+
     //Called from other classes
     public void DisableMovement()
     {
@@ -201,6 +226,14 @@ public class Humanoid : MonoBehaviour
     public Vector3 Movement()
     {
         return movementDirection;
+    }
+    public void IsBlocking()
+    {
+        isBlocking = true;
+    }
+    public void IsNotBlocking()
+    {
+        isBlocking = false;
     }
 
     public void SetTransform(Transform newTransform)

@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 6291823805362412574}
   - component: {fileID: 6490405653904770788}
   - component: {fileID: 4608506369025162612}
+  - component: {fileID: 1328179942541524593}
   - component: {fileID: 5937715972609921831}
   - component: {fileID: 7278276694183487644}
   m_Layer: 6
@@ -291,7 +292,7 @@ MonoBehaviour:
   healthSlider: {fileID: 2314837235863848679}
   canvasGroupHealth: {fileID: 4475623680375129514}
   healthText: {fileID: 2788858518578309218}
-  startPosture: 100
+  startPosture: 500
   postureImages:
   - {fileID: 9060757490575536523}
   - {fileID: 2399077659830189868}
@@ -300,6 +301,7 @@ MonoBehaviour:
   defaultTimeTillRegen: 1.5
   defaultPostureRegen: 10
   owner: {fileID: 5937715972609921831}
+  parryCheck: {fileID: 1328179942541524593}
   slicingController: {fileID: 9064183171304532476}
   prefabs:
   - {fileID: 5725819523948652768, guid: b20e1344b3764a940b29583d39ec33cc, type: 3}
@@ -307,6 +309,19 @@ MonoBehaviour:
   - {fileID: 3334896440328721665, guid: a50bab49384846c4cbd4f716392a37dc, type: 3}
   - {fileID: 7698124251612721426, guid: c82e4c9cc847be84e8e1ec891dcb9d9f, type: 3}
   skull: {fileID: 8246668120917639386}
+--- !u!114 &1328179942541524593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172614768507206733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28983f9949f408b44a5d0aa5eeaad66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 4608506369025162612}
 --- !u!114 &5937715972609921831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +343,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  stunnedDuration: 4
   navMeshRefreshRate: 0.2
   waypointDistance: 0.3
   rotationSlerp: 10
@@ -336,7 +352,6 @@ MonoBehaviour:
   playerDistanceThreshold: 1
   runDistance: 8
   attackCooldown: 0.5
-  stunnedDuration: 4
   weaponPos:
   - {fileID: 5386840715973219261}
   - {fileID: 2525827288816242268}

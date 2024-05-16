@@ -167,6 +167,12 @@ namespace Actions
             actions.StopMethod();
             actions.SwitchState(newState);
         }
+        public void LeaveStateAndDo(ActionState newState, Action doThis)
+        {
+            doThis?.Invoke();
+            actions.StopMethod();
+            actions.SwitchState(newState);
+        }
 
         public void ResetValuesAttack()
         {

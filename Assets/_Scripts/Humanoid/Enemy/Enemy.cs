@@ -20,9 +20,6 @@ namespace EnemyAI
         [Header("Attacking")]
         [SerializeField] private float attackCooldown;
 
-        [Header("Stunned")]
-        public float stunnedDuration = 4;
-
         [Header("Weapons")]
         [SerializeField] private Transform[] weaponPos;
         [SerializeField] private Weapon startWeapon;
@@ -101,12 +98,12 @@ namespace EnemyAI
             enemyAnimator.animator.SetFloat("MovementZ", animatorRunSpeed);
         }
         #region Signals to state machine
-        public void Staggered()
+        public override void Staggered()
         {
             currentState.Staggered();
         }
 
-        public void Stunned()
+        public override void Stunned()
         {
             currentState.Stunned();
         }

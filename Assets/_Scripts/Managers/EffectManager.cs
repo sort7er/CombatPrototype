@@ -21,6 +21,10 @@ public class EffectManager : MonoBehaviour
     public int pfPoolSize = 3;
     public ParryFeedback parryFeedbackEffect;
 
+    [Header("Block effect")]
+    public int bPoolSize = 4;
+    public ParticleSystem blockEffect;
+
     [Header("Slice effect")]
     public int sPoolSize = 10;
     public ParticleSystem slashEffect;
@@ -55,6 +59,9 @@ public class EffectManager : MonoBehaviour
     private ParryFeedback[] parryFeedback;
     private int currentParryFeedback;
 
+    private ParticleSystem[] block;
+    private int currentBlock;
+
     private void Awake()
     {
         instance = this;
@@ -69,6 +76,7 @@ public class EffectManager : MonoBehaviour
         SetUpEffect(parryEffect, ref parry, ref currentParry, pPoolSize);
         SetUpEffect(perfectParryEffect, ref perfectParry, ref currentPerfectParry, pPoolSize);
         SetUpFeedback(parryFeedbackEffect, ref parryFeedback, ref currentParryFeedback, pfPoolSize);
+        SetUpEffect(blockEffect, ref block, ref currentBlock, bPoolSize);
     }
     private void SetUpEffect(ParticleSystem prefab, ref ParticleSystem[] array, ref int current, int poolSize)
     {
@@ -193,6 +201,17 @@ public class EffectManager : MonoBehaviour
         pFeedback.StartFeedback(feedback);
 
         StartCoroutine(ResetEffect(pFeedback.gameObject, pFeedback.Duration()));
+    }
+    public void Block(Vector3 position)
+    {
+        ParticleSystem effect = block[currentBlock];
+
+        IncreasePool(ref currentBlock, bPoolSize);
+
+        effect.gameObject.SetActive(true);
+        effect.transform.position = position;
+
+        StartCoroutine(ResetEffect(effect));
     }
 
     private IEnumerator ResetEffect(ParticleSystem effectToReset)

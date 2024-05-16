@@ -3889,6 +3889,9 @@ MonoBehaviour:
   pfPoolSize: 3
   parryFeedbackEffect: {fileID: 2684096774185370934, guid: 057ad676309c84d46b4a1262cb9bd6b4,
     type: 3}
+  bPoolSize: 4
+  blockEffect: {fileID: 2042569151960757438, guid: e47e6666968836d4d9d203159c140942,
+    type: 3}
   sPoolSize: 10
   slashEffect: {fileID: 741890676358704174, guid: 16effabdab391ad4498d783dcff5b48b,
     type: 3}
@@ -3991,11 +3994,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4608506369025162612, guid: ca25066036473ca49a73d594b649c74b,
-        type: 3}
-      propertyPath: startPosture
-      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
@@ -4201,6 +4199,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1582547987}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1611086993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4857869059470655869, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+    type: 3}
+  m_PrefabInstance: {fileID: 2175738159393017814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28983f9949f408b44a5d0aa5eeaad66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1670584008
 GameObject:
   m_ObjectHideFlags: 0
@@ -5599,11 +5609,6 @@ PrefabInstance:
       propertyPath: unique
       value: 
       objectReference: {fileID: 1803567372}
-    - target: {fileID: 41962163563288076, guid: d5508aed7e7d6d44eb9d602a6d217a03,
-        type: 3}
-      propertyPath: blockWaitTime
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2305631498756797766, guid: d5508aed7e7d6d44eb9d602a6d217a03,
         type: 3}
       propertyPath: 'weapons.Array.data[0]'
@@ -5689,6 +5694,11 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 48432699}
+    - target: {fileID: 4459077200692188901, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: parryCheck
+      value: 
+      objectReference: {fileID: 1611086993}
     - target: {fileID: 4459077200692188901, guid: d5508aed7e7d6d44eb9d602a6d217a03,
         type: 3}
       propertyPath: postureText

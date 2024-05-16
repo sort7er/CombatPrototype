@@ -2,8 +2,7 @@ using UnityEngine;
 using Attacks;
 using UnityEngine.UI;
 using DG.Tweening;
-using EnemyAI;
-
+using Stats;
 public class EnemyHealth : Health
 {
     [Header("For slice death")]
@@ -60,7 +59,7 @@ public class EnemyHealth : Health
         skull.gameObject.SetActive(true);
         skull.transform.DOPunchScale(Vector3.one * 0.1f, 3f).SetLoops(-1);
         SetHealth(1);
-        Tools.GetEnemy(owner).Stunned();
+        owner.Stunned();
     }
     protected override void StaggerDone()
     {
