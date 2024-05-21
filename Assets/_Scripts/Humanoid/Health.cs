@@ -116,6 +116,7 @@ namespace Stats
                 MinusHealth(damage);
                 MinusPosture(parryData.postureDamage);
                 attackingWeapon.Hit(hitPoint);
+                owner.Hit();
                 owner.AddForce(parryData.direction.normalized * attackingWeapon.pushbackForce);
 
             }

@@ -15,7 +15,6 @@ namespace EnemyAI
             enemy.enemyAnimator.SetAnimatorBool("Stunned", true);
 
         }
-
         private void StunnedDone()
         {
             enemy.enemyAnimator.SetAnimatorBool("Stunned", false);

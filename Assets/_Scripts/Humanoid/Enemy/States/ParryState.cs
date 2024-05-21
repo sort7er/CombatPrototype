@@ -14,6 +14,7 @@ namespace EnemyAI
         {
             base.Update();
         }
+
         public override void Stunned()
         {
             enemy.SwitchState(enemy.stunnedState);

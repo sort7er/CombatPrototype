@@ -88,6 +88,11 @@ namespace EnemyAI
             enemy.StopFunction();
             enemy.SwitchState(enemy.staggeredState);
         }
+        public override void Hit()
+        {
+            enemy.StopFunction();
+            enemy.SwitchState(enemy.hitState);
+        }
 
         public override void Stunned()
         {

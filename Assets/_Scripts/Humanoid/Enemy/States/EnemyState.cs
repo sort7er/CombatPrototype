@@ -25,6 +25,10 @@ namespace EnemyAI
         {
 
         }
+        public virtual void Hit()
+        {
+
+        }
         public virtual void Takedown()
         {
 

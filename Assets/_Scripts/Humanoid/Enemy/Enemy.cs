@@ -108,7 +108,10 @@ namespace EnemyAI
         {
             currentState.Stunned();
         }
-
+        public override void Hit()
+        {
+            currentState.Hit();
+        }
         public void Takedown()
         {
             currentState.Takedown();

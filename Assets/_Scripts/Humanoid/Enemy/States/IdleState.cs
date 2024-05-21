@@ -21,6 +21,10 @@ namespace EnemyAI
                 enemy.SwitchState(enemy.chaseState);
             }
         }
+        public override void Hit()
+        {
+            enemy.SwitchState(enemy.hitState);
+        }
         public override void Stunned()
         {
             enemy.SwitchState(enemy.stunnedState);

@@ -188,6 +188,10 @@ public class Humanoid : MonoBehaviour
     {
 
     }
+    public virtual void Hit()
+    {
+
+    }
     public virtual void PerfectParry()
     {
 

@@ -28,7 +28,10 @@ namespace EnemyAI
                 enemy.SetTarget(player.Position(), player.Position());
             }
         }
-
+        public override void Hit()
+        {
+            enemy.SwitchState(enemy.hitState);
+        }
         public override void Stunned()
         {
             enemy.enemyAnimator.SetWalking(false);
