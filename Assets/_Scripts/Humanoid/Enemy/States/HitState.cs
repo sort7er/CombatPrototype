@@ -18,6 +18,11 @@ namespace EnemyAI
             HitAnimation();
         }
 
+        public override void Staggered()
+        {
+            LeaveState(staggeredState);
+        }
+
         public override void Stunned()
         {
             LeaveState(stunnedState);

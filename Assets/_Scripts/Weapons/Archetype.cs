@@ -13,7 +13,7 @@ public class Archetype: ScriptableObject
 
     [Header("Player")]
     [SerializeField] private AnimationInput idleInput;
-    [SerializeField] private string walkInput;
+    [SerializeField] private AnimationInput walkInput;
     [SerializeField] private AnimationInput jumpInput;
     [SerializeField] private AnimationInput fallInput;
     [SerializeField] private AttackInput[] attacksInput;
@@ -54,7 +54,7 @@ public class Archetype: ScriptableObject
     {
         //For player
         idle = new Anim(idleInput.animationClip);
-        walk = new Anim(walkInput);
+        walk = new Anim(walkInput.animationClip);
         jump = new Anim(jumpInput.animationClip);
         fall = new Anim(fallInput.animationClip);
 

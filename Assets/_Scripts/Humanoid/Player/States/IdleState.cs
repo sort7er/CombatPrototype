@@ -6,6 +6,7 @@ namespace Actions
         public override void Enter(PlayerActions actions)
         {
             base.Enter(actions);
+                
             if (actions.isFalling)
             {
                 LeaveState(fallState);
