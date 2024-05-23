@@ -52,7 +52,11 @@ namespace EnemyAI
         private float refreshRateTimer;
         private float animatorRunSpeed;
         private bool isRunning;
-        
+
+        //For attack done when hit
+        private int attackDoneState;
+
+
         protected override void Awake()
         {
             base.Awake();
@@ -62,6 +66,10 @@ namespace EnemyAI
 
             currentWeapon = Instantiate(startWeapon);
             agent.enabled = false;
+
+            attackDoneState = Animator.StringToHash("AttackDone");
+
+
             SwitchState(idleState);
         }
         private void Start()
@@ -111,6 +119,10 @@ namespace EnemyAI
         public override void Hit()
         {
             currentState.Hit();
+
+            // Add switch to idle instead of walk, and change attack animation to AttackDone
+            enemyAnimator.SetWalking(false);
+            enemyAnimator.animator.CrossFadeInFixedTime(attackDoneState, 0);
         }
         public void Takedown()
         {

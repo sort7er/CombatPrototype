@@ -90,6 +90,7 @@ namespace EnemyAI
         }
         public override void Hit()
         {
+            AttackDone();
             enemy.StopFunction();
             enemy.SwitchState(enemy.hitState);
         }

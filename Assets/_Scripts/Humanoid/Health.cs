@@ -105,7 +105,6 @@ namespace Stats
             //{
             //    return;
             //}
-
             SetUpParryData(attackingWeapon, hitPoint);
 
             int damage = attackingWeapon.currentAttack.damage;
@@ -132,9 +131,9 @@ namespace Stats
             parryData.parryType = parryCheck.CheckForParry(owner, attackingWeapon.owner);
             parryData.hitPoint = hitPoint;
             parryData.direction = transform.position - attackingWeapon.owner.Position();
+            parryData.attackingWeapon = attackingWeapon;
             parryData.postureDamage = attackingWeapon.currentAttack.postureDamage;
             parryData.defendingWeapon = GetOwnersWeapon();
-            parryData.attackingWeapon = attackingWeapon;
         }
 
         private void MinusHealth(int damage)

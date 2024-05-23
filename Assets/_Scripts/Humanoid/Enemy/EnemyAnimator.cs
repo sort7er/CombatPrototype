@@ -83,7 +83,10 @@ public class EnemyAnimator : MonoBehaviour
     public void AttackEffect()
     {
         //tooLate= true;
-        enemy.currentWeapon.Effect();
+        if (enemy.currentWeapon.CurrentAttackExists())
+        {
+            enemy.currentWeapon.Effect();
+        }
     }
     public void AttackEvent()
     {
@@ -92,8 +95,11 @@ public class EnemyAnimator : MonoBehaviour
         parry = false;
         tooLate = false;
 
-        enemy.SetAttackData(parryTime, perfectParryTime, tooLateTime);
-        enemy.hitbox.OverlapCollider();
+        if (enemy.currentWeapon.CurrentAttackExists())
+        {
+            enemy.SetAttackData(parryTime, perfectParryTime, tooLateTime);
+            enemy.hitbox.OverlapCollider();
+        }
 
         parryTime = 0;
         tooLateTime = 0;

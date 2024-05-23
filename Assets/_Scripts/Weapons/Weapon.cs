@@ -85,7 +85,7 @@ public class Weapon : MonoBehaviour
             weaponModel[0].Effect();
             rightEffect++;
         }
-        
+
         if (leftIncluded)
         {
             weaponModel[1].Effect();
@@ -93,7 +93,7 @@ public class Weapon : MonoBehaviour
         }
 
         //Only update attack coords if there are more than one stike in an attack
-        if(currentAttack.attackCoordsMain.Length > rightEffect || currentAttack.attackCoordsSecondary.Length > leftEffect)
+        if (currentAttack.attackCoordsMain.Length > rightEffect || currentAttack.attackCoordsSecondary.Length > leftEffect)
         {
             UpdateAttackCoords();
         }
@@ -136,6 +136,19 @@ public class Weapon : MonoBehaviour
             {
                 weaponPos = currentAttack.attackCoordsSecondary[leftEffect].MiddlePoint(transform);
             }
+        }
+    }
+
+    // This is here because the attack animation events still trigger when switching from attack to hit
+    public bool CurrentAttackExists()
+    {
+        if(currentAttack== null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 

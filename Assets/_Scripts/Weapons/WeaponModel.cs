@@ -40,6 +40,7 @@ public class WeaponModel : MonoBehaviour
 
         if(weapon.archetype.showEffect)
         {
+
             if (weapon.currentAttack.hitType == HitType.slice)
             {
                 Vector3 ajustedPosition = transform.position;
