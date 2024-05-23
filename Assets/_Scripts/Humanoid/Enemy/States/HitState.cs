@@ -10,18 +10,17 @@ namespace EnemyAI
         }
         private void HitDone()
         {
-            enemy.SwitchState(enemy.chaseState);
+            LeaveState(chaseState);
         }
         public override void Hit()
         {
-            enemy.StopFunction();
+            enemy.StopMethod();
             HitAnimation();
         }
 
         public override void Stunned()
         {
-            enemy.StopFunction();
-            enemy.SwitchState(enemy.stunnedState);
+            LeaveStateAndDo(stunnedState, () => enemy.StopMethod());
         }
         private void HitAnimation()
         {

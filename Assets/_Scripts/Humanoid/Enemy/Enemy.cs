@@ -263,7 +263,7 @@ namespace EnemyAI
             yield return new WaitForSeconds(waitTime);
             function.Invoke();
         }
-        public void StopFunction()
+        public void StopMethod()
         {
             StopAllCoroutines();
         }

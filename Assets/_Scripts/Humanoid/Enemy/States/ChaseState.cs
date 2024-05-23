@@ -8,7 +8,7 @@ namespace EnemyAI
         {
             base.Enter(enemy);
             enemy.EnableMovement();
-            enemy.enemyAnimator.SetWalking(true);
+            enemyAnimator.SetWalking(true);
         }
 
         public override void Update()
@@ -19,8 +19,7 @@ namespace EnemyAI
 
             if (dist < enemy.playerDistance)
             {
-                enemy.enemyAnimator.SetWalking(false);
-                enemy.SwitchState(enemy.attackState);
+                LeaveStateAndDo(attackState,() => enemyAnimator.SetWalking(false));
             }
             else
             {
@@ -30,12 +29,11 @@ namespace EnemyAI
         }
         public override void Hit()
         {
-            enemy.SwitchState(enemy.hitState);
+            LeaveState(hitState);  
         }
         public override void Stunned()
         {
-            enemy.enemyAnimator.SetWalking(false);
-            enemy.SwitchState(enemy.stunnedState);
+            LeaveStateAndDo(stunnedState, () => enemyAnimator.SetWalking(false));
         }
     }
 }

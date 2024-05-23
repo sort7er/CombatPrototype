@@ -7,7 +7,7 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
-            enemy.enemyAnimator.SetWalking(false);
+            enemyAnimator.SetWalking(false);
         }
 
         public override void Update()
@@ -18,16 +18,16 @@ namespace EnemyAI
 
             if (dist < enemy.DistanceBeforeChase)
             {
-                enemy.SwitchState(enemy.chaseState);
+                LeaveState(chaseState);
             }
         }
         public override void Hit()
         {
-            enemy.SwitchState(enemy.hitState);
+            LeaveState(hitState);
         }
         public override void Stunned()
         {
-            enemy.SwitchState(enemy.stunnedState);
+            LeaveState(stunnedState);
         }
     }
 }

@@ -26,12 +26,11 @@ namespace EnemyAI
 
         private void StaggerDone()
         {
-            enemy.SwitchState(enemy.chaseState);
+            LeaveState(chaseState);
         }
         public override void Stunned()
         {
-            enemy.StopFunction();
-            enemy.SwitchState(enemy.stunnedState);
+            LeaveStateAndDo(stunnedState,() => enemy.StopMethod());
         }
     }
 }

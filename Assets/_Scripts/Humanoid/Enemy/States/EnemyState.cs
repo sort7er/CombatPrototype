@@ -1,4 +1,6 @@
+using System;
 using UnityEngine.AI;
+using UnityEngine;
 
 namespace EnemyAI
 {
@@ -8,6 +10,16 @@ namespace EnemyAI
         public NavMeshAgent agent;
         public Player player;
         public Weapon currentWeapon;
+        public EnemyAnimator enemyAnimator;
+
+        //States
+        public IdleState idleState;
+        public ChaseState chaseState;
+        public AttackState attackState;
+        public ParryState parryState;
+        public StaggeredState staggeredState;
+        public StunnedState stunnedState;
+        public HitState hitState;
 
         public virtual void Enter(Enemy enemy)
         {
@@ -33,6 +45,18 @@ namespace EnemyAI
         {
 
         }
+
+        public void LeaveState(EnemyState newState)
+        {
+            enemy.StopMethod();
+            enemy.SwitchState(newState);
+        }
+        public void LeaveStateAndDo(EnemyState newState, Action doThis)
+        {
+            doThis?.Invoke();
+            enemy.StopMethod();
+            enemy.SwitchState(newState);
+        }
         private void SetReferences(Enemy enemy)
         {
             if (this.enemy == null)
@@ -41,6 +65,16 @@ namespace EnemyAI
                 agent = enemy.agent;
                 player = enemy.player;
                 currentWeapon = enemy.currentWeapon;
+                enemyAnimator = enemy.enemyAnimator;
+
+                idleState = enemy.idleState;
+                chaseState = enemy.chaseState;
+                attackState = enemy.attackState;
+                parryState = enemy.parryState;
+                staggeredState = enemy.staggeredState;
+                stunnedState = enemy.stunnedState;
+                hitState = enemy.hitState;
+
             }
         }
     }

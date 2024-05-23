@@ -12,13 +12,12 @@ namespace EnemyAI
             enemy.SetAnimation(stunnedAnim);
             enemy.InvokeFunction(StunnedDone, enemy.stunnedDuration);
 
-            enemy.enemyAnimator.SetAnimatorBool("Stunned", true);
+            enemyAnimator.SetAnimatorBool("Stunned", true);
 
         }
         private void StunnedDone()
         {
-            enemy.enemyAnimator.SetAnimatorBool("Stunned", false);
-            enemy.SwitchState(enemy.chaseState);
+            LeaveStateAndDo(chaseState, () => enemyAnimator.SetAnimatorBool("Stunned", false));
         }
     }
 }

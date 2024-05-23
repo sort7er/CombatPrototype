@@ -28,7 +28,7 @@ namespace EnemyAI
 
             if (PlayerDistance() > enemy.playerDistance + enemy.playerDistanceThreshold && !attacking)
             {
-                enemy.SwitchState(enemy.chaseState);
+                LeaveState(chaseState);
             }
             else
             {
@@ -46,7 +46,7 @@ namespace EnemyAI
 
             transition = attack.transitionDuration;
 
-            enemy.StopFunction();
+            enemy.StopMethod();
             enemy.InvokeFunction(Chain, attack.exitTimeSeconds);
             enemy.InvokeFunction(AttackDone, attack.duration);
         }
@@ -84,22 +84,16 @@ namespace EnemyAI
 
         public override void Staggered()
         {
-            AttackDone();
-            enemy.StopFunction();
-            enemy.SwitchState(enemy.staggeredState);
+            LeaveStateAndDo(staggeredState, AttackDone);
         }
         public override void Hit()
         {
-            AttackDone();
-            enemy.StopFunction();
-            enemy.SwitchState(enemy.hitState);
+            LeaveStateAndDo(hitState, AttackDone);
         }
 
         public override void Stunned()
         {
-            AttackDone();
-            enemy.StopFunction();
-            enemy.SwitchState(enemy.stunnedState);
+            LeaveStateAndDo(stunnedState, AttackDone);
         }
 
 

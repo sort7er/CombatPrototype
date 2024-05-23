@@ -17,7 +17,7 @@ namespace EnemyAI
 
         public override void Stunned()
         {
-            enemy.SwitchState(enemy.stunnedState);
+            LeaveState(stunnedState);
         }
     }
 }
