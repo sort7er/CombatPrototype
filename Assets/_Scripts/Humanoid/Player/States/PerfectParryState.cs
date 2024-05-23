@@ -19,7 +19,7 @@ namespace Actions
 
         private void EndParry()
         {
-            LeaveState(actions.idleState);
+            LeaveState(idleState);
         }
 
         #region Queuing methods 
@@ -39,8 +39,7 @@ namespace Actions
 
         private void DoFollowUpAttack()
         {
-            actions.player.ResetParryTimer();
-            LeaveState(actions.parryAttackState);
+            LeaveStateAndDo(parryAttackState, () => actions.player.ResetParryTimer());
         }
     }
 

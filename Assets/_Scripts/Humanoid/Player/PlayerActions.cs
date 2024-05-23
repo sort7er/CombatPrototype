@@ -13,6 +13,7 @@ namespace Actions
         public Animator armAnimator;
         public Player player;
         public Unique unique;
+        public WeaponSwitcher weaponSwitcher;
 
         public Transform[] weaponPos;
         public Weapon currentWeapon { get; private set; }
@@ -44,10 +45,7 @@ namespace Actions
         private void Awake()
         {
             SetUpInput();
-        }
-        private void Start()
-        {
-            SwitchState(idleState);
+            weaponSwitcher.OnNewWeapon += SetNewWeapon;
         }
 
         private void OnDestroy()
@@ -215,7 +213,6 @@ namespace Actions
         //Called from other classes
         public void SetNewWeapon(Weapon weapon)
         {
-            CancelInvoke(nameof(Delay));
             if (currentWeapon != null)
             {
                 currentWeapon.Hidden();
@@ -225,13 +222,16 @@ namespace Actions
             currentWeapon.SetOwner(player, player.cameraController.camTrans, weaponPos);
             player.hitBox.SetCurrentWeapon();
             currentWeapon.Vissible();
-            Invoke(nameof(Delay), 0.02f);
-        }
 
-        private void Delay()
-        {
+            if(currentState != null)
+            {
+                currentState.UpdateWeapon(weapon);
+            }
+
             SwitchState(idleState);
         }
+
+
 
         public bool CanSwitchWeapon()
         {

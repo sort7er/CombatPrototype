@@ -11,7 +11,6 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
-            enemy.DisableMovement();
 
             currentAttack = Random.Range(0, 2) * 2;
             transition= 0;
@@ -88,6 +87,7 @@ namespace EnemyAI
         }
         public override void Hit()
         {
+            enemyAnimator.animator.CrossFadeInFixedTime(enemy.attackDoneState, 0);
             LeaveStateAndDo(hitState, AttackDone);
         }
 

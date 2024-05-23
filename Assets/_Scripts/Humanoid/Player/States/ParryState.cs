@@ -31,13 +31,12 @@ namespace Actions
 
         private void DoAttack()
         {
-            actions.player.ResetParryTimer();
-            LeaveState(actions.attackState);
+            LeaveStateAndDo(attackState, () => actions.player.ResetParryTimer());
         }
 
         private void EndParry()
         {
-            LeaveState(actions.idleState);
+            LeaveState(idleState);
         }
     }
 

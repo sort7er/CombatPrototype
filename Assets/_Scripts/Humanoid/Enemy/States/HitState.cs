@@ -20,7 +20,7 @@ namespace EnemyAI
 
         public override void Stunned()
         {
-            LeaveStateAndDo(stunnedState, () => enemy.StopMethod());
+            LeaveState(stunnedState);
         }
         private void HitAnimation()
         {

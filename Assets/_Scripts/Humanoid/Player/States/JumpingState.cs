@@ -11,13 +11,12 @@ namespace Actions
         }
         public override void Landing()
         {
-            actions.StopMethod();
-            actions.SwitchState(actions.idleState);
+            LeaveState(idleState);
         }
 
         private void StartFall()
         {
-            actions.SwitchState(actions.fallState);
+            LeaveState(fallState);
         }
     }
 

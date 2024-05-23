@@ -19,7 +19,7 @@ namespace EnemyAI
 
             if (dist < enemy.playerDistance)
             {
-                LeaveStateAndDo(attackState,() => enemyAnimator.SetWalking(false));
+                LeaveStateAndDo(attackState, ChaseDone);
             }
             else
             {
@@ -29,11 +29,16 @@ namespace EnemyAI
         }
         public override void Hit()
         {
-            LeaveState(hitState);  
+            LeaveStateAndDo(hitState, ChaseDone);  
         }
         public override void Stunned()
         {
-            LeaveStateAndDo(stunnedState, () => enemyAnimator.SetWalking(false));
+            LeaveStateAndDo(stunnedState, ChaseDone);
+        }
+        private void ChaseDone()
+        {
+            enemy.DisableMovement();
+            enemyAnimator.SetWalking(false);
         }
     }
 }

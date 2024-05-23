@@ -24,6 +24,16 @@ namespace Actions
         public bool canChain;
         public bool actionDone;
 
+        public IdleState idleState;
+        public JumpState jumpState;
+        public FallState fallState;
+        public AttackState attackState;
+        public UniqueState uniqueState;
+        public BlockState blockState;
+        public ParryState parryState;
+        public PerfectParryState perfectParryState;
+        public ParryAttackState parryAttackState;
+
         #region Signal methods
         public virtual void Enter(PlayerActions actions)
         {
@@ -191,9 +201,32 @@ namespace Actions
         #region Private methods
         private void SetReferences(PlayerActions actions)
         {
-            this.actions = actions;
-            weapon = actions.currentWeapon;
-            archetype = actions.currentWeapon.archetype;
+            //this.actions = actions;
+            //weapon = actions.currentWeapon;
+            //archetype = actions.currentWeapon.archetype;
+            if(this.actions == null)
+            {
+                this.actions = actions;
+                idleState = actions.idleState;
+                jumpState = actions.jumpState;
+                fallState = actions.fallState;
+                attackState = actions.attackState;
+                uniqueState = actions.uniqueState;
+                blockState = actions.blockState;
+                parryState = actions.parryState;
+                perfectParryState = actions.perfectParryState;
+                parryAttackState = actions.parryAttackState;
+
+            }
+
+            //Need to update the current weapon all the time to make sure the state knows which weapon is in use
+            UpdateWeapon(actions.currentWeapon);
+        }
+
+        public void UpdateWeapon(Weapon weapon)
+        {
+            this.weapon = weapon;
+            archetype = weapon.archetype;
         }
         #endregion
     }

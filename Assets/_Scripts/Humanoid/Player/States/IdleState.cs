@@ -8,7 +8,7 @@ namespace Actions
             base.Enter(actions);
             if (actions.isFalling)
             {
-                actions.SwitchState(actions.fallState);
+                LeaveState(fallState);
             }
             else if (actions.isMoving)
             {
@@ -30,31 +30,31 @@ namespace Actions
         }
         public override void Jump()
         {
-            actions.SwitchState(actions.jumpState);
+            LeaveState(jumpState);
         }
         public override void Fall()
         {
-            actions.SwitchState(actions.fallState);
+            LeaveState(fallState);
         }
         public override void Attack()
         {
-            actions.SwitchState(actions.attackState);
+            LeaveState(attackState);
         }
         public override void Block()
         {
-            actions.SwitchState(actions.blockState);
+            LeaveState(blockState);
         }
         public override void Parry()
         {
-            actions.SwitchState(actions.parryState);
+            LeaveState(parryState);
         }
         public override void PerfectParry()
         {
-            actions.SwitchState(actions.perfectParryState);
+            LeaveState(perfectParryState);
         }
         public override void Unique()
         {
-            actions.SwitchState(actions.uniqueState);
+            LeaveState(uniqueState);
         }
 
     }

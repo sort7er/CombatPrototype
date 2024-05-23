@@ -20,7 +20,7 @@ namespace Actions
         }
         public override void Landing()
         {
-            actions.SwitchState(actions.idleState);
+            LeaveState(idleState);
         }
     }
 }

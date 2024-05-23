@@ -54,7 +54,7 @@ namespace EnemyAI
         private bool isRunning;
 
         //For attack done when hit
-        private int attackDoneState;
+        public int attackDoneState { get; private set; }
 
 
         protected override void Awake()
@@ -67,6 +67,7 @@ namespace EnemyAI
             currentWeapon = Instantiate(startWeapon);
             agent.enabled = false;
 
+            //This is whatever the defaul state in the attack layer is in the animator
             attackDoneState = Animator.StringToHash("AttackDone");
 
 
@@ -121,8 +122,8 @@ namespace EnemyAI
             currentState.Hit();
 
             // Add switch to idle instead of walk, and change attack animation to AttackDone
-            enemyAnimator.SetWalking(false);
-            enemyAnimator.animator.CrossFadeInFixedTime(attackDoneState, 0);
+
+
         }
         public void Takedown()
         {

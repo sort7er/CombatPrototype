@@ -36,7 +36,7 @@ namespace Actions
 
         private void EndAttack()
         {
-            actions.SwitchState(actions.idleState);
+            LeaveState(idleState);
         }
     }
 }

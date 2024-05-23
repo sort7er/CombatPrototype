@@ -1,7 +1,10 @@
 using UnityEngine;
+using System;
 
 public class WeaponSwitcher : MonoBehaviour
 {
+    public event Action<Weapon> OnNewWeapon;
+
     public Player player;
     public Weapon[] weapons;
 
@@ -10,7 +13,6 @@ public class WeaponSwitcher : MonoBehaviour
     private void Awake()
     {
         currentWeapon = 0;
-        SetWeapon();
 
         player.inputReader.OnNextWeapon += NextWeapon;
         player.inputReader.OnPreviousWeapon += PreviousWeapon;
@@ -22,6 +24,7 @@ public class WeaponSwitcher : MonoBehaviour
         {
             weapons[i].Hidden();
         }
+        SetWeapon();
     }
 
     private void OnDisable()
@@ -69,7 +72,12 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void SetWeapon()
     {
-        player.playerActions.SetNewWeapon(weapons[currentWeapon]);
+        OnNewWeapon?.Invoke(GetCurrentWeapon());
     }
 
+
+    public Weapon GetCurrentWeapon()
+    {
+        return weapons[currentWeapon];
+    }
 }
