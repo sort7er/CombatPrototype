@@ -20,6 +20,7 @@ namespace EnemyAI
         public StaggeredState staggeredState;
         public StunnedState stunnedState;
         public HitState hitState;
+        public StandbyState standbyState;
 
         public virtual void Enter(Enemy enemy)
         {
@@ -74,6 +75,7 @@ namespace EnemyAI
                 staggeredState = enemy.staggeredState;
                 stunnedState = enemy.stunnedState;
                 hitState = enemy.hitState;
+                standbyState = enemy.standbyState;
 
             }
         }

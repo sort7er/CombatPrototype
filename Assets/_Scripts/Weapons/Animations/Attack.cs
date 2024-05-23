@@ -35,16 +35,4 @@ public class Attack : Anim
         this.attackCoordsMain = attackCoordsMain;
         this.attackCoordsSecondary = attackCoordsSecondary;
     }
-    public Attack(AnimationClip clip, int damage, int postureDamage, float exitTime, float transitionDuration, Wield wield, HitType hitType, AttackCoord[] attackCoordsMain, AttackCoord[] attackCoordsSecondary) : base(clip, exitTime, transitionDuration)
-    {
-        this.damage = damage;
-        this.postureDamage = postureDamage;
-        currentWield = wield;
-        this.hitType = hitType;
-
-        
-
-        this.attackCoordsMain = attackCoordsMain;
-        this.attackCoordsSecondary = attackCoordsSecondary;
-    }
 }

@@ -25,11 +25,12 @@ public class Archetype: ScriptableObject
 
 
     [Header("Enemy")]
-    [SerializeField] private AttackInput[] enemyAttacksInput;
-    [SerializeField] private AttackInput[] enemyParrysInput;
+    [SerializeField] private AttackEnemyInput[] enemyAttacksInput;
+    [SerializeField] private AttackEnemyInput[] enemyParrysInput;
     [SerializeField] private AnimationInput enemyStaggeredInput;
     [SerializeField] private AnimationInput enemyStunnedInput;
     [SerializeField] private AnimationInput enemyHitInput;
+    [SerializeField] private AnimationInput enemyStandbyInput;
 
     public Anim idle;
     public Anim walk;
@@ -42,11 +43,12 @@ public class Archetype: ScriptableObject
     public Attack[] perfectParry;
     public Attack[] parryfollowUpAttack;
 
-    public Attack[] enemyAttacks;
-    public Attack[] enemyParrys;
+    public AttackEnemy[] enemyAttacks;
+    public AttackEnemy[] enemyParrys;
     public Anim enemyStaggered; 
     public Anim enemyStunned;
     public Anim enemyHit;
+    public Anim enemyStandby;
 
     public void SetUpAnimations()
     {
@@ -67,9 +69,10 @@ public class Archetype: ScriptableObject
         enemyStaggered = new Anim(enemyStaggeredInput.animationClip);
         enemyStunned = new Anim(enemyStunnedInput.animationClip);
         enemyHit = new Anim(enemyHitInput.animationClip);
+        enemyStandby = new Anim(enemyStandbyInput.animationClip);
 
-        SetUpAttacks(ref enemyAttacks, enemyAttacksInput);
-        SetUpAttacks(ref enemyParrys, enemyParrysInput);
+        SetUpEnemyAttacks(ref enemyAttacks, enemyAttacksInput);
+        SetUpEnemyAttacks(ref enemyParrys, enemyParrysInput);
     }
 
     public void SetUpAttack(ref Attack attack, AttackInput inputs)
@@ -90,7 +93,7 @@ public class Archetype: ScriptableObject
             inputs.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
         }
 
-        attack = new Attack(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.exitTime, inputs.transitionDuration, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
+        attack = new Attack(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
     }
 
     public void SetUpAttacks(ref Attack[] attacksToSetUp, AttackInput[] inputs)
@@ -100,6 +103,36 @@ public class Archetype: ScriptableObject
         for (int i = 0; i < inputs.Length; i++)
         {
             SetUpAttack(ref attacksToSetUp[i], inputs[i]);
+        }
+    }
+
+    public void SetUpEnemyAttack(ref AttackEnemy attack, AttackEnemyInput inputs)
+    {
+
+        bool right = inputs.activeWield == Wield.right || inputs.activeWield == Wield.both;
+        bool left = inputs.activeWield == Wield.left || inputs.activeWield == Wield.both;
+
+        if (right && inputs.attackCoordsMain.Length == 0)
+        {
+            inputs.attackCoordsMain = new AttackCoord[1];
+            inputs.attackCoordsMain[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+
+        if (left && inputs.attackCoordsSecondary.Length == 0)
+        {
+            inputs.attackCoordsSecondary = new AttackCoord[1];
+            inputs.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+
+        attack = new AttackEnemy(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary, inputs.exitTime, inputs.transitionDuration);
+    }
+    public void SetUpEnemyAttacks(ref AttackEnemy[] enemyAttacksToSetUp, AttackEnemyInput[] inputs)
+    {
+        enemyAttacksToSetUp = new AttackEnemy[inputs.Length];
+
+        for (int i = 0; i < inputs.Length; i++)
+        {
+            SetUpEnemyAttack(ref enemyAttacksToSetUp[i], inputs[i]);
         }
     }
 }

@@ -46,6 +46,7 @@ namespace EnemyAI
         public StaggeredState staggeredState = new StaggeredState();
         public StunnedState stunnedState = new StunnedState();
         public HitState hitState = new HitState();
+        public StandbyState standbyState = new StandbyState();
         //public TakedownState takedownState = new TakedownState();
 
         private int currentCorner;

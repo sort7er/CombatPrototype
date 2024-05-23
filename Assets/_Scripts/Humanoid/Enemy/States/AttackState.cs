@@ -40,7 +40,7 @@ namespace EnemyAI
         private void Attack()
         {
             attacking = true;
-            Attack attack = currentWeapon.archetype.enemyAttacks[currentAttack];
+            AttackEnemy attack = currentWeapon.archetype.enemyAttacks[currentAttack];
             enemy.SetAnimation(attack, transition);
 
             transition = attack.transitionDuration;
