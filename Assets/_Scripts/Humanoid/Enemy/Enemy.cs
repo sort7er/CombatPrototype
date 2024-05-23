@@ -214,8 +214,8 @@ namespace EnemyAI
             Vector3 alteredPlayerPos = new Vector3(lookAtTarget.x, transform.position.y, lookAtTarget.z);
             Vector3 playerDirection = alteredPlayerPos - transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);
-            SetRotation(targetRotation);
+            Quaternion slerpedRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);
+            SetRotation(slerpedRotation);
 
         }
         public void MoveTo(Vector3 target)

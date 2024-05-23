@@ -4216,6 +4216,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28983f9949f408b44a5d0aa5eeaad66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1611087001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2305631498756797766, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+    type: 3}
+  m_PrefabInstance: {fileID: 2175738159393017814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af5194026c84ace43869c53dceb150e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1670584008
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,6 +5626,11 @@ PrefabInstance:
       propertyPath: unique
       value: 
       objectReference: {fileID: 1803567372}
+    - target: {fileID: 41962163563288076, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: weaponSwitcher
+      value: 
+      objectReference: {fileID: 1611087001}
     - target: {fileID: 2305631498756797766, guid: d5508aed7e7d6d44eb9d602a6d217a03,
         type: 3}
       propertyPath: 'weapons.Array.data[0]'
