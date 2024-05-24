@@ -53,8 +53,6 @@ public class Humanoid : MonoBehaviour
     protected virtual void Update()
     {
 
-        Debug.Log(transform.position);
-
         if (GroundCheck())
         {
             rb.drag = groundDrag;
