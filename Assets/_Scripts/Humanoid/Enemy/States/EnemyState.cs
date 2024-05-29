@@ -49,13 +49,13 @@ namespace EnemyAI
 
         public void LeaveState(EnemyState newState)
         {
-            enemy.StopMethod();
+            enemy.StopFunction();
             enemy.SwitchState(newState);
         }
         public void LeaveStateAndDo(EnemyState newState, Action doThis)
         {
             doThis?.Invoke();
-            enemy.StopMethod();
+            enemy.StopFunction();
             enemy.SwitchState(newState);
         }
         private void SetReferences(Enemy enemy)

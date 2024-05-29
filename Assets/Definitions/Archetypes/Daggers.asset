@@ -255,3 +255,9 @@ MonoBehaviour:
   enemyStandbyInput:
     animationClip: {fileID: -717426066984430176, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
+  enemyStandbyTurnLeftInput:
+    animationClip: {fileID: 9018153729684599528, guid: b32b55151f7a85c46b95b412b82b3791,
+      type: 3}
+  enemyStandbyTurnRightInput:
+    animationClip: {fileID: -4298613188738197631, guid: b32b55151f7a85c46b95b412b82b3791,
+      type: 3}

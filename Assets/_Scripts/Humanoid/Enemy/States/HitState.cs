@@ -14,7 +14,7 @@ namespace EnemyAI
         }
         public override void Hit()
         {
-            enemy.StopMethod();
+            enemy.StopFunction();
             HitAnimation();
         }
 

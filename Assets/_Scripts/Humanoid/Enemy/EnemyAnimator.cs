@@ -26,18 +26,6 @@ public class EnemyAnimator : MonoBehaviour
 
         animator.SetFloat("MovementX", lerp);
 
-        //if (dot + strafeThreshold < 0)
-        //{
-        //    Debug.Log("Right");
-        //}
-        //else if (dot - strafeThreshold > 0)
-        //{
-        //    Debug.Log("Left");
-        //}
-        //else
-        //{
-        //    Debug.Log("Forward");
-        //}
 
         if(parry)
         {

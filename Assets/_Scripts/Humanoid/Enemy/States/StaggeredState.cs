@@ -23,7 +23,7 @@ namespace EnemyAI
 
         public override void Update()
         {
-            enemy.SetTarget(stepbackTarget, storedPlayerPos);
+            enemy.MoveToTarget(stepbackTarget, storedPlayerPos);
         }
 
         private void StaggerDone()

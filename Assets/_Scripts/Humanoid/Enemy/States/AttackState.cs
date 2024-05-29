@@ -45,7 +45,7 @@ namespace EnemyAI
 
             transition = attack.transitionDuration;
 
-            enemy.StopMethod();
+            enemy.StopFunction();
             enemy.InvokeFunction(Chain, attack.exitTimeSeconds);
             enemy.InvokeFunction(AttackDone, attack.duration);
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 namespace EnemyAI
 {
@@ -141,9 +142,9 @@ namespace EnemyAI
                 currentTarget = currentPath.corners[currentCorner];
 
                 if (Vector3.Distance(currentTarget, transform.position) < waypointDistance)
-            {
-                currentCorner++;
-            }
+                {
+                    currentCorner++;
+                }
             }
 
             movementDirection = currentTarget - transform.position;
@@ -171,7 +172,7 @@ namespace EnemyAI
             currentState = state;
             currentState.Enter(this);
         }
-        public void SetTarget(Vector3 walkToTarger, Vector3 lookAtTarget)
+        public void MoveToTarget(Vector3 walkToTarget, Vector3 lookAtTarget)
         {
             if (refreshRateTimer < navMeshRefreshRate)
             {
@@ -179,10 +180,20 @@ namespace EnemyAI
             }
             else
             {
-                MoveTo(walkToTarger);
+                MoveTo(walkToTarget);
                 refreshRateTimer = 0;
             }
-            LookAtTarget(lookAtTarget);
+            SetWalkToTarget(walkToTarget);
+            SetLookAtTarget(lookAtTarget);
+            RotateToTarget();
+        }
+        public void SetWalkToTarget(Vector3 walkToTarget)
+        {
+            currentTarget = walkToTarget;
+        }
+        public void SetLookAtTarget(Vector3 lookAtTarget)
+        {
+            this.lookAtTarget = lookAtTarget;
         }
         public float CalculateDotProduct()
         {
@@ -208,16 +219,14 @@ namespace EnemyAI
             enemyAnimator.animator.CrossFadeInFixedTime(currentAnimation.state, transition);
         }
 
-        //Called from this class
-        private void LookAtTarget(Vector3 target)
+        //Needs to be in update
+        public void RotateToTarget()
         {
-            lookAtTarget = target;
             Vector3 alteredPlayerPos = new Vector3(lookAtTarget.x, transform.position.y, lookAtTarget.z);
-            Vector3 playerDirection = alteredPlayerPos - transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
+            Vector3 targetDirection = alteredPlayerPos - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             Quaternion slerpedRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);
             SetRotation(slerpedRotation);
-
         }
         public void MoveTo(Vector3 target)
         {
@@ -265,7 +274,7 @@ namespace EnemyAI
             yield return new WaitForSeconds(waitTime);
             function.Invoke();
         }
-        public void StopMethod()
+        public void StopFunction()
         {
             StopAllCoroutines();
         }

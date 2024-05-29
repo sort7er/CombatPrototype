@@ -13,18 +13,17 @@ namespace EnemyAI
 
         public override void Update()
         {
-            base.Update();
 
             float dist = Vector3.Distance(player.Position(), enemy.Position());
 
             if (dist < enemy.playerDistance)
             {
-                LeaveStateAndDo(attackState, ChaseDone);
+                LeaveStateAndDo(standbyState, ChaseDone);
             }
             else
             {
                 enemy.SpeedByDist(dist);
-                enemy.SetTarget(player.Position(), player.Position());
+                enemy.MoveToTarget(player.Position(), player.Position());
             }
         }
         public override void Hit()
