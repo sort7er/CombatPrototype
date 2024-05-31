@@ -13,6 +13,7 @@ namespace EnemyAI
         [SerializeField] private float waypointDistance = 1f;
         [SerializeField] private float rotationSlerp = 10;
 
+        public float turnThreshold = 0.8f;
         public float DistanceBeforeChase = 5f;
         public float playerDistance = 2f;
         public float playerDistanceThreshold = 1f;
@@ -183,17 +184,7 @@ namespace EnemyAI
                 MoveTo(walkToTarget);
                 refreshRateTimer = 0;
             }
-            SetWalkToTarget(walkToTarget);
-            SetLookAtTarget(lookAtTarget);
-            RotateToTarget();
-        }
-        public void SetWalkToTarget(Vector3 walkToTarget)
-        {
-            currentTarget = walkToTarget;
-        }
-        public void SetLookAtTarget(Vector3 lookAtTarget)
-        {
-            this.lookAtTarget = lookAtTarget;
+            RotateToTarget(lookAtTarget);
         }
         public float CalculateDotProduct()
         {
@@ -220,9 +211,15 @@ namespace EnemyAI
         }
 
         //Needs to be in update
-        public void RotateToTarget()
+
+        public void SetLookAtPos(Vector3 target)
         {
-            Vector3 alteredPlayerPos = new Vector3(lookAtTarget.x, transform.position.y, lookAtTarget.z);
+            lookAtTarget = target;
+        }
+        public void RotateToTarget(Vector3 target)
+        {
+            SetLookAtPos(target);
+            Vector3 alteredPlayerPos = new Vector3(target.x, transform.position.y, target.z);
             Vector3 targetDirection = alteredPlayerPos - transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             Quaternion slerpedRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);

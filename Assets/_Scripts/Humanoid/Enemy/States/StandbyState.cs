@@ -6,7 +6,6 @@ namespace EnemyAI
 
     public class StandbyState : EnemyState
     {
-        private float turnThreshold = 0.5f;
         private bool turn;
         public override void Enter(Enemy enemy)
         {
@@ -19,29 +18,25 @@ namespace EnemyAI
             enemyAnimator.SetAnimatorBool("Standby", true);
 
             turn = false;
-            enemy.SetWalkToTarget(player.Position());
         }
 
         public override void Update()
         {
-            enemy.SetLookAtTarget(player.Position());
 
-
-
-            if(turn)
+            if (turn)
             {
-                enemy.SetWalkToTarget(player.Position());
-                enemy.RotateToTarget();
+                enemy.RotateToTarget(player.Position());
             }
             else
             {
+                enemy.SetLookAtPos(player.Position());
                 float dot = enemy.CalculateDotProduct();
 
-                if (dot + turnThreshold < 0)
+                if (dot + enemy.turnThreshold < 0)
                 {
                     StartTurn(currentWeapon.archetype.enemyStandbyTurnRight);
                 }
-                else if (dot - turnThreshold > 0)
+                else if (dot - enemy.turnThreshold > 0)
                 {
                     StartTurn(currentWeapon.archetype.enemyStandbyTurnLeft);
                 }
@@ -51,7 +46,7 @@ namespace EnemyAI
         private void StartTurn(Anim turnAnim)
         {
             enemy.StopFunction();
-            enemy.SetAnimation(turnAnim);
+            //enemy.SetAnimation(turnAnim);
 
             enemy.InvokeFunction(DoTurn, turnAnim.duration * 0.45f);
             enemy.InvokeFunction(EndTurn, turnAnim.duration);
