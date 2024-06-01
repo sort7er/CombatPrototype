@@ -16,7 +16,7 @@ namespace EnemyAI
 
             float dist = Vector3.Distance(player.Position(), enemy.Position());
 
-            if (dist < enemy.playerDistance)
+            if (dist < enemy.minPlayerDistance)
             {
                 LeaveStateAndDo(standbyState, ChaseDone);
             }

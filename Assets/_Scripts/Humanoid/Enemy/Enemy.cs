@@ -13,9 +13,8 @@ namespace EnemyAI
         [SerializeField] private float rotationSlerp = 10;
 
 
-        public float turnThreshold = 0.8f;
         public float DistanceBeforeChase = 5f;
-        public float playerDistance = 2f;
+        public float minPlayerDistance = 2f;
         public float playerDistanceThreshold = 1f;
         public float runDistance = 8f;
 
@@ -95,7 +94,7 @@ namespace EnemyAI
         protected override void Update()
         {
             base.Update();
-            Debug.Log(currentState);
+            //Debug.Log(currentState);
             currentState.Update();
             AnimationSpeed();
 
@@ -171,7 +170,8 @@ namespace EnemyAI
                 return false;
             }
         }
-        public bool CheckView()
+        //Target
+        public bool TargetInsideFOV()
         {
             if(Vector3.Angle(player.Position() - transform.position, InFront() - transform.position) < attackFOV * 0.5f)
             {
@@ -181,6 +181,14 @@ namespace EnemyAI
             {
                 return false;
             }
+        }
+        public float DistanceToTarget()
+        {
+            return Vector3.Distance(player.Position(), Position());
+        }
+        public Vector3 DirectionToTarget()
+        {
+            return player.Position() - transform.position;
         }
         public void SwitchState(EnemyState state)
         {
@@ -263,7 +271,7 @@ namespace EnemyAI
             }
             else
             {
-                if(isRunning && dist < playerDistance + playerDistanceThreshold)
+                if(isRunning && dist < minPlayerDistance + playerDistanceThreshold)
                 {
                     isRunning= false;
                     SetSpeed(3);

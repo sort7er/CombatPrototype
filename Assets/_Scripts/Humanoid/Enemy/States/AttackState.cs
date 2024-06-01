@@ -5,25 +5,40 @@ namespace EnemyAI
     public class AttackState : EnemyState
     {
         private bool attacking;
+        private bool rotateTowardsPlayer;
         private int currentAttack;
         private int attacksLength;
         private float transition;
+
+        private int numberOfAttacks;
+        private int attacksSoFar;
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
 
             currentAttack = Random.Range(0, 2) * 2;
-            transition= 0;
+            numberOfAttacks = Random.Range(1, 6);
+            attacksSoFar = 0;
+            transition = 0.25f;
+            attacking = false;
+            rotateTowardsPlayer = true;
 
             if (enemy.CheckForWeapon())
             {
                 attacksLength = currentWeapon.archetype.enemyAttacks.Length;
             }
+
+
         }
 
         public override void Update()
         {
             base.Update();
+            if (rotateTowardsPlayer)
+            {
+                enemy.RotateToTarget(player.Position(), player.Position());
+            }
+
 
 
             if (!CheckIfCanAttack() && !attacking)
@@ -41,18 +56,25 @@ namespace EnemyAI
         private void Attack()
         {
             attacking = true;
+            rotateTowardsPlayer = true;
             AttackEnemy attack = currentWeapon.archetype.enemyAttacks[currentAttack];
             enemy.SetAnimation(attack, transition);
+            attacksSoFar++;
 
             transition = attack.transitionDuration;
 
             enemy.StopFunction();
+            enemy.InvokeFunction(StopRotate, 0.25f);
             enemy.InvokeFunction(Chain, attack.exitTimeSeconds);
             enemy.InvokeFunction(AttackDone, attack.duration);
         }
+        private void StopRotate()
+        {
+            rotateTowardsPlayer = false;
+        }
         private void Chain()
         {
-            if(CheckIfCanAttack())
+            if(CheckIfCanAttack() && attacksSoFar < numberOfAttacks)
             {
                 UpdateCurrentAttack();
                 Attack();
@@ -60,8 +82,7 @@ namespace EnemyAI
         }
         private void AttackDone()
         {
-            attacking = false;
-            currentAttack = 0;
+            LeaveState(standbyState);
         }
 
         private void UpdateCurrentAttack()
@@ -76,39 +97,36 @@ namespace EnemyAI
             }
         }
 
-
-        private float PlayerDistance()
-        {
-            return Vector3.Distance(player.Position(), enemy.Position());
-        }
-
         public override void Staggered()
         {
-            LeaveStateAndDo(staggeredState, AttackDone);
+            LeaveStateAndDo(staggeredState, LeaveAttack);
         }
         public override void Hit()
         {
-            enemyAnimator.animator.CrossFadeInFixedTime(enemy.attackDoneState, 0);
-            LeaveStateAndDo(hitState, AttackDone);
+            
+            LeaveStateAndDo(hitState, LeaveAttack);
         }
 
         public override void Stunned()
         {
-            LeaveStateAndDo(stunnedState, AttackDone);
+            LeaveStateAndDo(stunnedState, LeaveAttack);
         }
         private bool CheckIfCanAttack()
         {
-            if(PlayerDistance() > enemy.playerDistance + enemy.playerDistanceThreshold)
+            if(enemy.DistanceToTarget() > enemy.minPlayerDistance + enemy.playerDistanceThreshold)
             {
                 return false;
             }
-            if (!enemy.CheckView())
+            if (!enemy.TargetInsideFOV())
             {
                 return false;
             }
             return true;
         }
-
+        private void LeaveAttack()
+        {
+            enemyAnimator.animator.CrossFadeInFixedTime(enemy.attackDoneState, 0);
+        }
     }
 
 

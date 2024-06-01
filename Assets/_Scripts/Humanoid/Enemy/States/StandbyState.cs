@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace EnemyAI
@@ -7,63 +6,70 @@ namespace EnemyAI
     public class StandbyState : EnemyState
     {
         private bool turn;
+        private float waitTime;
+        private float timer;
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
 
             Anim standbyAnim = currentWeapon.archetype.enemyStandby;
-
-            enemy.SetAnimation(standbyAnim);
-
-            enemyAnimator.SetAnimatorBool("Standby", true);
+            enemy.SetAnimation(standbyAnim, 0.25f);
 
             turn = false;
+            timer = 0;
+            waitTime = Random.Range(1, 2);
         }
 
         public override void Update()
         {
-
             if (turn)
             {
+                // Actuall turning
                 enemy.RotateToTarget(player.Position(), player.Position());
             }
             else
             {
-                if (enemy.CheckView())
+                if (enemy.minPlayerDistance < enemy.DistanceToTarget())
                 {
-                    LeaveStateAndDo(attackState, StandbyDone);
+                    LeaveStateAndDo(chaseState, LeaveStandby);
                 }
-
-                float dist = Vector3.Distance(player.Position(), enemy.Position());
-
-                if (enemy.playerDistance < dist)
+                //Use this to determine if turn
+                else if (enemy.TargetInsideFOV())
                 {
-                    LeaveStateAndDo(chaseState, StandbyDone);
+                    timer += Time.deltaTime;
+
+                    if (timer >= waitTime)
+                    {
+
+                        LeaveStateAndDo(attackState, LeaveStandby);
+                    }
+
+                    //This updates the rotation of the animation
+                    enemy.SetLookAtAndForward(player.Position(), enemy.InFront());
                 }
-
-
-                enemy.SetLookAtAndForward(player.Position(), enemy.InFront());
-                float dot = enemy.CalculateDotProduct();
-
-                bool inFront = Tools.InFront(player.Position() - enemy.Position(), enemy.transform.right);
-
-
-                if (dot > enemy.turnThreshold || !inFront)
+                else
                 {
-                    StartTurn(currentWeapon.archetype.enemyStandbyTurnRight);
-                }
-                else if (dot < -enemy.turnThreshold || !inFront)
-                {
-                    StartTurn(currentWeapon.archetype.enemyStandbyTurnLeft);
+                    //For turn animation
+
+                    float dot = Tools.Dot(enemy.DirectionToTarget(), enemy.Forward());
+
+                    if (dot <= 0)
+                    {
+                        StartTurn(currentWeapon.archetype.enemyStandbyTurnRight);
+                    }
+                    else if (dot > 0)
+                    {
+                        StartTurn(currentWeapon.archetype.enemyStandbyTurnLeft);
+                    }
                 }
             }
         }
 
         private void StartTurn(Anim turnAnim)
         {
+            turn = true;
             enemy.StopFunction();
             enemy.SetAnimation(turnAnim);
-            turn = true;
             enemy.InvokeFunction(EndTurn, turnAnim.duration);
 
         }
@@ -75,12 +81,12 @@ namespace EnemyAI
 
         public override void Hit()
         {
-            LeaveStateAndDo(hitState, StandbyDone);
+            LeaveStateAndDo(hitState, LeaveStandby);
         }
 
-        private void StandbyDone()
+        private void LeaveStandby()
         {
-            enemyAnimator.SetAnimatorBool("Standby", false);
+            enemyAnimator.animator.CrossFade(enemy.attackDoneState, 0);
         }
     }
 

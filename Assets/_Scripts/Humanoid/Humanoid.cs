@@ -224,6 +224,14 @@ public class Humanoid : MonoBehaviour
     {
         return transform.position;
     }
+    public Vector3 Forward()
+    {
+        return transform.forward;
+    }
+    public Vector3 Right()
+    {
+        return transform.right;
+    }
     public Vector3 InFront()
     {
         return transform.position + transform.forward;
