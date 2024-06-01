@@ -38,12 +38,12 @@ ModelImporter:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
-      scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_5'
+      scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
+      animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_5'
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:RightFoot'
-      has scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Idle_Attack_LeftToFront'
+      has translation animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Idle_Attack_LeftToFront'
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftFoot'
       has scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
@@ -96,8 +96,9 @@ ModelImporter:
       will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will be
       discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be discarded.\n\nClip
       'Armature|Enemy_Temp' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightFoot'
-      has scale animation that will be discarded.\n"
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftToeBase'
+      has scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
+      animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -3532,9 +3533,9 @@ ModelImporter:
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -3653,9 +3654,9 @@ ModelImporter:
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -3774,9 +3775,9 @@ ModelImporter:
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -3895,9 +3896,9 @@ ModelImporter:
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []

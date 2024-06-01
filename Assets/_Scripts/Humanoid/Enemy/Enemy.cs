@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
 namespace EnemyAI
 {
@@ -13,6 +12,7 @@ namespace EnemyAI
         [SerializeField] private float waypointDistance = 1f;
         [SerializeField] private float rotationSlerp = 10;
 
+
         public float turnThreshold = 0.8f;
         public float DistanceBeforeChase = 5f;
         public float playerDistance = 2f;
@@ -21,6 +21,7 @@ namespace EnemyAI
 
         [Header("Attacking")]
         [SerializeField] private float attackCooldown;
+        [SerializeField] private float attackFOV = 90;
 
         [Header("Weapons")]
         [SerializeField] private Transform[] weaponPos;
@@ -37,8 +38,9 @@ namespace EnemyAI
         public Player player { get; private set; }
         public NavMeshAgent agent { get; private set; }
         public NavMeshPath currentPath { get; private set; }
-        public Vector3 currentTarget { get; private set; }
+        public Vector3 currentMoveToTarget { get; private set; }
         public Vector3 lookAtTarget { get; private set; }
+        public Vector3 forwardTarget { get; private set; }
 
         //State machine
         public IdleState idleState = new IdleState();
@@ -93,6 +95,7 @@ namespace EnemyAI
         protected override void Update()
         {
             base.Update();
+            Debug.Log(currentState);
             currentState.Update();
             AnimationSpeed();
 
@@ -140,15 +143,15 @@ namespace EnemyAI
 
             if(currentCorner < currentPath.corners.Length)
             {
-                currentTarget = currentPath.corners[currentCorner];
+                currentMoveToTarget = currentPath.corners[currentCorner];
 
-                if (Vector3.Distance(currentTarget, transform.position) < waypointDistance)
+                if (Vector3.Distance(currentMoveToTarget, transform.position) < waypointDistance)
                 {
                     currentCorner++;
                 }
             }
 
-            movementDirection = currentTarget - transform.position;
+            movementDirection = currentMoveToTarget - transform.position;
 
             base.Move();
 
@@ -160,6 +163,17 @@ namespace EnemyAI
         public bool CheckForWeapon()
         {
             if (currentWeapon != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool CheckView()
+        {
+            if(Vector3.Angle(player.Position() - transform.position, InFront() - transform.position) < attackFOV * 0.5f)
             {
                 return true;
             }
@@ -184,16 +198,7 @@ namespace EnemyAI
                 MoveTo(walkToTarget);
                 refreshRateTimer = 0;
             }
-            RotateToTarget(lookAtTarget);
-        }
-        public float CalculateDotProduct()
-        {
-            Vector3 directionToLookAt = lookAtTarget - transform.position;
-            Vector3 directionToTarget = currentTarget - transform.position;
-
-            Vector3 perp = Vector3.Cross(directionToLookAt.normalized, directionToTarget.normalized);
-
-            return Vector3.Dot(perp, Vector3.up);
+            RotateToTarget(lookAtTarget, walkToTarget);
         }
         public void SetAnimation(Anim newAnim, float transition = 0.25f)
         {
@@ -212,14 +217,23 @@ namespace EnemyAI
 
         //Needs to be in update
 
-        public void SetLookAtPos(Vector3 target)
+        public void SetLookAtAndForward(Vector3 lookAtTarget, Vector3 forwardTarget)
         {
-            lookAtTarget = target;
+            this.lookAtTarget = lookAtTarget;
+            this.forwardTarget = forwardTarget;
         }
-        public void RotateToTarget(Vector3 target)
+        public float CalculateDotProduct()
         {
-            SetLookAtPos(target);
-            Vector3 alteredPlayerPos = new Vector3(target.x, transform.position.y, target.z);
+            Vector3 directionToLookAt = lookAtTarget - transform.position;
+            Vector3 directionToTarget = forwardTarget - transform.position;
+
+            return Tools.Dot(directionToLookAt, directionToTarget);
+        }
+        public void RotateToTarget(Vector3 lookAtTarget, Vector3 forwardTarget)
+        {
+            // This is here because to set the targets
+            SetLookAtAndForward(lookAtTarget, forwardTarget);
+            Vector3 alteredPlayerPos = new Vector3(lookAtTarget.x, transform.position.y, lookAtTarget.z);
             Vector3 targetDirection = alteredPlayerPos - transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             Quaternion slerpedRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);

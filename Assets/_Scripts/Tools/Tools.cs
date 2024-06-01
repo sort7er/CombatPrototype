@@ -72,30 +72,29 @@ public static class Tools
 
         }
     }
+    public static float Dot(Vector3 targetDirection, Vector3 forwardDirection)
+    {
+        Vector3 perp = Vector3.Cross(targetDirection.normalized, forwardDirection.normalized);
+
+        return Vector3.Dot(perp, Vector3.up);
+    }
+    public static bool InFront(Vector3 targetDirection, Vector3 rightDirection)
+    {
+        float result = Dot(targetDirection, rightDirection);
+
+        if(result < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     public static int DirCount(string location)
     {
         DirectoryInfo d = new DirectoryInfo(location);
         return d.GetFiles().Length;
     }
-
-
-    //Exclusive to combatprototype for slash a bit
-
-    //public static Enemy GetEnemy(Humanoid owner)
-    //{
-    //    if (owner is Enemy enemy)
-    //    {
-    //        return enemy;
-    //    }
-    //    else return null;
-    //}
-    //public static Player GetPlayer(Humanoid owner)
-    //{
-    //    if (owner is Player player)
-    //    {
-    //        return player;
-    //    }
-    //    else return null;
-    //}
 
 }

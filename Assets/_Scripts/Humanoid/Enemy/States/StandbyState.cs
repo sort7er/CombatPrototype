@@ -25,18 +25,34 @@ namespace EnemyAI
 
             if (turn)
             {
-                enemy.RotateToTarget(player.Position());
+                enemy.RotateToTarget(player.Position(), player.Position());
             }
             else
             {
-                enemy.SetLookAtPos(player.Position());
+                if (enemy.CheckView())
+                {
+                    LeaveStateAndDo(attackState, StandbyDone);
+                }
+
+                float dist = Vector3.Distance(player.Position(), enemy.Position());
+
+                if (enemy.playerDistance < dist)
+                {
+                    LeaveStateAndDo(chaseState, StandbyDone);
+                }
+
+
+                enemy.SetLookAtAndForward(player.Position(), enemy.InFront());
                 float dot = enemy.CalculateDotProduct();
 
-                if (dot + enemy.turnThreshold < 0)
+                bool inFront = Tools.InFront(player.Position() - enemy.Position(), enemy.transform.right);
+
+
+                if (dot > enemy.turnThreshold || !inFront)
                 {
                     StartTurn(currentWeapon.archetype.enemyStandbyTurnRight);
                 }
-                else if (dot - enemy.turnThreshold > 0)
+                else if (dot < -enemy.turnThreshold || !inFront)
                 {
                     StartTurn(currentWeapon.archetype.enemyStandbyTurnLeft);
                 }
@@ -46,16 +62,10 @@ namespace EnemyAI
         private void StartTurn(Anim turnAnim)
         {
             enemy.StopFunction();
-            //enemy.SetAnimation(turnAnim);
-
-            enemy.InvokeFunction(DoTurn, turnAnim.duration * 0.45f);
+            enemy.SetAnimation(turnAnim);
+            turn = true;
             enemy.InvokeFunction(EndTurn, turnAnim.duration);
 
-        }
-
-        private void DoTurn()
-        {
-            turn = true;
         }
 
         private void EndTurn()

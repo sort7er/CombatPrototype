@@ -25,9 +25,10 @@ namespace EnemyAI
         {
             base.Update();
 
-            if (PlayerDistance() > enemy.playerDistance + enemy.playerDistanceThreshold && !attacking)
+
+            if (!CheckIfCanAttack() && !attacking)
             {
-                LeaveState(chaseState);
+                LeaveState(standbyState);
             }
             else
             {
@@ -51,7 +52,7 @@ namespace EnemyAI
         }
         private void Chain()
         {
-            if(PlayerDistance() <= enemy.playerDistance + enemy.playerDistanceThreshold)
+            if(CheckIfCanAttack())
             {
                 UpdateCurrentAttack();
                 Attack();
@@ -95,7 +96,18 @@ namespace EnemyAI
         {
             LeaveStateAndDo(stunnedState, AttackDone);
         }
-
+        private bool CheckIfCanAttack()
+        {
+            if(PlayerDistance() > enemy.playerDistance + enemy.playerDistanceThreshold)
+            {
+                return false;
+            }
+            if (!enemy.CheckView())
+            {
+                return false;
+            }
+            return true;
+        }
 
     }
 

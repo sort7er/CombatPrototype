@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Stats;
+using DG.Tweening;
 
 public class Humanoid : MonoBehaviour
 {
@@ -222,6 +223,10 @@ public class Humanoid : MonoBehaviour
     public Vector3 Position()
     {
         return transform.position;
+    }
+    public Vector3 InFront()
+    {
+        return transform.position + transform.forward;
     }
     public Quaternion Rotation()
     {
