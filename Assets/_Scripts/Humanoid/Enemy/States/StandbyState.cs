@@ -34,7 +34,7 @@ namespace EnemyAI
                     LeaveStateAndDo(chaseState, LeaveStandby);
                 }
                 //Use this to determine if turn
-                else if (enemy.TargetInsideFOV())
+                else if (enemy.InsideAttackFOV())
                 {
                     timer += Time.deltaTime;
 
@@ -81,7 +81,14 @@ namespace EnemyAI
 
         public override void Hit()
         {
-            LeaveStateAndDo(hitState, LeaveStandby);
+            if (enemy.InsideParryFOV())
+            {
+                LeaveStateAndDo(parryState, LeaveStandby);
+            }
+            else
+            {
+                LeaveStateAndDo(hitState, LeaveStandby);
+            }
         }
 
         private void LeaveStandby()

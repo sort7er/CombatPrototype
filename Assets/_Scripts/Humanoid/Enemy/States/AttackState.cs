@@ -117,7 +117,7 @@ namespace EnemyAI
             {
                 return false;
             }
-            if (!enemy.TargetInsideFOV())
+            if (!enemy.InsideAttackFOV())
             {
                 return false;
             }

@@ -22,6 +22,9 @@ namespace EnemyAI
         [SerializeField] private float attackCooldown;
         [SerializeField] private float attackFOV = 90;
 
+        [Header("Parrying")]
+        [SerializeField] private float parryFOV = 160;
+
         [Header("Weapons")]
         [SerializeField] private Transform[] weaponPos;
         [SerializeField] private Weapon startWeapon;
@@ -171,9 +174,17 @@ namespace EnemyAI
             }
         }
         //Target
-        public bool TargetInsideFOV()
+        public bool InsideAttackFOV()
         {
-            if(Vector3.Angle(player.Position() - transform.position, InFront() - transform.position) < attackFOV * 0.5f)
+            return InsideFOV(attackFOV);
+        }
+        public bool InsideParryFOV()
+        {
+            return InsideFOV(parryFOV);
+        }
+        private bool InsideFOV(float FOV)
+        {
+            if (Vector3.Angle(player.Position() - transform.position, InFront() - transform.position) < FOV * 0.5f)
             {
                 return true;
             }
