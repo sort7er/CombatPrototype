@@ -151,14 +151,15 @@ namespace Stats
             }
         }
 
-        public virtual void Dead()
-        {
-            OnDeath?.Invoke();
-        }
 
         protected virtual void Dead(Weapon attackingWeapon)
         {
             Dead();
+        }
+
+        public virtual void Dead()
+        {
+            OnDeath?.Invoke();
         }
 
         protected virtual void DrainedPosture()

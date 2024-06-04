@@ -213,6 +213,10 @@ public class Humanoid : MonoBehaviour
     {
 
     }
+    public virtual void Dead()
+    {
+
+    }
 
     //Called from other classes
     public void DisableMovement()

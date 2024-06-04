@@ -31,12 +31,6 @@ public class EnemyHealth : Health
 
     }
 
-    public override void Dead()
-    {
-        base.Dead();
-        gameObject.SetActive(false);
-    }
-
     protected override void Dead(Weapon attackingWeapon)
     {
         if (attackingWeapon.currentAttack.hitType == HitType.slice)
@@ -52,6 +46,7 @@ public class EnemyHealth : Health
             container.Blast(direction * 2);
         }
         base.Dead(attackingWeapon);
+        owner.Dead();
     }
     protected override void DrainedPosture()
     {

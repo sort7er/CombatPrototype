@@ -69,7 +69,6 @@ namespace EnemyAI
 
             SetSpeed(3);
 
-            SetNewWeapon(Instantiate(startWeapon));
             agent.enabled = false;
 
             //This is whatever the defaul state in the attack layer is in the animator
@@ -80,6 +79,8 @@ namespace EnemyAI
         }
         private void Start()
         {
+            SetNewWeapon(Instantiate(startWeapon));
+
             if (CheckForWeapon())
             {
                 currentWeapon.SetOwner(this, transform, weaponPos);
@@ -125,6 +126,11 @@ namespace EnemyAI
         public override void OverlapCollider()
         {
             currentState.OverlapCollider();
+        }
+        public override void Dead()
+        {
+            StopFunction();
+            gameObject.SetActive(false);
         }
 
         #endregion
