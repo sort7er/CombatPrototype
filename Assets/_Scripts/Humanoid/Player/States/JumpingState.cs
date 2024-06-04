@@ -1,13 +1,13 @@
 using UnityEngine;
-namespace Actions
+namespace PlayerSM
 {
-    public class JumpState : ActionState
+    public class JumpState : PlayerState
     {
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
-            actions.SetAnimation(archetype.jump, 0.1f);
-            actions.InvokeMethod(StartFall, actions.currentAnimation.duration);
+            base.Enter(player);
+            player.SetAnimation(archetype.jump, 0.1f);
+            player.InvokeMethod(StartFall, player.currentAnimation.duration);
         }
         public override void Landing()
         {

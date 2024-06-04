@@ -1,20 +1,20 @@
 using UnityEngine;
 
-namespace Actions
+namespace PlayerSM
 {
 
-    public class PerfectParryState : ActionState
+    public class PerfectParryState : PlayerState
     {
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
+            base.Enter(player);
             ResetValues();
 
 
             //Makes the parry alternate from left to right each time
-            actions.SetCurrentPerfectParry();
-            actions.SetAnimation(archetype.perfectParry[actions.currentPerfectParry], 0.05f);
-            actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
+            player.SetCurrentPerfectParry();
+            player.SetAnimation(archetype.perfectParry[player.currentPerfectParry], 0.05f);
+            player.InvokeMethod(EndParry, player.currentAnimation.duration);
         }
 
         private void EndParry()
@@ -29,17 +29,17 @@ namespace Actions
         }
         public override void Block()
         {
-            QueueBlock(() => LeaveState(actions.blockState));
+            QueueBlock(() => LeaveState(blockState));
         }
         public override void ActionDone()
         {
-            QueueActionDone(DoFollowUpAttack, () => LeaveState(actions.blockState));
+            QueueActionDone(DoFollowUpAttack, () => LeaveState(blockState));
         }
         #endregion
 
         private void DoFollowUpAttack()
         {
-            LeaveStateAndDo(parryAttackState, () => actions.player.ResetParryTimer());
+            LeaveStateAndDo(parryAttackState, () => player.ResetParryTimer());
         }
     }
 

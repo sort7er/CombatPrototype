@@ -5,11 +5,6 @@ using DG.Tweening;
 
 public class Humanoid : MonoBehaviour
 {
-
-    public event Action OnJump;
-    public event Action OnFalling;
-    public event Action OnLanding;
-
     [Header("Humanoid")]
     [SerializeField] protected float startSpeed = 6;
     [SerializeField] protected float jumpForce = 8;
@@ -20,6 +15,7 @@ public class Humanoid : MonoBehaviour
     [SerializeField] protected float fallingForce = 6;
     [SerializeField] protected LayerMask groundLayer = 3;
 
+    //This is here temporary as this should be under the enemy
     [Header("Stunned")]
     public float stunnedDuration;
     public Rigidbody rb { get; private set; }
@@ -76,14 +72,14 @@ public class Humanoid : MonoBehaviour
         {
             if (!isJumping && !isFalling)
             {
-                OnFalling?.Invoke();
+                Fall();
             }
             isJumping = false;
             isFalling = true;
         }
         else if(isFalling && GroundCheck())
         {
-            OnLanding?.Invoke();
+            Landing();
             isFalling = false;
         }
 
@@ -143,7 +139,7 @@ public class Humanoid : MonoBehaviour
 
 
             isJumping = true;
-            OnJump?.Invoke();
+            Jumping();
         }
     }
     protected virtual void SetSpeed(float newSpeed)
@@ -189,11 +185,27 @@ public class Humanoid : MonoBehaviour
     {
 
     }
+    public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
+    {
+
+    }
     public virtual void Hit()
     {
 
     }
     public virtual void PerfectParry()
+    {
+
+    }
+    public virtual void Jumping()
+    {
+
+    }
+    public virtual void Fall()
+    {
+
+    }
+    public virtual void Landing()
     {
 
     }
@@ -269,10 +281,6 @@ public class Humanoid : MonoBehaviour
     {
         parryTimer = 0;
     }
-    //public void UpdateParryTimer(float time)
-    //{
-    //    parryTimer = time;
-    //}
     public void SetAttackData(float parryTime, float perfectParryTime, float tooLateTime)
     {
         attackParryWindow = parryTime;

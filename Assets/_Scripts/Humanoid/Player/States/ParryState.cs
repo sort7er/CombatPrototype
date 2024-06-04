@@ -1,18 +1,18 @@
 using UnityEngine;
 
-namespace Actions
+namespace PlayerSM
 {
-    public class ParryState : ActionState
+    public class ParryState : PlayerState
     {
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
+            base.Enter(player);
 
             ResetValues();
 
-            actions.SetAnimation(archetype.parry[actions.GetCurrentParry()], 0.05f);
-            actions.StopMethod();
-            actions.InvokeMethod(EndParry, actions.currentAnimation.duration);
+            player.SetAnimation(archetype.parry[player.GetCurrentParry()], 0.05f);
+            player.StopMethod();
+            player.InvokeMethod(EndParry, player.currentAnimation.duration);
         }
         #region Queuing methods 
         public override void Attack()
@@ -21,17 +21,17 @@ namespace Actions
         }
         public override void Block()
         {
-            QueueBlock(() => LeaveState(actions.blockState));
+            QueueBlock(() => LeaveState(blockState));
         }
         public override void ActionDone()
         {
-            QueueActionDone(DoAttack, () => LeaveState(actions.blockState));
+            QueueActionDone(DoAttack, () => LeaveState(blockState));
         }
         #endregion
 
         private void DoAttack()
         {
-            LeaveStateAndDo(attackState, () => actions.player.ResetParryTimer());
+            LeaveStateAndDo(attackState, () => player.ResetParryTimer());
         }
 
         private void EndParry()

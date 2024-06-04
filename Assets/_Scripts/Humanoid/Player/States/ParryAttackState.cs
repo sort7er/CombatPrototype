@@ -1,37 +1,37 @@
 using UnityEngine;
 
-namespace Actions
+namespace PlayerSM
 {
-    public class ParryAttackState : ActionState
+    public class ParryAttackState : PlayerState
     {
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
+            base.Enter(player);
 
             ResetValuesAttack();
-            actions.SetAnimation(archetype.parryfollowUpAttack[actions.currentPerfectParry], 0.05f);
-            actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
+            player.SetAnimation(archetype.parryfollowUpAttack[player.currentPerfectParry], 0.05f);
+            player.InvokeMethod(EndAttack, player.currentAnimation.duration);
         }
 
 
         #region Queuing methods 
         public override void Attack()
         {
-            QueueAttack(() => LeaveState(actions.attackState));
+            QueueAttack(() => LeaveState(attackState));
         }
         public override void Block()
         {
-            QueueBlock(() => LeaveState(actions.blockState));
+            QueueBlock(() => LeaveState(blockState));
         }
         public override void ActionDone()
         {
-            QueueActionDone(() => LeaveState(actions.attackState), () => LeaveState(actions.blockState));
+            QueueActionDone(() => LeaveState(attackState), () => LeaveState(blockState));
         }
         #endregion
         public override void OverlapCollider()
         {
             base.OverlapCollider();
-            actions.player.AddForce(actions.transform.forward * 20);
+            player.AddForce(player.Forward() * 20);
         }
 
         private void EndAttack()

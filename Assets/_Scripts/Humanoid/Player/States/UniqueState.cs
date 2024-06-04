@@ -1,40 +1,40 @@
 using EnemyAI;
 using System.Collections.Generic;
 
-namespace Actions
+namespace PlayerSM
 {
-    public class UniqueState : ActionState
+    public class UniqueState : PlayerState
     {
         private List<Enemy> enemyList;
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
+            base.Enter(player);
             ResetValuesAttack();
-            actions.SetAnimation(archetype.unique);
-            actions.canUseUnique = false;
+            player.SetAnimation(archetype.unique);
+            player.canUseUnique = false;
 
             //This is for the UI
-            actions.unique.Using();
+            player.unique.Using();
 
             //List of enemies
             GetEnemies();
 
-            actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
+            player.InvokeMethod(EndAttack, player.currentAnimation.duration);
         }
 
         private void GetEnemies()
         {
             ClearList();
-            enemyList = actions.player.targetAssistance.CheckForEnemies(actions.currentWeapon.uniqueAbility);
+            enemyList = player.targetAssistance.CheckForEnemies(player.currentWeapon.uniqueAbility);
 
 
             if (enemyList.Count > 0)
             {
-                actions.currentWeapon.uniqueAbility.ExecuteAbility(actions.player, enemyList);
+                player.currentWeapon.uniqueAbility.ExecuteAbility(player, enemyList);
             }
             else
             {
-                actions.currentWeapon.uniqueAbility.ExecuteAbilityNoTarget(actions.player);
+                player.currentWeapon.uniqueAbility.ExecuteAbilityNoTarget(player);
             }
         }
         private void ClearList()
@@ -49,21 +49,21 @@ namespace Actions
         #region Queuing methods 
         public override void Attack()
         {
-            QueueAttack(() => LeaveState(actions.attackState));
+            QueueAttack(() => LeaveState(attackState));
         }
         public override void Block()
         {
-            QueueBlock(() => LeaveState(actions.blockState));
+            QueueBlock(() => LeaveState(blockState));
         }
         public override void ActionDone()
         {
-            QueueActionDone(() => LeaveState(actions.attackState), () => LeaveState(actions.blockState));
+            QueueActionDone(() => LeaveState(attackState), () => LeaveState(blockState));
         }
         #endregion
 
         private void EndAttack()
         {
-            LeaveState(actions.idleState);
+            LeaveState(idleState);
         }
     }
 }

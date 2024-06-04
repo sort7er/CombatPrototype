@@ -1,24 +1,24 @@
 using UnityEngine;
 
-namespace Actions
+namespace PlayerSM
 {
-    public class BlockState : ActionState
+    public class BlockState : PlayerState
     {
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
+            base.Enter(player);
             ResetValues();
 
-            actions.InvokeMethod(CanRelease, archetype.block.duration);
-            actions.SetAnimation(archetype.block, 0.1f);
-            actions.player.StartParryTimer();
+            player.InvokeMethod(CanRelease, archetype.block.duration);
+            player.SetAnimation(archetype.block, 0.1f);
+            player.StartParryTimer();
 
         }
 
         #region Queuing methods
         public override void Attack()
         {
-            QueueAttack(() => LeaveStateAndDo(actions.attackState, NotBlocking));
+            QueueAttack(() => LeaveStateAndDo(attackState, NotBlocking));
         }
         public override void BlockRelease()
         {
@@ -26,28 +26,28 @@ namespace Actions
         }
         private void CanRelease()
         {
-            actions.player.IsBlocking();
-            QueueActionDone(() => LeaveStateAndDo(actions.attackState, NotBlocking), null, EndBlocking);
+            player.IsBlocking();
+            QueueActionDone(() => LeaveStateAndDo(attackState, NotBlocking), null, EndBlocking);
         }
         #endregion
 
         public override void Parry()
         {
-            LeaveStateAndDo(actions.parryState, NotBlocking);
+            LeaveStateAndDo(parryState, NotBlocking);
         }
 
         public override void PerfectParry()
         {
-            LeaveStateAndDo(actions.perfectParryState, NotBlocking);
+            LeaveStateAndDo(perfectParryState, NotBlocking);
         }
 
         private void EndBlocking()
         {
-            LeaveStateAndDo(actions.idleState, NotBlocking);
+            LeaveStateAndDo(idleState, NotBlocking);
         }
         private void NotBlocking()
         {
-            actions.player.IsNotBlocking();
+            player.IsNotBlocking();
         }
     }
 

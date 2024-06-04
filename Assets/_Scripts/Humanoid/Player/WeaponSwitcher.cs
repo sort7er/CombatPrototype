@@ -35,7 +35,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void NextWeapon()
     {
-        if (!player.playerActions.CanSwitchWeapon())
+        if (!player.CanSwitchWeapon())
         {
             return;
         }
@@ -53,7 +53,7 @@ public class WeaponSwitcher : MonoBehaviour
     }
     private void PreviousWeapon()
     {
-        if (!player.playerActions.CanSwitchWeapon())
+        if (!player.CanSwitchWeapon())
         {
             return;
         }

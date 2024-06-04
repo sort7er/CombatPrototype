@@ -1,8 +1,8 @@
-using Actions;
+using PlayerSM;
 using System;
 using UnityEngine;
 
-namespace Actions
+namespace PlayerSM
 {
     public enum QueuedAction
     {
@@ -14,11 +14,11 @@ namespace Actions
     }
 
 
-    public abstract class ActionState
+    public abstract class PlayerState
     {
 
         public QueuedAction upcommingAction;
-        public PlayerActions actions;
+        public Player player;
         public Weapon weapon;
         public Archetype archetype;
         public bool canChain;
@@ -35,9 +35,9 @@ namespace Actions
         public ParryAttackState parryAttackState;
 
         #region Signal methods
-        public virtual void Enter(PlayerActions actions)
+        public virtual void Enter(Player player)
         {
-            SetReferences(actions);
+            SetReferences(player);
         }
         public virtual void Update()
         {
@@ -96,6 +96,11 @@ namespace Actions
         {
 
         }
+        public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
+        {
+
+        }
+
         #endregion
 
         #region Queue methods
@@ -172,16 +177,16 @@ namespace Actions
             upcommingAction = action;
         }
 
-        public void LeaveState(ActionState newState)
+        public void LeaveState(PlayerState newState)
         {
-            actions.StopMethod();
-            actions.SwitchState(newState);
+            player.StopMethod();
+            player.SwitchState(newState);
         }
-        public void LeaveStateAndDo(ActionState newState, Action doThis)
+        public void LeaveStateAndDo(PlayerState newState, Action doThis)
         {
             doThis?.Invoke();
-            actions.StopMethod();
-            actions.SwitchState(newState);
+            player.StopMethod();
+            player.SwitchState(newState);
         }
 
         public void ResetValuesAttack()
@@ -199,28 +204,25 @@ namespace Actions
         #endregion
 
         #region Private methods
-        private void SetReferences(PlayerActions actions)
+        private void SetReferences(Player player)
         {
-            //this.actions = actions;
-            //weapon = actions.currentWeapon;
-            //archetype = actions.currentWeapon.archetype;
-            if(this.actions == null)
+            if(this.player == null)
             {
-                this.actions = actions;
-                idleState = actions.idleState;
-                jumpState = actions.jumpState;
-                fallState = actions.fallState;
-                attackState = actions.attackState;
-                uniqueState = actions.uniqueState;
-                blockState = actions.blockState;
-                parryState = actions.parryState;
-                perfectParryState = actions.perfectParryState;
-                parryAttackState = actions.parryAttackState;
+                this.player = player;
+                idleState = player.idleState;
+                jumpState = player.jumpState;
+                fallState = player.fallState;
+                attackState = player.attackState;
+                uniqueState = player.uniqueState;
+                blockState = player.blockState;
+                parryState = player.parryState;
+                perfectParryState = player.perfectParryState;
+                parryAttackState = player.parryAttackState;
 
             }
 
             //Need to update the current weapon all the time to make sure the state knows which weapon is in use
-            UpdateWeapon(actions.currentWeapon);
+            UpdateWeapon(player.currentWeapon);
         }
 
         public void UpdateWeapon(Weapon weapon)

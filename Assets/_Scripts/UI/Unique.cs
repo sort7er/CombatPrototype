@@ -1,4 +1,4 @@
-using Actions;
+using PlayerSM;
 using DG.Tweening;
 using RunSettings;
 using SlashABit.UI.HudElements;
@@ -10,7 +10,7 @@ public class Unique : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
     public CanvasGroup group;
-    public PlayerActions playerActions;
+    public Player player;
     public Image icon;
     public RectTransform container;
     public Color activeColor, loadingColor;
@@ -25,7 +25,7 @@ public class Unique : MonoBehaviour
     private void Awake()
     {
         hudHandler = new ActiveHudHandler<float>(3, group);
-        fillImage.fillAmount = Tools.Remap(playerActions.uniqueCoolDown,0,playerActions.uniqueCoolDown, 0,1);
+        fillImage.fillAmount = Tools.Remap(player.uniqueCoolDown,0,player.uniqueCoolDown, 0,1);
         Active();
     }
 
@@ -49,7 +49,7 @@ public class Unique : MonoBehaviour
 
     public void Loading()
     {
-        timer = playerActions.uniqueCoolDown;
+        timer = player.uniqueCoolDown;
         container.DOScale(Vector3.one, 0.2f);
         loading = true;
         icon.color = loadingColor;
@@ -61,7 +61,7 @@ public class Unique : MonoBehaviour
         {
             timer -= Time.deltaTime;
             timerText.text = timer.ToString("F0");
-            fillImage.fillAmount = Tools.Remap(timer, 0, playerActions.uniqueCoolDown, 1, 0);
+            fillImage.fillAmount = Tools.Remap(timer, 0, player.uniqueCoolDown, 1, 0);
         }
 
         hudHandler.Update(RunManager.activeHud, fillImage.fillAmount);

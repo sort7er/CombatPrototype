@@ -105,36 +105,39 @@ namespace Stats
             //{
             //    return;
             //}
-            SetUpParryData(attackingWeapon, hitPoint);
+            //SetUpParryData(attackingWeapon, hitPoint);
 
             int damage = attackingWeapon.currentAttack.damage;
 
+            MinusHealth(damage);
+            MinusPosture(parryData.postureDamage);
 
-            if (parryData.parryType == ParryType.None)
-            {
-                MinusHealth(damage);
-                MinusPosture(parryData.postureDamage);
-                attackingWeapon.Hit(hitPoint);
-                owner.Hit();
-                owner.AddForce(parryData.direction.normalized * attackingWeapon.pushbackForce);
 
-            }
-            else
-            {
-                parryCheck.IsDefending(parryData);
-            }
+            //if (parryData.parryType == ParryType.None)
+            //{
+            //    MinusHealth(damage);
+            //    MinusPosture(parryData.postureDamage);
+            //    attackingWeapon.Hit(hitPoint);
+            //    owner.Hit();
+            //    owner.AddForce(parryData.direction.normalized * attackingWeapon.pushbackForce);
+
+            //}
+            //else
+            //{
+            //    parryCheck.IsDefending(parryData);
+            //}
 
             CheckStatus(attackingWeapon);
         }
-        private void SetUpParryData(Weapon attackingWeapon, Vector3 hitPoint)
-        {
-            parryData.parryType = parryCheck.CheckForParry(owner, attackingWeapon.owner);
-            parryData.hitPoint = hitPoint;
-            parryData.direction = transform.position - attackingWeapon.owner.Position();
-            parryData.attackingWeapon = attackingWeapon;
-            parryData.postureDamage = attackingWeapon.currentAttack.postureDamage;
-            parryData.defendingWeapon = GetOwnersWeapon();
-        }
+        //private void SetUpParryData(Weapon attackingWeapon, Vector3 hitPoint)
+        //{
+        //    parryData.parryType = parryCheck.CheckForParry(owner, attackingWeapon.owner);
+        //    parryData.hitPoint = hitPoint;
+        //    parryData.direction = transform.position - attackingWeapon.owner.Position();
+        //    parryData.attackingWeapon = attackingWeapon;
+        //    parryData.postureDamage = attackingWeapon.currentAttack.postureDamage;
+        //    parryData.defendingWeapon = GetOwnersWeapon();
+        //}
 
         private void MinusHealth(int damage)
         {
@@ -275,38 +278,38 @@ namespace Stats
 
         }
 
-        protected Enemy GetEnemy()
-        {
-            if (owner is Enemy enemy)
-            {
-                return enemy;
-            }
-            else return null;
-        }
+        //protected Enemy GetEnemy()
+        //{
+        //    if (owner is Enemy enemy)
+        //    {
+        //        return enemy;
+        //    }
+        //    else return null;
+        //}
 
-        protected Player GetPlayer()
-        {
-            if (owner is Player player)
-            {
-                return player;
-            }
-            else return null;
-        }
+        //protected Player GetPlayer()
+        //{
+        //    if (owner is Player player)
+        //    {
+        //        return player;
+        //    }
+        //    else return null;
+        //}
 
-        protected Weapon GetOwnersWeapon()
-        {
-            if (owner is Player player)
-            {
-                return player.playerActions.currentWeapon;
-            }
-            else if (owner is Enemy enemy)
-            {
-                return enemy.currentWeapon;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //protected Weapon GetOwnersWeapon()
+        //{
+        //    if (owner is Player player)
+        //    {
+        //        return player.currentWeapon;
+        //    }
+        //    else if (owner is Enemy enemy)
+        //    {
+        //        return enemy.currentWeapon;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
     }
 }

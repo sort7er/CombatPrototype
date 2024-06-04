@@ -1,33 +1,33 @@
 using UnityEngine;
-namespace Actions
+namespace PlayerSM
 {
-    public class IdleState : ActionState
+    public class IdleState : PlayerState
     {
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
+            base.Enter(player);
                 
-            if (actions.isFalling)
+            if (player.isFalling)
             {
                 LeaveState(fallState);
             }
-            else if (actions.isMoving)
+            else if (player.isMoving)
             {
-                actions.SetAnimation(archetype.walk);
+                player.SetAnimation(archetype.walk);
             }
             else
             {
-                actions.SetAnimation(archetype.idle);
+                player.SetAnimation(archetype.idle);
             }
         }
 
         public override void Moving()
         {
-            actions.SetAnimation(archetype.walk);
+            player.SetAnimation(archetype.walk);
         }
         public override void StoppedMoving()
         {
-            actions.SetAnimation(archetype.idle);
+            player.SetAnimation(archetype.idle);
         }
         public override void Jump()
         {

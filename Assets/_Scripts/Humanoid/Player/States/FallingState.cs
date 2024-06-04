@@ -1,21 +1,21 @@
 using UnityEngine;
 
-namespace Actions
+namespace PlayerSM
 {
-    public class FallState : ActionState
+    public class FallState : PlayerState
     {
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
-            actions.SetAnimation(archetype.fall);
+            base.Enter(player);
+            player.SetAnimation(archetype.fall);
         }
 
         public override void Update()
         {
             base.Update();
-            if (actions.player.GroundCheck())
+            if (player.GroundCheck())
             {
-                actions.Landing();
+                player.Landing();
             }
         }
         public override void Landing()

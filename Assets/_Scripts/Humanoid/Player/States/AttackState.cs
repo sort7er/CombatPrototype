@@ -1,15 +1,15 @@
-using Actions;
+using PlayerSM;
 using UnityEngine;
 
-namespace Actions
+namespace PlayerSM
 {
-    public class AttackState : ActionState
+    public class AttackState : PlayerState
     {
         private int currentAttack;
 
-        public override void Enter(PlayerActions actions)
+        public override void Enter(Player player)
         {
-            base.Enter(actions);
+            base.Enter(player);
             currentAttack = 0;
             StartAttack();
         }
@@ -20,27 +20,27 @@ namespace Actions
         }
         public override void Block()
         {
-            QueueBlock(() => LeaveState(actions.blockState));
+            QueueBlock(() => LeaveState(blockState));
         }
         public override void ActionDone()
         {
-            QueueActionDone(StartAttack, () => LeaveState(actions.blockState));
+            QueueActionDone(StartAttack, () => LeaveState(blockState));
         }
         #endregion
 
         private void StartAttack()
         {
             ResetValuesAttack();
-            actions.SetAnimation(archetype.attacks[currentAttack], 0.05f);
-            actions.StopMethod();
-            actions.InvokeMethod(EndAttack, actions.currentAnimation.duration);
+            player.SetAnimation(archetype.attacks[currentAttack], 0.05f);
+            player.StopMethod();
+            player.InvokeMethod(EndAttack, player.currentAnimation.duration);
             UpdateCurrentAttack();
         }
 
 
         private void EndAttack()
         {
-            LeaveState(actions.idleState);
+            LeaveState(player.idleState);
         }
 
         private void UpdateCurrentAttack()
