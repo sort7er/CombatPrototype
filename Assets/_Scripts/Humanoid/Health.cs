@@ -5,7 +5,6 @@ using DG.Tweening;
 using SlashABit.UI.HudElements;
 using RunSettings;
 using TMPro;
-using EnemyAI;
 
 namespace Stats
 {
@@ -18,9 +17,6 @@ namespace Stats
     }
     public class Health : MonoBehaviour
     {
-
-
-
         [SerializeField] protected int startHealth = 100;
         [SerializeField] private Slider healthSlider;
         [SerializeField] private CanvasGroup canvasGroupHealth;
@@ -36,14 +32,12 @@ namespace Stats
         [SerializeField] private float defaultPostureRegen = 10;
 
         public Humanoid owner;
-        public ParryCheck parryCheck;
 
         private ActiveHudHandler<int> hudHandlerHealth;
         private ActiveHudHandler<float> hudHandlerPosture;
 
 
         private Vector2 postureStartSize;
-        private ParryData parryData;
 
         public event Action OnTakeDamage;
         public event Action OnPostureDrained;
@@ -65,7 +59,6 @@ namespace Stats
             hudHandlerPosture = new ActiveHudHandler<float>(3, canvasGroupPosture);
             SetUpHealth();
             SetUpPosture();
-            parryData = new ParryData(owner);
         }
 
         public void SetUpHealth()
@@ -101,43 +94,19 @@ namespace Stats
 
         public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
         {
-            //if (IsDead())
-            //{
-            //    return;
-            //}
-            //SetUpParryData(attackingWeapon, hitPoint);
+            if (IsDead())
+            {
+                return;
+            }
 
-            int damage = attackingWeapon.currentAttack.damage;
+            MinusHealth(attackingWeapon.currentAttack.damage);
+            MinusPosture(attackingWeapon.currentAttack.postureDamage);
+           
+            attackingWeapon.Hit(hitPoint);
 
-            MinusHealth(damage);
-            MinusPosture(parryData.postureDamage);
-
-
-            //if (parryData.parryType == ParryType.None)
-            //{
-            //    MinusHealth(damage);
-            //    MinusPosture(parryData.postureDamage);
-            //    attackingWeapon.Hit(hitPoint);
-            //    owner.Hit();
-            //    owner.AddForce(parryData.direction.normalized * attackingWeapon.pushbackForce);
-
-            //}
-            //else
-            //{
-            //    parryCheck.IsDefending(parryData);
-            //}
 
             CheckStatus(attackingWeapon);
         }
-        //private void SetUpParryData(Weapon attackingWeapon, Vector3 hitPoint)
-        //{
-        //    parryData.parryType = parryCheck.CheckForParry(owner, attackingWeapon.owner);
-        //    parryData.hitPoint = hitPoint;
-        //    parryData.direction = transform.position - attackingWeapon.owner.Position();
-        //    parryData.attackingWeapon = attackingWeapon;
-        //    parryData.postureDamage = attackingWeapon.currentAttack.postureDamage;
-        //    parryData.defendingWeapon = GetOwnersWeapon();
-        //}
 
         private void MinusHealth(int damage)
         {
@@ -181,8 +150,6 @@ namespace Stats
                 Invoke(nameof(StartRegenPosture), timeTillRegen);
             }
         }
-
-
 
         public virtual void Dead()
         {
@@ -277,39 +244,5 @@ namespace Stats
             }
 
         }
-
-        //protected Enemy GetEnemy()
-        //{
-        //    if (owner is Enemy enemy)
-        //    {
-        //        return enemy;
-        //    }
-        //    else return null;
-        //}
-
-        //protected Player GetPlayer()
-        //{
-        //    if (owner is Player player)
-        //    {
-        //        return player;
-        //    }
-        //    else return null;
-        //}
-
-        //protected Weapon GetOwnersWeapon()
-        //{
-        //    if (owner is Player player)
-        //    {
-        //        return player.currentWeapon;
-        //    }
-        //    else if (owner is Enemy enemy)
-        //    {
-        //        return enemy.currentWeapon;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
     }
 }

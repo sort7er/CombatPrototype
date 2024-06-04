@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Stats
@@ -6,6 +7,9 @@ namespace Stats
     public class ParryCheck : MonoBehaviour
     {
         public Health health;
+        public Humanoid owner;
+
+        private float receivedMultiplier, giveMultiplier;
 
         public ParryType CheckForParry(Humanoid defender, Humanoid attacker)
         {
@@ -36,39 +40,41 @@ namespace Stats
             }
         }
 
-        public void IsDefending(ParryData data)
+        public void IsDefending(Weapon attackingWeapon, Vector3 hitPoint, ParryType parryType, Vector3 direction)
         {
-            float receivedMultiplier;
-            float giveMultiplier;
+            Vector3 force = direction * attackingWeapon.pushbackForce;
 
-            if (data.parryType == ParryType.PerfectParry)
+            if (parryType == ParryType.PerfectParry)
             {
-                receivedMultiplier = 0.2f;
-                giveMultiplier = 1.3f;
-                EffectManager.instance.PerfectParry(data.hitPoint);
-                data.attackingWeapon.owner.Staggered();
-                data.defender.PerfectParry();
-                data.attackingWeapon.owner.AddForce(-data.direction.normalized * data.attackingWeapon.pushbackForce);
+                EffectManager.instance.PerfectParry(hitPoint);
+                attackingWeapon.owner.Staggered();
+                owner.PerfectParry();
+                DefenceSetup(0.2f, 1.3f, attackingWeapon.owner, -force);
             }
-            else if (data.parryType == ParryType.Parry)
+            else if (parryType == ParryType.Parry)
             {
-                EffectManager.instance.Parry(data.hitPoint);
-                receivedMultiplier = 0.5f;
-                giveMultiplier = 1f;
-                data.defender.Parry();
-                data.attackingWeapon.owner.AddForce(-data.direction.normalized * data.attackingWeapon.pushbackForce);
+                EffectManager.instance.Parry(hitPoint);
+                owner.Parry();
+
+                DefenceSetup(0.5f, 1f, attackingWeapon.owner, -force);
             }
             else
             {
-                EffectManager.instance.Block(data.hitPoint - data.direction * 0.1f);
-                receivedMultiplier = 1.5f;
-                giveMultiplier = 0.25f;
-                data.defender.AddForce(data.direction.normalized * data.attackingWeapon.pushbackForce);
+                EffectManager.instance.Block(hitPoint - direction * 0.1f);
+
+                DefenceSetup(1.5f, 0.25f, owner, force);
             }
 
-            health.MinusPosture(Mathf.FloorToInt(data.postureDamage * receivedMultiplier));
+            health.MinusPosture(Mathf.FloorToInt(attackingWeapon.postureDamage * receivedMultiplier));
+            attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(owner.currentWeapon.postureDamage * giveMultiplier));
+        }
+     
+        private void DefenceSetup(float recieve, float give, Humanoid owner, Vector3 force)
+        {
+            receivedMultiplier = recieve;
+            giveMultiplier = give;
 
-            data.attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(data.defendingWeapon.postureDamage * giveMultiplier));
+            owner.AddForce(force);
         }
     }
 }

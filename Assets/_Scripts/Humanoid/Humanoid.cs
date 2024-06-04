@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
 using Stats;
-using DG.Tweening;
 
 public class Humanoid : MonoBehaviour
 {
+    public event Action<Weapon> OnNewWeapon;
+
     [Header("Humanoid")]
     [SerializeField] protected float startSpeed = 6;
     [SerializeField] protected float jumpForce = 8;
@@ -18,8 +19,11 @@ public class Humanoid : MonoBehaviour
     //This is here temporary as this should be under the enemy
     [Header("Stunned")]
     public float stunnedDuration;
+    public Weapon currentWeapon { get; private set; }
     public Rigidbody rb { get; private set; }
-    public Health health { get; private set; }
+
+    public Health health;
+    public HitBox hitBox;
 
     //This is when the owner is parrying
     private bool startParryTimer;
@@ -185,11 +189,7 @@ public class Humanoid : MonoBehaviour
     {
 
     }
-    public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
-    {
-
-    }
-    public virtual void Hit()
+    public virtual void Hit(Weapon attackingWeapon, Vector3 hitPoint)
     {
 
     }
@@ -209,7 +209,10 @@ public class Humanoid : MonoBehaviour
     {
 
     }
+    public virtual void OverlapCollider()
+    {
 
+    }
 
     //Called from other classes
     public void DisableMovement()
@@ -286,5 +289,20 @@ public class Humanoid : MonoBehaviour
         attackParryWindow = parryTime;
         attackPerfectParryWindow = perfectParryTime;
         attackTooLateWindow = tooLateTime;
+    }
+    public virtual void SetNewWeapon(Weapon weapon)
+    {
+        //Incase already holding a weapon
+        if (currentWeapon != null)
+        {
+            currentWeapon.Hidden();
+        }
+
+        currentWeapon = weapon;
+
+        OnNewWeapon?.Invoke(weapon);
+       
+        currentWeapon.Vissible();
+
     }
 }

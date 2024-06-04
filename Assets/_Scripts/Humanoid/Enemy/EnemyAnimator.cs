@@ -39,9 +39,6 @@ public class EnemyAnimator : MonoBehaviour
         {
             tooLateTime += Time.deltaTime;
         }
-
-
-
     }
 
     public void SetWalking(bool isWalking)
@@ -86,7 +83,8 @@ public class EnemyAnimator : MonoBehaviour
         if (enemy.currentWeapon.CurrentAttackExists())
         {
             enemy.SetAttackData(parryTime, perfectParryTime, tooLateTime);
-            enemy.hitbox.OverlapCollider();
+            enemy.OverlapCollider();
+            enemy.hitBox.OverlapCollider();
         }
 
         parryTime = 0;

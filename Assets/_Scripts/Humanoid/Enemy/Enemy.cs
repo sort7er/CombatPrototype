@@ -30,10 +30,7 @@ namespace EnemyAI
         [SerializeField] private Weapon startWeapon;
 
         public EnemyAnimator enemyAnimator;
-        public HitBox hitbox;
 
-
-        public Weapon currentWeapon { get; private set; }
         public EnemyState currentState { get; private set; }
         public Anim currentAnimation { get; private set; }
 
@@ -64,6 +61,7 @@ namespace EnemyAI
         public int attackDoneState { get; private set; }
 
 
+        #region Setup
         protected override void Awake()
         {
             base.Awake();
@@ -71,7 +69,7 @@ namespace EnemyAI
 
             SetSpeed(3);
 
-            currentWeapon = Instantiate(startWeapon);
+            SetNewWeapon(Instantiate(startWeapon));
             agent.enabled = false;
 
             //This is whatever the defaul state in the attack layer is in the animator
@@ -96,26 +94,21 @@ namespace EnemyAI
 
         protected override void Update()
         {
-            base.Update();
             //Debug.Log(currentState);
+            base.Update();
             currentState.Update();
             AnimationSpeed();
 
         }
-        private void AnimationSpeed()
-        {
-            if (isRunning)
-            {
-                animatorRunSpeed = Mathf.Lerp(animatorRunSpeed, 1, Time.deltaTime * 5);
+        #endregion
 
-            }
-            else
-            {
-                animatorRunSpeed = Mathf.Lerp(animatorRunSpeed, 0, Time.deltaTime * 5);
-            }
-            enemyAnimator.animator.SetFloat("MovementZ", animatorRunSpeed);
-        }
         #region Signals to state machine
+
+        public void Takedown()
+        {
+            currentState.Takedown();
+        }
+        // From humanoid
         public override void Staggered()
         {
             currentState.Staggered();
@@ -125,42 +118,18 @@ namespace EnemyAI
         {
             currentState.Stunned();
         }
-        public override void Hit()
+        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
         {
-            currentState.Hit();
-
-            // Add switch to idle instead of walk, and change attack animation to AttackDone
-
-
+            currentState.Hit(attackingWeapon, hitPoint);
         }
-        public void Takedown()
+        public override void OverlapCollider()
         {
-            currentState.Takedown();
+            currentState.OverlapCollider();
         }
 
         #endregion
 
-        protected override void Move()
-        {
-
-            if(currentCorner < currentPath.corners.Length)
-            {
-                currentMoveToTarget = currentPath.corners[currentCorner];
-
-                if (Vector3.Distance(currentMoveToTarget, transform.position) < waypointDistance)
-                {
-                    currentCorner++;
-                }
-            }
-
-            movementDirection = currentMoveToTarget - transform.position;
-
-            base.Move();
-
-            
-        }
-
-        //Called from the state machine
+        #region Called from the state machine
 
         public bool CheckForWeapon()
         {
@@ -233,21 +202,6 @@ namespace EnemyAI
             currentAnimation = newAnim;
             enemyAnimator.animator.CrossFadeInFixedTime(currentAnimation.state, transition);
         }
-
-        //Needs to be in update
-
-        public void SetLookAtAndForward(Vector3 lookAtTarget, Vector3 forwardTarget)
-        {
-            this.lookAtTarget = lookAtTarget;
-            this.forwardTarget = forwardTarget;
-        }
-        public float CalculateDotProduct()
-        {
-            Vector3 directionToLookAt = lookAtTarget - transform.position;
-            Vector3 directionToTarget = forwardTarget - transform.position;
-
-            return Tools.Dot(directionToLookAt, directionToTarget);
-        }
         public void RotateToTarget(Vector3 lookAtTarget, Vector3 forwardTarget)
         {
             // This is here because to set the targets
@@ -257,6 +211,65 @@ namespace EnemyAI
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             Quaternion slerpedRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);
             SetRotation(slerpedRotation);
+        }
+        public void SetLookAtAndForward(Vector3 lookAtTarget, Vector3 forwardTarget)
+        {
+            this.lookAtTarget = lookAtTarget;
+            this.forwardTarget = forwardTarget;
+        }
+        public void SpeedByDist(float dist)
+        {
+            if (dist > runDistance)
+            {
+                if (!isRunning)
+                {
+                    isRunning = true;
+                    SetSpeed(6);
+                }
+            }
+            else
+            {
+                if (isRunning && dist < minPlayerDistance + playerDistanceThreshold)
+                {
+                    isRunning = false;
+                    SetSpeed(3);
+
+                }
+            }
+        }
+
+        #endregion
+
+        #region Called from this class
+        private void AnimationSpeed()
+        {
+            if (isRunning)
+            {
+                animatorRunSpeed = Mathf.Lerp(animatorRunSpeed, 1, Time.deltaTime * 5);
+
+            }
+            else
+            {
+                animatorRunSpeed = Mathf.Lerp(animatorRunSpeed, 0, Time.deltaTime * 5);
+            }
+            enemyAnimator.animator.SetFloat("MovementZ", animatorRunSpeed);
+        }
+        protected override void Move()
+        {
+
+            if (currentCorner < currentPath.corners.Length)
+            {
+                currentMoveToTarget = currentPath.corners[currentCorner];
+
+                if (Vector3.Distance(currentMoveToTarget, transform.position) < waypointDistance)
+                {
+                    currentCorner++;
+                }
+            }
+
+            movementDirection = currentMoveToTarget - transform.position;
+
+            base.Move();
         }
         public void MoveTo(Vector3 target)
         {
@@ -270,30 +283,19 @@ namespace EnemyAI
         {
             return agent.CalculatePath(target, currentPath);
         }
-        public void SpeedByDist(float dist)
+        #endregion
+
+        #region Called from other classes
+        public float CalculateDotProduct()
         {
-            if(dist > runDistance)
-            {
-                if (!isRunning)
-                {
-                    isRunning = true;
-                    SetSpeed(6);
-                }
-            }
-            else
-            {
-                if(isRunning && dist < minPlayerDistance + playerDistanceThreshold)
-                {
-                    isRunning= false;
-                    SetSpeed(3);
+            Vector3 directionToLookAt = lookAtTarget - transform.position;
+            Vector3 directionToTarget = forwardTarget - transform.position;
 
-                }
-            }
+            return Tools.Dot(directionToLookAt, directionToTarget);
         }
+        #endregion
 
-
-        
-        //Called from other scripts
+        #region Invoking
         public void InvokeFunction(Action function, float waitTime)
         {
             StartCoroutine(DoFunction(function, waitTime));
@@ -308,6 +310,7 @@ namespace EnemyAI
         {
             StopAllCoroutines();
         }
+        #endregion
     }
 }
 

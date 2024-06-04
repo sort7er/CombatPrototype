@@ -17,13 +17,10 @@ public class Player : Humanoid
     public WeaponSwitcher weaponSwitcher;
     public InputReader inputReader;
     public CameraController cameraController;
-    public HitBox hitBox;
-    public Health Health;
     public TargetAssistance targetAssistance;
     public ParryCheck parryCheck;
 
     public Transform[] weaponPos;
-    public Weapon currentWeapon { get; private set; }
     public PlayerState currentState { get; private set; }
     public Anim currentAnimation { get; private set; }
     public bool isMoving { get; private set; }
@@ -38,8 +35,6 @@ public class Player : Humanoid
     public ParryState parryState = new ParryState();
     public PerfectParryState perfectParryState = new PerfectParryState();
     public ParryAttackState parryAttackState = new ParryAttackState();
-
-
 
     public int currentParry { get; private set; }
     public int currentPerfectParry { get; private set; }
@@ -121,10 +116,6 @@ public class Player : Humanoid
     {
         currentWeapon.Effect();
     }
-    public void OverlapCollider()
-    {
-        currentState.OverlapCollider();
-    }
     public void ActionDone()
     {
         currentState.ActionDone();
@@ -132,6 +123,10 @@ public class Player : Humanoid
     }
 
     //From humanoid
+    public override void OverlapCollider()
+    {
+        currentState.OverlapCollider();
+    }
     public override void Parry()
     {
         currentState.Parry();
@@ -155,19 +150,22 @@ public class Player : Humanoid
         isFalling = false;
         currentState.Landing();
     }
-    public override void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
+    public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
     {
-        currentState.TakeDamage(attackingWeapon, hitPoint);
-        
+
         ParryType parryType = parryCheck.CheckForParry(this, attackingWeapon.owner);
+        Vector3 direction = (transform.position - attackingWeapon.owner.Position()).normalized;
 
         if (parryType == ParryType.None)
         {
+            //Can add hit functionnality here
+
+            AddForce(direction * attackingWeapon.pushbackForce);
             health.TakeDamage(attackingWeapon, hitPoint);
         }
         else
         {
-            //parryCheck.IsDefending(parryData);
+            parryCheck.IsDefending(attackingWeapon, hitPoint, parryType, direction);
         }
     }
 
@@ -239,31 +237,14 @@ public class Player : Humanoid
         armAnimator.SetFloat("MovementX", movement.x);
         armAnimator.SetFloat("MovementZ", movement.y);
     }
-    //private void SetUpParryData(Weapon attackingWeapon, Vector3 hitPoint)
-    //{
-    //    parryData.parryType = parryCheck.CheckForParry(this, attackingWeapon.owner);
-    //    parryData.hitPoint = hitPoint;
-    //    parryData.direction = transform.position - attackingWeapon.owner.Position();
-    //    parryData.attackingWeapon = attackingWeapon;
-    //    parryData.postureDamage = attackingWeapon.currentAttack.postureDamage;
-    //    parryData.defendingWeapon = GetOwnersWeapon();
-    //}
-
     #endregion
 
     #region Called from other classes
-    public void SetNewWeapon(Weapon weapon)
+    public override void SetNewWeapon(Weapon weapon)
     {
-        if (currentWeapon != null)
-        {
-            currentWeapon.Hidden();
-        }
+        base.SetNewWeapon(weapon);
 
-        currentWeapon = weapon;
         currentWeapon.SetOwner(this, cameraController.camTrans, weaponPos);
-        
-        hitBox.SetCurrentWeapon();
-        currentWeapon.Vissible();
 
         if (currentState != null)
         {

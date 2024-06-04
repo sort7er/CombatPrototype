@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyAI;
 using PlayerSM;
-using Stats;
+
 public class HitBox : MonoBehaviour
 {
 
     //Temporary serilizable
     public Transform hitBoxRef;
+    public Humanoid owner;
     private Weapon currentWeapon;
-    private Humanoid owner;
-    private  Collider[] hits;
+    private Collider[] hits;
 
     private List<SlicingController> slicingControllers = new();
 
@@ -19,29 +19,11 @@ public class HitBox : MonoBehaviour
     private void Awake()
     {
         hits = new Collider[10];
+        owner.OnNewWeapon += SetCurrentWeapon;
     }
-    private void Start()
+    public void SetCurrentWeapon(Weapon weapon)
     {
-        //Moved GetOwner to start to ensure that playerActions actually has the current weapon
-        GetOwner();
-    }
-
-    public void GetOwner()
-    {
-        owner = GetComponent<Humanoid>();
-        SetCurrentWeapon();
-    }
-
-    public void SetCurrentWeapon()
-    {
-        if (owner is Player player)
-        {
-            currentWeapon = player.currentWeapon;
-        }
-        if(owner is Enemy enemy)
-        {
-            currentWeapon = enemy.currentWeapon;
-        }
+        currentWeapon = weapon;
     }
 
 
@@ -83,7 +65,7 @@ public class HitBox : MonoBehaviour
         {
             if(humanoid != owner)
             {
-                humanoid.TakeDamage(currentWeapon, hit.ClosestPointOnBounds(currentWeapon.weaponPos));
+                humanoid.Hit(currentWeapon, hit.ClosestPointOnBounds(currentWeapon.weaponPos));
             }
         }
         else if (hit.TryGetComponent(out MeshTarget mesh))
@@ -92,27 +74,6 @@ public class HitBox : MonoBehaviour
         }
     }
 
-    //private void DoDamage(Humanoid humanoid, Vector3 hitPoint)
-    //{
-    //    //if (!health.IsDead() && GameTracking.instance != null)
-    //    //{
-    //    //    DoGameTracking(health);
-    //    //}
-
-    //    humanoid.TakeDamage(currentWeapon, hitPoint);
-    //}
-
-    //private void DoGameTracking(Health health)
-    //{
-    //    if (owner is Player)
-    //    {
-    //        GameTracking.instance.AddDamageDealt(currentWeapon.currentAttack.damage);
-    //    }
-    //    if (health.owner is Player)
-    //    {
-    //        GameTracking.instance.AddDamageReceived(currentWeapon.currentAttack.damage);
-    //    }
-    //}
     private bool CheckIfParry()
     {
         if (owner is Player player)

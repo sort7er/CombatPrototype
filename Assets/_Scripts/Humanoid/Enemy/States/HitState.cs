@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace EnemyAI
 {
     public class HitState : EnemyState
@@ -12,8 +14,9 @@ namespace EnemyAI
         {
             LeaveState(chaseState);
         }
-        public override void Hit()
+        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
         {
+            base.Hit(attackingWeapon, hitPoint);
             enemy.StopFunction();
             HitAnimation();
         }

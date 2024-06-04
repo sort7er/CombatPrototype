@@ -96,7 +96,7 @@ namespace PlayerSM
         {
 
         }
-        public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
+        public virtual void Hit(Weapon attackingWeapon, Vector3 hitPoint)
         {
 
         }

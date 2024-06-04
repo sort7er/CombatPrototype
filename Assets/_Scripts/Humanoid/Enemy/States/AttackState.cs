@@ -5,6 +5,7 @@ namespace EnemyAI
     public class AttackState : EnemyState
     {
         private bool attacking;
+        private bool canStillParry;
         private bool rotateTowardsPlayer;
         private int currentAttack;
         private int attacksLength;
@@ -22,6 +23,7 @@ namespace EnemyAI
             transition = 0.25f;
             attacking = false;
             rotateTowardsPlayer = true;
+            canStillParry = true;
 
             if (enemy.CheckForWeapon())
             {
@@ -40,16 +42,18 @@ namespace EnemyAI
             }
 
 
-
-            if (!CheckIfCanAttack() && !attacking)
+            if(!attacking)
             {
-                LeaveState(standbyState);
-            }
-            else
-            {
-                if (!attacking && enemy.CheckForWeapon())
+                if (!CheckIfCanAttack())
                 {
-                    Attack();
+                    LeaveState(standbyState);
+                }
+                else
+                {
+                    if (enemy.CheckForWeapon())
+                    {
+                        Attack();
+                    }
                 }
             }
         }
@@ -57,6 +61,7 @@ namespace EnemyAI
         {
             attacking = true;
             rotateTowardsPlayer = true;
+            canStillParry = true;
             AttackEnemy attack = currentWeapon.archetype.enemyAttacks[currentAttack];
             enemy.SetAnimation(attack, transition);
             attacksSoFar++;
@@ -96,15 +101,28 @@ namespace EnemyAI
                 currentAttack = 0;
             }
         }
+        public override void OverlapCollider()
+        {
+            canStillParry = false;
+        }
 
         public override void Staggered()
         {
             LeaveStateAndDo(staggeredState, LeaveAttack);
         }
-        public override void Hit()
+        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
         {
-            
-            LeaveStateAndDo(hitState, LeaveAttack);
+
+            if (enemy.InsideParryFOV() && canStillParry)
+            {
+                LeaveStateAndDo(parryState, LeaveAttack);
+            }
+            else
+            {
+                base.Hit(attackingWeapon, hitPoint);
+                LeaveStateAndDo(hitState, LeaveAttack);
+            }
+
         }
 
         public override void Stunned()

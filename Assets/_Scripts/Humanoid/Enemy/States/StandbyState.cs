@@ -79,7 +79,7 @@ namespace EnemyAI
             turn = false;
         }
 
-        public override void Hit()
+        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
         {
             if (enemy.InsideParryFOV())
             {
@@ -87,6 +87,7 @@ namespace EnemyAI
             }
             else
             {
+                base.Hit(attackingWeapon, hitPoint);
                 LeaveStateAndDo(hitState, LeaveStandby);
             }
         }

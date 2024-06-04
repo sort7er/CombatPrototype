@@ -38,7 +38,11 @@ namespace EnemyAI
         {
 
         }
-        public virtual void Hit()
+        public virtual void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        {
+            enemy.health.TakeDamage(attackingWeapon, hitPoint);
+        }
+        public virtual void OverlapCollider()
         {
 
         }
