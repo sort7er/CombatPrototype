@@ -3,10 +3,11 @@ using PlayerSM;
 using System;
 using System.Collections;
 using Stats;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class Player : Humanoid
 {
+
+    public event Action OnAttack;
 
     [Header("Values")]
     public float blockWaitTime = 0;
@@ -182,6 +183,11 @@ public class Player : Humanoid
     //    unique.Active();
     //    canUseUnique = true;
     //}
+
+    public void AttackEvent()
+    {
+        OnAttack?.Invoke();
+    }
 
     public void SwitchState(PlayerState state)
     {

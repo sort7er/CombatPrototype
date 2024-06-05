@@ -115,6 +115,7 @@ namespace EnemyAI
 
             if (enemy.InsideParryFOV() && canStillParry)
             {
+                enemy.SetHitPoint(hitPoint);
                 LeaveStateAndDo(parryState, LeaveAttack);
             }
             else

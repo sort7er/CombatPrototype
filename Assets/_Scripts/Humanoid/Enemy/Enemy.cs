@@ -29,6 +29,8 @@ namespace EnemyAI
         [SerializeField] private Transform[] weaponPos;
         [SerializeField] private Weapon startWeapon;
 
+        [Header("References")]
+        public EnemyBehaviour enemyBehaviour;
         public EnemyAnimator enemyAnimator;
 
         public EnemyState currentState { get; private set; }
@@ -40,6 +42,7 @@ namespace EnemyAI
         public Vector3 currentMoveToTarget { get; private set; }
         public Vector3 lookAtTarget { get; private set; }
         public Vector3 forwardTarget { get; private set; }
+        public Vector3 hitPoint { get; private set; }
 
         //State machine
         public IdleState idleState = new IdleState();
@@ -50,15 +53,17 @@ namespace EnemyAI
         public StunnedState stunnedState = new StunnedState();
         public HitState hitState = new HitState();
         public StandbyState standbyState = new StandbyState();
-        //public TakedownState takedownState = new TakedownState();
+        public BlockState blockState = new BlockState();
+
+        //For attack done when hit
+        public int attackDoneState { get; private set; }
+
 
         private int currentCorner;
         private float refreshRateTimer;
         private float animatorRunSpeed;
         private bool isRunning;
 
-        //For attack done when hit
-        public int attackDoneState { get; private set; }
 
 
         #region Setup
@@ -66,13 +71,7 @@ namespace EnemyAI
         {
             base.Awake();
             FindReferences();
-
-            SetSpeed(3);
-
-            agent.enabled = false;
-
-            //This is whatever the defaul state in the attack layer is in the animator
-            attackDoneState = Animator.StringToHash("AttackDone");
+            SetUpValues();
 
 
             SwitchState(idleState);
@@ -92,7 +91,14 @@ namespace EnemyAI
             player = FindObjectOfType<Player>();
             agent = GetComponent<NavMeshAgent>();
         }
+        private void SetUpValues()
+        {
+            SetSpeed(3);
+            agent.enabled = false;
+            attackDoneState = Animator.StringToHash("AttackDone");
+            player.OnAttack += PlayerAttacking;
 
+        }
         protected override void Update()
         {
             //Debug.Log(currentState);
@@ -108,6 +114,10 @@ namespace EnemyAI
         public void Takedown()
         {
             currentState.Takedown();
+        }
+        public void PlayerAttacking()
+        {
+            currentState.PlayerAttacking();
         }
         // From humanoid
         public override void Staggered()
@@ -129,7 +139,7 @@ namespace EnemyAI
         }
         public override void Dead()
         {
-            StopFunction();
+            currentState.Dead();
             gameObject.SetActive(false);
         }
 
@@ -207,6 +217,10 @@ namespace EnemyAI
 
             currentAnimation = newAnim;
             enemyAnimator.animator.CrossFadeInFixedTime(currentAnimation.state, transition);
+        }
+        public void SetHitPoint(Vector3 point)
+        {
+            hitPoint = point;
         }
         public void RotateToTarget(Vector3 lookAtTarget, Vector3 forwardTarget)
         {

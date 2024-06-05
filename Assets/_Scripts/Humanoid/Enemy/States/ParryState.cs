@@ -26,6 +26,8 @@ namespace EnemyAI
             Anim parryAnim = currentWeapon.archetype.enemyParrys[GetCurrentParry()];
             rotateTowardsPlayer = true;
 
+
+            EffectManager.instance.Parry(enemy.hitPoint);
             enemy.SetAnimation(parryAnim);
             enemy.InvokeFunction(StopRotate, 0.25f);
             enemy.InvokeFunction(EndParry, parryAnim.duration);
@@ -44,6 +46,7 @@ namespace EnemyAI
         {
             if (enemy.InsideParryFOV())
             {
+                enemy.SetHitPoint(hitPoint);
                 enemy.StopFunction();
                 DoParry();
             }

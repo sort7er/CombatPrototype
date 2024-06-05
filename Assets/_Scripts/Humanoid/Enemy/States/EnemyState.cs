@@ -11,6 +11,7 @@ namespace EnemyAI
         public Player player;
         public Weapon currentWeapon;
         public EnemyAnimator enemyAnimator;
+        public EnemyBehaviour enemyBehaviour;
 
         //States
         public IdleState idleState;
@@ -21,6 +22,7 @@ namespace EnemyAI
         public StunnedState stunnedState;
         public HitState hitState;
         public StandbyState standbyState;
+        public BlockState blockState;
 
         public virtual void Enter(Enemy enemy)
         {
@@ -45,6 +47,14 @@ namespace EnemyAI
         public virtual void OverlapCollider()
         {
 
+        }
+        public virtual void PlayerAttacking()
+        {
+
+        }
+        public virtual void Dead()
+        {
+            enemy.StopFunction();
         }
         public virtual void Takedown()
         {
@@ -71,6 +81,7 @@ namespace EnemyAI
                 player = enemy.player;
                 currentWeapon = enemy.currentWeapon;
                 enemyAnimator = enemy.enemyAnimator;
+                enemyBehaviour = enemy.enemyBehaviour;
 
                 idleState = enemy.idleState;
                 chaseState = enemy.chaseState;
@@ -80,6 +91,7 @@ namespace EnemyAI
                 stunnedState = enemy.stunnedState;
                 hitState = enemy.hitState;
                 standbyState = enemy.standbyState;
+                blockState = enemy.blockState;
 
             }
         }

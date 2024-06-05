@@ -31,6 +31,7 @@ namespace PlayerSM
         private void StartAttack()
         {
             ResetValuesAttack();
+            player.AttackEvent();
             player.SetAnimation(archetype.attacks[currentAttack], 0.05f);
             player.StopMethod();
             player.InvokeMethod(EndAttack, player.currentAnimation.duration);
