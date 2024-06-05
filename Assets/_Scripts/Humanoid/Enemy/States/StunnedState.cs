@@ -10,7 +10,7 @@ namespace EnemyAI
             Anim stunnedAnim = currentWeapon.archetype.enemyStunned;
 
             enemy.SetAnimation(stunnedAnim);
-            enemy.InvokeFunction(StunnedDone, enemy.stunnedDuration);
+            enemy.InvokeMethod(StunnedDone, enemy.stunnedDuration);
 
             enemyAnimator.SetAnimatorBool("Stunned", true);
 

@@ -6,7 +6,14 @@ public class Defencive : EnemyBehaviour
     #region Standby state
     public override void StandbyPlayerAttack()
     {
-        Debug.Log("Here I " + enemy + ", should block as I am in the " + enemy.currentState + " state");
+        standbyState.LeaveStateAndDo(blockState, standbyState.LeaveStandby);
+    }
+    #endregion
+
+    #region Block state
+    public override void BlockHit()
+    {
+        blockState.LeaveStateAndDo(parryState, blockState.LeaveBlocking);
     }
     #endregion
 

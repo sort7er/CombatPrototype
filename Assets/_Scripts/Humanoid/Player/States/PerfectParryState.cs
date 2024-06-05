@@ -39,7 +39,12 @@ namespace PlayerSM
 
         private void DoFollowUpAttack()
         {
-            LeaveStateAndDo(parryAttackState, () => player.ResetParryTimer());
+            LeaveStateAndDo(parryAttackState, LeavePerfectParry);
+        }
+        private void LeavePerfectParry()
+        {
+            player.ResetParryTimer();
+            player.StopMethod();
         }
     }
 

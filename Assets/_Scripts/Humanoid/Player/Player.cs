@@ -273,22 +273,6 @@ public class Player : Humanoid
     }
     #endregion
 
-    #region Invoking
-    public void InvokeMethod(Action function, float waitTime)
-    {
-        StartCoroutine(DoFunction(function, waitTime));
-    }
-    private IEnumerator DoFunction(Action function, float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        function.Invoke();
-    }
-    public void StopMethod()
-    {
-        StopAllCoroutines();
-    }
-    #endregion
-
     #region Inputs
 
     public void OnMove(Vector2 movement)

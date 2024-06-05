@@ -24,13 +24,28 @@ namespace EnemyAI
         public StandbyState standbyState;
         public BlockState blockState;
 
+        public bool rotateTowardsPlayer { get; private set; }
+
+        public void StartRotate()
+        {
+            rotateTowardsPlayer = true;
+        }
+        public void StopRotate()
+        {
+            rotateTowardsPlayer = false;
+        }
+
         public virtual void Enter(Enemy enemy)
         {
             SetReferences(enemy);
         }
         public virtual void Update()
         {
-
+            //Test for now, might delete this later
+            if (rotateTowardsPlayer)
+            {
+                enemy.RotateToTarget(player.Position(), player.Position());
+            }
         }
         public virtual void Staggered()
         {
@@ -54,7 +69,7 @@ namespace EnemyAI
         }
         public virtual void Dead()
         {
-            enemy.StopFunction();
+            enemy.StopMethod();
         }
         public virtual void Takedown()
         {
@@ -63,13 +78,13 @@ namespace EnemyAI
 
         public void LeaveState(EnemyState newState)
         {
-            enemy.StopFunction();
+            enemy.StopMethod();
             enemy.SwitchState(newState);
         }
         public void LeaveStateAndDo(EnemyState newState, Action doThis)
         {
             doThis?.Invoke();
-            enemy.StopFunction();
+            enemy.StopMethod();
             enemy.SwitchState(newState);
         }
         private void SetReferences(Enemy enemy)

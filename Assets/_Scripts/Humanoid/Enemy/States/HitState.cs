@@ -17,7 +17,7 @@ namespace EnemyAI
         public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
         {
             base.Hit(attackingWeapon, hitPoint);
-            enemy.StopFunction();
+            enemy.StopMethod();
             HitAnimation();
         }
 
@@ -35,7 +35,7 @@ namespace EnemyAI
             Anim hitAnim = currentWeapon.archetype.enemyHit;
 
             enemy.SetAnimation(hitAnim, 0f);
-            enemy.InvokeFunction(HitDone, hitAnim.duration);
+            enemy.InvokeMethod(HitDone, hitAnim.duration);
         }
     }
 }

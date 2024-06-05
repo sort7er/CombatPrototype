@@ -17,7 +17,7 @@ namespace EnemyAI
             Anim staggeredAnim = currentWeapon.archetype.enemyStaggered;
 
             enemy.SetAnimation(staggeredAnim, 0.25f);
-            enemy.InvokeFunction(StaggerDone, staggeredAnim.duration);
+            enemy.InvokeMethod(StaggerDone, staggeredAnim.duration);
 
         }
 

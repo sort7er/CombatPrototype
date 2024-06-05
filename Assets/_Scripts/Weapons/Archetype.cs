@@ -27,6 +27,7 @@ public class Archetype: ScriptableObject
     [Header("Enemy")]
     [SerializeField] private AttackEnemyInput[] enemyAttacksInput;
     [SerializeField] private AttackEnemyInput[] enemyParrysInput;
+    [SerializeField] private AnimationInput enemyBlockInput;
     [SerializeField] private AnimationInput enemyStaggeredInput;
     [SerializeField] private AnimationInput enemyStunnedInput;
     [SerializeField] private AnimationInput enemyHitInput;
@@ -47,6 +48,7 @@ public class Archetype: ScriptableObject
 
     public AttackEnemy[] enemyAttacks;
     public AttackEnemy[] enemyParrys;
+    public Anim enemyBlock; 
     public Anim enemyStaggered; 
     public Anim enemyStunned;
     public Anim enemyHit;
@@ -70,6 +72,7 @@ public class Archetype: ScriptableObject
         SetUpAttacks(ref parryfollowUpAttack, parryfollowUpAttackInput);
 
         //For enemy
+        enemyBlock = new Anim(enemyBlockInput.animationClip);
         enemyStaggered = new Anim(enemyStaggeredInput.animationClip);
         enemyStunned = new Anim(enemyStunnedInput.animationClip);
         enemyHit = new Anim(enemyHitInput.animationClip);

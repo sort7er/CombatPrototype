@@ -57,6 +57,7 @@ namespace EnemyAI
 
         //For attack done when hit
         public int attackDoneState { get; private set; }
+        public int blockDoneState { get; private set; }
 
 
         private int currentCorner;
@@ -96,16 +97,16 @@ namespace EnemyAI
             SetSpeed(3);
             agent.enabled = false;
             attackDoneState = Animator.StringToHash("AttackDone");
+            blockDoneState = Animator.StringToHash("BlockDone");
             player.OnAttack += PlayerAttacking;
 
         }
         protected override void Update()
-        {
+        {   
             //Debug.Log(currentState);
             base.Update();
             currentState.Update();
             AnimationSpeed();
-
         }
         #endregion
 
@@ -218,6 +219,10 @@ namespace EnemyAI
             currentAnimation = newAnim;
             enemyAnimator.animator.CrossFadeInFixedTime(currentAnimation.state, transition);
         }
+        public void SetAnimationWithInt(int state, float transition = 0)
+        {
+            enemyAnimator.animator.CrossFadeInFixedTime(state, transition);
+        }
         public void SetHitPoint(Vector3 point)
         {
             hitPoint = point;
@@ -315,22 +320,6 @@ namespace EnemyAI
         }
         #endregion
 
-        #region Invoking
-        public void InvokeFunction(Action function, float waitTime)
-        {
-            StartCoroutine(DoFunction(function, waitTime));
-        }
-
-        private IEnumerator DoFunction(Action function, float waitTime)
-        {
-            yield return new WaitForSeconds(waitTime);
-            function.Invoke();
-        }
-        public void StopFunction()
-        {
-            StopAllCoroutines();
-        }
-        #endregion
     }
 }
 

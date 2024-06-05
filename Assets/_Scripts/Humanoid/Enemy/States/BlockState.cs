@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+
 namespace EnemyAI
 {
     public class BlockState : EnemyState
@@ -9,6 +9,38 @@ namespace EnemyAI
         {
             base.Enter(enemy);
             Debug.Log("Now I am blocking");
+
+            Anim blockAnim = currentWeapon.archetype.enemyBlock;
+            enemy.SetAnimation(blockAnim);
+
+            StartRotate();
+            enemy.InvokeMethod(StopRotate, 0.25f);
+            enemy.InvokeMethod(BlockingDone, 3f);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            
+            if (!enemy.InsideAttackFOV())
+            {
+                BlockingDone();
+            }
+        }
+
+        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        {
+            enemy.SetHitPoint(hitPoint);
+            enemyBehaviour.BlockHit();
+        }
+
+        public void BlockingDone()
+        {
+            LeaveStateAndDo(standbyState, LeaveBlocking);
+        }
+        public void LeaveBlocking()
+        {
+            enemy.SetAnimationWithInt(enemy.blockDoneState, 0.25f);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Stats;
+using System.Collections;
 
 public class Humanoid : MonoBehaviour
 {
@@ -307,6 +308,21 @@ public class Humanoid : MonoBehaviour
         OnNewWeapon?.Invoke(weapon);
        
         currentWeapon.Vissible();
-
     }
+
+    #region Invoking
+    public void InvokeMethod(Action function, float waitTime)
+    {
+        StartCoroutine(DoMethod(function, waitTime));
+    }
+    private IEnumerator DoMethod(Action function, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        function.Invoke();
+    }
+    public void StopMethod()
+    {
+        StopAllCoroutines();
+    }
+    #endregion
 }

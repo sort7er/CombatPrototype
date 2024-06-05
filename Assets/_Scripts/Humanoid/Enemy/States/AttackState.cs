@@ -6,7 +6,6 @@ namespace EnemyAI
     {
         private bool attacking;
         private bool canStillParry;
-        private bool rotateTowardsPlayer;
         private int currentAttack;
         private int attacksLength;
         private float transition;
@@ -17,12 +16,13 @@ namespace EnemyAI
         {
             base.Enter(enemy);
 
+            StartRotate();
+
             currentAttack = Random.Range(0, 2) * 2;
             numberOfAttacks = Random.Range(1, 6);
             attacksSoFar = 0;
             transition = 0.25f;
             attacking = false;
-            rotateTowardsPlayer = true;
             canStillParry = true;
 
             if (enemy.CheckForWeapon())
@@ -36,10 +36,6 @@ namespace EnemyAI
         public override void Update()
         {
             base.Update();
-            if (rotateTowardsPlayer)
-            {
-                enemy.RotateToTarget(player.Position(), player.Position());
-            }
 
 
             if(!attacking)
@@ -59,8 +55,8 @@ namespace EnemyAI
         }
         private void Attack()
         {
+            StopRotate();
             attacking = true;
-            rotateTowardsPlayer = true;
             canStillParry = true;
             AttackEnemy attack = currentWeapon.archetype.enemyAttacks[currentAttack];
             enemy.SetAnimation(attack, transition);
@@ -68,14 +64,10 @@ namespace EnemyAI
 
             transition = attack.transitionDuration;
 
-            enemy.StopFunction();
-            enemy.InvokeFunction(StopRotate, 0.25f);
-            enemy.InvokeFunction(Chain, attack.exitTimeSeconds);
-            enemy.InvokeFunction(AttackDone, attack.duration);
-        }
-        private void StopRotate()
-        {
-            rotateTowardsPlayer = false;
+            enemy.StopMethod();
+            enemy.InvokeMethod(StopRotate, 0.25f);
+            enemy.InvokeMethod(Chain, attack.exitTimeSeconds);
+            enemy.InvokeMethod(AttackDone, attack.duration);
         }
         private void Chain()
         {
@@ -144,7 +136,7 @@ namespace EnemyAI
         }
         private void LeaveAttack()
         {
-            enemyAnimator.animator.CrossFadeInFixedTime(enemy.attackDoneState, 0);
+            enemy.SetAnimationWithInt(enemy.attackDoneState);
         }
     }
 

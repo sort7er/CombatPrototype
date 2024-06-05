@@ -68,9 +68,9 @@ namespace EnemyAI
         private void StartTurn(Anim turnAnim)
         {
             turn = true;
-            enemy.StopFunction();
+            enemy.StopMethod();
             enemy.SetAnimation(turnAnim);
-            enemy.InvokeFunction(EndTurn, turnAnim.duration);
+            enemy.InvokeMethod(EndTurn, turnAnim.duration);
 
         }
 
@@ -81,7 +81,6 @@ namespace EnemyAI
         public override void PlayerAttacking()
         {
             enemyBehaviour.StandbyPlayerAttack();
-            LeaveStateAndDo(blockState, LeaveStandby);
         }
 
         public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
@@ -98,9 +97,9 @@ namespace EnemyAI
             }
         }
 
-        private void LeaveStandby()
+        public void LeaveStandby()
         {
-            enemyAnimator.animator.CrossFade(enemy.attackDoneState, 0);
+            enemy.SetAnimationWithInt(enemy.attackDoneState);
         }
     }
 

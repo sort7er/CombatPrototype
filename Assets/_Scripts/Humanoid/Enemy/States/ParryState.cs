@@ -5,7 +5,6 @@ namespace EnemyAI
     public class ParryState : EnemyState
     {
         private int currentParry;
-        private bool rotateTowardsPlayer;
 
         public override void Enter(Enemy enemy)
         {
@@ -13,28 +12,17 @@ namespace EnemyAI
             DoParry();
         }
 
-        public override void Update()
-        {
-            if (rotateTowardsPlayer)
-            {
-                enemy.RotateToTarget(player.Position(), player.Position());
-            }
-        }
-
         private void DoParry()
         {
             Anim parryAnim = currentWeapon.archetype.enemyParrys[GetCurrentParry()];
-            rotateTowardsPlayer = true;
+            
+            StartRotate();
+            enemy.InvokeMethod(StopRotate, 0.25f);
 
 
             EffectManager.instance.Parry(enemy.hitPoint);
             enemy.SetAnimation(parryAnim);
-            enemy.InvokeFunction(StopRotate, 0.25f);
-            enemy.InvokeFunction(EndParry, parryAnim.duration);
-        }
-        private void StopRotate()
-        {
-            rotateTowardsPlayer = false;
+            enemy.InvokeMethod(EndParry, parryAnim.duration);
         }
 
         private void EndParry()
@@ -47,11 +35,12 @@ namespace EnemyAI
             if (enemy.InsideParryFOV())
             {
                 enemy.SetHitPoint(hitPoint);
-                enemy.StopFunction();
+                enemy.StopMethod();
                 DoParry();
             }
             else
             {
+                base.Hit(attackingWeapon, hitPoint);
                 LeaveState(hitState);
             }
         }
