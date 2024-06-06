@@ -16,6 +16,7 @@ public class EnemyBehaviour: MonoBehaviour
     protected StandbyState standbyState;
     protected BlockState blockState;
     protected PerfectParryState perfectParryState;
+    protected ParryAttackState parryAttackState;
 
 
     #region Setup
@@ -38,6 +39,7 @@ public class EnemyBehaviour: MonoBehaviour
         standbyState = enemy.standbyState;
         blockState = enemy.blockState;
         perfectParryState = enemy.perfectParryState;
+        parryAttackState = enemy.parryAttackState;
     }
 
     #endregion
@@ -58,6 +60,13 @@ public class EnemyBehaviour: MonoBehaviour
 
     #region Parry state
     public virtual void ParryHit()
+    {
+
+    }
+    #endregion
+
+    #region Perfect parry state
+    public virtual void PerfectParryEnter()
     {
 
     }

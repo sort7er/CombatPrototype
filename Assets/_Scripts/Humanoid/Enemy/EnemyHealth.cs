@@ -19,16 +19,9 @@ public class EnemyHealth : Health
         skull.gameObject.SetActive(false);
     }
 
-    public override void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
+    public override void TakeDamage(Humanoid attacker, Vector3 hitPoint)
     {
-        base.TakeDamage(attackingWeapon, hitPoint);
-
-
-        //enemy.Hit();
-
-        //Vector3 pushback = transform.position - enemy.player.Position();
-        //enemy.AddForce(pushback.normalized * 2);
-
+        base.TakeDamage(attacker, hitPoint);
     }
 
     protected override void Dead(Weapon attackingWeapon)

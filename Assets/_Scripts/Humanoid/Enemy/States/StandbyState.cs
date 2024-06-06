@@ -83,16 +83,15 @@ namespace EnemyAI
             enemyBehaviour.StandbyPlayerAttack();
         }
 
-        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public override void Hit()
         {
             if (enemy.InsideParryFOV())
             {
-                enemy.SetHitPoint(hitPoint);
                 LeaveStateAndDo(parryState, LeaveStandby);
             }
             else
             {
-                base.Hit(attackingWeapon, hitPoint);
+                base.Hit();
                 LeaveStateAndDo(hitState, LeaveStandby);
             }
         }

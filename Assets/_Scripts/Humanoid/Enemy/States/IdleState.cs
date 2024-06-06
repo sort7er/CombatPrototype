@@ -21,9 +21,9 @@ namespace EnemyAI
                 LeaveState(chaseState);
             }
         }
-        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public override void Hit()
         {
-            base.Hit(attackingWeapon, hitPoint);
+            base.Hit();
             LeaveState(hitState);
         }
         public override void Stunned()

@@ -92,12 +92,14 @@ namespace Stats
             CheckStatus(null);
         }
 
-        public virtual void TakeDamage(Weapon attackingWeapon, Vector3 hitPoint)
+        public virtual void TakeDamage(Humanoid attacker, Vector3 hitPoint)
         {
             if (IsDead())
             {
                 return;
             }
+
+            Weapon attackingWeapon = attacker.currentWeapon;
 
             MinusHealth(attackingWeapon.currentAttack.damage);
             MinusPosture(attackingWeapon.currentAttack.postureDamage);

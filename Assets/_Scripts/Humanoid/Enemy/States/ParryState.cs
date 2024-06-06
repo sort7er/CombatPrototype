@@ -30,18 +30,15 @@ namespace EnemyAI
             LeaveState(standbyState);
         }
 
-        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public override void Hit()
         {
-            enemy.SetHitPoint(hitPoint);
-            enemy.SetAttackingWeapon(attackingWeapon);
-
             enemy.enemyBehaviour.ParryHit();
         }
 
         //This is so it can be called from enemy behaviour
         public void SwitchToHit()
         {
-            base.Hit(enemy.attackingWeapon, enemy.hitPoint);
+            base.Hit();
             LeaveState(hitState);
         }
 

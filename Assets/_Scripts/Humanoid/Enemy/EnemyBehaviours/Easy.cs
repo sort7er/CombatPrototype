@@ -19,4 +19,11 @@ public class Easy : EnemyBehaviour
         parryState.SwitchToHit();
     }
     #endregion
+
+    #region Perfect parry state
+    public override void PerfectParryEnter()
+    {
+
+    }
+    #endregion
 }

@@ -190,7 +190,7 @@ public class Humanoid : MonoBehaviour
     {
 
     }
-    public virtual void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+    public virtual void Hit(Humanoid attacker, Vector3 hitPoint)
     {
 
     }

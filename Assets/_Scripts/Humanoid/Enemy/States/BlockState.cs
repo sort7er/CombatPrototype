@@ -29,9 +29,8 @@ namespace EnemyAI
             enemy.SetLookAtAndForward(player.Position(), enemy.InFront());
         }
 
-        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public override void Hit()
         {
-            enemy.SetHitPoint(hitPoint);
             enemyBehaviour.BlockHit();
         }
 
@@ -41,7 +40,7 @@ namespace EnemyAI
         }
         public void LeaveBlocking()
         {
-            enemy.SetAnimationWithInt(enemy.blockDoneState, 0.25f);
+            enemy.SetAnimationWithInt(enemy.attackDoneState, 0.25f);
         }
     }
 }

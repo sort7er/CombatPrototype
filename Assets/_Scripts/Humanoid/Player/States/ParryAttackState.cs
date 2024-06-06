@@ -9,7 +9,7 @@ namespace PlayerSM
             base.Enter(player);
 
             ResetValuesAttack();
-            player.SetAnimation(archetype.parryfollowUpAttack[player.currentPerfectParry], 0.05f);
+            player.SetAnimation(archetype.parryAttack[player.currentPerfectParry], 0.05f);
             player.InvokeMethod(EndAttack, player.currentAnimation.duration);
         }
 

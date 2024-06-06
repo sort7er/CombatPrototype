@@ -35,7 +35,7 @@ public class Player : Humanoid
     public BlockState blockState = new BlockState();
     public ParryState parryState = new ParryState();
     public PerfectParryState perfectParryState = new PerfectParryState();
-    public ParryAttackState parryAttackState = new ParryAttackState();
+    public PlayerSM.ParryAttackState parryAttackState = new PlayerSM.ParryAttackState();
 
     public int currentParry { get; private set; }
     public int currentPerfectParry { get; private set; }
@@ -151,18 +151,20 @@ public class Player : Humanoid
         isFalling = false;
         currentState.Landing();
     }
-    public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+    public override void Hit(Humanoid attacker, Vector3 hitPoint)
     {
 
-        ParryType parryType = parryCheck.CheckForParry(this, attackingWeapon.owner);
-        Vector3 direction = (transform.position - attackingWeapon.owner.Position()).normalized;
+        ParryType parryType = parryCheck.CheckForParry(this, attacker);
+        Vector3 direction = (transform.position - attacker.Position()).normalized;
+
+        Weapon attackingWeapon = attacker.currentWeapon;
 
         if (parryType == ParryType.None)
         {
             //Can add hit functionnality here
 
             AddForce(direction * attackingWeapon.pushbackForce);
-            health.TakeDamage(attackingWeapon, hitPoint);
+            health.TakeDamage(attacker, hitPoint);
         }
         else
         {

@@ -79,7 +79,7 @@ namespace EnemyAI
         }
         private void AttackDone()
         {
-            LeaveState(standbyState);
+            LeaveStateAndDo(standbyState, () => LeaveAttack(0.25f));
         }
 
         private void UpdateCurrentAttack()
@@ -100,27 +100,26 @@ namespace EnemyAI
 
         public override void Staggered()
         {
-            LeaveStateAndDo(staggeredState, LeaveAttack);
+            LeaveStateAndDo(staggeredState, () => LeaveAttack());
         }
-        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public override void Hit()
         {
 
             if (enemy.InsideParryFOV() && canStillParry)
             {
-                enemy.SetHitPoint(hitPoint);
-                LeaveStateAndDo(parryState, LeaveAttack);
+                LeaveStateAndDo(parryState, () => LeaveAttack());
             }
             else
             {
-                base.Hit(attackingWeapon, hitPoint);
-                LeaveStateAndDo(hitState, LeaveAttack);
+                base.Hit();
+                LeaveStateAndDo(hitState, () => LeaveAttack());
             }
 
         }
 
         public override void Stunned()
         {
-            LeaveStateAndDo(stunnedState, LeaveAttack);
+            LeaveStateAndDo(stunnedState,() => LeaveAttack());
         }
         private bool CheckIfCanAttack()
         {
@@ -134,9 +133,9 @@ namespace EnemyAI
             }
             return true;
         }
-        private void LeaveAttack()
+        private void LeaveAttack(float transition = 0)
         {
-            enemy.SetAnimationWithInt(enemy.attackDoneState);
+            enemy.SetAnimationWithInt(enemy.attackDoneState, transition);
         }
     }
 

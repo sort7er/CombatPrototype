@@ -26,9 +26,9 @@ namespace EnemyAI
                 enemy.MoveToTarget(player.Position(), player.Position());
             }
         }
-        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public override void Hit()
         {
-            base.Hit(attackingWeapon, hitPoint);
+            base.Hit();
             LeaveStateAndDo(hitState, ChaseDone);  
         }
         public override void Stunned()

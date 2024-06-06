@@ -24,6 +24,7 @@ namespace EnemyAI
         public StandbyState standbyState;
         public BlockState blockState;
         public PerfectParryState perfectParryState;
+        public ParryAttackState parryAttackState;
 
         public bool rotateTowardsPlayer { get; private set; }
 
@@ -56,9 +57,9 @@ namespace EnemyAI
         {
 
         }
-        public virtual void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public virtual void Hit()
         {
-            enemy.health.TakeDamage(attackingWeapon, hitPoint);
+            enemy.health.TakeDamage(enemy.currentAttacker, enemy.hitPoint);
         }
         public virtual void OverlapCollider()
         {
@@ -109,6 +110,7 @@ namespace EnemyAI
                 standbyState = enemy.standbyState;
                 blockState = enemy.blockState;
                 perfectParryState = enemy.perfectParryState;
+                parryAttackState = enemy.parryAttackState;
 
             }
         }

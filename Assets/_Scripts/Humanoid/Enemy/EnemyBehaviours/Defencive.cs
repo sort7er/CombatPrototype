@@ -30,4 +30,15 @@ public class Defencive : EnemyBehaviour
         }
     }
     #endregion
+
+    #region Perfect parry state
+    public override void PerfectParryEnter()
+    {
+        Anim perfectParry = enemy.currentWeapon.archetype.enemyPerfectParry;
+
+        float waitTime = perfectParry.duration * 0.3f;
+
+        enemy.InvokeMethod(perfectParryState.DoPefectParryAttack, waitTime);
+    }
+    #endregion
 }

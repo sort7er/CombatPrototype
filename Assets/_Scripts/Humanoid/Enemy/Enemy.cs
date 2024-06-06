@@ -42,7 +42,7 @@ namespace EnemyAI
         public Vector3 lookAtTarget { get; private set; }
         public Vector3 forwardTarget { get; private set; }
         public Vector3 hitPoint { get; private set; }
-        public Weapon attackingWeapon { get; private set; }
+        public Humanoid currentAttacker { get; private set; }
 
         //State machine
         public IdleState idleState = new IdleState();
@@ -55,11 +55,11 @@ namespace EnemyAI
         public StandbyState standbyState = new StandbyState();
         public BlockState blockState = new BlockState();
         public PerfectParryState perfectParryState = new PerfectParryState();
+        public ParryAttackState parryAttackState = new ParryAttackState();
+
 
         //For attack done when hit
         public int attackDoneState { get; private set; }
-        public int blockDoneState { get; private set; }
-
 
         private int currentCorner;
         private float refreshRateTimer;
@@ -98,7 +98,6 @@ namespace EnemyAI
             SetSpeed(3);
             agent.enabled = false;
             attackDoneState = Animator.StringToHash("AttackDone");
-            blockDoneState = Animator.StringToHash("BlockDone");
             player.OnAttack += PlayerAttacking;
 
         }
@@ -131,9 +130,11 @@ namespace EnemyAI
         {
             currentState.Stunned();
         }
-        public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public override void Hit(Humanoid attacker, Vector3 hitPoint)
         {
-            currentState.Hit(attackingWeapon, hitPoint);
+            SetCurrentAttacker(attacker);
+            SetHitPoint(hitPoint);
+            currentState.Hit();
         }
         public override void OverlapCollider()
         {
@@ -224,14 +225,6 @@ namespace EnemyAI
         {
             enemyAnimator.animator.CrossFadeInFixedTime(state, transition);
         }
-        public void SetHitPoint(Vector3 point)
-        {
-            hitPoint = point;
-        }
-        public void SetAttackingWeapon(Weapon weapon)
-        {
-            attackingWeapon = weapon;
-        }
         public void RotateToTarget(Vector3 lookAtTarget, Vector3 forwardTarget)
         {
             // This is here because to set the targets
@@ -271,6 +264,14 @@ namespace EnemyAI
         #endregion
 
         #region Called from this class
+        private void SetHitPoint(Vector3 point)
+        {
+            hitPoint = point;
+        }
+        private void SetCurrentAttacker(Humanoid attacker)
+        {
+            currentAttacker = attacker;
+        }
         private void AnimationSpeed()
         {
             if (isRunning)

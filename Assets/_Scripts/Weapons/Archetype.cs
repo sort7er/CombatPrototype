@@ -21,13 +21,14 @@ public class Archetype: ScriptableObject
     [SerializeField] private AttackInput blockInput;
     [SerializeField] private AttackInput[] parryInput;
     [SerializeField] private AttackInput[] perfectParryInput;
-    [SerializeField] private AttackInput[] parryfollowUpAttackInput;
+    [SerializeField] private AttackInput[] parryAttackInput;
 
 
     [Header("Enemy")]
     [SerializeField] private AttackEnemyInput[] enemyAttacksInput;
     [SerializeField] private AttackEnemyInput[] enemyParrysInput;
     [SerializeField] private AttackEnemyInput enemyPerfectParryInput;
+    [SerializeField] private AttackEnemyInput enemyParryAttackInput;
     [SerializeField] private AnimationInput enemyBlockInput;
     [SerializeField] private AnimationInput enemyStaggeredInput;
     [SerializeField] private AnimationInput enemyStunnedInput;
@@ -45,11 +46,12 @@ public class Archetype: ScriptableObject
     public Attack block;
     public Attack[] parry;
     public Attack[] perfectParry;
-    public Attack[] parryfollowUpAttack;
+    public Attack[] parryAttack;
 
     public AttackEnemy[] enemyAttacks;
     public AttackEnemy[] enemyParrys;
     public AttackEnemy enemyPerfectParry;
+    public AttackEnemy enemyParryAttack;
     public Anim enemyBlock; 
     public Anim enemyStaggered; 
     public Anim enemyStunned;
@@ -71,7 +73,7 @@ public class Archetype: ScriptableObject
         SetUpAttack(ref block, blockInput);
         SetUpAttacks(ref parry, parryInput);
         SetUpAttacks(ref perfectParry, perfectParryInput);
-        SetUpAttacks(ref parryfollowUpAttack, parryfollowUpAttackInput);
+        SetUpAttacks(ref parryAttack, parryAttackInput);
 
         //For enemy
         enemyBlock = new Anim(enemyBlockInput.animationClip);
@@ -85,6 +87,7 @@ public class Archetype: ScriptableObject
         SetUpEnemyAttacks(ref enemyAttacks, enemyAttacksInput);
         SetUpEnemyAttacks(ref enemyParrys, enemyParrysInput);
         SetUpEnemyAttack(ref enemyPerfectParry, enemyPerfectParryInput);
+        SetUpEnemyAttack(ref enemyParryAttack, enemyParryAttackInput);
     }
 
     public void SetUpAttack(ref Attack attack, AttackInput inputs)
