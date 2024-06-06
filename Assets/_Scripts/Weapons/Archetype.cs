@@ -16,6 +16,7 @@ public class Archetype: ScriptableObject
     [SerializeField] private AnimationInput walkInput;
     [SerializeField] private AnimationInput jumpInput;
     [SerializeField] private AnimationInput fallInput;
+    [SerializeField] private AnimationInput staggeredInput;
     [SerializeField] private AttackInput[] attacksInput;
     [SerializeField] private AttackInput uniqueInput;
     [SerializeField] private AttackInput blockInput;
@@ -41,6 +42,7 @@ public class Archetype: ScriptableObject
     public Anim walk;
     public Anim jump;
     public Anim fall;
+    public Anim staggered;
     public Attack[] attacks;
     public Attack unique;
     public Attack block;
@@ -67,6 +69,7 @@ public class Archetype: ScriptableObject
         walk = new Anim(walkInput.animationClip);
         jump = new Anim(jumpInput.animationClip);
         fall = new Anim(fallInput.animationClip);
+        staggered = new Anim(staggeredInput.animationClip);
 
         SetUpAttacks(ref attacks, attacksInput);
         SetUpAttack(ref unique, uniqueInput);

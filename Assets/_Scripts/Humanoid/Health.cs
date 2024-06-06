@@ -5,6 +5,7 @@ using DG.Tweening;
 using SlashABit.UI.HudElements;
 using RunSettings;
 using TMPro;
+using EnemyAI;
 
 namespace Stats
 {
@@ -60,11 +61,11 @@ namespace Stats
             SetUpHealth();
             SetUpPosture();
         }
-
         public void SetUpHealth()
         {
             healthSlider.DOKill();
             health = startHealth;
+
             healthSlider.minValue = 0;
             healthSlider.maxValue = health;
             healthSlider.value = health;
@@ -74,7 +75,7 @@ namespace Stats
         {
             postureStartSize = new Vector2(200, 10);
 
-            posture = startPosture;
+            SetPosture(startPosture);
 
             postureImages[0].DOKill();
             postureImages[1].DOKill();
@@ -85,7 +86,7 @@ namespace Stats
             postureText.text = posture.ToString() + "/" + startPosture.ToString();
         }
 
-        public virtual void TakeDamage(int damage, int postureDamage)
+        public virtual void TakeDamage(int damage, float postureDamage)
         {
             MinusHealth(damage);
             MinusPosture(postureDamage);
@@ -117,13 +118,23 @@ namespace Stats
             SetHealth(health);
         }
 
-        public void MinusPosture(int postureDamage)
+        public void MinusPosture(float postureDamage)
         {
             CancelInvoke(nameof(StartRegenPosture));
             canRegenPosture = false;
 
-            posture -= postureDamage;
-            SetPosture(posture);
+            
+            if(posture - postureDamage > 0)
+            {
+                SetPosture(posture - postureDamage);
+            }
+            else
+            {
+                SetPosture(0);
+            }
+
+
+
 
             postureRegen = Tools.Remap(health, 0, startPosture, 1, defaultPostureRegen);
             timeTillRegen = Tools.Remap(health, 0, startHealth, 6, defaultTimeTillRegen);
@@ -144,7 +155,7 @@ namespace Stats
             }
             else if (posture <= 0)
             {
-                posture = 0;
+                SetPosture(0);
                 DrainedPosture();
             }
             else
@@ -173,11 +184,11 @@ namespace Stats
                 canvasGroupPosture.gameObject.SetActive(false);
                 storedHealth = health;
                 OnPostureDrained?.Invoke();
-
-                Invoke(nameof(StaggerDone), owner.stunnedDuration);
+                owner.Stunned();
+                Invoke(nameof(StunnedDone), owner.stunnedDuration);
             }
         }
-        protected virtual void StaggerDone()
+        protected virtual void StunnedDone()
         {
             postureDrained = false;
             healthSlider.gameObject.SetActive(true);
@@ -208,13 +219,18 @@ namespace Stats
             {
                 if (posture < startPosture)
                 {
-                    posture += postureRegen * Time.deltaTime;
-                    SetPostureImages(posture);
-
+                    float regen = posture + postureRegen * Time.deltaTime;
+                    
+                    if( regen > startPosture)
+                    {
+                        regen = startPosture;
+                    }
+                    
+                    SetPosture(regen);  
                 }
                 else
                 {
-                    posture = startPosture;
+                    SetPosture(startPosture);
                 }
             }
 

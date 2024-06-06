@@ -65,8 +65,10 @@ namespace Stats
                 DefenceSetup(1.5f, 0.25f, owner, force);
             }
 
-            health.MinusPosture(Mathf.FloorToInt(attacker.currentWeapon.postureDamage * receivedMultiplier));
-            attacker.health.TakeDamage(0, Mathf.FloorToInt(owner.currentWeapon.postureDamage * giveMultiplier));
+            float postureToRemove = CheckRemaingPosture(parryType, attacker.currentWeapon.postureDamage * receivedMultiplier);
+
+            health.TakeDamage(0, postureToRemove);
+            attacker.health.TakeDamage(0, owner.currentWeapon.postureDamage * giveMultiplier);
         }
      
         private void DefenceSetup(float recieve, float give, Humanoid owner, Vector3 force)
@@ -75,6 +77,24 @@ namespace Stats
             giveMultiplier = give;
 
             owner.AddForce(force);
+        }
+
+
+        private float CheckRemaingPosture(ParryType parryType, float postureToPotentiallyRemove)
+        {
+            if(parryType == ParryType.Block)
+            {
+                return postureToPotentiallyRemove;
+            }
+
+            if(health.posture > postureToPotentiallyRemove)
+            {
+                return postureToPotentiallyRemove;
+            }
+            else
+            {
+                return Mathf.FloorToInt(health.posture) - 1;
+            }
         }
     }
 }

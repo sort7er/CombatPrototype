@@ -34,6 +34,14 @@ namespace EnemyAI
         {
             enemyBehaviour.BlockHit();
         }
+        public override void Stunned()
+        {
+            LeaveStateAndDo(stunnedState, LeaveBlocking);
+        }
+        public override void Staggered()
+        {
+            LeaveStateAndDo(staggeredState, LeaveBlocking);
+        }
 
         public void BlockingDone()
         {

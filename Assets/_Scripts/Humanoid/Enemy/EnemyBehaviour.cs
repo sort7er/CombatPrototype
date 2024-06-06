@@ -1,6 +1,5 @@
 using EnemyAI;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyBehaviour: MonoBehaviour
 {

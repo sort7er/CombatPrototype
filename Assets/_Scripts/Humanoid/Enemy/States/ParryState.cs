@@ -17,8 +17,6 @@ namespace EnemyAI
         {
             Anim parryAnim = currentWeapon.archetype.enemyParrys[GetCurrentParry()];
 
-            ReturnPostureDamage(ParryType.PerfectParry);
-
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);
 
@@ -26,6 +24,8 @@ namespace EnemyAI
             EffectManager.instance.Parry(enemy.hitPoint);
             enemy.SetAnimation(parryAnim);
             enemy.InvokeMethod(EndParry, parryAnim.duration);
+
+            ReturnPostureDamage(ParryType.PerfectParry);
         }
 
         private void EndParry()

@@ -78,15 +78,17 @@ namespace EnemyAI
         {
 
         }
-        public void ReturnPostureDamage(ParryType type)
-        {
-            enemy.parryCheck.ReturnPostureDamage(enemy.currentAttacker, enemy.hitPoint, type, enemy.DirectionToTarget());
-        }
+        
+        //Place this last as this might lead to stunned state before current state is done with enter
         public void TakeDamage()
         {
             enemy.health.TakeDamage(enemy.currentAttacker, enemy.hitPoint);
         }
-
+        //Same with this as with TakeDamage
+        public void ReturnPostureDamage(ParryType type)
+        {
+            enemy.parryCheck.ReturnPostureDamage(enemy.currentAttacker, enemy.hitPoint, type, -enemy.DirectionToTarget());
+        }
         public void LeaveState(EnemyState newState)
         {
             enemy.StopMethod();
@@ -95,8 +97,7 @@ namespace EnemyAI
         public void LeaveStateAndDo(EnemyState newState, Action doThis)
         {
             doThis?.Invoke();
-            enemy.StopMethod();
-            enemy.SwitchState(newState);
+            LeaveState(newState);
         }
         private void SetReferences(Enemy enemy)
         {

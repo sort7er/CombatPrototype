@@ -33,7 +33,8 @@ public class Player : Humanoid
     public BlockState blockState = new BlockState();
     public ParryState parryState = new ParryState();
     public PerfectParryState perfectParryState = new PerfectParryState();
-    public PlayerSM.ParryAttackState parryAttackState = new PlayerSM.ParryAttackState();
+    public ParryAttackState parryAttackState = new ParryAttackState();
+    public StaggeredState staggeredState = new StaggeredState();
 
     public int currentParry { get; private set; }
     public int currentPerfectParry { get; private set; }
@@ -80,7 +81,7 @@ public class Player : Humanoid
     }
     public override void Staggered()
     {
-
+        currentState.Staggered();
     }
     public void Moving()
     {

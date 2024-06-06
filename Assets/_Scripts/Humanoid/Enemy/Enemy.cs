@@ -60,6 +60,7 @@ namespace EnemyAI
 
         //For attack done when hit
         public int attackDoneState { get; private set; }
+        public int stunnedDoneState { get; private set; }
 
         private int currentCorner;
         private float refreshRateTimer;
@@ -98,6 +99,7 @@ namespace EnemyAI
             SetSpeed(3);
             agent.enabled = false;
             attackDoneState = Animator.StringToHash("AttackDone");
+            stunnedDoneState = Animator.StringToHash("StunnedDone");
             player.OnAttack += PlayerAttacking;
 
         }

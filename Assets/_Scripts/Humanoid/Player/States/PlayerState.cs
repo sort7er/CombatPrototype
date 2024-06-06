@@ -1,4 +1,3 @@
-using PlayerSM;
 using System;
 using UnityEngine;
 
@@ -33,6 +32,7 @@ namespace PlayerSM
         public ParryState parryState;
         public PerfectParryState perfectParryState;
         public ParryAttackState parryAttackState;
+        public StaggeredState staggeredState;
 
         #region Signal methods
         public virtual void Enter(Player player)
@@ -96,7 +96,11 @@ namespace PlayerSM
         {
 
         }
-        public virtual void Hit(Weapon attackingWeapon, Vector3 hitPoint)
+        public virtual void Staggered()
+        {
+            
+        }
+        public virtual void Hit(Humanoid attacker, Vector3 hitPoint)
         {
 
         }
@@ -218,6 +222,7 @@ namespace PlayerSM
                 parryState = player.parryState;
                 perfectParryState = player.perfectParryState;
                 parryAttackState = player.parryAttackState;
+                staggeredState = player.staggeredState;
 
             }
 

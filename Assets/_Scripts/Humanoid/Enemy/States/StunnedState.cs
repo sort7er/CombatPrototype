@@ -12,8 +12,6 @@ namespace EnemyAI
             enemy.SetAnimation(stunnedAnim);
             enemy.InvokeMethod(StunnedDone, enemy.stunnedDuration);
 
-            enemyAnimator.SetAnimatorBool("Stunned", true);
-
         }
         public override void Hit()
         {
@@ -21,7 +19,7 @@ namespace EnemyAI
         }
         private void StunnedDone()
         {
-            LeaveStateAndDo(chaseState, () => enemyAnimator.SetAnimatorBool("Stunned", false));
+            LeaveStateAndDo(chaseState, () => enemy.SetAnimationWithInt(enemy.stunnedDoneState,0.25f));
         }
     }
 }

@@ -82,6 +82,14 @@ namespace EnemyAI
         {
             enemyBehaviour.StandbyPlayerAttack();
         }
+        public override void Staggered()
+        {
+            LeaveStateAndDo(staggeredState, LeaveStandby);
+        }
+        public override void Stunned()
+        {
+            LeaveStateAndDo(stunnedState, LeaveStandby);
+        }
 
         public override void Hit()
         {

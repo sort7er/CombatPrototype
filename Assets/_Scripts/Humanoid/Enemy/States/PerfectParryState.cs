@@ -20,12 +20,12 @@ namespace EnemyAI
             enemy.InvokeMethod(StopRotate, 0.25f);
 
 
-            ReturnPostureDamage(ParryType.PerfectParry);
-
-
             EffectManager.instance.PerfectParry(enemy.hitPoint);
             enemy.SetAnimation(perfectParryAnim);
             enemy.InvokeMethod(EndPerfectParry, perfectParryAnim.duration);
+
+
+            ReturnPostureDamage(ParryType.PerfectParry);
         }
 
         public void DoPefectParryAttack()

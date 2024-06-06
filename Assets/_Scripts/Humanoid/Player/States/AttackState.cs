@@ -41,9 +41,8 @@ namespace PlayerSM
 
         private void EndAttack()
         {
-            LeaveState(player.idleState);
+            LeaveState(idleState);
         }
-
         private void UpdateCurrentAttack()
         {
             if (currentAttack < archetype.attacks.Length - 1)
@@ -54,6 +53,10 @@ namespace PlayerSM
             {
                 currentAttack = 0;
             }
+        }
+        public override void Staggered()
+        {
+            LeaveState(staggeredState);
         }
 
     }

@@ -7,9 +7,10 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
-            TakeDamage();
+
 
             HitAnimation();
+            TakeDamage();
         }
         private void HitDone()
         {
@@ -18,8 +19,8 @@ namespace EnemyAI
         public override void Hit()
         {
             enemy.StopMethod();
-            TakeDamage();
             HitAnimation();
+            TakeDamage();
         }
 
         public override void Staggered()

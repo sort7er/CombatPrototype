@@ -4005,6 +4005,11 @@ PrefabInstance:
       propertyPath: startHealth
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 4608506369025162612, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
+      propertyPath: startPosture
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: test1

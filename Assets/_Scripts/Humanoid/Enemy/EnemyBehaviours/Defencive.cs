@@ -14,7 +14,6 @@ public class Defencive : EnemyBehaviour
     #region Block state
     public override void BlockHit()
     {
-        blockState.ReturnPostureDamage(ParryType.Block);
         blockState.LeaveStateAndDo(parryState, blockState.LeaveBlocking);
     }
     #endregion
