@@ -40,23 +40,23 @@ namespace Stats
             }
         }
 
-        public void IsDefending(Weapon attackingWeapon, Vector3 hitPoint, ParryType parryType, Vector3 direction)
+        public void ReturnPostureDamage(Humanoid attacker, Vector3 hitPoint, ParryType parryType, Vector3 direction)
         {
-            Vector3 force = direction * attackingWeapon.pushbackForce;
+            Vector3 force = direction * attacker.currentWeapon.pushbackForce;
 
             if (parryType == ParryType.PerfectParry)
             {
                 EffectManager.instance.PerfectParry(hitPoint);
-                attackingWeapon.owner.Staggered();
+                attacker.Staggered();
                 owner.PerfectParry();
-                DefenceSetup(0.2f, 1.3f, attackingWeapon.owner, -force);
+                DefenceSetup(0.2f, 1.3f, attacker, -force);
             }
             else if (parryType == ParryType.Parry)
             {
                 EffectManager.instance.Parry(hitPoint);
                 owner.Parry();
 
-                DefenceSetup(0.5f, 1f, attackingWeapon.owner, -force);
+                DefenceSetup(0.5f, 1f, attacker, -force);
             }
             else
             {
@@ -65,8 +65,8 @@ namespace Stats
                 DefenceSetup(1.5f, 0.25f, owner, force);
             }
 
-            health.MinusPosture(Mathf.FloorToInt(attackingWeapon.postureDamage * receivedMultiplier));
-            attackingWeapon.owner.health.TakeDamage(0, Mathf.FloorToInt(owner.currentWeapon.postureDamage * giveMultiplier));
+            health.MinusPosture(Mathf.FloorToInt(attacker.currentWeapon.postureDamage * receivedMultiplier));
+            attacker.health.TakeDamage(0, Mathf.FloorToInt(owner.currentWeapon.postureDamage * giveMultiplier));
         }
      
         private void DefenceSetup(float recieve, float give, Humanoid owner, Vector3 force)

@@ -111,7 +111,6 @@ namespace EnemyAI
             }
             else
             {
-                base.Hit();
                 LeaveStateAndDo(hitState, () => LeaveAttack());
             }
 

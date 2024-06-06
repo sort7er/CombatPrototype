@@ -7,6 +7,7 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
+            TakeDamage();
 
             HitAnimation();
         }
@@ -16,8 +17,8 @@ namespace EnemyAI
         }
         public override void Hit()
         {
-            base.Hit();
             enemy.StopMethod();
+            TakeDamage();
             HitAnimation();
         }
 

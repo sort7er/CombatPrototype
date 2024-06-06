@@ -1,3 +1,4 @@
+using Stats;
 using UnityEngine;
 
 public class Defencive : EnemyBehaviour
@@ -13,6 +14,7 @@ public class Defencive : EnemyBehaviour
     #region Block state
     public override void BlockHit()
     {
+        blockState.ReturnPostureDamage(ParryType.Block);
         blockState.LeaveStateAndDo(parryState, blockState.LeaveBlocking);
     }
     #endregion
@@ -26,7 +28,7 @@ public class Defencive : EnemyBehaviour
         }
         else
         {
-            parryState.SwitchToHit();
+            parryState.LeaveState(hitState);
         }
     }
     #endregion

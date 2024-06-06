@@ -187,7 +187,7 @@ namespace EnemyAI
         }
         public Vector3 DirectionToTarget()
         {
-            return player.Position() - transform.position;
+            return (player.Position() - transform.position).normalized;
         }
         public void SwitchState(EnemyState state)
         {

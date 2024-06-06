@@ -25,6 +25,7 @@ public class Humanoid : MonoBehaviour
 
     public Health health;
     public HitBox hitBox;
+    public ParryCheck parryCheck;
 
     //This is when the owner is parrying
     private bool startParryTimer;

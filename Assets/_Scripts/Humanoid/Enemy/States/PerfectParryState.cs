@@ -1,3 +1,4 @@
+using Stats;
 using UnityEngine;
 
 namespace EnemyAI
@@ -17,6 +18,9 @@ namespace EnemyAI
 
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);
+
+
+            ReturnPostureDamage(ParryType.PerfectParry);
 
 
             EffectManager.instance.PerfectParry(enemy.hitPoint);

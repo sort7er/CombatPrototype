@@ -16,7 +16,7 @@ public class Easy : EnemyBehaviour
     #region Parry state
     public override void ParryHit()
     {
-        parryState.SwitchToHit();
+        parryState.LeaveState(hitState);
     }
     #endregion
 

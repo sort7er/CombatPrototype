@@ -15,6 +15,10 @@ namespace EnemyAI
             enemyAnimator.SetAnimatorBool("Stunned", true);
 
         }
+        public override void Hit()
+        {
+            TakeDamage();
+        }
         private void StunnedDone()
         {
             LeaveStateAndDo(chaseState, () => enemyAnimator.SetAnimatorBool("Stunned", false));

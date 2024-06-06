@@ -1,7 +1,6 @@
 using UnityEngine;
 using PlayerSM;
 using System;
-using System.Collections;
 using Stats;
 
 public class Player : Humanoid
@@ -19,7 +18,6 @@ public class Player : Humanoid
     public InputReader inputReader;
     public CameraController cameraController;
     public TargetAssistance targetAssistance;
-    public ParryCheck parryCheck;
 
     public Transform[] weaponPos;
     public PlayerState currentState { get; private set; }
@@ -168,7 +166,7 @@ public class Player : Humanoid
         }
         else
         {
-            parryCheck.IsDefending(attackingWeapon, hitPoint, parryType, direction);
+            parryCheck.ReturnPostureDamage(attacker, hitPoint, parryType, direction);
         }
     }
 

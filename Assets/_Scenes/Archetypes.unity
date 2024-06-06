@@ -4032,6 +4032,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
+      propertyPath: parryCheck
+      value: 
+      objectReference: {fileID: 1857717721}
+    - target: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
       propertyPath: rotationSlerp
       value: 15
       objectReference: {fileID: 0}
@@ -4888,6 +4893,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1857717707}
+--- !u!114 &1857717721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1328179942541524593, guid: ca25066036473ca49a73d594b649c74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1581807167}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151191677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28983f9949f408b44a5d0aa5eeaad66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1953368797
 GameObject:
   m_ObjectHideFlags: 0

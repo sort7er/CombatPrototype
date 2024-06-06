@@ -1,6 +1,7 @@
 using System;
 using UnityEngine.AI;
 using UnityEngine;
+using Stats;
 
 namespace EnemyAI
 {
@@ -59,7 +60,7 @@ namespace EnemyAI
         }
         public virtual void Hit()
         {
-            enemy.health.TakeDamage(enemy.currentAttacker, enemy.hitPoint);
+            
         }
         public virtual void OverlapCollider()
         {
@@ -76,6 +77,14 @@ namespace EnemyAI
         public virtual void Takedown()
         {
 
+        }
+        public void ReturnPostureDamage(ParryType type)
+        {
+            enemy.parryCheck.ReturnPostureDamage(enemy.currentAttacker, enemy.hitPoint, type, enemy.DirectionToTarget());
+        }
+        public void TakeDamage()
+        {
+            enemy.health.TakeDamage(enemy.currentAttacker, enemy.hitPoint);
         }
 
         public void LeaveState(EnemyState newState)

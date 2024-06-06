@@ -30,6 +30,10 @@ namespace EnemyAI
         {
             LeaveState(chaseState);
         }
+        public override void Hit()
+        {
+            TakeDamage();
+        }
         public override void Stunned()
         {
             LeaveState(stunnedState);

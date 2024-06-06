@@ -1,3 +1,4 @@
+using Stats;
 using UnityEngine;
 
 namespace EnemyAI
@@ -42,5 +43,6 @@ namespace EnemyAI
         {
             enemy.SetAnimationWithInt(enemy.attackDoneState, 0.25f);
         }
+
     }
 }

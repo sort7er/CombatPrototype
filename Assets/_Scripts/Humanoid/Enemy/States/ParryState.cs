@@ -1,4 +1,5 @@
 using UnityEngine;
+using Stats;
 
 namespace EnemyAI
 {
@@ -15,7 +16,9 @@ namespace EnemyAI
         private void DoParry()
         {
             Anim parryAnim = currentWeapon.archetype.enemyParrys[GetCurrentParry()];
-            
+
+            ReturnPostureDamage(ParryType.PerfectParry);
+
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);
 
@@ -34,15 +37,6 @@ namespace EnemyAI
         {
             enemy.enemyBehaviour.ParryHit();
         }
-
-        //This is so it can be called from enemy behaviour
-        public void SwitchToHit()
-        {
-            base.Hit();
-            LeaveState(hitState);
-        }
-
-
         public override void Stunned()
         {
             LeaveState(stunnedState);

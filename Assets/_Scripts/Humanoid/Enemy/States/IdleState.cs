@@ -23,7 +23,6 @@ namespace EnemyAI
         }
         public override void Hit()
         {
-            base.Hit();
             LeaveState(hitState);
         }
         public override void Stunned()
