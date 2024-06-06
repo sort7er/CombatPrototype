@@ -32,17 +32,17 @@ namespace EnemyAI
 
         public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
         {
-            if (enemy.InsideParryFOV())
-            {
-                enemy.SetHitPoint(hitPoint);
-                enemy.StopMethod();
-                DoParry();
-            }
-            else
-            {
-                base.Hit(attackingWeapon, hitPoint);
-                LeaveState(hitState);
-            }
+            enemy.SetHitPoint(hitPoint);
+            enemy.SetAttackingWeapon(attackingWeapon);
+
+            enemy.enemyBehaviour.ParryHit();
+        }
+
+        //This is so it can be called from enemy behaviour
+        public void SwitchToHit()
+        {
+            base.Hit(enemy.attackingWeapon, enemy.hitPoint);
+            LeaveState(hitState);
         }
 
 

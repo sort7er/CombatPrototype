@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+using PlayerSM;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -43,6 +42,7 @@ namespace EnemyAI
         public Vector3 lookAtTarget { get; private set; }
         public Vector3 forwardTarget { get; private set; }
         public Vector3 hitPoint { get; private set; }
+        public Weapon attackingWeapon { get; private set; }
 
         //State machine
         public IdleState idleState = new IdleState();
@@ -54,6 +54,7 @@ namespace EnemyAI
         public HitState hitState = new HitState();
         public StandbyState standbyState = new StandbyState();
         public BlockState blockState = new BlockState();
+        public PerfectParryState perfectParryState = new PerfectParryState();
 
         //For attack done when hit
         public int attackDoneState { get; private set; }
@@ -226,6 +227,10 @@ namespace EnemyAI
         public void SetHitPoint(Vector3 point)
         {
             hitPoint = point;
+        }
+        public void SetAttackingWeapon(Weapon weapon)
+        {
+            attackingWeapon = weapon;
         }
         public void RotateToTarget(Vector3 lookAtTarget, Vector3 forwardTarget)
         {

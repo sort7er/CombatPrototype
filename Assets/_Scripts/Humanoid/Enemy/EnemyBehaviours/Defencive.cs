@@ -17,4 +17,17 @@ public class Defencive : EnemyBehaviour
     }
     #endregion
 
+    #region Parry state
+    public override void ParryHit()
+    {       
+        if (enemy.InsideParryFOV())
+        {
+            enemy.parryState.LeaveState(perfectParryState);
+        }
+        else
+        {
+            parryState.SwitchToHit();
+        }
+    }
+    #endregion
 }

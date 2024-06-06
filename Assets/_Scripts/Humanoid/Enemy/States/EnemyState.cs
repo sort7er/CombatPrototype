@@ -23,6 +23,7 @@ namespace EnemyAI
         public HitState hitState;
         public StandbyState standbyState;
         public BlockState blockState;
+        public PerfectParryState perfectParryState;
 
         public bool rotateTowardsPlayer { get; private set; }
 
@@ -107,6 +108,7 @@ namespace EnemyAI
                 hitState = enemy.hitState;
                 standbyState = enemy.standbyState;
                 blockState = enemy.blockState;
+                perfectParryState = enemy.perfectParryState;
 
             }
         }

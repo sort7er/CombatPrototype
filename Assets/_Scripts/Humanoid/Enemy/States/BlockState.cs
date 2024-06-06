@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace EnemyAI
 {
@@ -8,7 +7,6 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
-            Debug.Log("Now I am blocking");
 
             Anim blockAnim = currentWeapon.archetype.enemyBlock;
             enemy.SetAnimation(blockAnim);
