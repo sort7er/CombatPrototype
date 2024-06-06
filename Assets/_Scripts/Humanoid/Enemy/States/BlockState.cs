@@ -24,6 +24,9 @@ namespace EnemyAI
             {
                 BlockingDone();
             }
+
+            //This updates the rotation of the animation
+            enemy.SetLookAtAndForward(player.Position(), enemy.InFront());
         }
 
         public override void Hit(Weapon attackingWeapon, Vector3 hitPoint)
