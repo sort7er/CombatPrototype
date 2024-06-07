@@ -4392,7 +4392,47 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.022058824
+        functionName: Parry
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.11476037
+        functionName: PerfectParry
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.17881264
+        functionName: AttackEffect
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.27866837
+        functionName: AttackEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.43034074
+        functionName: AttackDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

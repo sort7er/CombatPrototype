@@ -1,6 +1,5 @@
 using System;
 using UnityEngine.AI;
-using UnityEngine;
 using Stats;
 
 namespace EnemyAI

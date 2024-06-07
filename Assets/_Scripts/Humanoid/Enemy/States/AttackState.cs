@@ -98,10 +98,7 @@ namespace EnemyAI
             canStillParry = false;
         }
 
-        public override void Staggered()
-        {
-            LeaveStateAndDo(staggeredState, () => LeaveAttack());
-        }
+
         public override void Hit()
         {
 
@@ -115,7 +112,10 @@ namespace EnemyAI
             }
 
         }
-
+        public override void Staggered()
+        {
+            LeaveStateAndDo(staggeredState, () => LeaveAttack());
+        }
         public override void Stunned()
         {
             LeaveStateAndDo(stunnedState,() => LeaveAttack());

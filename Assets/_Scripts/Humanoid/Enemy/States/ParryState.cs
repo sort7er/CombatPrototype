@@ -20,12 +20,10 @@ namespace EnemyAI
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);
 
-
-            EffectManager.instance.Parry(enemy.hitPoint);
             enemy.SetAnimation(parryAnim);
             enemy.InvokeMethod(EndParry, parryAnim.duration);
 
-            ReturnPostureDamage(ParryType.PerfectParry);
+            ReturnPostureDamage(ParryType.Parry);
         }
 
         private void EndParry()

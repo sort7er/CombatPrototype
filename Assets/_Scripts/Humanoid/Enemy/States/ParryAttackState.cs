@@ -16,13 +16,25 @@ namespace EnemyAI
             enemy.InvokeMethod(EndAttack, parryAttack.duration);
 
         }
-        public override void Hit()
-        {
-            LeaveState(hitState);
-        }
         private void EndAttack()
         {
             LeaveState(standbyState);
+        }
+        public override void Hit()
+        {
+            LeaveStateAndDo(hitState, () => LeaveParryAttack());
+        }
+        public override void Staggered()
+        {
+            LeaveStateAndDo(staggeredState, () => LeaveParryAttack());
+        }
+        public override void Stunned()
+        {
+            LeaveStateAndDo(stunnedState, () => LeaveParryAttack());
+        }
+        private void LeaveParryAttack(float transition = 0)
+        {
+            enemy.SetAnimationWithInt(enemy.attackDoneState, transition);
         }
     }
 

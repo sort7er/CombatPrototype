@@ -10,7 +10,7 @@ namespace PlayerSM
 
             ResetValues();
 
-            player.SetAnimation(archetype.parry[player.GetCurrentParry()], 0.05f);
+            player.SetAnimation(archetype.parry[player.GetCurrentParry()], 0f);
             player.StopMethod();
             player.InvokeMethod(EndParry, player.currentAnimation.duration);
         }

@@ -20,7 +20,6 @@ namespace EnemyAI
             enemy.InvokeMethod(StopRotate, 0.25f);
 
 
-            EffectManager.instance.PerfectParry(enemy.hitPoint);
             enemy.SetAnimation(perfectParryAnim);
             enemy.InvokeMethod(EndPerfectParry, perfectParryAnim.duration);
 
