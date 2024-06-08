@@ -10,24 +10,32 @@ namespace PlayerSM
             ResetValues();
             player.IsBlocking();
             player.InvokeMethod(CanRelease, archetype.block.duration * 1.5f);
-            player.SetAnimation(archetype.block, 0f);
+            player.SetAnimation(archetype.block);
             player.StartParryTimer();
+
         }
 
         #region Queuing methods
         public override void Attack()
         {
-            QueueAttack(() => LeaveStateAndDo(attackState, NotBlocking));
+            DoOrQueueAction(() => LeaveStateAndDo(attackState, NotBlocking));
         }
         public override void BlockRelease()
         {
-            QueueIdle(EndBlocking);
-        }
-        private void CanRelease()
-        {
-            QueueActionDone(() => LeaveStateAndDo(attackState, NotBlocking), null, EndBlocking);
+            DoOrQueueAction(EndBlocking);
         }
         #endregion
+        private void CanRelease()
+        {
+            if (player.blockReleased)
+            {
+                EndBlocking();
+            }
+            else
+            {
+                CheckQueueOrActionDone();
+            }
+        }
 
         public override void Parry()
         {

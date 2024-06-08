@@ -33,6 +33,9 @@ namespace PlayerSM
         public PerfectParryState perfectParryState;
         public ParryAttackState parryAttackState;
         public StaggeredState staggeredState;
+        public HitState hitState;
+
+        private Action nextAction;
 
         #region Signal methods
         public virtual void Enter(Player player)
@@ -73,8 +76,7 @@ namespace PlayerSM
         }
         public virtual void ActionDone()
         {
-
-
+            CheckQueueOrActionDone();
         }
         public virtual void Unique()
         {
@@ -108,53 +110,23 @@ namespace PlayerSM
         #endregion
 
         #region Queue methods
-        public void QueueAttack(Action attackMethod)
+        public void DoOrQueueAction(Action action)
         {
             if (actionDone)
             {
-                attackMethod?.Invoke();
+                action?.Invoke();
             }
-            else if (CheckUpcommingAction())
+            else
             {
-                SetUpcommingAction(QueuedAction.Attack);
+                CheckNextAction(action);
             }
+        }
 
-        }
-        public void QueueBlock(Action blockMethod)
+        public void CheckQueueOrActionDone()
         {
-            if (actionDone)
+            if(nextAction != null)
             {
-                blockMethod?.Invoke();
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Block);
-            }
-        }
-        public void QueueIdle(Action idleMethod)
-        {
-            if (actionDone)
-            {
-                idleMethod?.Invoke();
-            }
-            else if (CheckUpcommingAction())
-            {
-                SetUpcommingAction(QueuedAction.Idle);
-            }
-        }
-        public void QueueActionDone(Action attackMethod, Action blockMethod, Action idleMethod = null)
-        {
-            if (upcommingAction == QueuedAction.Attack)
-            {
-                attackMethod?.Invoke();
-            }
-            else if (upcommingAction == QueuedAction.Block)
-            {
-                blockMethod?.Invoke();
-            }
-            else if (upcommingAction == QueuedAction.Idle)
-            {
-                idleMethod?.Invoke();
+                nextAction?.Invoke();
             }
             else
             {
@@ -165,20 +137,12 @@ namespace PlayerSM
         #endregion
 
         #region Tool methods
-        public bool CheckUpcommingAction()
+        private void CheckNextAction(Action action)
         {
-            if (upcommingAction == QueuedAction.None && canChain)
+            if(nextAction == null)
             {
-                return true;
+                nextAction = action;
             }
-            else
-            {
-                return false;
-            }
-        }
-        public void SetUpcommingAction(QueuedAction action)
-        {
-            upcommingAction = action;
         }
 
         public void LeaveState(PlayerState newState)
@@ -197,13 +161,13 @@ namespace PlayerSM
         {
             actionDone = false;
             canChain = false;
-            SetUpcommingAction(QueuedAction.None);
+            nextAction = null;
         }
         public void ResetValues()
         {
             actionDone = false;
             canChain = true;
-            SetUpcommingAction(QueuedAction.None);
+            nextAction = null;
         }
         #endregion
 
@@ -223,7 +187,7 @@ namespace PlayerSM
                 perfectParryState = player.perfectParryState;
                 parryAttackState = player.parryAttackState;
                 staggeredState = player.staggeredState;
-
+                hitState = player.hitState;
             }
 
             //Need to update the current weapon all the time to make sure the state knows which weapon is in use

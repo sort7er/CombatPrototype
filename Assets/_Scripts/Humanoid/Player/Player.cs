@@ -24,6 +24,7 @@ public class Player : Humanoid
     public Anim currentAnimation { get; private set; }
     public bool isMoving { get; private set; }
     public bool isFalling { get; private set; }
+    public bool blockReleased { get; private set; }
 
     public IdleState idleState = new IdleState();
     public JumpState jumpState = new JumpState();
@@ -35,6 +36,7 @@ public class Player : Humanoid
     public PerfectParryState perfectParryState = new PerfectParryState();
     public ParryAttackState parryAttackState = new ParryAttackState();
     public StaggeredState staggeredState = new StaggeredState();
+    public HitState hitState = new HitState();
 
     public int currentParry { get; private set; }
     public int currentPerfectParry { get; private set; }
@@ -106,10 +108,12 @@ public class Player : Humanoid
     }
     public void Block()
     {
+        blockReleased = false;
         currentState.Block();
     }
     public void BlockRelease()
     {
+        blockReleased = true;
         currentState.BlockRelease();
     }
     public void ActionStart()

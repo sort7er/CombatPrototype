@@ -1,0 +1,12 @@
+using UnityEngine;
+namespace PlayerSM
+{
+    public class HitState : PlayerState
+    {
+        public override void Enter(Player player)
+        {
+            base.Enter(player);
+            Debug.Log("Now I am hit");
+        }
+    }
+}
