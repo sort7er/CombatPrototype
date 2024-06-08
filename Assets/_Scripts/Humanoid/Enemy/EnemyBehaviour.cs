@@ -62,6 +62,10 @@ public class EnemyBehaviour: MonoBehaviour
     {
 
     }
+    public virtual void ParryEnd()
+    {
+
+    }
     #endregion
 
     #region Perfect parry state

@@ -28,12 +28,12 @@ namespace EnemyAI
 
         private void EndParry()
         {
-            LeaveState(standbyState);
+            enemyBehaviour.ParryEnd();
         }
 
         public override void Hit()
         {
-            enemy.enemyBehaviour.ParryHit();
+            enemyBehaviour.ParryHit();
         }
         public override void Stunned()
         {

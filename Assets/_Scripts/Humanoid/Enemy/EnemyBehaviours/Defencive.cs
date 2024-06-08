@@ -30,6 +30,10 @@ public class Defencive : EnemyBehaviour
             parryState.LeaveState(hitState);
         }
     }
+    public override void ParryEnd()
+    {
+        parryState.LeaveState(attackState);
+    }
     #endregion
 
     #region Perfect parry state
