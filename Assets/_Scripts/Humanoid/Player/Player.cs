@@ -156,18 +156,16 @@ public class Player : Humanoid
     }
     public override void Hit(Humanoid attacker, Vector3 hitPoint)
     {
+        base.Hit(attacker, hitPoint);
 
         ParryType parryType = parryCheck.CheckForParry(this, attacker);
         Vector3 direction = (transform.position - attacker.Position()).normalized;
 
-        Weapon attackingWeapon = attacker.currentWeapon;
-
         if (parryType == ParryType.None)
         {
-            //Can add hit functionnality here
-
-            AddForce(direction * attackingWeapon.pushbackForce);
+            AddForce(direction * attacker.currentWeapon.pushbackForce);
             health.TakeDamage(attacker, hitPoint);
+            currentState.Hit();
         }
         else
         {

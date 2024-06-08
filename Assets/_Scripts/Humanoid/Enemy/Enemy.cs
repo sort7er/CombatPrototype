@@ -43,8 +43,6 @@ namespace EnemyAI
         public Vector3 currentMoveToTarget { get; private set; }
         public Vector3 lookAtTarget { get; private set; }
         public Vector3 forwardTarget { get; private set; }
-        public Vector3 hitPoint { get; private set; }
-        public Humanoid currentAttacker { get; private set; }
 
         //State machine
         public IdleState idleState = new IdleState();
@@ -136,8 +134,7 @@ namespace EnemyAI
         }
         public override void Hit(Humanoid attacker, Vector3 hitPoint)
         {
-            SetCurrentAttacker(attacker);
-            SetHitPoint(hitPoint);
+            base.Hit(attacker, hitPoint);
             currentState.Hit();
         }
         public override void OverlapCollider()
@@ -268,14 +265,6 @@ namespace EnemyAI
         #endregion
 
         #region Called from this class
-        private void SetHitPoint(Vector3 point)
-        {
-            hitPoint = point;
-        }
-        private void SetCurrentAttacker(Humanoid attacker)
-        {
-            currentAttacker = attacker;
-        }
         private void AnimationSpeed()
         {
             if (isRunning)

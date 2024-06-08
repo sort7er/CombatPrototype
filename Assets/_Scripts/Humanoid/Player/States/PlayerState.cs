@@ -3,20 +3,8 @@ using UnityEngine;
 
 namespace PlayerSM
 {
-    public enum QueuedAction
-    {
-        None,
-        Attack,
-        Block,
-        Parry,
-        Idle
-    }
-
-
     public abstract class PlayerState
     {
-
-        public QueuedAction upcommingAction;
         public Player player;
         public Weapon weapon;
         public Archetype archetype;
@@ -102,7 +90,7 @@ namespace PlayerSM
         {
             
         }
-        public virtual void Hit(Humanoid attacker, Vector3 hitPoint)
+        public virtual void Hit()
         {
 
         }

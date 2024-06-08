@@ -50,6 +50,10 @@ namespace PlayerSM
                 currentAttack = 0;
             }
         }
+        public override void Hit()
+        {
+            LeaveState(hitState);
+        }
         public override void Staggered()
         {
             LeaveState(staggeredState);

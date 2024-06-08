@@ -57,6 +57,10 @@ namespace PlayerSM
         {
             LeaveState(uniqueState);
         }
+        public override void Hit()
+        {
+            LeaveState(hitState);
+        }
 
     }
 

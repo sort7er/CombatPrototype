@@ -8,5 +8,9 @@ namespace PlayerSM
             base.Enter(player);
             Debug.Log("Now I am hit");
         }
+        public override void Hit()
+        {
+            Debug.Log("Damn, hit again");
+        }
     }
 }

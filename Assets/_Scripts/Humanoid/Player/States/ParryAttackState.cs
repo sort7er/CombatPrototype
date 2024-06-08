@@ -34,5 +34,6 @@ namespace PlayerSM
         {
             LeaveState(idleState);
         }
+
     }
 }

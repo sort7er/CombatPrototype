@@ -22,6 +22,8 @@ public class Humanoid : MonoBehaviour
     public float stunnedDuration;
     public Weapon currentWeapon { get; private set; }
     public Rigidbody rb { get; private set; }
+    public Vector3 hitPoint { get; private set; }
+    public Humanoid currentAttacker { get; private set; }
 
     public Health health;
     public HitBox hitBox;
@@ -193,7 +195,8 @@ public class Humanoid : MonoBehaviour
     }
     public virtual void Hit(Humanoid attacker, Vector3 hitPoint)
     {
-
+        SetCurrentAttacker(attacker);
+        SetHitPoint(hitPoint);
     }
     public virtual void PerfectParry()
     {
@@ -273,7 +276,6 @@ public class Humanoid : MonoBehaviour
     {
         isBlocking = false;
     }
-
     public void SetTransform(Transform newTransform)
     {
         rb.position = newTransform.position;
@@ -309,6 +311,15 @@ public class Humanoid : MonoBehaviour
         OnNewWeapon?.Invoke(weapon);
        
         currentWeapon.Vissible();
+    }
+
+    private void SetHitPoint(Vector3 point)
+    {
+        hitPoint = point;
+    }
+    private void SetCurrentAttacker(Humanoid attacker)
+    {
+        currentAttacker = attacker;
     }
 
     #region Invoking

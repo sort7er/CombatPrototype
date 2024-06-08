@@ -42,6 +42,10 @@ namespace PlayerSM
             player.ResetParryTimer();
             player.StopMethod();
         }
+        public override void Hit()
+        {
+            LeaveState(hitState);
+        }
     }
 
 }

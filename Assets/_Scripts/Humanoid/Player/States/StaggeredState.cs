@@ -29,5 +29,9 @@ namespace PlayerSM
         {
             LeaveState(idleState);
         }
+        public override void Hit()
+        {
+            LeaveState(hitState);
+        }
     }
 }
