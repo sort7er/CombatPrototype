@@ -5,15 +5,15 @@ namespace EnemyAI
 {
     public class ParryState : EnemyState
     {
-        private int currentParry;
+        public int currentParry { get; private set; }
 
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
-            DoParry();
+            enemyBehaviour.ParryEnter();
         }
 
-        private void DoParry()
+        public void DoParry()
         {
             Anim parryAnim = currentWeapon.archetype.enemyParrys[GetCurrentParry()];
 
@@ -28,9 +28,12 @@ namespace EnemyAI
 
         private void EndParry()
         {
-            enemyBehaviour.ParryEnd();
+            LeaveState(standbyState);
         }
-
+        public void SwitchToAttack()
+        {
+            LeaveState(attackState);
+        }
         public override void Hit()
         {
             enemyBehaviour.ParryHit();

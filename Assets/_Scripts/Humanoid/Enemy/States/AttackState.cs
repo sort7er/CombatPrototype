@@ -4,6 +4,8 @@ namespace EnemyAI
 {
     public class AttackState : EnemyState
     {
+        public bool canParry;
+
         private bool attacking;
         private int currentAttack;
         private int attacksLength;
@@ -22,6 +24,7 @@ namespace EnemyAI
             attacksSoFar = 0;
             transition = 0.25f;
             attacking = false;
+            canParry = true;
 
             if (enemy.CheckForWeapon())
             {
@@ -55,6 +58,7 @@ namespace EnemyAI
         {
             StopRotate();
             attacking = true;
+            canParry = true;
             AttackEnemy attack = currentWeapon.archetype.enemyAttacks[currentAttack];
             enemy.SetAnimation(attack, transition);
             attacksSoFar++;
@@ -62,6 +66,7 @@ namespace EnemyAI
             transition = attack.transitionDuration;
 
             enemy.StopMethod();
+            enemy.InvokeMethod(CannotParry, enemy.attackParryPeriod);
             enemy.InvokeMethod(StopRotate, 0.25f);
             enemy.InvokeMethod(Chain, attack.exitTimeSeconds);
             enemy.InvokeMethod(AttackDone, attack.duration);
@@ -78,7 +83,14 @@ namespace EnemyAI
         {
             LeaveStateAndDo(standbyState, () => LeaveAttack(0.25f));
         }
-
+        public override void PlayerAttacking()
+        {
+            enemyBehaviour.AttackPlayerAttack();
+        }
+        private void CannotParry()
+        {
+            canParry = false;
+        }
         private void UpdateCurrentAttack()
         {
             if (currentAttack < attacksLength - 1)
@@ -116,7 +128,7 @@ namespace EnemyAI
             }
             return true;
         }
-        private void LeaveAttack(float transition = 0)
+        public void LeaveAttack(float transition = 0)
         {
             enemy.SetAnimationWithInt(enemy.attackDoneState, transition);
         }

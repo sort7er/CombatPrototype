@@ -179,6 +179,8 @@ GameObject:
   - component: {fileID: 1328179942541524593}
   - component: {fileID: 5937715972609921831}
   - component: {fileID: 7278276694183487644}
+  - component: {fileID: 7699375347797713944}
+  - component: {fileID: 7250228212090035543}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -288,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c279d2d3f10245540adb142efc38ac49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 100
+  startHealth: 500
   healthSlider: {fileID: 2314837235863848679}
   canvasGroupHealth: {fileID: 4475623680375129514}
   healthText: {fileID: 2788858518578309218}
@@ -301,7 +303,6 @@ MonoBehaviour:
   defaultTimeTillRegen: 1.5
   defaultPostureRegen: 10
   owner: {fileID: 5937715972609921831}
-  parryCheck: {fileID: 1328179942541524593}
   slicingController: {fileID: 9064183171304532476}
   prefabs:
   - {fileID: 5725819523948652768, guid: b20e1344b3764a940b29583d39ec33cc, type: 3}
@@ -322,6 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 4608506369025162612}
+  owner: {fileID: 5937715972609921831}
 --- !u!114 &5937715972609921831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,21 +346,27 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   stunnedDuration: 4
+  health: {fileID: 4608506369025162612}
+  hitBox: {fileID: 7278276694183487644}
+  parryCheck: {fileID: 1328179942541524593}
   navMeshRefreshRate: 0.2
   waypointDistance: 0.3
-  rotationSlerp: 10
+  rotationSlerp: 15
   DistanceBeforeChase: 5
-  playerDistance: 2.25
+  minPlayerDistance: 2
   playerDistanceThreshold: 1
   runDistance: 8
   attackCooldown: 0.5
+  attackFOV: 160
+  attackParryPeriod: 0.25
+  parryFOV: 160
   weaponPos:
   - {fileID: 5386840715973219261}
   - {fileID: 2525827288816242268}
   startWeapon: {fileID: 4573752892181745633, guid: a7fbf9fe8923747479728b128f6a5099,
     type: 3}
+  enemyBehaviour: {fileID: 7699375347797713944}
   enemyAnimator: {fileID: 2164448996637774504}
-  hitbox: {fileID: 7278276694183487644}
 --- !u!114 &7278276694183487644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +380,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxRef: {fileID: 8774165566527624692}
+  owner: {fileID: 5937715972609921831}
+--- !u!114 &7699375347797713944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172614768507206733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dff70cebbcf5a544b5cef871e4ddcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 5937715972609921831}
+--- !u!114 &7250228212090035543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172614768507206733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594ce39a309317149a0de1237fae1033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 5937715972609921831}
 --- !u!1 &1571892669174148053
 GameObject:
   m_ObjectHideFlags: 0

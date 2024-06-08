@@ -8,7 +8,12 @@ public class Easy : EnemyBehaviour
         Debug.Log("I don't do anything as I suck");
     }
     #endregion
+    #region Attack state
+    public override void AttackPlayerAttack()
+    {
 
+    }
+    #endregion
     #region Block state
     public override void BlockHit()
     {
@@ -17,13 +22,18 @@ public class Easy : EnemyBehaviour
     #endregion
 
     #region Parry state
+
+    public override void ParryEnter()
+    {
+        parryState.DoParry();
+
+        float duration = enemy.currentWeapon.archetype.enemyParrys[parryState.currentParry].duration;
+
+        enemy.InvokeMethod(parryState.SwitchToAttack, duration * 0.6f);
+    }
     public override void ParryHit()
     {
         parryState.LeaveState(hitState);
-    }
-    public override void ParryEnd()
-    {
-        parryState.LeaveState(standbyState);
     }
     #endregion
 
@@ -36,7 +46,14 @@ public class Easy : EnemyBehaviour
     #region Hit state
     public override void HitHit()
     {
-        hitState.GetHit();
+        if (enemy.InsideParryFOV())
+        {
+            hitState.LeaveState(parryState);
+        }
+        else
+        {
+            hitState.GetHit();
+        }
     }
     #endregion
 }

@@ -20,6 +20,8 @@ namespace EnemyAI
         [Header("Attacking")]
         [SerializeField] private float attackCooldown;
         [SerializeField] private float attackFOV = 90;
+        
+        public float attackParryPeriod = 0.25f;
 
         [Header("Parrying")]
         [SerializeField] private float parryFOV = 160;

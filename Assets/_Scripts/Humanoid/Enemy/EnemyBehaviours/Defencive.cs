@@ -10,7 +10,15 @@ public class Defencive : EnemyBehaviour
         standbyState.LeaveStateAndDo(blockState, standbyState.LeaveStandby);
     }
     #endregion
-
+    #region Attack state
+    public override void AttackPlayerAttack()
+    {
+        if (attackState.canParry)
+        {
+            attackState.LeaveStateAndDo(blockState, () => attackState.LeaveAttack());
+        }
+    }
+    #endregion
     #region Block state
     public override void BlockHit()
     {
@@ -19,6 +27,14 @@ public class Defencive : EnemyBehaviour
     #endregion
 
     #region Parry state
+    public override void ParryEnter()
+    {
+        parryState.DoParry();
+
+        float duration = enemy.currentWeapon.archetype.enemyParrys[parryState.currentParry].duration;
+
+        enemy.InvokeMethod(parryState.SwitchToAttack, duration * 0.6f);
+    }
     public override void ParryHit()
     {       
         if (enemy.InsideParryFOV())
@@ -29,10 +45,6 @@ public class Defencive : EnemyBehaviour
         {
             parryState.LeaveState(hitState);
         }
-    }
-    public override void ParryEnd()
-    {
-        parryState.LeaveState(attackState);
     }
     #endregion
 

@@ -22,10 +22,11 @@ ModelImporter:
       DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has
       translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
-      scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation
-      that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_2' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      scale animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale
+      animation that will be discarded.\n\t'mixamorig:RightFoot' has scale animation
+      that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation that
+      will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_2' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder' has
       translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightFoot'
@@ -39,13 +40,11 @@ ModelImporter:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:LeftFoot' has
-      scale animation that will be discarded.\n\t'mixamorig:RightFoot' has scale
-      animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_5'
+      scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_5'
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftShoulder'
       has translation animation that will be discarded.\n\t'mixamorig:RightShoulder'
-      has translation animation that will be discarded.\n\t'mixamorig:RightFoot'
-      has scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_Perfect_Parry'
+      has translation animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Attack_Perfect_Parry'
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightFoot'
       has scale animation that will be discarded.\n\nClip 'Armature|Enemy_Daggers_Idle_Attack_LeftToFront'
@@ -379,7 +378,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.157021
+      - time: 0.2969387
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -387,7 +386,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.25462446
+      - time: 0.39454216
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -395,7 +394,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.27455908
+      - time: 0.41447678
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -403,7 +402,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35480696
+      - time: 0.49472466
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -411,7 +410,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.38393033
+      - time: 0.523848
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -540,7 +539,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.14604622
+      - time: 0.30105308
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -548,7 +547,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.24362555
+      - time: 0.3986324
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -556,7 +555,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2677515
+      - time: 0.42275834
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -564,7 +563,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.345643
+      - time: 0.50064987
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -572,7 +571,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36004826
+      - time: 0.5150551
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -701,7 +700,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.1553256
+      - time: 0.29798678
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -709,7 +708,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.25317684
+      - time: 0.39583802
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -717,7 +716,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2762363
+      - time: 0.41889748
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -725,7 +724,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35560575
+      - time: 0.49826694
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -733,7 +732,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.39594507
+      - time: 0.5386062
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -862,7 +861,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.1449686
+      - time: 0.29311675
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -870,7 +869,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.24302578
+      - time: 0.39117393
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -878,7 +877,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.268437
+      - time: 0.41658515
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -886,7 +885,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3536541
+      - time: 0.5018022
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -894,7 +893,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.37211648
+      - time: 0.5202646
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1023,7 +1022,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.22735937
+      - time: 0.3069204
         functionName: Parry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1031,7 +1030,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.33364877
+      - time: 0.41320983
         functionName: PerfectParry
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1039,7 +1038,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35340875
+      - time: 0.4329698
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1047,7 +1046,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.42166907
+      - time: 0.5012301
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -1055,7 +1054,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.46475127
+      - time: 0.5443123
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,

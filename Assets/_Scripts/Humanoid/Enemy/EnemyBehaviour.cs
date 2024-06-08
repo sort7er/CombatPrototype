@@ -49,7 +49,12 @@ public class EnemyBehaviour: MonoBehaviour
 
     }
     #endregion
+    #region Attack state
+    public virtual void AttackPlayerAttack()
+    {
 
+    }
+    #endregion
     #region Block state
     public virtual void BlockHit()
     {
@@ -58,11 +63,11 @@ public class EnemyBehaviour: MonoBehaviour
     #endregion
 
     #region Parry state
-    public virtual void ParryHit()
+    public virtual void ParryEnter()
     {
 
     }
-    public virtual void ParryEnd()
+    public virtual void ParryHit()
     {
 
     }
