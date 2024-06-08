@@ -7,10 +7,8 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
+            GetHit();
 
-
-            HitAnimation();
-            TakeDamage();
         }
         private void HitDone()
         {
@@ -18,9 +16,7 @@ namespace EnemyAI
         }
         public override void Hit()
         {
-            enemy.StopMethod();
-            HitAnimation();
-            TakeDamage();
+            enemyBehaviour.HitHit();
         }
 
         public override void Staggered()
@@ -32,12 +28,18 @@ namespace EnemyAI
         {
             LeaveState(stunnedState);
         }
-        private void HitAnimation()
+        public void GetHit()
         {
             Anim hitAnim = currentWeapon.archetype.enemyHit;
 
+            enemy.StopMethod();
+
+            StartRotate();
+            enemy.InvokeMethod(StopRotate, 0.25f);
+
             enemy.SetAnimation(hitAnim, 0f);
             enemy.InvokeMethod(HitDone, hitAnim.duration);
+            TakeDamage();
         }
     }
 }

@@ -23,7 +23,7 @@ public class Defencive : EnemyBehaviour
     {       
         if (enemy.InsideParryFOV())
         {
-            enemy.parryState.LeaveState(perfectParryState);
+            parryState.LeaveState(perfectParryState);
         }
         else
         {
@@ -40,6 +40,20 @@ public class Defencive : EnemyBehaviour
         float waitTime = perfectParry.duration * 0.3f;
 
         enemy.InvokeMethod(perfectParryState.DoPefectParryAttack, waitTime);
+    }
+    #endregion
+
+    #region Hit state
+    public override void HitHit()
+    {
+        if (enemy.InsideParryFOV())
+        {
+            hitState.LeaveState(parryState);
+        }
+        else
+        {
+            hitState.GetHit();
+        }
     }
     #endregion
 }

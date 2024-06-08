@@ -26,4 +26,10 @@ public class Easy : EnemyBehaviour
 
     }
     #endregion
+    #region Hit state
+    public override void HitHit()
+    {
+        hitState.GetHit();
+    }
+    #endregion
 }

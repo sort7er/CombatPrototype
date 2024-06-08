@@ -293,11 +293,11 @@ MonoBehaviour:
     activeWield: 2
     hitType: 0
     attackCoordsMain:
-    - localStartPos: {x: 0, y: 0, z: 0}
-      localEndPos: {x: 0, y: 0, z: 0}
+    - localStartPos: {x: 0.83, y: 1.72, z: 0.21}
+      localEndPos: {x: 0.15, y: 1.69, z: 1.18}
     attackCoordsSecondary:
-    - localStartPos: {x: 0, y: 0, z: 0}
-      localEndPos: {x: 0, y: 0, z: 0}
+    - localStartPos: {x: -0.8, y: 2.3, z: 0.2}
+      localEndPos: {x: -0.19, y: 1.68, z: 1.15}
     exitTime: 0
     transitionDuration: 0
   enemyBlockInput:

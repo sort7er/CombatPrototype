@@ -8,11 +8,10 @@ namespace PlayerSM
         {
             base.Enter(player);
             ResetValues();
-
-            player.InvokeMethod(CanRelease, archetype.block.duration);
+            player.IsBlocking();
+            player.InvokeMethod(CanRelease, archetype.block.duration * 1.5f);
             player.SetAnimation(archetype.block, 0f);
             player.StartParryTimer();
-
         }
 
         #region Queuing methods
@@ -26,7 +25,6 @@ namespace PlayerSM
         }
         private void CanRelease()
         {
-            player.IsBlocking();
             QueueActionDone(() => LeaveStateAndDo(attackState, NotBlocking), null, EndBlocking);
         }
         #endregion

@@ -17,7 +17,7 @@ namespace EnemyAI
 
             StartRotate();
 
-            currentAttack = Random.Range(0, 2) * 2;
+            currentAttack = 0;// Random.Range(0, 2) * 2;
             numberOfAttacks = Random.Range(1, 6);
             attacksSoFar = 0;
             transition = 0.25f;

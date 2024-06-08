@@ -24,7 +24,7 @@ namespace PlayerSM
         }
         public override void ActionDone()
         {
-            QueueActionDone(StartAttack, () => LeaveState(idleState));
+            QueueActionDone(StartAttack, () => LeaveState(blockState), () => LeaveState(idleState));
         }
         #endregion
 

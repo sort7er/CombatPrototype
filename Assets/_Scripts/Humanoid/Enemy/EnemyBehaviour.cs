@@ -70,5 +70,11 @@ public class EnemyBehaviour: MonoBehaviour
 
     }
     #endregion
+    #region Hit state
+    public virtual void HitHit()
+    {
+
+    }
+    #endregion
 
 }
