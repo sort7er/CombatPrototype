@@ -5,7 +5,6 @@ namespace EnemyAI
     public class AttackState : EnemyState
     {
         private bool attacking;
-        private bool canStillParry;
         private int currentAttack;
         private int attacksLength;
         private float transition;
@@ -23,7 +22,6 @@ namespace EnemyAI
             attacksSoFar = 0;
             transition = 0.25f;
             attacking = false;
-            canStillParry = true;
 
             if (enemy.CheckForWeapon())
             {
@@ -57,7 +55,6 @@ namespace EnemyAI
         {
             StopRotate();
             attacking = true;
-            canStillParry = true;
             AttackEnemy attack = currentWeapon.archetype.enemyAttacks[currentAttack];
             enemy.SetAnimation(attack, transition);
             attacksSoFar++;
@@ -93,24 +90,11 @@ namespace EnemyAI
                 currentAttack = 0;
             }
         }
-        public override void OverlapCollider()
-        {
-            canStillParry = false;
-        }
 
 
         public override void Hit()
         {
-
-            if (enemy.InsideParryFOV() && canStillParry)
-            {
-                LeaveStateAndDo(parryState, () => LeaveAttack());
-            }
-            else
-            {
-                LeaveStateAndDo(hitState, () => LeaveAttack());
-            }
-
+            LeaveStateAndDo(hitState, () => LeaveAttack());
         }
         public override void Staggered()
         {

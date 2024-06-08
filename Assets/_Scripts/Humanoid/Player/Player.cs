@@ -167,7 +167,6 @@ public class Player : Humanoid
         }
         else
         {
-            Debug.Log("Here");
             parryCheck.ReturnPostureDamage(attacker, hitPoint, parryType, direction);
         }
     }

@@ -4409,7 +4409,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.17881264
+      - time: 0.2670479
         functionName: AttackEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -4417,7 +4417,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.27866837
+      - time: 0.2884723
         functionName: AttackEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,
@@ -4425,7 +4425,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.43034074
+      - time: 0.49161524
         functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 12cbb2ac32d09a24abfb300dfe252267,

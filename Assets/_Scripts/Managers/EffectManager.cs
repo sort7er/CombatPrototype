@@ -110,7 +110,7 @@ public class EffectManager : MonoBehaviour
 
         effect.transform.position = position;
 
-        //effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
+        effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
 
         StartCoroutine(ResetEffect(effect));
 
@@ -161,7 +161,7 @@ public class EffectManager : MonoBehaviour
         effect.transform.parent = parent;
 
         effect.transform.position = position;
-        //effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
+        effect.transform.rotation = Quaternion.LookRotation(direction, upDirection);
         effect.transform.localScale = Vector3.one * sizeMultiplier;
 
         StartCoroutine(ResetEffect(effect));
