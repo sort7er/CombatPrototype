@@ -45,13 +45,13 @@ Material:
     - _CellSize: 0.472
     - _GridSize: 21.41
     - _VignettePower: 2.21
-    - _VignetteSize: 0.933
+    - _VignetteSize: 1
     - _VignetteSmoothness: 5.36
     - _te: 2.84
     - _te_1: 0.41
     m_Colors:
     - _BackgroundColor: {r: 0, g: 0.023584936, b: 0.122641504, a: 0.8235294}
-    - _CellSizeRemap: {r: 0.85, g: 0.95, b: 0, a: 0}
+    - _CellSizeRemap: {r: 0.9, g: 0.98, b: 0, a: 0}
     - _Color: {r: 16, g: 0, b: 0, a: 1}
     - _Color_2: {r: 15.999998, g: 0, b: 5.594085, a: 1}
     - _GridSize: {r: 40.07, g: 20, b: 0, a: 0}
