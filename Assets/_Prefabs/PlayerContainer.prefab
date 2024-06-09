@@ -678,17 +678,73 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713221615836322741, guid: 4e46e8e9580cc62499609d3a69251b49,
         type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 884603581358853836}
+    - target: {fileID: 7713221615836322741, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
       propertyPath: hitBoxRef
       value: 
       objectReference: {fileID: 2206267626050543452}
-    m_RemovedComponents: []
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 136284191351757740}
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: parryCheck
+      value: 
+      objectReference: {fileID: 4857869059470655869}
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: armAnimator
+      value: 
+      objectReference: {fileID: 8909807585341415763}
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: blockWaitTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: weaponSwitcher
+      value: 
+      objectReference: {fileID: 2305631498756797766}
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: stunnedDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: weaponPos.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: 'weaponPos.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7950107662376369536}
+    - target: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      propertyPath: 'weaponPos.Array.data[1]'
+      value: 
+      objectReference: {fileID: 583540263084144039}
+    m_RemovedComponents:
+    - {fileID: 7184959094642092623, guid: 4e46e8e9580cc62499609d3a69251b49, type: 3}
+    - {fileID: 6828263464891706022, guid: 4e46e8e9580cc62499609d3a69251b49, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7272457161204308622, guid: 4e46e8e9580cc62499609d3a69251b49,
         type: 3}
-      insertIndex: 9
+      insertIndex: 8
       addedObject: {fileID: 4857869059470655869}
+    - targetCorrespondingSourceObject: {fileID: 7272457161204308622, guid: 4e46e8e9580cc62499609d3a69251b49,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 136284191351757740}
   m_SourcePrefab: {fileID: 100100000, guid: 4e46e8e9580cc62499609d3a69251b49, type: 3}
 --- !u!1 &562944622917904077 stripped
 GameObject:
@@ -708,7 +764,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28983f9949f408b44a5d0aa5eeaad66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 4459077200692188901}
+  health: {fileID: 136284191351757740}
+  owner: {fileID: 884603581358853836}
+--- !u!114 &136284191351757740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562944622917904077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a91b5cf514ff748ac50af755b7fbac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 100
+  healthSlider: {fileID: 0}
+  canvasGroupHealth: {fileID: 0}
+  healthText: {fileID: 0}
+  startPosture: 100
+  postureImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  canvasGroupPosture: {fileID: 0}
+  postureText: {fileID: 0}
+  defaultTimeTillRegen: 2
+  defaultPostureRegen: 10
+  owner: {fileID: 884603581358853836}
+  vignetteDuration: 1.5
+  vignetteMaterial: {fileID: 2100000, guid: 7056e2fdf8f5b044b86ff08eb3e7a29b, type: 2}
 --- !u!114 &884603581358853836 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8027015571285881487, guid: 4e46e8e9580cc62499609d3a69251b49,
@@ -721,16 +805,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ff07e8aab15c44d9b3531204abe3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4459077200692188901 stripped
+--- !u!114 &2305631498756797766 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6828263464891706022, guid: 4e46e8e9580cc62499609d3a69251b49,
+  m_CorrespondingSourceObject: {fileID: 8997120885520419077, guid: 4e46e8e9580cc62499609d3a69251b49,
     type: 3}
   m_PrefabInstance: {fileID: 7143569270237625411}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562944622917904077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3eeeea96643ff44785a84a23f7f3e6e, type: 3}
+  m_Script: {fileID: 11500000, guid: af5194026c84ace43869c53dceb150e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &4705293216469082907 stripped

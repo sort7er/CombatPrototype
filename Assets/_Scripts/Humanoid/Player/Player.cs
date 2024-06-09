@@ -43,7 +43,7 @@ public class Player : Humanoid
     public int currentPerfectParry { get; private set; }
     public float uniqueCoolDown { get; private set; } = 8f;
     
-    [HideInInspector] public bool canUseUnique = true;
+    public bool canUseUnique { get; private set; }
 
 
 
@@ -274,6 +274,14 @@ public class Player : Humanoid
         {
             return true;
         }
+    }
+    public void CanUseUnique()
+    {
+        canUseUnique = true;
+    }
+    public void CannotUseUnique()
+    {
+        canUseUnique = false;
     }
     #endregion
 

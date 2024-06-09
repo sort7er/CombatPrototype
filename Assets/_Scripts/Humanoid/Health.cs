@@ -18,15 +18,17 @@ namespace Stats
     }
     public class Health : MonoBehaviour
     {
+
+
         [SerializeField] protected int startHealth = 100;
-        [SerializeField] private Slider healthSlider;
-        [SerializeField] private CanvasGroup canvasGroupHealth;
-        [SerializeField] private TextMeshProUGUI healthText;
+        [SerializeField] protected Slider healthSlider;
+        [SerializeField] protected CanvasGroup canvasGroupHealth;
+        [SerializeField] protected TextMeshProUGUI healthText;
 
         [SerializeField] protected int startPosture = 100;
-        [SerializeField] private RectTransform[] postureImages;
-        [SerializeField] private CanvasGroup canvasGroupPosture;
-        [SerializeField] private TextMeshProUGUI postureText;
+        [SerializeField] protected RectTransform[] postureImages;
+        [SerializeField] protected CanvasGroup canvasGroupPosture;
+        [SerializeField] protected TextMeshProUGUI postureText;
 
         [Header("Stunned")]
         [SerializeField] private float defaultTimeTillRegen = 2;
@@ -40,9 +42,6 @@ namespace Stats
 
         private Vector2 postureStartSize;
 
-        public event Action OnTakeDamage;
-        public event Action OnPostureDrained;
-        public event Action OnStaggerDone;
         public event Action OnDeath;
         public int health { get; private set; }
         public float posture { get; private set; }
@@ -111,9 +110,8 @@ namespace Stats
             CheckStatus(attackingWeapon);
         }
 
-        private void MinusHealth(int damage)
+        public virtual void MinusHealth(int damage)
         {
-            OnTakeDamage?.Invoke();
             health -= damage;
             SetHealth(health);
         }
@@ -180,10 +178,7 @@ namespace Stats
             if (!postureDrained)
             {
                 postureDrained = true;
-                healthSlider.gameObject.SetActive(false);
-                canvasGroupPosture.gameObject.SetActive(false);
                 storedHealth = health;
-                OnPostureDrained?.Invoke();
                 owner.Stunned();
                 Invoke(nameof(StunnedDone), owner.stunnedDuration);
             }
@@ -191,9 +186,6 @@ namespace Stats
         protected virtual void StunnedDone()
         {
             postureDrained = false;
-            healthSlider.gameObject.SetActive(true);
-            canvasGroupPosture.gameObject.SetActive(true);
-            OnStaggerDone?.Invoke();
             StartRegenPosture();
         }
 

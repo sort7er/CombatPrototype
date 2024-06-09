@@ -5,6 +5,10 @@ public class Defencive : EnemyBehaviour
 {
 
     #region Standby state
+    public override void StandbyEnter()
+    {
+        standbyState.waitTime = Random.Range(1, 2);
+    }
     public override void StandbyPlayerAttack()
     {
         standbyState.LeaveStateAndDo(blockState, standbyState.LeaveStandby);

@@ -3,6 +3,10 @@ using UnityEngine;
 public class Easy : EnemyBehaviour
 {
     #region Standby state
+    public override void StandbyEnter()
+    {
+        standbyState.waitTime = 0.2f;
+    }
     public override void StandbyPlayerAttack()
     {
         Debug.Log("I don't do anything as I suck");

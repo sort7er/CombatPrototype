@@ -11,7 +11,7 @@ namespace PlayerSM
             base.Enter(player);
             ResetValuesAttack();
             player.SetAnimation(archetype.unique);
-            player.canUseUnique = false;
+            player.CannotUseUnique();
 
             //This is for the UI
             player.unique.Using();
@@ -49,25 +49,30 @@ namespace PlayerSM
         #region Queuing methods 
         public override void Attack()
         {
-            DoOrQueueAction(() => LeaveState(attackState));
+            DoOrQueueAction(() => LeaveStateAndDo(attackState, LeaveUnique));
         }
         public override void Block()
         {
-            DoOrQueueAction(() => LeaveState(blockState));
+            DoOrQueueAction(() => LeaveStateAndDo(blockState, LeaveUnique));
         }
         #endregion
 
         private void EndAttack()
         {
-            LeaveState(idleState);
+            LeaveStateAndDo(idleState, LeaveUnique);
         }
         public override void Stunned()
         {
-            LeaveState(stunnedState);
+            LeaveStateAndDo(stunnedState, LeaveUnique);
         }
         public override void Staggered()
         {
-            LeaveState(staggeredState);
+            LeaveStateAndDo(staggeredState, LeaveUnique);
+        }
+
+        private void LeaveUnique()
+        {
+            player.unique.Loading();
         }
     }
 }

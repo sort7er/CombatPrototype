@@ -43,9 +43,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _CellSize: 0.472
-    - _GridSize: 21.41
+    - _GridSize: 34.3
     - _VignettePower: 2.21
-    - _VignetteSize: 1
+    - _VignetteSize: 0.4
     - _VignetteSmoothness: 5.36
     - _te: 2.84
     - _te_1: 0.41

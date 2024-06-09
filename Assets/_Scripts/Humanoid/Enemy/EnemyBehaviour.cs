@@ -44,6 +44,10 @@ public class EnemyBehaviour: MonoBehaviour
     #endregion
 
     #region Standby state
+    public virtual void StandbyEnter()
+    {
+
+    }
     public virtual void StandbyPlayerAttack()
     {
 

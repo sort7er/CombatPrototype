@@ -46,6 +46,8 @@ public class EnemyHealth : Health
         base.DrainedPosture();
         skull.gameObject.SetActive(true);
         skull.transform.DOPunchScale(Vector3.one * 0.1f, 3f).SetLoops(-1);
+        healthSlider.gameObject.SetActive(false);
+        canvasGroupPosture.gameObject.SetActive(false);
         SetHealth(1);
     }
     protected override void StunnedDone()
@@ -53,6 +55,8 @@ public class EnemyHealth : Health
         base.StunnedDone();
         skull.transform.DOKill();
         skull.gameObject.SetActive(false);
+        healthSlider.gameObject.SetActive(true);
+        canvasGroupPosture.gameObject.SetActive(true);
         SetHealth(storedHealth);
         SetPosture(startPosture * 0.5f);
     }

@@ -36,6 +36,7 @@ public class Unique : MonoBehaviour
         icon.color = activeColor;
         filter.SetActive(false);
         glyph.SetActive(true);
+        player.CanUseUnique();
     }
 
     public void Using()
@@ -62,6 +63,10 @@ public class Unique : MonoBehaviour
             timer -= Time.deltaTime;
             timerText.text = timer.ToString("F0");
             fillImage.fillAmount = Tools.Remap(timer, 0, player.uniqueCoolDown, 1, 0);
+            if(timer <= 0)
+            {
+                Active();
+            }
         }
 
         hudHandler.Update(RunManager.activeHud, fillImage.fillAmount);

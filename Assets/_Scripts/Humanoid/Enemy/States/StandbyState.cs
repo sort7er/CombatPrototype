@@ -5,8 +5,8 @@ namespace EnemyAI
 
     public class StandbyState : EnemyState
     {
+        public float waitTime;
         private bool turn;
-        private float waitTime;
         private float timer;
         public override void Enter(Enemy enemy)
         {
@@ -17,7 +17,9 @@ namespace EnemyAI
 
             turn = false;
             timer = 0;
-            waitTime = Random.Range(1, 2);
+
+            //WaitTime is set here
+            enemyBehaviour.StandbyEnter();
         }
 
         public override void Update()
