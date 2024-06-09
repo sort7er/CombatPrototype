@@ -391,7 +391,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|Enemy_Daggers_Idle_Attack_Front
+  m_Name: Armature|Enemy_Daggers_Standby_Front
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1708,7 +1708,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|Enemy_Daggers_Idle_Attack_LeftToFront
+  m_Name: Armature|Enemy_Daggers_Standby_LeftToFront
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1911,7 +1911,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|Enemy_Daggers_Idle_Attack_RightToFront
+  m_Name: Armature|Enemy_Daggers_Standby_RightToFront
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

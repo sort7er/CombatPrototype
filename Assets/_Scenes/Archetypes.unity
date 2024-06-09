@@ -4334,12 +4334,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!95 &1927220642 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7879130628958437219, guid: a8676f04cf7eb5a45ac0ea6d9d7c331b,
-    type: 3}
-  m_PrefabInstance: {fileID: 5141729975146265758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1953368797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5441,21 +5435,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723143339565473033, guid: a8676f04cf7eb5a45ac0ea6d9d7c331b,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 8ffe7457627e87a4d8c2f2d678da2081, type: 2}
-    - target: {fileID: 6074276161554651371, guid: a8676f04cf7eb5a45ac0ea6d9d7c331b,
-        type: 3}
-      propertyPath: Animator
-      value: 
-      objectReference: {fileID: 1927220642}
-    - target: {fileID: 6074276161554651371, guid: a8676f04cf7eb5a45ac0ea6d9d7c331b,
-        type: 3}
-      propertyPath: OverrideFaceMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 8ffe7457627e87a4d8c2f2d678da2081, type: 2}
     - target: {fileID: 7057959430376796046, guid: a8676f04cf7eb5a45ac0ea6d9d7c331b,
         type: 3}
       propertyPath: m_Name

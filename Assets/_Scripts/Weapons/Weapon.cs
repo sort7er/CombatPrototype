@@ -155,6 +155,8 @@ public class Weapon : MonoBehaviour
     #region Slice related methods
     public void Slice(MeshTarget mesh)
     {
+        Debug.Log(currentAttack);
+
         if(currentAttack.hitType == HitType.slice && slicingWeapons[0] != null)
         {
             sliceEnded = false;
