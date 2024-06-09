@@ -22,6 +22,7 @@ namespace PlayerSM
         public ParryAttackState parryAttackState;
         public StaggeredState staggeredState;
         public HitState hitState;
+        public StunnedState stunnedState;
 
         private Action nextAction;
 
@@ -91,6 +92,10 @@ namespace PlayerSM
             
         }
         public virtual void Hit()
+        {
+
+        }
+        public virtual void Stunned()
         {
 
         }
@@ -176,6 +181,7 @@ namespace PlayerSM
                 parryAttackState = player.parryAttackState;
                 staggeredState = player.staggeredState;
                 hitState = player.hitState;
+                stunnedState = player.stunnedState;
             }
 
             //Need to update the current weapon all the time to make sure the state knows which weapon is in use

@@ -54,6 +54,10 @@ namespace PlayerSM
         {
             LeaveState(hitState);
         }
+        public override void Stunned()
+        {
+            LeaveState(stunnedState);
+        }
         public override void Staggered()
         {
             LeaveState(staggeredState);

@@ -132,9 +132,9 @@ namespace EnemyAI
         {
             currentState.Stunned();
         }
-        public override void Hit(Humanoid attacker, Vector3 hitPoint)
+        public override void Hit(Attack attack, Humanoid attacker, Vector3 hitPoint)
         {
-            base.Hit(attacker, hitPoint);
+            base.Hit(attack, attacker, hitPoint);
             currentState.Hit();
         }
         public override void OverlapCollider()

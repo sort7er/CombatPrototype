@@ -24,6 +24,7 @@ public class Humanoid : MonoBehaviour
     public Rigidbody rb { get; private set; }
     public Vector3 hitPoint { get; private set; }
     public Humanoid currentAttacker { get; private set; }
+    public Attack attackersAttack { get; private set; }
 
     public Health health;
     public HitBox hitBox;
@@ -193,8 +194,9 @@ public class Humanoid : MonoBehaviour
     {
 
     }
-    public virtual void Hit(Humanoid attacker, Vector3 hitPoint)
+    public virtual void Hit(Attack attack, Humanoid attacker, Vector3 hitPoint)
     {
+        SetAttackersAttack(attack);
         SetCurrentAttacker(attacker);
         SetHitPoint(hitPoint);
     }
@@ -320,6 +322,10 @@ public class Humanoid : MonoBehaviour
     private void SetCurrentAttacker(Humanoid attacker)
     {
         currentAttacker = attacker;
+    }
+    private void SetAttackersAttack(Attack attack)
+    {
+        attackersAttack = attack;
     }
 
     #region Invoking

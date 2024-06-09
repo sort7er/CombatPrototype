@@ -55,6 +55,10 @@ namespace PlayerSM
         {
             player.IsNotBlocking();
         }
+        public override void Stunned()
+        {
+            LeaveStateAndDo(stunnedState, NotBlocking);
+        }
     }
 
 }

@@ -40,7 +40,7 @@ namespace Stats
             }
         }
 
-        public void ReturnPostureDamage(Humanoid attacker, Vector3 hitPoint, ParryType parryType, Vector3 direction)
+        public void ReturnPostureDamage(Attack attack, Humanoid attacker, Vector3 hitPoint, ParryType parryType, Vector3 direction)
         {
             Vector3 force = direction * attacker.currentWeapon.pushbackForce;
 
@@ -65,10 +65,13 @@ namespace Stats
                 DefenceSetup(1.5f, 0.25f, owner, force);
             }
 
-            float postureToRemove = CheckRemaingPosture(parryType, attacker.currentWeapon.postureDamage * receivedMultiplier);
+            float attackerPostureDamage = attack.postureDamage;
+            float ownerPostureDamage = owner.currentWeapon.currentAttack.postureDamage;
+
+            float postureToRemove = CheckRemaingPosture(parryType, attackerPostureDamage * receivedMultiplier);
 
             health.TakeDamage(0, postureToRemove);
-            attacker.health.TakeDamage(0, owner.currentWeapon.postureDamage * giveMultiplier);
+            attacker.health.TakeDamage(0, ownerPostureDamage * giveMultiplier);
         }
      
         private void DefenceSetup(float recieve, float give, Humanoid owner, Vector3 force)

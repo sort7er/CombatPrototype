@@ -37,6 +37,7 @@ public class Player : Humanoid
     public ParryAttackState parryAttackState = new ParryAttackState();
     public StaggeredState staggeredState = new StaggeredState();
     public HitState hitState = new HitState();
+    public StunnedState stunnedState = new StunnedState();
 
     public int currentParry { get; private set; }
     public int currentPerfectParry { get; private set; }
@@ -79,7 +80,7 @@ public class Player : Humanoid
 
     public override void Stunned()
     {
-
+        currentState.Stunned();
     }
     public override void Staggered()
     {
@@ -154,9 +155,9 @@ public class Player : Humanoid
         isFalling = false;
         currentState.Landing();
     }
-    public override void Hit(Humanoid attacker, Vector3 hitPoint)
+    public override void Hit(Attack attack, Humanoid attacker, Vector3 hitPoint)
     {
-        base.Hit(attacker, hitPoint);
+        base.Hit(attack, attacker, hitPoint);
 
         ParryType parryType = parryCheck.CheckForParry(this, attacker);
         Vector3 direction = (transform.position - attacker.Position()).normalized;
@@ -169,7 +170,7 @@ public class Player : Humanoid
         }
         else
         {
-            parryCheck.ReturnPostureDamage(attacker, hitPoint, parryType, direction);
+            parryCheck.ReturnPostureDamage(attack, attacker, hitPoint, parryType, direction);
         }
     }
 

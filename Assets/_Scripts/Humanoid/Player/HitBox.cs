@@ -65,7 +65,7 @@ public class HitBox : MonoBehaviour
         {
             if(humanoid != owner)
             {
-                humanoid.Hit(owner, hit.ClosestPointOnBounds(currentWeapon.weaponPos));
+                humanoid.Hit(currentWeapon.currentAttack, owner, hit.ClosestPointOnBounds(currentWeapon.weaponPos));
             }
         }
         else if (hit.TryGetComponent(out MeshTarget mesh))

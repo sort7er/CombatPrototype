@@ -86,7 +86,7 @@ namespace EnemyAI
         //Same with this as with TakeDamage
         public void ReturnPostureDamage(ParryType type)
         {
-            enemy.parryCheck.ReturnPostureDamage(enemy.currentAttacker, enemy.hitPoint, type, -enemy.DirectionToTarget());
+            enemy.parryCheck.ReturnPostureDamage(enemy.attackersAttack, enemy.currentAttacker, enemy.hitPoint, type, -enemy.DirectionToTarget());
         }
         public void LeaveState(EnemyState newState)
         {
