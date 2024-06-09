@@ -35,6 +35,9 @@ MonoBehaviour:
   hitInput:
     animationClip: {fileID: -651583397082104828, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
+  stunnedInput:
+    animationClip: {fileID: -4416909078506501721, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
   attacksInput:
   - animationClip: {fileID: -1609281748187839663, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
@@ -118,7 +121,7 @@ MonoBehaviour:
   - animationClip: {fileID: 207380724844958318, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     damage: 0
-    postureDamage: 0
+    postureDamage: 10
     activeWield: 1
     hitType: 0
     attackCoordsMain:
@@ -130,7 +133,7 @@ MonoBehaviour:
   - animationClip: {fileID: 997996178180188622, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     damage: 0
-    postureDamage: 0
+    postureDamage: 10
     activeWield: 0
     hitType: 0
     attackCoordsMain:
@@ -252,7 +255,7 @@ MonoBehaviour:
   - animationClip: {fileID: 3731398530725955020, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
     damage: 0
-    postureDamage: 0
+    postureDamage: 10
     activeWield: 0
     hitType: 0
     attackCoordsMain:
@@ -264,7 +267,7 @@ MonoBehaviour:
   - animationClip: {fileID: -2025884421204417923, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
     damage: 0
-    postureDamage: 0
+    postureDamage: 10
     activeWield: 1
     hitType: 0
     attackCoordsMain: []
@@ -277,7 +280,7 @@ MonoBehaviour:
     animationClip: {fileID: -1730623643620393250, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
     damage: 0
-    postureDamage: 0
+    postureDamage: 20
     activeWield: 1
     hitType: 0
     attackCoordsMain:
