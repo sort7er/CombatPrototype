@@ -642,7 +642,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.502693
+      - time: 0.67257714
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -687,7 +687,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3440414
+      - time: 0.31701437
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -695,7 +695,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.65473413
+      - time: 0.67596966
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -748,7 +748,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5821495
+      - time: 0.6786746
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -793,7 +793,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.41330552
+      - time: 0.36118197
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -801,7 +801,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5812579
+      - time: 0.6874355
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -854,7 +854,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.7054043
+      - time: 0.6822383
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -4331,6 +4331,186 @@ ModelImporter:
         functionName: ActionDone
         data: 
         objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Brawling_PerfectParry_Left
+      takeName: ArmRig|Brawling_PerfectParry_Left
+      internalID: 7847182856708733129
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.2046332
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Brawling_PerfectParry_Right
+      takeName: ArmRig|Brawling_PerfectParry_Right
+      internalID: -8317178392110260496
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.2046332
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Brawling_FollowUpAttack_Left
+      takeName: ArmRig|Brawling_FollowUpAttack_Left
+      internalID: 7963688863969955180
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.03545105
+        functionName: ActionStart
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.17462218
+        functionName: OverlapCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.42061925
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Brawling_FollowUpAttack_Right
+      takeName: ArmRig|Brawling_FollowUpAttack_Right
+      internalID: -6992690517296994300
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.030888028
+        functionName: ActionStart
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.17005917
+        functionName: OverlapCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.42570874
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

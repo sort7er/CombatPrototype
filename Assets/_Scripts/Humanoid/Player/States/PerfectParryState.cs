@@ -16,7 +16,7 @@ namespace PlayerSM
 
             Attack parry = archetype.perfectParry[player.currentPerfectParry];
 
-            player.SetAttack(parry, 0.05f);
+            player.SetAttack(parry);
             player.InvokeMethod(EndParry, parry.duration);
         }
 
@@ -28,23 +28,20 @@ namespace PlayerSM
         #region Queuing methods 
         public override void Attack()
         {
-            DoOrQueueAction(DoFollowUpAttack);
+            Debug.Log(actionDone);
+            DoOrQueueAction(() => LeaveStateAndDo(parryAttackState, () => player.ResetParryTimer()));
         }
         public override void Block()
         {
             DoOrQueueAction(() => LeaveState(blockState));
         }
         #endregion
+        public override void ActionDone()
+        {
+            base.ActionDone();
+            Debug.Log("Yeah");
+        }
 
-        private void DoFollowUpAttack()
-        {
-            LeaveStateAndDo(parryAttackState, LeavePerfectParry);
-        }
-        private void LeavePerfectParry()
-        {
-            player.ResetParryTimer();
-            player.StopMethod();
-        }
         public override void Hit()
         {
             LeaveState(hitState);
