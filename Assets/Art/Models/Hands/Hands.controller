@@ -60,7 +60,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Daggers_Perfect_Parry_Right
+  m_Name: ArmRig|Daggers_PerfectParry_Right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1490,7 +1490,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Brawling_Walk
+  m_Name: ArmRig|Brawling_Walk_Front
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2010,7 +2010,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Daggers_Attack_Perfect_Parry_Left
+  m_Name: ArmRig|Daggers_FollowUpAttack_Left
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2037,7 +2037,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Daggers_Perfect_Parry_Left
+  m_Name: ArmRig|Daggers_PerfectParry_Left
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2798,7 +2798,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Daggers_Attack_Perfect_Parry_Right
+  m_Name: ArmRig|Daggers_FollowUpAttack_Right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
