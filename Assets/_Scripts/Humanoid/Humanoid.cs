@@ -6,6 +6,7 @@ using System.Collections;
 public class Humanoid : MonoBehaviour
 {
     public event Action<Weapon> OnNewWeapon;
+    public event Action<Attack> OnAttack;
 
     [Header("Humanoid")]
     [SerializeField] protected float startSpeed = 6;
@@ -20,6 +21,7 @@ public class Humanoid : MonoBehaviour
     //This is here temporary as this should be under the enemy
     [Header("Stunned")]
     public float stunnedDuration;
+    public Animator animator;
     public Weapon currentWeapon { get; private set; }
     public Rigidbody rb { get; private set; }
     public Vector3 hitPoint { get; private set; }
@@ -200,6 +202,17 @@ public class Humanoid : MonoBehaviour
         SetCurrentAttacker(attacker);
         SetHitPoint(hitPoint);
     }
+    public virtual void SetAttack(Attack attack, float transition = 0)
+    {
+        OnAttack?.Invoke(attack);
+        currentWeapon.Attack(attack);
+        SetAnimation(attack, transition);
+    }
+    public void SetAnimation(Anim newAnim, float transition = 0.25f)
+    {
+        animator.CrossFadeInFixedTime(newAnim.state, transition);
+    }
+
     public virtual void PerfectParry()
     {
 
@@ -327,6 +340,7 @@ public class Humanoid : MonoBehaviour
     {
         attackersAttack = attack;
     }
+
 
     #region Invoking
     public void InvokeMethod(Action function, float waitTime)

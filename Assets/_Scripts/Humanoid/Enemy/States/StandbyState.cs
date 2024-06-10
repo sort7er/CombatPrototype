@@ -27,11 +27,11 @@ namespace EnemyAI
             if (turn)
             {
                 // Actuall turning
-                enemy.RotateToTarget(player.Position(), player.Position());
+                enemy.RotateToTarget(enemy.target.Position(), enemy.target.Position());
             }
             else
             {
-                if (enemy.minPlayerDistance < enemy.DistanceToTarget())
+                if (enemy.minTargetDistance < enemy.DistanceToTarget())
                 {
                     LeaveStateAndDo(chaseState, LeaveStandby);
                 }
@@ -47,7 +47,7 @@ namespace EnemyAI
                     }
 
                     //This updates the rotation of the animation
-                    enemy.SetLookAtAndForward(player.Position(), enemy.InFront());
+                    enemy.SetLookAtAndForward(enemy.target.Position(), enemy.InFront());
                 }
                 else
                 {
@@ -80,7 +80,7 @@ namespace EnemyAI
         {
             turn = false;
         }
-        public override void PlayerAttacking()
+        public override void TargetAttacking()
         {
             enemyBehaviour.StandbyPlayerAttack();
         }
@@ -103,6 +103,10 @@ namespace EnemyAI
             {
                 LeaveStateAndDo(hitState, LeaveStandby);
             }
+        }
+        public override void Takedown()
+        {
+            LeaveStateAndDo(takedownState, LeaveStandby);
         }
 
         public void LeaveStandby()

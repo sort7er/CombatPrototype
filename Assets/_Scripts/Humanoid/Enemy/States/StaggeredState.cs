@@ -5,14 +5,14 @@ namespace EnemyAI
     public class StaggeredState : EnemyState
     {
         private Vector3 stepbackTarget;
-        private Vector3 storedPlayerPos;
+        private Vector3 storedTargetPos;
 
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
 
             stepbackTarget = enemy.Position() - enemy.transform.forward * 1f;
-            storedPlayerPos = player.Position();
+            storedTargetPos = enemy.target.Position();
 
             Anim staggeredAnim = currentWeapon.archetype.enemyStaggered;
 
@@ -23,7 +23,7 @@ namespace EnemyAI
 
         public override void Update()
         {
-            enemy.MoveToTarget(stepbackTarget, storedPlayerPos);
+            enemy.MoveToTarget(stepbackTarget, storedTargetPos);
         }
 
         private void StaggerDone()

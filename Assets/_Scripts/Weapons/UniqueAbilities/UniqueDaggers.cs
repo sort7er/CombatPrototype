@@ -27,7 +27,7 @@ public class UniqueDaggers : UniqueAbility
         camController.DisableRotation();
 
         Vector3 compensatedLookAt = new Vector3(targetPosition.x, playerTrans.position.y, targetPosition.z);
-        enemies[0].Takedown();
+        enemies[0].Takedown(player);
         playerTrans.DOLookAt(compensatedLookAt, rotationDuration).OnComplete(SetDirection);
         LookAtTarget(rotationDuration);
     }

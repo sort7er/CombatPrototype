@@ -6,8 +6,11 @@ namespace PlayerSM
         public override void Enter(Player player)
         {
             base.Enter(player);
-            player.SetAnimation(archetype.jump, 0.1f);
-            player.InvokeMethod(StartFall, player.currentAnimation.duration);
+
+            Anim anim = archetype.jump;
+
+            player.SetAnimation(anim, 0.1f);
+            player.InvokeMethod(StartFall, anim.duration);
         }
         public override void Landing()
         {

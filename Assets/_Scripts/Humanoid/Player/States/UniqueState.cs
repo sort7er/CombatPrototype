@@ -10,7 +10,10 @@ namespace PlayerSM
         {
             base.Enter(player);
             ResetValuesAttack();
-            player.SetAnimation(archetype.unique);
+
+            Attack attack = archetype.unique;
+
+            player.SetAttack(attack);
             player.CannotUseUnique();
 
             //This is for the UI
@@ -19,7 +22,7 @@ namespace PlayerSM
             //List of enemies
             GetEnemies();
 
-            player.InvokeMethod(EndAttack, player.currentAnimation.duration);
+            player.InvokeMethod(EndAttack, attack.duration);
         }
 
         private void GetEnemies()

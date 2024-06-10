@@ -10,9 +10,11 @@ namespace PlayerSM
 
             ResetValues();
 
-            player.SetAnimation(archetype.parry[player.GetCurrentParry()], 0f);
+            Attack parry = archetype.parry[player.GetCurrentParry()];
+
+            player.SetAttack(parry, 0f);
             player.StopMethod();
-            player.InvokeMethod(EndParry, player.currentAnimation.duration);
+            player.InvokeMethod(EndParry, parry.duration);
         }
         #region Queuing methods 
         public override void Attack()

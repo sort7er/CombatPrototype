@@ -28,6 +28,10 @@ namespace EnemyAI
         {
             LeaveState(stunnedState);
         }
+        public override void Takedown()
+        {
+            LeaveState(takedownState);
+        }
         public void GetHit()
         {
             Anim hitAnim = currentWeapon.archetype.enemyHit;

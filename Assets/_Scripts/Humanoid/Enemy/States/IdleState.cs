@@ -14,7 +14,7 @@ namespace EnemyAI
         {
             base.Update();
 
-            float dist = Vector3.Distance(player.Position(), enemy.Position());
+            float dist = Vector3.Distance(enemy.target.Position(), enemy.Position());
 
             if (dist < enemy.DistanceBeforeChase)
             {
@@ -28,6 +28,10 @@ namespace EnemyAI
         public override void Stunned()
         {
             LeaveState(stunnedState);
+        }
+        public override void Takedown()
+        {
+            LeaveState(takedownState);
         }
     }
 }

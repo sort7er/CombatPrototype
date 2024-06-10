@@ -32,7 +32,7 @@ public class Archetype: ScriptableObject
     [SerializeField] private AttackEnemyInput[] enemyParrysInput;
     [SerializeField] private AttackEnemyInput enemyPerfectParryInput;
     [SerializeField] private AttackEnemyInput enemyParryAttackInput;
-    [SerializeField] private AnimationInput enemyBlockInput;
+    [SerializeField] private AttackEnemyInput enemyBlockInput;
     [SerializeField] private AnimationInput enemyStaggeredInput;
     [SerializeField] private AnimationInput enemyStunnedInput;
     [SerializeField] private AnimationInput enemyHitInput;
@@ -58,7 +58,7 @@ public class Archetype: ScriptableObject
     public AttackEnemy[] enemyParrys;
     public AttackEnemy enemyPerfectParry;
     public AttackEnemy enemyParryAttack;
-    public Anim enemyBlock; 
+    public AttackEnemy enemyBlock; 
     public Anim enemyStaggered; 
     public Anim enemyStunned;
     public Anim enemyHit;
@@ -85,7 +85,6 @@ public class Archetype: ScriptableObject
         SetUpAttacks(ref parryAttack, parryAttackInput);
 
         //For enemy
-        enemyBlock = new Anim(enemyBlockInput.animationClip);
         enemyStaggered = new Anim(enemyStaggeredInput.animationClip);
         enemyStunned = new Anim(enemyStunnedInput.animationClip);
         enemyHit = new Anim(enemyHitInput.animationClip);
@@ -97,6 +96,7 @@ public class Archetype: ScriptableObject
         SetUpEnemyAttacks(ref enemyParrys, enemyParrysInput);
         SetUpEnemyAttack(ref enemyPerfectParry, enemyPerfectParryInput);
         SetUpEnemyAttack(ref enemyParryAttack, enemyParryAttackInput);
+        SetUpEnemyAttack(ref enemyBlock, enemyBlockInput);
     }
 
     public void SetUpAttack(ref Attack attack, AttackInput inputs)

@@ -9,8 +9,8 @@ namespace EnemyAI
         {
             base.Enter(enemy);
 
-            Anim blockAnim = currentWeapon.archetype.enemyBlock;
-            enemy.SetAnimation(blockAnim);
+            Attack blockAnim = currentWeapon.archetype.enemyBlock;
+            enemy.SetAttack(blockAnim);
 
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);
@@ -27,7 +27,7 @@ namespace EnemyAI
             }
 
             //This updates the rotation of the animation
-            enemy.SetLookAtAndForward(player.Position(), enemy.InFront());
+            enemy.SetLookAtAndForward(enemy.target.Position(), enemy.InFront());
         }
 
         public override void Hit()
@@ -42,7 +42,10 @@ namespace EnemyAI
         {
             LeaveStateAndDo(staggeredState, LeaveBlocking);
         }
-
+        public override void Takedown()
+        {
+            LeaveStateAndDo(takedownState, LeaveBlocking);
+        }
         public void BlockingDone()
         {
             LeaveStateAndDo(standbyState, LeaveBlocking);

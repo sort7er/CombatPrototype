@@ -10,7 +10,7 @@ namespace PlayerSM
             ResetValues();
             player.IsBlocking();
             player.InvokeMethod(CanRelease, archetype.block.duration * 1.5f);
-            player.SetAnimation(archetype.block);
+            player.SetAttack(archetype.block);
             player.StartParryTimer();
 
         }

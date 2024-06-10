@@ -61,10 +61,10 @@ public class Weapon : MonoBehaviour
             weaponModel[i].SetParent(modelParents[i]);
         }
     }
-    public void NoAttack()
-    {
-        currentAttack = null;
-    }
+    //public void NoAttack()
+    //{
+    //    currentAttack = null;
+    //}
     public void Attack(Attack newAttack)
     {
         currentAttack = newAttack;
@@ -155,7 +155,6 @@ public class Weapon : MonoBehaviour
     #region Slice related methods
     public void Slice(MeshTarget mesh)
     {
-        Debug.Log(currentAttack);
 
         if(currentAttack.hitType == HitType.slice && slicingWeapons[0] != null)
         {

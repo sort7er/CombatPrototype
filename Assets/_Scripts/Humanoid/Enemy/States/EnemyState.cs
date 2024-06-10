@@ -8,7 +8,6 @@ namespace EnemyAI
     {
         public Enemy enemy;
         public NavMeshAgent agent;
-        public Player player;
         public Weapon currentWeapon;
         public EnemyAnimator enemyAnimator;
         public EnemyBehaviour enemyBehaviour;
@@ -25,6 +24,7 @@ namespace EnemyAI
         public BlockState blockState;
         public PerfectParryState perfectParryState;
         public ParryAttackState parryAttackState;
+        public TakedownState takedownState;
 
         public bool rotateTowardsPlayer { get; private set; }
 
@@ -46,7 +46,7 @@ namespace EnemyAI
             //Test for now, might delete this later
             if (rotateTowardsPlayer)
             {
-                enemy.RotateToTarget(player.Position(), player.Position());
+                enemy.RotateToTarget(enemy.target.Position(), enemy.target.Position());
             }
         }
         public virtual void Staggered()
@@ -65,7 +65,7 @@ namespace EnemyAI
         {
 
         }
-        public virtual void PlayerAttacking()
+        public virtual void TargetAttacking()
         {
 
         }
@@ -104,7 +104,6 @@ namespace EnemyAI
             {
                 this.enemy = enemy;
                 agent = enemy.agent;
-                player = enemy.player;
                 currentWeapon = enemy.currentWeapon;
                 enemyAnimator = enemy.enemyAnimator;
                 enemyBehaviour = enemy.enemyBehaviour;
@@ -120,6 +119,7 @@ namespace EnemyAI
                 blockState = enemy.blockState;
                 perfectParryState = enemy.perfectParryState;
                 parryAttackState = enemy.parryAttackState;
+                takedownState = enemy.takedownState;
 
             }
         }

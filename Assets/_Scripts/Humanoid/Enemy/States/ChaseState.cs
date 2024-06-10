@@ -14,16 +14,16 @@ namespace EnemyAI
         public override void Update()
         {
 
-            float dist = Vector3.Distance(player.Position(), enemy.Position());
+            float dist = Vector3.Distance(enemy.target.Position(), enemy.Position());
 
-            if (dist < enemy.minPlayerDistance)
+            if (dist < enemy.minTargetDistance)
             {
                 LeaveStateAndDo(standbyState, ChaseDone);
             }
             else
             {
                 enemy.SpeedByDist(dist);
-                enemy.MoveToTarget(player.Position(), player.Position());
+                enemy.MoveToTarget(enemy.target.Position(), enemy.target.Position());
             }
         }
         public override void Hit()
@@ -33,6 +33,10 @@ namespace EnemyAI
         public override void Stunned()
         {
             LeaveStateAndDo(stunnedState, ChaseDone);
+        }
+        public override void Takedown()
+        {
+            LeaveStateAndDo(takedownState, ChaseDone);
         }
         private void ChaseDone()
         {

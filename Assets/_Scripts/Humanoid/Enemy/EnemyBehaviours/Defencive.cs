@@ -76,4 +76,10 @@ public class Defencive : EnemyBehaviour
         }
     }
     #endregion
+    #region Takedownstate
+    public override void TakedownEnter()
+    {
+        takedownState.LeaveState(blockState);
+    }
+    #endregion
 }

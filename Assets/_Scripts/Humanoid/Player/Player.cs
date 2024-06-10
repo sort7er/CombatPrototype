@@ -5,14 +5,10 @@ using Stats;
 
 public class Player : Humanoid
 {
-
-    public event Action OnAttack;
-
     [Header("Values")]
     public float blockWaitTime = 0;
 
     [Header("References")]
-    public Animator armAnimator;
     public Unique unique;
     public WeaponSwitcher weaponSwitcher;
     public InputReader inputReader;
@@ -21,7 +17,6 @@ public class Player : Humanoid
 
     public Transform[] weaponPos;
     public PlayerState currentState { get; private set; }
-    public Anim currentAnimation { get; private set; }
     public bool isMoving { get; private set; }
     public bool isFalling { get; private set; }
     public bool blockReleased { get; private set; }
@@ -97,7 +92,7 @@ public class Player : Humanoid
         currentState.StoppedMoving();
     }
     public void Attack()
-    {
+    { 
         currentState.Attack();
     }
     public void Unique()
@@ -177,42 +172,10 @@ public class Player : Humanoid
     #endregion
 
     #region Called from state machine
-    //public void StartUniqueCooldown()
-    //{
-    //    unique.Loading();
-    //    Invoke(nameof(UniqueCooldownDone), uniqueCoolDown);
-    //}
-    //private void UniqueCooldownDone()
-    //{
-    //    unique.Active();
-    //    canUseUnique = true;
-    //}
-
-    public void AttackEvent()
-    {
-        OnAttack?.Invoke();
-    }
-
     public void SwitchState(PlayerState state)
     {
         currentState = state;
         currentState.Enter(this);
-    }
-
-    public void SetAnimation(Anim newAnim, float transition = 0.25f)
-    {
-        if (newAnim is Attack attack)
-        {
-            currentWeapon.Attack(attack);
-        }
-        else
-        {
-            currentWeapon.NoAttack();
-        }
-
-
-        currentAnimation = newAnim;
-        armAnimator.CrossFadeInFixedTime(currentAnimation.state, transition);
     }
 
     public int GetCurrentParry()
@@ -244,8 +207,8 @@ public class Player : Humanoid
     #region Called from this class
     public void SetMovement(Vector2 movement)
     {
-        armAnimator.SetFloat("MovementX", movement.x);
-        armAnimator.SetFloat("MovementZ", movement.y);
+        animator.SetFloat("MovementX", movement.x);
+        animator.SetFloat("MovementZ", movement.y);
     }
     #endregion
 

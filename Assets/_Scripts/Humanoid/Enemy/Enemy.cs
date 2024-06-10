@@ -1,4 +1,5 @@
 using PlayerSM;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,11 +14,12 @@ namespace EnemyAI
 
 
         public float DistanceBeforeChase = 5f;
-        public float minPlayerDistance = 2f;
+        public float minTargetDistance = 2f;
         public float playerDistanceThreshold = 1f;
         public float runDistance = 8f;
 
         [Header("Attacking")]
+        public Humanoid target;
         [SerializeField] private float attackCooldown;
         [SerializeField] private float attackFOV = 90;
         
@@ -35,9 +37,6 @@ namespace EnemyAI
         public EnemyAnimator enemyAnimator;
 
         public EnemyState currentState { get; private set; }
-        public Anim currentAnimation { get; private set; }
-
-        public Player player { get; private set; }
         public NavMeshAgent agent { get; private set; }
         public NavMeshPath currentPath { get; private set; }
         public Vector3 currentMoveToTarget { get; private set; }
@@ -56,6 +55,7 @@ namespace EnemyAI
         public BlockState blockState = new BlockState();
         public PerfectParryState perfectParryState = new PerfectParryState();
         public ParryAttackState parryAttackState = new ParryAttackState();
+        public TakedownState takedownState = new TakedownState();
 
 
         //For attack done when hit
@@ -91,8 +91,11 @@ namespace EnemyAI
         private void FindReferences()
         {
             currentPath = new NavMeshPath();
-            player = FindObjectOfType<Player>();
             agent = GetComponent<NavMeshAgent>();
+            if(target == null)
+            {
+                SetTarget(FindObjectOfType<Player>());
+            }
         }
         private void SetUpValues()
         {
@@ -100,7 +103,7 @@ namespace EnemyAI
             agent.enabled = false;
             attackDoneState = Animator.StringToHash("AttackDone");
             stunnedDoneState = Animator.StringToHash("StunnedDone");
-            player.OnAttack += PlayerAttacking;
+            target.OnAttack += TargetAttacking;
 
         }
         protected override void Update()
@@ -114,13 +117,14 @@ namespace EnemyAI
 
         #region Signals to state machine
 
-        public void Takedown()
+        public void Takedown(Humanoid attacker)
         {
+            SetTarget(attacker);
             currentState.Takedown();
         }
-        public void PlayerAttacking()
+        public void TargetAttacking(Attack attack)
         {
-            currentState.PlayerAttacking();
+            currentState.TargetAttacking();
         }
         // From humanoid
         public override void Staggered()
@@ -136,6 +140,7 @@ namespace EnemyAI
         {
             base.Hit(attack, attacker, hitPoint);
             currentState.Hit();
+            SetTarget(attacker);
         }
         public override void OverlapCollider()
         {
@@ -150,7 +155,10 @@ namespace EnemyAI
         #endregion
 
         #region Called from the state machine
-
+        public void SetTarget(Humanoid target)
+        {
+            this.target = target;
+        }
         public bool CheckForWeapon()
         {
             if (currentWeapon != null)
@@ -173,7 +181,7 @@ namespace EnemyAI
         }
         private bool InsideFOV(float FOV)
         {
-            if (Vector3.Angle(player.Position() - transform.position, InFront() - transform.position) < FOV * 0.5f)
+            if (Vector3.Angle(target.Position() - transform.position, InFront() - transform.position) < FOV * 0.5f)
             {
                 return true;
             }
@@ -184,11 +192,11 @@ namespace EnemyAI
         }
         public float DistanceToTarget()
         {
-            return Vector3.Distance(player.Position(), Position());
+            return Vector3.Distance(target.Position(), Position());
         }
         public Vector3 DirectionToTarget()
         {
-            return (player.Position() - transform.position).normalized;
+            return (target.Position() - transform.position).normalized;
         }
         public void SwitchState(EnemyState state)
         {
@@ -206,22 +214,9 @@ namespace EnemyAI
                 MoveTo(walkToTarget);
                 refreshRateTimer = 0;
             }
-            RotateToTarget(lookAtTarget, walkToTarget);
+            RotateToTarget(lookAtTarget, currentMoveToTarget);
         }
-        public void SetAnimation(Anim newAnim, float transition = 0.25f)
-        {
-            if (newAnim is Attack attack)
-            {
-                currentWeapon.Attack(attack);
-            }
-            else
-            {
-                currentWeapon.NoAttack();
-            }
 
-            currentAnimation = newAnim;
-            enemyAnimator.animator.CrossFadeInFixedTime(currentAnimation.state, transition);
-        }
         public void SetAnimationWithInt(int state, float transition = 0)
         {
             enemyAnimator.animator.CrossFadeInFixedTime(state, transition);
@@ -253,7 +248,7 @@ namespace EnemyAI
             }
             else
             {
-                if (isRunning && dist < minPlayerDistance + playerDistanceThreshold)
+                if (isRunning && dist < minTargetDistance + playerDistanceThreshold)
                 {
                     isRunning = false;
                     SetSpeed(3);

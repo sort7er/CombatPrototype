@@ -8,9 +8,9 @@ namespace EnemyAI
         {
             base.Enter(enemy);
 
-            Anim parryAttack = currentWeapon.archetype.enemyParryAttack;
+            Attack parryAttack = currentWeapon.archetype.enemyParryAttack;
 
-            enemy.SetAnimation(parryAttack);
+            enemy.SetAttack(parryAttack);
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);
             enemy.InvokeMethod(EndAttack, parryAttack.duration);
@@ -31,6 +31,10 @@ namespace EnemyAI
         public override void Stunned()
         {
             LeaveStateAndDo(stunnedState, () => LeaveParryAttack());
+        }
+        public override void Takedown()
+        {
+            LeaveStateAndDo(takedownState, () => LeaveParryAttack());
         }
         private void LeaveParryAttack(float transition = 0)
         {

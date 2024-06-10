@@ -60,7 +60,7 @@ namespace EnemyAI
             attacking = true;
             canParry = true;
             AttackEnemy attack = currentWeapon.archetype.enemyAttacks[currentAttack];
-            enemy.SetAnimation(attack, transition);
+            enemy.SetAttack(attack, transition);
             attacksSoFar++;
 
             transition = attack.transitionDuration;
@@ -83,7 +83,7 @@ namespace EnemyAI
         {
             LeaveStateAndDo(standbyState, () => LeaveAttack(0.25f));
         }
-        public override void PlayerAttacking()
+        public override void TargetAttacking()
         {
             enemyBehaviour.AttackPlayerAttack();
         }
@@ -116,9 +116,13 @@ namespace EnemyAI
         {
             LeaveStateAndDo(stunnedState,() => LeaveAttack());
         }
+        public override void Takedown()
+        {
+            LeaveStateAndDo(takedownState, () => LeaveAttack());
+        }
         private bool CheckIfCanAttack()
         {
-            if(enemy.DistanceToTarget() > enemy.minPlayerDistance + enemy.playerDistanceThreshold)
+            if(enemy.DistanceToTarget() > enemy.minTargetDistance + enemy.playerDistanceThreshold)
             {
                 return false;
             }

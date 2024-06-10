@@ -60,4 +60,10 @@ public class Easy : EnemyBehaviour
         }
     }
     #endregion
+    #region Takedownstate
+    public override void TakedownEnter()
+    {
+
+    }
+    #endregion
 }

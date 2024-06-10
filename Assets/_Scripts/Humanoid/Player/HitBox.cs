@@ -11,6 +11,7 @@ public class HitBox : MonoBehaviour
     public Transform hitBoxRef;
     public Humanoid owner;
     private Weapon currentWeapon;
+    private Attack currentAttack;
     private Collider[] hits;
 
     private List<SlicingController> slicingControllers = new();
@@ -20,10 +21,15 @@ public class HitBox : MonoBehaviour
     {
         hits = new Collider[10];
         owner.OnNewWeapon += SetCurrentWeapon;
+        owner.OnAttack += SetCurrentAttack;
     }
     public void SetCurrentWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
+    }
+    public void SetCurrentAttack(Attack attack)
+    {
+        currentAttack = attack;
     }
 
 
@@ -65,7 +71,7 @@ public class HitBox : MonoBehaviour
         {
             if(humanoid != owner)
             {
-                humanoid.Hit(currentWeapon.currentAttack, owner, hit.ClosestPointOnBounds(currentWeapon.weaponPos));
+                humanoid.Hit(currentAttack, owner, hit.ClosestPointOnBounds(currentWeapon.weaponPos));
             }
         }
         else if (hit.TryGetComponent(out MeshTarget mesh))

@@ -13,8 +13,11 @@ namespace PlayerSM
 
             //Makes the parry alternate from left to right each time
             player.SetCurrentPerfectParry();
-            player.SetAnimation(archetype.perfectParry[player.currentPerfectParry], 0.05f);
-            player.InvokeMethod(EndParry, player.currentAnimation.duration);
+
+            Attack parry = archetype.perfectParry[player.currentPerfectParry];
+
+            player.SetAttack(parry, 0.05f);
+            player.InvokeMethod(EndParry, parry.duration);
         }
 
         private void EndParry()

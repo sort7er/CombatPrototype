@@ -15,12 +15,12 @@ namespace EnemyAI
 
         public void DoParry()
         {
-            Anim parryAnim = currentWeapon.archetype.enemyParrys[GetCurrentParry()];
+            Attack parryAnim = currentWeapon.archetype.enemyParrys[GetCurrentParry()];
 
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);
 
-            enemy.SetAnimation(parryAnim);
+            enemy.SetAttack(parryAnim);
             enemy.InvokeMethod(EndParry, parryAnim.duration);
 
             ReturnPostureDamage(ParryType.Parry);
@@ -41,6 +41,10 @@ namespace EnemyAI
         public override void Stunned()
         {
             LeaveState(stunnedState);
+        }
+        public override void Takedown()
+        {
+            LeaveState(takedownState);
         }
         public int GetCurrentParry()
         {
