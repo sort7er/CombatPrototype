@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 9219312111224446930}
   - component: {fileID: 3260961233195471168}
   m_Layer: 10
-  m_Name: Gloves
+  m_Name: Brawling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -602,8 +602,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Attack_1
-      takeName: ArmRig|Gloves_Attack_1
+      name: ArmRig|Brawling_Attack_1
+      takeName: ArmRig|Brawling_Attack_1
       internalID: -4065888162219856560
       firstFrame: 0
       lastFrame: 22
@@ -655,11 +655,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Attack_2
-      takeName: ArmRig|Gloves_Attack_2
+      name: ArmRig|Brawling_Attack_2
+      takeName: ArmRig|Brawling_Attack_2
       internalID: 1897008727856283159
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -708,11 +708,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Attack_3
-      takeName: ArmRig|Gloves_Attack_3
+      name: ArmRig|Brawling_Attack_3
+      takeName: ArmRig|Brawling_Attack_3
       internalID: 3063386279749630469
       firstFrame: 0
-      lastFrame: 25
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -761,11 +761,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Attack_4
-      takeName: ArmRig|Gloves_Attack_4
+      name: ArmRig|Brawling_Attack_4
+      takeName: ArmRig|Brawling_Attack_4
       internalID: -2449445773832841060
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -814,8 +814,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Attack_5
-      takeName: ArmRig|Gloves_Attack_5
+      name: ArmRig|Brawling_Attack_5
+      takeName: ArmRig|Brawling_Attack_5
       internalID: -8872547990162969760
       firstFrame: 0
       lastFrame: 29
@@ -867,8 +867,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Block
-      takeName: ArmRig|Gloves_Block
+      name: ArmRig|Brawling_Block
+      takeName: ArmRig|Brawling_Block
       internalID: 8648829154546089230
       firstFrame: 0
       lastFrame: 6
@@ -896,11 +896,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Block_Loop
-      takeName: ArmRig|Gloves_Block_Loop
+      name: ArmRig|Brawling_Block_Loop
+      takeName: ArmRig|Brawling_Block_Loop
       internalID: 4501184616081594559
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 121
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -925,8 +925,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Falling
-      takeName: ArmRig|Gloves_Falling
+      name: ArmRig|Brawling_Falling
+      takeName: ArmRig|Brawling_Falling
       internalID: 6711854760792510095
       firstFrame: 0
       lastFrame: 23
@@ -954,11 +954,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Idle
-      takeName: ArmRig|Gloves_Idle
+      name: ArmRig|Brawling_Idle
+      takeName: ArmRig|Brawling_Idle
       internalID: -3961488324379683476
       firstFrame: 0
-      lastFrame: 75
+      lastFrame: 111
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -983,8 +983,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Jump
-      takeName: ArmRig|Gloves_Jump
+      name: ArmRig|Brawling_Jump
+      takeName: ArmRig|Brawling_Jump
       internalID: 538015770732538672
       firstFrame: 0
       lastFrame: 19
@@ -1012,8 +1012,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Parry_Left
-      takeName: ArmRig|Gloves_Parry_Left
+      name: ArmRig|Brawling_Parry_Left
+      takeName: ArmRig|Brawling_Parry_Left
       internalID: 1138574024431111985
       firstFrame: 0
       lastFrame: 19
@@ -1057,8 +1057,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Parry_Right
-      takeName: ArmRig|Gloves_Parry_Right
+      name: ArmRig|Brawling_Parry_Right
+      takeName: ArmRig|Brawling_Parry_Right
       internalID: -5636581025296950510
       firstFrame: 0
       lastFrame: 19
@@ -1102,11 +1102,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Walk_Front
-      takeName: ArmRig|Gloves_Walk_Front
+      name: ArmRig|Brawling_Walk_Front
+      takeName: ArmRig|Brawling_Walk_Front
       internalID: -8157842818033780542
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 46
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1131,8 +1131,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Unique
-      takeName: ArmRig|Gloves_Unique
+      name: ArmRig|Brawling_Unique
+      takeName: ArmRig|Brawling_Unique
       internalID: 4524404297480415025
       firstFrame: 0
       lastFrame: 39
@@ -3615,11 +3615,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Walk_Back
-      takeName: ArmRig|Gloves_Walk_Back
+      name: ArmRig|Brawling_Walk_Back
+      takeName: ArmRig|Brawling_Walk_Back
       internalID: 8045419155827060266
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 46
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -3644,11 +3644,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Walk_Left
-      takeName: ArmRig|Gloves_Walk_Left
+      name: ArmRig|Brawling_Walk_Left
+      takeName: ArmRig|Brawling_Walk_Left
       internalID: 6835664668350681770
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 85
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -3673,11 +3673,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ArmRig|Gloves_Walk_Right
-      takeName: ArmRig|Gloves_Walk_Right
+      name: ArmRig|Brawling_Walk_Right
+      takeName: ArmRig|Brawling_Walk_Right
       internalID: -4440177314213996689
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

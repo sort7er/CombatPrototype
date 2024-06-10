@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using EnemyAI;
-public class UniqueGloves : UniqueAbility
+public class UniqueBrawling : UniqueAbility
 {
     [Header("Rotation")]
     private float rotationDuration = 0.3f;

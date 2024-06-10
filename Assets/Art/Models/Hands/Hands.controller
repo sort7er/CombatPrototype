@@ -33,7 +33,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Attack_4
+  m_Name: ArmRig|Brawling_Attack_4
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -343,7 +343,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Falling
+  m_Name: ArmRig|Brawling_Falling
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -930,7 +930,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Parry_Right
+  m_Name: ArmRig|Brawling_Parry_Right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1090,7 +1090,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Idle
+  m_Name: ArmRig|Brawling_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1409,7 +1409,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Parry_Left
+  m_Name: ArmRig|Brawling_Parry_Left
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1490,7 +1490,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Walk
+  m_Name: ArmRig|Brawling_Walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1697,7 +1697,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Attack_3
+  m_Name: ArmRig|Brawling_Attack_3
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2206,7 +2206,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Attack_1
+  m_Name: ArmRig|Brawling_Attack_1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2233,7 +2233,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Attack_2
+  m_Name: ArmRig|Brawling_Attack_2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2338,7 +2338,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Attack_5
+  m_Name: ArmRig|Brawling_Attack_5
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -2690,7 +2690,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Jump
+  m_Name: ArmRig|Brawling_Jump
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2981,7 +2981,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Unique
+  m_Name: ArmRig|Brawling_Unique
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -3035,7 +3035,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Block
+  m_Name: ArmRig|Brawling_Block
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3193,7 +3193,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmRig|Gloves_Block_Loop
+  m_Name: ArmRig|Brawling_Block_Loop
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
