@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showStartPos: 0
   showEndPos: 0
-  showEffect: 1
+  showEffect: 0
   effectSize: 1
   slashEffect: {fileID: 0}
   idleInput:

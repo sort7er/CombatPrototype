@@ -14,31 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showStartPos: 0
   showEndPos: 0
-  showEffect: 1
+  showEffect: 0
   effectSize: 2
   slashEffect: {fileID: 3251017502524556899, guid: 25734d4e85c502b46917c9634752e22c,
     type: 3}
   idleInput:
     animationClip: {fileID: 3403855293417621027, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
-  walkInput: ArmRig|Katana_Walk
+  walkInput:
+    animationClip: {fileID: 0}
   jumpInput:
     animationClip: {fileID: -7051313451020478464, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
   fallInput:
     animationClip: {fileID: -786171930992647644, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
+  staggeredInput:
+    animationClip: {fileID: 0}
+  hitInput:
+    animationClip: {fileID: 0}
+  stunnedInput:
+    animationClip: {fileID: 0}
   attacksInput:
   - animationClip: {fileID: -7028312951816681281, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 34
     postureDamage: 15
     activeWield: 0
@@ -49,8 +48,6 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: -4746149655257733814, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 34
     postureDamage: 15
     activeWield: 0
@@ -61,8 +58,6 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: 4266666029205282561, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 34
     postureDamage: 15
     activeWield: 0
@@ -73,8 +68,6 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: -7480877706448313442, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 50
     postureDamage: 20
     activeWield: 0
@@ -85,8 +78,6 @@ MonoBehaviour:
     attackCoordsSecondary: []
   - animationClip: {fileID: 2796066413103987161, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 34
     postureDamage: 15
     activeWield: 0
@@ -100,8 +91,6 @@ MonoBehaviour:
   uniqueInput:
     animationClip: {fileID: 8517039944007959472, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 100
     postureDamage: 50
     activeWield: 0
@@ -113,8 +102,6 @@ MonoBehaviour:
   blockInput:
     animationClip: {fileID: 5057629887150540716, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 0
     postureDamage: 0
     activeWield: 0
@@ -128,8 +115,6 @@ MonoBehaviour:
   parryInput:
   - animationClip: {fileID: 195171706225841785, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 0
     postureDamage: 34
     activeWield: 0
@@ -142,8 +127,6 @@ MonoBehaviour:
       localEndPos: {x: 0, y: 0, z: 0}
   - animationClip: {fileID: 6611957224248701231, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    exitTime: 0
-    transitionDuration: 0
     damage: 0
     postureDamage: 34
     activeWield: 0
@@ -154,13 +137,55 @@ MonoBehaviour:
     attackCoordsSecondary:
     - localStartPos: {x: 0, y: 0, z: 0}
       localEndPos: {x: 0, y: 0, z: 0}
+  perfectParryInput: []
+  parryAttackInput: []
   enemyAttacksInput: []
   enemyParrysInput: []
+  enemyPerfectParryInput:
+    animationClip: {fileID: 0}
+    damage: 0
+    postureDamage: 0
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []
+    exitTime: 0
+    transitionDuration: 0
+  enemyParryAttackInput:
+    animationClip: {fileID: 0}
+    damage: 0
+    postureDamage: 0
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []
+    exitTime: 0
+    transitionDuration: 0
+  enemyBlockInput:
+    animationClip: {fileID: 0}
+    damage: 0
+    postureDamage: 0
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []
+    exitTime: 0
+    transitionDuration: 0
   enemyStaggeredInput:
     animationClip: {fileID: 0}
-    exitTime: 0
-    transitionDuration: 0
   enemyStunnedInput:
     animationClip: {fileID: 0}
-    exitTime: 0
-    transitionDuration: 0
+  enemyHitInput:
+    animationClip: {fileID: 0}
+  enemyStandbyInput:
+    animationClip: {fileID: 0}
+  enemyStandbyTurnLeftInput:
+    animationClip: {fileID: 0}
+  enemyStandbyTurnRightInput:
+    animationClip: {fileID: 0}

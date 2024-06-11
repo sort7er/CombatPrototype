@@ -4637,7 +4637,7 @@ ModelImporter:
       takeName: ArmRig|Greatsword_FollowUpAttack_Right
       internalID: 1118947133269656731
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -4657,7 +4657,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.02474552
+      - time: 0.13864513
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -4665,7 +4665,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.16391668
+      - time: 0.2623723
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
