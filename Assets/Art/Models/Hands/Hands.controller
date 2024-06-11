@@ -492,43 +492,43 @@ AnimatorStateMachine:
     m_Position: {x: 430, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2706564422338337492}
-    m_Position: {x: 700, y: 230, z: 0}
+    m_Position: {x: 700, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2940433144041070607}
-    m_Position: {x: 700, y: 280, z: 0}
+    m_Position: {x: 700, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1954836107960495244}
-    m_Position: {x: 700, y: 330, z: 0}
+    m_Position: {x: 700, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9155430334973990377}
-    m_Position: {x: 700, y: 380, z: 0}
+    m_Position: {x: 700, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3401690450747824663}
-    m_Position: {x: 700, y: 430, z: 0}
+    m_Position: {x: 700, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7290918821617022816}
-    m_Position: {x: 920, y: 430, z: 0}
+    m_Position: {x: 920, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7806002545666588246}
-    m_Position: {x: 920, y: 480, z: 0}
+    m_Position: {x: 920, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7817316785463464150}
-    m_Position: {x: 920, y: 380, z: 0}
+    m_Position: {x: 920, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5572970821475895169}
-    m_Position: {x: 920, y: 230, z: 0}
+    m_Position: {x: 920, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5453005681259931492}
-    m_Position: {x: 920, y: 330, z: 0}
+    m_Position: {x: 920, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4130832351808620095}
-    m_Position: {x: 700, y: 480, z: 0}
+    m_Position: {x: 700, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6453565107775729422}
-    m_Position: {x: 700, y: 530, z: 0}
+    m_Position: {x: 700, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6640530260868806270}
-    m_Position: {x: 920, y: 530, z: 0}
+    m_Position: {x: 920, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8379813673276603245}
     m_Position: {x: 1190, y: 230, z: 0}
@@ -690,7 +690,7 @@ AnimatorStateMachine:
     m_Position: {x: 430, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3268655238976659655}
-    m_Position: {x: 920, y: 280, z: 0}
+    m_Position: {x: 920, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4303058130403630360}
     m_Position: {x: 1410, y: 280, z: 0}
@@ -726,16 +726,25 @@ AnimatorStateMachine:
     m_Position: {x: 430, y: 640, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 340273305209033516}
-    m_Position: {x: 920, y: 580, z: 0}
+    m_Position: {x: 920, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2504551196625816408}
-    m_Position: {x: 920, y: 630, z: 0}
+    m_Position: {x: 920, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6556594625361304055}
-    m_Position: {x: 700, y: 580, z: 0}
+    m_Position: {x: 700, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6659687685863688525}
-    m_Position: {x: 700, y: 630, z: 0}
+    m_Position: {x: 700, y: 540, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 5228929692394567358}
+    m_Position: {x: 700, y: 590, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -7645820700791168558}
+    m_Position: {x: 920, y: 590, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -112681790490057354}
+    m_Position: {x: 920, y: 650, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -743,9 +752,36 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 450, y: 70, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 490, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 6317871791416163501}
+--- !u!1102 &-7645820700791168558
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmRig|Brawling_Staggered
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -1717220626796160065, guid: 42b20035dabf19349a042a4a1009b198,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-7590272548616256613
 AnimatorState:
   serializedVersion: 6
@@ -1964,6 +2000,33 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &-112681790490057354
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmRig|Brawling_Stunned
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 3675303818705595237, guid: 42b20035dabf19349a042a4a1009b198,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -2743,6 +2806,33 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 5057629887150540716, guid: 42b20035dabf19349a042a4a1009b198,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &5228929692394567358
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmRig|Brawling_Hit
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 5539421671947753103, guid: 42b20035dabf19349a042a4a1009b198,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

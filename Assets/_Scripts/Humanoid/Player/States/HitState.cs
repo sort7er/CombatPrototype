@@ -6,6 +6,7 @@ namespace PlayerSM
         public override void Enter(Player player)
         {
             base.Enter(player);
+            ResetValues();
             Anim hitAnim = weapon.archetype.hit;
 
             player.SetAnimation(hitAnim,0);
