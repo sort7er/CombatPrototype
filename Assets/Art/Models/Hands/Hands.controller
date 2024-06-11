@@ -531,43 +531,43 @@ AnimatorStateMachine:
     m_Position: {x: 920, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8379813673276603245}
-    m_Position: {x: 1190, y: 230, z: 0}
+    m_Position: {x: 1240, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3472006309365948218}
-    m_Position: {x: 1190, y: 280, z: 0}
+    m_Position: {x: 1240, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7590272548616256613}
-    m_Position: {x: 1190, y: 330, z: 0}
+    m_Position: {x: 1240, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4717629596754590683}
-    m_Position: {x: 1190, y: 380, z: 0}
+    m_Position: {x: 1240, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2376671334624126572}
-    m_Position: {x: 1190, y: 430, z: 0}
+    m_Position: {x: 1240, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7423575013708831888}
-    m_Position: {x: 1410, y: 430, z: 0}
+    m_Position: {x: 1460, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5302491100959225098}
-    m_Position: {x: 1410, y: 480, z: 0}
+    m_Position: {x: 1460, y: 330, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4488486031116704920}
-    m_Position: {x: 1410, y: 380, z: 0}
+    m_Position: {x: 1460, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -998659449284580626}
-    m_Position: {x: 1410, y: 230, z: 0}
+    m_Position: {x: 1460, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4470431373370746644}
-    m_Position: {x: 1410, y: 330, z: 0}
+    m_Position: {x: 1460, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6839085629446441132}
-    m_Position: {x: 1190, y: 480, z: 0}
+    m_Position: {x: 1240, y: 330, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2478815116178555645}
-    m_Position: {x: 1190, y: 530, z: 0}
+    m_Position: {x: 1240, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2556513211209373684}
-    m_Position: {x: 1410, y: 530, z: 0}
+    m_Position: {x: 1460, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6676699896841893900}
     m_Position: {x: 210, y: 760, z: 0}
@@ -693,7 +693,7 @@ AnimatorStateMachine:
     m_Position: {x: 920, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4303058130403630360}
-    m_Position: {x: 1410, y: 280, z: 0}
+    m_Position: {x: 1460, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -802342266432993510}
     m_Position: {x: 430, y: 810, z: 0}
@@ -745,6 +745,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -112681790490057354}
     m_Position: {x: 920, y: 650, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -6822336649254202741}
+    m_Position: {x: 1240, y: 430, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 2452574452115544679}
+    m_Position: {x: 1460, y: 430, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -883,6 +889,33 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 3667930230756408702, guid: 42b20035dabf19349a042a4a1009b198,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-6822336649254202741
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmRig|Greatsword_FollowUpAttack_Right
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 1118947133269656731, guid: 42b20035dabf19349a042a4a1009b198,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -2328,6 +2361,33 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &2452574452115544679
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmRig|Greatsword_PerfectParry_Right
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 5808631101733779936, guid: 42b20035dabf19349a042a4a1009b198,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &2556513211209373684
 AnimatorState:
   serializedVersion: 6

@@ -182,7 +182,7 @@ public class Player : Humanoid
     {
         if (currentParry == 0)
         {
-            currentParry = 1;
+            currentParry = currentWeapon.archetype.parry.Length - 1;
         }
         else
         {
@@ -194,7 +194,7 @@ public class Player : Humanoid
     {
         if (currentPerfectParry == 0)
         {
-            currentPerfectParry = 1;
+            currentPerfectParry = currentWeapon.archetype.perfectParry.Length - 1;
         }
         else
         {
