@@ -136,6 +136,16 @@ MonoBehaviour:
     - localStartPos: {x: 0, y: 0, z: 0}
       localEndPos: {x: 0, y: 0, z: 0}
   perfectParryInput:
+  - animationClip: {fileID: -5273628379094606050, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    damage: 0
+    postureDamage: 30
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []
   - animationClip: {fileID: 5808631101733779936, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     damage: 0
@@ -147,6 +157,16 @@ MonoBehaviour:
       localEndPos: {x: 0, y: 0, z: 0}
     attackCoordsSecondary: []
   parryAttackInput:
+  - animationClip: {fileID: 7418755620617075218, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
+    damage: 0
+    postureDamage: 0
+    activeWield: 0
+    hitType: 1
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []
   - animationClip: {fileID: 1118947133269656731, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
     damage: 0
