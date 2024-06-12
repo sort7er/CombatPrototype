@@ -96,5 +96,26 @@ public static class Tools
         DirectoryInfo d = new DirectoryInfo(location);
         return d.GetFiles().Length;
     }
-
+    public static float LargestOfTwoFloats(float float1, float float2)
+    {
+        if(float1 < float2)
+        {
+            return float2;
+        }
+        else
+        {
+            return float1;
+        }
+    }
+    public static float SmallestOfTwoFloats(float float1, float float2)
+    {
+        if (float1 > float2)
+        {
+            return float2;
+        }
+        else
+        {
+            return float1;
+        }
+    }
 }

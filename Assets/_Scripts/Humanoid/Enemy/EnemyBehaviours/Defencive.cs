@@ -34,7 +34,7 @@ public class Defencive : EnemyBehaviour
     public override void ParryEnter()
     {
         parryState.DoParry();
-
+        
         float duration = enemy.currentWeapon.archetype.enemyParrys[parryState.currentParry].duration;
 
         enemy.InvokeMethod(parryState.SwitchToAttack, duration * 0.6f);
