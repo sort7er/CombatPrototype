@@ -768,10 +768,16 @@ AnimatorStateMachine:
     m_Position: {x: 1410, y: 640, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8160510500472800881}
-    m_Position: {x: 210, y: 1110, z: 0}
+    m_Position: {x: 210, y: 1160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8342124860719160913}
+    m_Position: {x: 430, y: 1160, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -2733786433347544527}
     m_Position: {x: 430, y: 1110, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 2479378525070481846}
+    m_Position: {x: 210, y: 1110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1768,6 +1774,33 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-2733786433347544527
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmRig|Katana_PerfectParry_Left
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 6844776479779864363, guid: 42b20035dabf19349a042a4a1009b198,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-2504551196625816408
 AnimatorState:
   serializedVersion: 6
@@ -2458,6 +2491,32 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 5808631101733779936, guid: 42b20035dabf19349a042a4a1009b198,
     type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &2479378525070481846
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmRig|Katana_FollowUpAttack_Left
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 233166997217571716, guid: 42b20035dabf19349a042a4a1009b198, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
