@@ -31,11 +31,14 @@ MonoBehaviour:
     animationClip: {fileID: -786171930992647644, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
   staggeredInput:
-    animationClip: {fileID: 0}
+    animationClip: {fileID: 3073335035919123103, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
   hitInput:
-    animationClip: {fileID: 0}
+    animationClip: {fileID: 8275952495788825274, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
   stunnedInput:
-    animationClip: {fileID: 0}
+    animationClip: {fileID: -6689026247565774763, guid: 42b20035dabf19349a042a4a1009b198,
+      type: 3}
   attacksInput:
   - animationClip: {fileID: -7028312951816681281, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
