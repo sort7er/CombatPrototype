@@ -22,10 +22,7 @@ namespace EnemyAI
 
             enemy.SetAttack(parryAnim);
 
-
-            float duration = Tools.LargestOfTwoFloats(enemy.attackersAttack.duration, parryAnim.duration);
-
-            enemy.InvokeMethod(EndParry, duration);
+            enemy.InvokeMethod(EndParry, parryAnim.duration);
 
             ReturnPostureDamage(ParryType.Parry);
         }
