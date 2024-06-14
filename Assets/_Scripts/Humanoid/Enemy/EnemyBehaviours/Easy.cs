@@ -7,13 +7,13 @@ public class Easy : EnemyBehaviour
     {
         standbyState.waitTime = 0.2f;
     }
-    public override void StandbyPlayerAttack()
+    public override void StandbyTargetAttack()
     {
         Debug.Log("I don't do anything as I suck");
     }
     #endregion
     #region Attack state
-    public override void AttackPlayerAttack()
+    public override void AttackTargetAttack()
     {
 
     }
@@ -32,12 +32,19 @@ public class Easy : EnemyBehaviour
         parryState.DoParry();
 
         float duration = enemy.currentWeapon.archetype.enemyParrys[parryState.currentParry].duration;
-
-        enemy.InvokeMethod(parryState.SwitchToAttack, duration * 0.6f);
+        enemy.InvokeMethod(parryState.EndParry, duration);
     }
     public override void ParryHit()
     {
         parryState.LeaveState(hitState);
+    }
+    public override void ParryTargetAttack()
+    {
+
+    }
+    public override void ParryEnd()
+    {
+        parryState.LeaveState(standbyState);
     }
     #endregion
 

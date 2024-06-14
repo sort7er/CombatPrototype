@@ -15,12 +15,12 @@ namespace PlayerSM
 
         public override void Attack()
         {
-            DoOrQueueAction(() => LeaveState(attackState));
+            DoOrQueueAttack(() => LeaveState(attackState));
         }
         public override void Block()
         {
 
-            DoOrQueueAction(() => LeaveState(blockState));
+            DoOrQueueBlock(() => LeaveState(blockState));
         }
 
         private void EndStunned()

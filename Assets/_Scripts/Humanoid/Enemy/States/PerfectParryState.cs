@@ -9,6 +9,7 @@ namespace EnemyAI
         {
             base.Enter(enemy);
             enemyBehaviour.PerfectParryEnter();
+            enemy.SetNextParryState(parryState);
             DoPerfectParry();
         }
 

@@ -50,13 +50,13 @@ public class EnemyBehaviour: MonoBehaviour
     {
 
     }
-    public virtual void StandbyPlayerAttack()
+    public virtual void StandbyTargetAttack()
     {
 
     }
     #endregion
     #region Attack state
-    public virtual void AttackPlayerAttack()
+    public virtual void AttackTargetAttack()
     {
 
     }
@@ -74,6 +74,14 @@ public class EnemyBehaviour: MonoBehaviour
 
     }
     public virtual void ParryHit()
+    {
+
+    }
+    public virtual void ParryTargetAttack()
+    {
+
+    }
+    public virtual void ParryEnd()
     {
 
     }

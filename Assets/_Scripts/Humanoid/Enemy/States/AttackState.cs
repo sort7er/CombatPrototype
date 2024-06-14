@@ -85,7 +85,7 @@ namespace EnemyAI
         }
         public override void TargetAttacking()
         {
-            enemyBehaviour.AttackPlayerAttack();
+            enemyBehaviour.AttackTargetAttack();
         }
         private void CannotParry()
         {

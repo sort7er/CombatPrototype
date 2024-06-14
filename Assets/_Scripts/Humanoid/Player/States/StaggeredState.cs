@@ -17,11 +17,11 @@ namespace PlayerSM
         #region Queuing methods 
         public override void Attack()
         {
-            DoOrQueueAction(() => LeaveState(attackState));
+            DoOrQueueAttack(() => LeaveState(attackState));
         }
         public override void Block()
         {
-            DoOrQueueAction(() => LeaveState(blockState));
+            DoOrQueueBlock(() => LeaveState(blockState));
         }
         #endregion
 

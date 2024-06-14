@@ -1,5 +1,3 @@
-using PlayerSM;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -37,6 +35,7 @@ namespace EnemyAI
         public EnemyAnimator enemyAnimator;
 
         public EnemyState currentState { get; private set; }
+        public EnemyState nextParryState { get; private set; }
         public NavMeshAgent agent { get; private set; }
         public NavMeshPath currentPath { get; private set; }
         public Vector3 currentMoveToTarget { get; private set; }
@@ -100,6 +99,7 @@ namespace EnemyAI
         private void SetUpValues()
         {
             SetSpeed(3);
+            SetNextParryState(parryState);
             agent.enabled = false;
             attackDoneState = Animator.StringToHash("AttackDone");
             stunnedDoneState = Animator.StringToHash("StunnedDone");
@@ -125,6 +125,10 @@ namespace EnemyAI
         public void TargetAttacking(Attack attack)
         {
             currentState.TargetAttacking();
+        }
+        public void TargetQueingAttack()
+        {
+            currentState.TargetQueingAttack();
         }
         // From humanoid
         public override void Staggered()
@@ -155,6 +159,10 @@ namespace EnemyAI
         #endregion
 
         #region Called from the state machine
+        public void SetNextParryState(EnemyState enemyState)
+        {
+            nextParryState = enemyState;
+        }
         public void SetTarget(Humanoid target)
         {
             this.target = target;

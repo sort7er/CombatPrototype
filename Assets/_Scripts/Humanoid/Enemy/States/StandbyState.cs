@@ -82,7 +82,7 @@ namespace EnemyAI
         }
         public override void TargetAttacking()
         {
-            enemyBehaviour.StandbyPlayerAttack();
+            enemyBehaviour.StandbyTargetAttack();
         }
         public override void Staggered()
         {

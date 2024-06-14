@@ -69,6 +69,10 @@ namespace EnemyAI
         {
 
         }
+        public virtual void TargetQueingAttack()
+        {
+
+        }
         public virtual void Dead()
         {
             enemy.StopMethod();

@@ -28,17 +28,16 @@ namespace PlayerSM
         #region Queuing methods 
         public override void Attack()
         {
-            DoOrQueueAction(() => LeaveStateAndDo(parryAttackState, () => player.ResetParryTimer()));
+            DoOrQueueAttack(() => LeaveStateAndDo(parryAttackState, () => player.ResetParryTimer()));
         }
         public override void Block()
         {
-            DoOrQueueAction(() => LeaveState(blockState));
+            DoOrQueueBlock(() => LeaveState(blockState));
         }
         #endregion
         public override void ActionDone()
         {
             base.ActionDone();
-            Debug.Log("Yeah");
         }
 
         public override void Hit()

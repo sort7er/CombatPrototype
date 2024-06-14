@@ -103,16 +103,15 @@ namespace PlayerSM
         #endregion
 
         #region Queue methods
-        public void DoOrQueueAction(Action action)
+
+        //This might be unnecessary, but we'll see
+        public void DoOrQueueAttack(Action action)
         {
-            if (actionDone)
-            {
-                action?.Invoke();
-            }
-            else
-            {
-                CheckNextAction(action);
-            }
+            DoOrQueue(action);
+        }
+        public void DoOrQueueBlock(Action action)
+        {
+            DoOrQueue(action);
         }
 
         public void CheckQueueOrActionDone()
@@ -130,6 +129,17 @@ namespace PlayerSM
         #endregion
 
         #region Tool methods
+        private void DoOrQueue(Action action)
+        {
+            if (actionDone)
+            {
+                action?.Invoke();
+            }
+            else
+            {
+                CheckNextAction(action);
+            }
+        }
         private void CheckNextAction(Action action)
         {
             if(nextAction == null)

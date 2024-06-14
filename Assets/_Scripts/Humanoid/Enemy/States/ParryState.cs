@@ -21,23 +21,20 @@ namespace EnemyAI
             enemy.InvokeMethod(StopRotate, 0.25f);
 
             enemy.SetAttack(parryAnim);
-
-            enemy.InvokeMethod(EndParry, parryAnim.duration);
-
             ReturnPostureDamage(ParryType.Parry);
         }
 
-        private void EndParry()
+        public void EndParry()
         {
-            LeaveState(standbyState);
-        }
-        public void SwitchToAttack()
-        {
-            LeaveState(attackState);
+            enemyBehaviour.ParryEnd();
         }
         public override void Hit()
         {
             enemyBehaviour.ParryHit();
+        }
+        public override void TargetAttacking()
+        {
+            enemyBehaviour.ParryTargetAttack();
         }
         public override void Stunned()
         {
