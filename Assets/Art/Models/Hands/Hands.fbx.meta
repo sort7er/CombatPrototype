@@ -2954,7 +2954,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.7474271
+      - time: 0.50051355
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -3113,7 +3113,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5984032
+      - time: 0.50272423
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -3166,7 +3166,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.59439963
+      - time: 0.50180703
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -4657,7 +4657,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.13864513
+      - time: 0.16129321
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -4747,7 +4747,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.13706563
+      - time: 0.15797156
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -4945,7 +4945,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.11056511
+      - time: 0.10533863
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -5035,7 +5035,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.12302562
+      - time: 0.1108305
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -5233,7 +5233,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.18905641
+      - time: 0.2587428
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -5323,7 +5323,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.17833272
+      - time: 0.19923866
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -5521,7 +5521,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.22042821
+      - time: 0.2744352
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -5537,11 +5537,209 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.50134933
+      - time: 0.3793981
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
           type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Sword_PerfectParry_Left
+      takeName: ArmRig|Sword_PerfectParry_Left
+      internalID: 3698717320941403084
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.24570026
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Sword_FollowUpAttack_Left
+      takeName: ArmRig|Sword_FollowUpAttack_Left
+      internalID: -8355865542278091786
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.28233272
+        functionName: ActionStart
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.35205293
+        functionName: OverlapCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.37858486
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Sword_Hit
+      takeName: ArmRig|Sword_Hit
+      internalID: 6877409280392336313
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.6683047
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Sword_Staggered
+      takeName: ArmRig|Sword_Staggered
+      internalID: -1439926320212018076
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.7493857
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmRig|Sword_Stunned
+      takeName: ArmRig|Sword_Stunned
+      internalID: 8190069707671311030
+      firstFrame: 0
+      lastFrame: 54
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.90909094
+        functionName: ActionDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

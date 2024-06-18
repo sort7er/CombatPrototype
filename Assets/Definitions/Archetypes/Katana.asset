@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showStartPos: 0
   showEndPos: 0
-  showEffect: 0
+  showEffect: 1
   effectSize: 2
   slashEffect: {fileID: 3251017502524556899, guid: 25734d4e85c502b46917c9634752e22c,
     type: 3}
@@ -165,23 +165,23 @@ MonoBehaviour:
   parryAttackInput:
   - animationClip: {fileID: 233166997217571716, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    damage: 0
-    postureDamage: 0
+    damage: 50
+    postureDamage: 20
     activeWield: 0
     hitType: 1
     attackCoordsMain:
-    - localStartPos: {x: 0, y: 0, z: 0}
-      localEndPos: {x: 0, y: 0, z: 0}
+    - localStartPos: {x: -0.38, y: 0.5, z: -0.36}
+      localEndPos: {x: 0.55, y: -0.7, z: 1.64}
     attackCoordsSecondary: []
   - animationClip: {fileID: -4707218459061270479, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    damage: 0
-    postureDamage: 0
+    damage: 50
+    postureDamage: 20
     activeWield: 0
     hitType: 1
     attackCoordsMain:
-    - localStartPos: {x: 0, y: 0, z: 0}
-      localEndPos: {x: 0, y: 0, z: 0}
+    - localStartPos: {x: 0.75, y: 0.9, z: 0.23}
+      localEndPos: {x: -0.5, y: -0.5, z: 1.47}
     attackCoordsSecondary: []
   enemyAttacksInput: []
   enemyParrysInput: []

@@ -309,6 +309,16 @@ MonoBehaviour:
   enemyBlockInput:
     animationClip: {fileID: 3195449761894188933, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
+    damage: 0
+    postureDamage: 0
+    activeWield: 0
+    hitType: 0
+    attackCoordsMain:
+    - localStartPos: {x: 0, y: 0, z: 0}
+      localEndPos: {x: 0, y: 0, z: 0}
+    attackCoordsSecondary: []
+    exitTime: 0
+    transitionDuration: 0
   enemyStaggeredInput:
     animationClip: {fileID: -8189259034056763840, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
