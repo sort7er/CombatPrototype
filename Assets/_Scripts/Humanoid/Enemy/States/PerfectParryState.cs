@@ -21,7 +21,7 @@ namespace EnemyAI
             enemy.InvokeMethod(StopRotate, 0.25f);
 
 
-            enemy.SetAttack(perfectParryAnim);
+            enemy.SetBlock(perfectParryAnim);
             enemy.InvokeMethod(EndPerfectParry, perfectParryAnim.duration);
 
 

@@ -12,7 +12,7 @@ namespace PlayerSM
 
             Attack parry = archetype.parry[player.GetCurrentParry()];
 
-            player.SetAttack(parry, 0f);
+            player.SetBlock(parry, 0f);
             player.StopMethod();
             player.InvokeMethod(EndParry, parry.duration);
         }

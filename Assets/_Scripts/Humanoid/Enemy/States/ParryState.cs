@@ -20,7 +20,7 @@ namespace EnemyAI
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);
 
-            enemy.SetAttack(parryAnim);
+            enemy.SetBlock(parryAnim);
             ReturnPostureDamage(ParryType.Parry);
         }
 

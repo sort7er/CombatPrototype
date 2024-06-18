@@ -10,7 +10,7 @@ namespace EnemyAI
             base.Enter(enemy);
 
             Attack blockAnim = currentWeapon.archetype.enemyBlock;
-            enemy.SetAttack(blockAnim, 0.25f);
+            enemy.SetBlock(blockAnim, 0.25f);
 
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);

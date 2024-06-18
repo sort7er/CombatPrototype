@@ -16,7 +16,7 @@ namespace PlayerSM
 
             Attack parry = archetype.perfectParry[player.currentPerfectParry];
 
-            player.SetAttack(parry);
+            player.SetBlock(parry);
             player.InvokeMethod(EndParry, parry.duration);
         }
 

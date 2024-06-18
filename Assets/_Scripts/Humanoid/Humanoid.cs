@@ -208,6 +208,11 @@ public class Humanoid : MonoBehaviour
         currentWeapon.Attack(attack);
         SetAnimation(attack, transition);
     }
+    public virtual void SetBlock(Attack attack, float transition = 0)
+    {
+        currentWeapon.Attack(attack);
+        SetAnimation(attack, transition);
+    }
     public void SetAnimation(Anim newAnim, float transition = 0.25f)
     {
         animator.CrossFadeInFixedTime(newAnim.state, transition);
