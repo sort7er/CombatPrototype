@@ -1245,7 +1245,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.28533334
+      - time: 0.22977778
         functionName: ActionStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -1253,7 +1253,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3083847
+      - time: 0.25547463
         functionName: OverlapCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -1261,7 +1261,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.49941066
+      - time: 0.40549532
         functionName: ActionDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: d3b7a30b15c6f404f823b84e27b49631,
@@ -1708,8 +1708,8 @@ ModelImporter:
       name: ArmRig|Greatsword_Walk_Front
       takeName: ArmRig|Greatsword_Walk_Front
       internalID: 3093291731163152119
-      firstFrame: 0
-      lastFrame: 23
+      firstFrame: 10
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -3673,8 +3673,8 @@ ModelImporter:
       name: ArmRig|Greatsword_Walk_Left
       takeName: ArmRig|Greatsword_Walk_Left
       internalID: 6092165132412523835
-      firstFrame: 0
-      lastFrame: 23
+      firstFrame: 10
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -3702,8 +3702,8 @@ ModelImporter:
       name: ArmRig|Greatsword_Walk_Right
       takeName: ArmRig|Greatsword_Walk_Right
       internalID: -5345550115725357702
-      firstFrame: 0
-      lastFrame: 23
+      firstFrame: 10
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -3731,8 +3731,8 @@ ModelImporter:
       name: ArmRig|Greatsword_Walk_Back
       takeName: ArmRig|Greatsword_Walk_Back
       internalID: -186536398056016103
-      firstFrame: 0
-      lastFrame: 23
+      firstFrame: 10
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
