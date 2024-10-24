@@ -28,7 +28,7 @@ public class BrawlingBones : MonoBehaviour
             }
 
             transform.parent = handBones.leftParent;
-            transform.position = Vector3.zero;
+            transform.localPosition = Vector3.zero;
             offset = new Vector3(0, 180, 0);
         }
         else
@@ -39,7 +39,7 @@ public class BrawlingBones : MonoBehaviour
             }
 
             transform.parent = handBones.rightParent;
-            transform.position = Vector3.zero;
+            transform.localPosition = Vector3.zero;
             offset = Vector3.zero;
         }
     }

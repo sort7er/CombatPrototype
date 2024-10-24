@@ -408,6 +408,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4756302769174554950, guid: 42b20035dabf19349a042a4a1009b198,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -3216175759475926075, guid: 42b20035dabf19349a042a4a1009b198,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -467,6 +472,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493418530277512783, guid: 42b20035dabf19349a042a4a1009b198,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6046452375167048685, guid: 42b20035dabf19349a042a4a1009b198,
         type: 3}
@@ -660,24 +670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightBones:
-  - {fileID: 5395533073247687580}
-  - {fileID: 764423395875108497}
-  - {fileID: 7803191244658313076}
-  - {fileID: 8937713141470271817}
-  - {fileID: 4636487478918303205}
-  - {fileID: 3426971547945371452}
-  - {fileID: 5503597400994299840}
-  - {fileID: 1862404015742045549}
-  - {fileID: 6879484944431988394}
-  - {fileID: 7600856079489057520}
-  - {fileID: 290686812837178841}
-  - {fileID: 6364180411161566673}
-  - {fileID: 7403032595798695741}
-  - {fileID: 2613264217185867377}
-  - {fileID: 7737745230147013402}
-  - {fileID: 8391080817002775219}
-  - {fileID: 1002983731617234568}
-  leftBones:
   - {fileID: 105889789786769468}
   - {fileID: 1908007557924175254}
   - {fileID: 8236030800322159786}
@@ -695,7 +687,25 @@ MonoBehaviour:
   - {fileID: 2876483685462242006}
   - {fileID: 9040794071090170316}
   - {fileID: 3715693827171018590}
-  rightParent: {fileID: 0}
+  leftBones:
+  - {fileID: 5395533073247687580}
+  - {fileID: 764423395875108497}
+  - {fileID: 7803191244658313076}
+  - {fileID: 8937713141470271817}
+  - {fileID: 4636487478918303205}
+  - {fileID: 3426971547945371452}
+  - {fileID: 5503597400994299840}
+  - {fileID: 1862404015742045549}
+  - {fileID: 6879484944431988394}
+  - {fileID: 7600856079489057520}
+  - {fileID: 290686812837178841}
+  - {fileID: 6364180411161566673}
+  - {fileID: 7403032595798695741}
+  - {fileID: 2613264217185867377}
+  - {fileID: 7737745230147013402}
+  - {fileID: 8391080817002775219}
+  - {fileID: 1002983731617234568}
+  rightParent: {fileID: 1908007557924175254}
   leftParent: {fileID: 764423395875108497}
 --- !u!4 &3426971547945371452 stripped
 Transform:
