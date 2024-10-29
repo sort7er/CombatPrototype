@@ -10,6 +10,10 @@ namespace PlayerSM
             base.Enter(player);
             player.InvokeMethod(EndMelee, 1f);
             Debug.Log("Entered melee");
+
+            Attack melee = weapon.abilitySet.melee;
+            Debug.Log(melee);
+
         }
 
         private void EndMelee()

@@ -27,14 +27,14 @@ public class UniqueSword : UniqueAbility
 
         Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
         playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
-        Invoke(nameof(StartDash), rotationDuration);
+        player.InvokeMethod(StartDash, rotationDuration);
     }
 
     public override void ExecuteAbilityNoTarget(Player player)
     {
         base.ExecuteAbilityNoTarget(player);
         player.DisableMovement();
-        Invoke(nameof(StartDashNoTarget), rotationDuration);
+        player.InvokeMethod(StartDashNoTarget, rotationDuration);
     }
     private void StartDashNoTarget()
     {

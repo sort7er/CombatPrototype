@@ -432,7 +432,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1515025721951193632}
   - component: {fileID: 4573752892181745633}
-  - component: {fileID: 7154469481346446333}
   m_Layer: 0
   m_Name: Daggers
   m_TagString: Untagged
@@ -469,29 +468,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  postureDamage: 34
   pushbackForce: 1
   archetype: {fileID: 11400000, guid: 56d929dbf4a45e24b874c66403ba7e49, type: 2}
-  uniqueAbility: {fileID: 7154469481346446333}
+  abilitySet: {fileID: 11400000, guid: d741c4700c3f2494286ee35f118f306a, type: 2}
   weaponModel:
   - {fileID: 7785325015696337657}
   - {fileID: 5311457579088156792}
---- !u!114 &7154469481346446333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6815047948248039133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10015b5ade2ac1945935367d146cdcde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 10
-  idealDotProduct: 0.85
-  acceptedDotProduct: 0.75
 --- !u!1 &6815096003813549096
 GameObject:
   m_ObjectHideFlags: 0

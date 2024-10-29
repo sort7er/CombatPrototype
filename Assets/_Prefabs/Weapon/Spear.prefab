@@ -130,6 +130,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -213,6 +215,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -311,7 +315,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1942395388841435759}
   - component: {fileID: 5488350683097944370}
-  - component: {fileID: 1777186540068720542}
   m_Layer: 10
   m_Name: Spear
   m_TagString: Untagged
@@ -347,27 +350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
-  postureDamage: 5
+  pushbackForce: 6
   archetype: {fileID: 11400000, guid: 375a60b974efc004b9253e1ffb9b85c5, type: 2}
-  uniqueAbility: {fileID: 1777186540068720542}
+  abilitySet: {fileID: 11400000, guid: d741c4700c3f2494286ee35f118f306a, type: 2}
   weaponModel:
   - {fileID: 2700884317227071543}
---- !u!114 &1777186540068720542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702633665709738025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31fae4bb4ebcc9b40826a40050f186e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 10
-  idealDotProduct: 0.85
-  acceptedDotProduct: 0.75
 --- !u!1001 &7195980089012375504
 PrefabInstance:
   m_ObjectHideFlags: 0

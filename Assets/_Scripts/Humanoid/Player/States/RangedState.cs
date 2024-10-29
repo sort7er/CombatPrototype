@@ -9,6 +9,10 @@ namespace PlayerSM
             base.Enter(player);
             player.InvokeMethod(EndRanged, 1f);
             Debug.Log("Entered ranged");
+
+            Attack ranged = weapon.abilitySet.ranged;
+            Debug.Log(ranged);
+
         }
 
 

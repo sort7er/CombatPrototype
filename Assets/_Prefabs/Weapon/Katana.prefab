@@ -129,6 +129,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -277,6 +279,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -312,7 +316,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3026634092081624687}
   - component: {fileID: 4159671876745688738}
-  - component: {fileID: 6893461686517470389}
   m_Layer: 10
   m_Name: Katana
   m_TagString: Untagged
@@ -348,27 +351,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
-  postureDamage: 10
+  pushbackForce: 5
   archetype: {fileID: 11400000, guid: c4fc370c8cb016c4cbab678a62b5c152, type: 2}
-  uniqueAbility: {fileID: 6893461686517470389}
+  abilitySet: {fileID: 11400000, guid: d741c4700c3f2494286ee35f118f306a, type: 2}
   weaponModel:
   - {fileID: 2438398294680331325}
---- !u!114 &6893461686517470389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861395527885083912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4ffe9223faaf241b3129d9b33d726f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 10
-  idealDotProduct: 0.85
-  acceptedDotProduct: 0.75
 --- !u!1 &8048168424760094711
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +414,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

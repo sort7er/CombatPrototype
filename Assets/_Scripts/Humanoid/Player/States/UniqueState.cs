@@ -28,16 +28,16 @@ namespace PlayerSM
         private void GetEnemies()
         {
             ClearList();
-            enemyList = player.targetAssistance.CheckForEnemies(player.currentWeapon.uniqueAbility);
+            enemyList = player.targetAssistance.CheckForEnemies(archetype.uniqueAbility);
 
 
             if (enemyList.Count > 0)
             {
-                player.currentWeapon.uniqueAbility.ExecuteAbility(player, enemyList);
+                archetype.uniqueAbility.ExecuteAbility(player, enemyList);
             }
             else
             {
-                player.currentWeapon.uniqueAbility.ExecuteAbilityNoTarget(player);
+                archetype.uniqueAbility.ExecuteAbilityNoTarget(player);
             }
         }
         private void ClearList()

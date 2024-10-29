@@ -58,6 +58,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -243,6 +245,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -312,7 +316,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6558507996456503484}
   - component: {fileID: 3028265408452442662}
-  - component: {fileID: 5445004082475378491}
   m_Layer: 10
   m_Name: Greatsword
   m_TagString: Untagged
@@ -348,27 +351,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae110f656225224aabdbac416df2705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
-  postureDamage: 5
+  pushbackForce: 10
   archetype: {fileID: 11400000, guid: 7124e1b36dbc0bb4fb6d09ac3f6be726, type: 2}
-  uniqueAbility: {fileID: 5445004082475378491}
+  abilitySet: {fileID: 11400000, guid: d741c4700c3f2494286ee35f118f306a, type: 2}
   weaponModel:
   - {fileID: 1988374782880518190}
---- !u!114 &5445004082475378491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7489086249869654527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09663973e830a30499ce934a4e022187, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 10
-  idealDotProduct: 0.85
-  acceptedDotProduct: 0.75
 --- !u!1 &8367791113872722498
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +414,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -11,9 +11,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Attacks")]
     public Archetype archetype;
-    public UniqueAbility uniqueAbility;
-    //[SerializeField] private AttackInput closeAbilityInput;
-    //[SerializeField] private AttackInput throwAbilityInput;
+    public AbilitySet abilitySet;
 
     [Header("Weapons")]
     [SerializeField] private WeaponModel[] weaponModel;
@@ -22,9 +20,6 @@ public class Weapon : MonoBehaviour
     public Vector3 weaponPos { get; private set; }
     public Attack currentAttack { get; private set; }
 
-    private Attack closeAbility;
-    private Attack throwAbility;
-    
     private SlicingWeapon[] slicingWeapons;
     private bool sliceEnded;
 
@@ -37,15 +32,9 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        archetype.SetUpAnimations();
+        archetype.SetUp();
+        abilitySet.SetUpAnimations();
         SetUpSlicingWeapons();
-
-        //SetUpAttack(ref closeAbility, closeAbilityInput);
-        //SetUpAttack(ref throwAbility, throwAbilityInput);
-    }
-    public void SetUpAttack(ref Attack attacksToSetUp, AttackInput inputs)
-    {
-        attacksToSetUp = new Attack(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
     }
 
     //Set from player actions

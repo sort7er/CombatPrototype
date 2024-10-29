@@ -23,14 +23,14 @@ public class UniqueSpear : UniqueAbility
 
         Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
         playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
-        Invoke(nameof(StartDash), rotationDuration * 2);
+        player.InvokeMethod(StartDash, rotationDuration * 2);
     }
 
     public override void ExecuteAbilityNoTarget(Player player)
     {
         base.ExecuteAbilityNoTarget(player);
         player.DisableMovement();
-        Invoke(nameof(StartDashNoTarget), rotationDuration * 2);
+        player.InvokeMethod(StartDashNoTarget, rotationDuration * 2);
     }
     private void StartDashNoTarget()
     {

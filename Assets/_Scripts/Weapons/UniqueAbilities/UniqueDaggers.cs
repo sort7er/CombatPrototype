@@ -17,7 +17,6 @@ public class UniqueDaggers : UniqueAbility
     private Vector3 directionToTarget;
     private Vector3 dashPos;
 
-
     public override void ExecuteAbility(Player player, List<Enemy> enemies)
     {
         base.ExecuteAbility(player, enemies);
@@ -40,7 +39,7 @@ public class UniqueDaggers : UniqueAbility
     {
         base.ExecuteAbilityNoTarget(player);
         player.DisableMovement();
-        Invoke(nameof(SetDirectionNoTarget), rotationDuration);
+        player.InvokeMethod(SetDirectionNoTarget, rotationDuration);
     }
     private void SetDirectionNoTarget()
     {

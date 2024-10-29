@@ -4,12 +4,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Archetype", menuName = "Archetype")]
 public class Archetype: ScriptableObject
 {
+
+    public enum Type
+    {
+        Brawling,
+        Daggers,
+        Greatsword,
+        Katana,
+        Spear,
+        Sword
+    }
+
     public bool showStartPos;
     public bool showEndPos;
     public bool showEffect;
 
     public float effectSize = 1;
     public ParticleSystem slashEffect;
+
+    public Type archetype;
+    public UniqueAbility uniqueAbility;
 
     [Header("Player")]
     [SerializeField] private AnimationInput idleInput;
@@ -66,8 +80,10 @@ public class Archetype: ScriptableObject
     public Anim enemyStandbyTurnLeft;
     public Anim enemyStandbyTurnRight;
 
-    public void SetUpAnimations()
+    public void SetUp()
     {
+        SetUnique();
+
         //For player
         idle = new Anim(idleInput.animationClip);
         walk = new Anim(walkInput.animationClip);
@@ -77,9 +93,9 @@ public class Archetype: ScriptableObject
         hit = new Anim(hitInput.animationClip);
         stunned = new Anim(stunnedInput.animationClip);
 
+        unique = Tools.SetUpAttack(uniqueInput);
+        block = Tools.SetUpAttack(blockInput);
         SetUpAttacks(ref attacks, attacksInput);
-        SetUpAttack(ref unique, uniqueInput);
-        SetUpAttack(ref block, blockInput);
         SetUpAttacks(ref parry, parryInput);
         SetUpAttacks(ref perfectParry, perfectParryInput);
         SetUpAttacks(ref parryAttack, parryAttackInput);
@@ -94,30 +110,9 @@ public class Archetype: ScriptableObject
 
         SetUpEnemyAttacks(ref enemyAttacks, enemyAttacksInput);
         SetUpEnemyAttacks(ref enemyParrys, enemyParrysInput);
-        SetUpEnemyAttack(ref enemyPerfectParry, enemyPerfectParryInput);
-        SetUpEnemyAttack(ref enemyParryAttack, enemyParryAttackInput);
-        SetUpEnemyAttack(ref enemyBlock, enemyBlockInput);
-    }
-
-    public void SetUpAttack(ref Attack attack, AttackInput inputs)
-    {
-
-        bool right = inputs.activeWield == Wield.right || inputs.activeWield == Wield.both;
-        bool left = inputs.activeWield == Wield.left || inputs.activeWield == Wield.both;
-
-        if (right && inputs.attackCoordsMain.Length == 0)
-        {
-            inputs.attackCoordsMain = new AttackCoord[1];
-            inputs.attackCoordsMain[0] = new AttackCoord(Vector3.zero, Vector3.zero);
-        }
-
-        if (left && inputs.attackCoordsSecondary.Length == 0)
-        {
-            inputs.attackCoordsSecondary = new AttackCoord[1];
-            inputs.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
-        }
-
-        attack = new Attack(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary);
+        enemyBlock = Tools.SetUpEnemyAttack(enemyBlockInput);
+        enemyParryAttack = Tools.SetUpEnemyAttack(enemyParryAttackInput);
+        enemyPerfectParry = Tools.SetUpEnemyAttack(enemyPerfectParryInput);
     }
 
     public void SetUpAttacks(ref Attack[] attacksToSetUp, AttackInput[] inputs)
@@ -126,37 +121,46 @@ public class Archetype: ScriptableObject
 
         for (int i = 0; i < inputs.Length; i++)
         {
-            SetUpAttack(ref attacksToSetUp[i], inputs[i]);
+            attacksToSetUp[i] = Tools.SetUpAttack(inputs[i]);
         }
     }
 
-    public void SetUpEnemyAttack(ref AttackEnemy attack, AttackEnemyInput inputs)
-    {
-
-        bool right = inputs.activeWield == Wield.right || inputs.activeWield == Wield.both;
-        bool left = inputs.activeWield == Wield.left || inputs.activeWield == Wield.both;
-
-        if (right && inputs.attackCoordsMain.Length == 0)
-        {
-            inputs.attackCoordsMain = new AttackCoord[1];
-            inputs.attackCoordsMain[0] = new AttackCoord(Vector3.zero, Vector3.zero);
-        }
-
-        if (left && inputs.attackCoordsSecondary.Length == 0)
-        {
-            inputs.attackCoordsSecondary = new AttackCoord[1];
-            inputs.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
-        }
-
-        attack = new AttackEnemy(inputs.animationClip, inputs.damage, inputs.postureDamage, inputs.activeWield, inputs.hitType, inputs.attackCoordsMain, inputs.attackCoordsSecondary, inputs.exitTime, inputs.transitionDuration);
-    }
     public void SetUpEnemyAttacks(ref AttackEnemy[] enemyAttacksToSetUp, AttackEnemyInput[] inputs)
     {
         enemyAttacksToSetUp = new AttackEnemy[inputs.Length];
 
         for (int i = 0; i < inputs.Length; i++)
         {
-            SetUpEnemyAttack(ref enemyAttacksToSetUp[i], inputs[i]);
+            enemyAttacksToSetUp[i] = Tools.SetUpEnemyAttack(inputs[i]);
         }
+    }
+
+    private void SetUnique()
+    {
+        if(archetype == Type.Brawling)
+        {
+            uniqueAbility = new UniqueBrawling();
+        }
+        else if (archetype == Type.Daggers)
+        {
+            uniqueAbility = new UniqueDaggers();
+        }
+        else if (archetype == Type.Greatsword)
+        {
+            uniqueAbility = new UniqueGreatsword();
+        }
+        else if (archetype == Type.Katana)
+        {
+            uniqueAbility = new UniqueKatana();
+        }
+        else if (archetype == Type.Spear)
+        {
+            uniqueAbility = new UniqueSpear();
+        }
+        else if (archetype == Type.Sword)
+        {
+            uniqueAbility = new UniqueSword();
+        }
+        uniqueAbility.SetParamaters();
     }
 }

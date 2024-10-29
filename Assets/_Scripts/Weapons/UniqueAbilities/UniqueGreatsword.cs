@@ -24,14 +24,14 @@ public class UniqueGreatsword : UniqueAbility
         Vector3 compensatedCamLookAt = new Vector3(target.x, target.y + 1.5f, target.z);
         camController.LookAt(compensatedCamLookAt, rotationDuration * 0.5f);
 
-        Invoke(nameof(EndDash), attackDuration);
+        player.InvokeMethod(EndDash, attackDuration);
     }
 
     public override void ExecuteAbilityNoTarget(Player player)
     {
         base.ExecuteAbilityNoTarget(player);
         player.DisableMovement();
-        Invoke(nameof(EndDash), attackDuration);
+        player.InvokeMethod(EndDash, attackDuration);
     }
     private void EndDash()
     {

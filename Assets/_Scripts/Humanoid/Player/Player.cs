@@ -6,6 +6,7 @@ public class Player : Humanoid
 {
     [Header("Values")]
     public float blockWaitTime = 0;
+    public float uniqueCoolDown = 8f;
 
     [Header("References")]
     public Unique unique;
@@ -37,7 +38,6 @@ public class Player : Humanoid
 
     public int currentParry { get; private set; }
     public int currentPerfectParry { get; private set; }
-    public float uniqueCoolDown { get; private set; } = 8f;
     
     public bool canUseUnique { get; private set; }
 

@@ -3,9 +3,8 @@ using UnityEngine;
 using EnemyAI;
 using TMPro;
 
-public abstract class UniqueAbility: MonoBehaviour
+public abstract class UniqueAbility
 {
-    [Header("Target assistance paramaters")]
     public float range = 10f;
     public float idealDotProduct = 0.85f;
     public float acceptedDotProduct = 0.75f;
@@ -19,6 +18,11 @@ public abstract class UniqueAbility: MonoBehaviour
 
     protected Transform enemyTrans;
     protected Vector3 targetPosition;
+
+    public virtual void SetParamaters()
+    {
+
+    }
 
     public virtual void ExecuteAbility(Player player, List<Enemy> enemies)
     {

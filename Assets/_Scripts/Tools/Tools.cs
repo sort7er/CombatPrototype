@@ -1,6 +1,8 @@
+using Attacks;
 using EnemyAI;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public static class Tools
 {
@@ -118,4 +120,47 @@ public static class Tools
             return float1;
         }
     }
+
+    #region Slash A Bit specific
+    public static Attack SetUpAttack(AttackInput input)
+    {
+        bool right = input.activeWield == Wield.right || input.activeWield == Wield.both;
+        bool left = input.activeWield == Wield.left || input.activeWield == Wield.both;
+
+        if (right && input.attackCoordsMain.Length == 0)
+        {
+            input.attackCoordsMain = new AttackCoord[1];
+            input.attackCoordsMain[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+
+        if (left && input.attackCoordsSecondary.Length == 0)
+        {
+            input.attackCoordsSecondary = new AttackCoord[1];
+            input.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+
+        return new Attack(input.animationClip, input.damage, input.postureDamage, input.activeWield, input.hitType, input.attackCoordsMain, input.attackCoordsSecondary);
+    }
+    public static AttackEnemy SetUpEnemyAttack(AttackEnemyInput input)
+    {
+
+        bool right = input.activeWield == Wield.right || input.activeWield == Wield.both;
+        bool left = input.activeWield == Wield.left || input.activeWield == Wield.both;
+
+        if (right && input.attackCoordsMain.Length == 0)
+        {
+            input.attackCoordsMain = new AttackCoord[1];
+            input.attackCoordsMain[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+
+        if (left && input.attackCoordsSecondary.Length == 0)
+        {
+            input.attackCoordsSecondary = new AttackCoord[1];
+            input.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
+        }
+
+        return new AttackEnemy(input.animationClip, input.damage, input.postureDamage, input.activeWield, input.hitType, input.attackCoordsMain, input.attackCoordsSecondary, input.exitTime, input.transitionDuration);
+    }
+    #endregion
+
 }

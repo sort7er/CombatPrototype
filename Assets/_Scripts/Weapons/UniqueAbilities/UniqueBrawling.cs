@@ -12,6 +12,10 @@ public class UniqueBrawling : UniqueAbility
     private float jumpPower = 1;
 
     private Vector3 target;
+    public override void SetParamaters()
+    {
+        range = 2;
+    }
     public override void ExecuteAbility(Player player, List<Enemy> enemies)
     {
         base.ExecuteAbility(player, enemies);
@@ -21,7 +25,7 @@ public class UniqueBrawling : UniqueAbility
 
         Vector3 compensatedLookAt = new Vector3(target.x, playerTrans.position.y, target.z);
         playerTrans.DOLookAt(compensatedLookAt, rotationDuration);
-        Invoke(nameof(StartUppercutWithEnemies), rotationDuration);
+        player.InvokeMethod(StartUppercutWithEnemies, rotationDuration);
 
     }
 
@@ -39,7 +43,7 @@ public class UniqueBrawling : UniqueAbility
     {
         base.ExecuteAbilityNoTarget(player);
         player.DisableMovement();
-        Invoke(nameof(StartUppercutNoTarget), rotationDuration);
+        player.InvokeMethod(StartUppercutNoTarget, rotationDuration);
     }
     private void StartUppercutNoTarget()
     {
@@ -58,7 +62,7 @@ public class UniqueBrawling : UniqueAbility
         rb.velocity = Vector3.zero;
 
         rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
-        Invoke(nameof(EndUppercut), jumpDuration);
+        player.InvokeMethod(EndUppercut, jumpDuration);
 
     }
     private void EndUppercut()

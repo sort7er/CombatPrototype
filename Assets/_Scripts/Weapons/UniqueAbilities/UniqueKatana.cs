@@ -27,7 +27,7 @@ public class UniqueKatana : UniqueAbility
 
         LookAtTarget(rotationDuration);
 
-        Invoke(nameof(SetDirection), rotationDuration * 3);
+        player.InvokeMethod(SetDirection, rotationDuration * 3);
     }
     private void SetDirection()
     {
@@ -39,7 +39,8 @@ public class UniqueKatana : UniqueAbility
     {
         base.ExecuteAbilityNoTarget(player);
         player.DisableMovement();
-        Invoke(nameof(SetDirectionNoTarget), rotationDuration * 3);
+
+        player.InvokeMethod(SetDirectionNoTarget, rotationDuration * 3);
     }
     private void SetDirectionNoTarget()
     {
