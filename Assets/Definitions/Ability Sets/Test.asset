@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e018eb62b9033845a3b6e154504ea54, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
+  meleeType: 0
+  rangedType: 0
   meleeInput:
     animationClip: {fileID: -1609281748187839663, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
@@ -24,7 +26,7 @@ MonoBehaviour:
       localEndPos: {x: 0, y: 0, z: 0}
     attackCoordsSecondary: []
   rangedInput:
-    animationClip: {fileID: 2493344457160333171, guid: 42b20035dabf19349a042a4a1009b198,
+    animationClip: {fileID: 531684114346587923, guid: b32b55151f7a85c46b95b412b82b3791,
       type: 3}
     damage: 0
     postureDamage: 0
@@ -34,29 +36,3 @@ MonoBehaviour:
     - localStartPos: {x: 0, y: 0, z: 0}
       localEndPos: {x: 0, y: 0, z: 0}
     attackCoordsSecondary: []
-  enemyMeleeInput:
-    animationClip: {fileID: 2336536588777169427, guid: b32b55151f7a85c46b95b412b82b3791,
-      type: 3}
-    damage: 0
-    postureDamage: 0
-    activeWield: 0
-    hitType: 0
-    attackCoordsMain:
-    - localStartPos: {x: 0, y: 0, z: 0}
-      localEndPos: {x: 0, y: 0, z: 0}
-    attackCoordsSecondary: []
-    exitTime: 0
-    transitionDuration: 0
-  enemyRangedInput:
-    animationClip: {fileID: 7009840049564391593, guid: b32b55151f7a85c46b95b412b82b3791,
-      type: 3}
-    damage: 0
-    postureDamage: 0
-    activeWield: 0
-    hitType: 0
-    attackCoordsMain:
-    - localStartPos: {x: 0, y: 0, z: 0}
-      localEndPos: {x: 0, y: 0, z: 0}
-    attackCoordsSecondary: []
-    exitTime: 0
-    transitionDuration: 0
