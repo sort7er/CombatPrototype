@@ -11,6 +11,8 @@ public class InputReader : MonoBehaviour
     public event Action OnJump;
     public event Action OnAttack;
     public event Action OnUnique;
+    public event Action OnMelee;
+    public event Action OnRanged;
     public event Action OnNextWeapon;
     public event Action OnPreviousWeapon;
     public event Action OnBlock;
@@ -57,6 +59,20 @@ public class InputReader : MonoBehaviour
         if (ctx.performed)
         {
             OnUnique?.Invoke();
+        }
+    }
+    public void Melee(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OnMelee?.Invoke();
+        }
+    }
+    public void Ranged(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OnRanged?.Invoke();
         }
     }
     public void NextWeapon(InputAction.CallbackContext ctx)

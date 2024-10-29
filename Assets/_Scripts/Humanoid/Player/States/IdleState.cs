@@ -65,6 +65,14 @@ namespace PlayerSM
         {
             LeaveState(stunnedState);
         }
+        public override void Melee()
+        {
+            LeaveState(meleeState);
+        }
+        public override void Ranged()
+        {
+            LeaveState(rangedState);
+        }
 
     }
 

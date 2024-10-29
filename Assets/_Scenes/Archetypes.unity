@@ -5855,6 +5855,101 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionId
+      value: 650dcf35-67f1-4b16-9bbb-4186df8bb54e
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_ActionId
+      value: d726fb1d-43ad-42c9-be12-0e387fb3e5a0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionName
+      value: 'Player/Melee[/Keyboard/f]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_ActionName
+      value: 'Player/Ranged[/Keyboard/q]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2175738159393017815}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2175738159393017815}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Ranged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputReader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputReader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497015581477364026, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8612583063523447023, guid: d5508aed7e7d6d44eb9d602a6d217a03,
         type: 3}
       propertyPath: m_Name
@@ -5865,6 +5960,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5508aed7e7d6d44eb9d602a6d217a03, type: 3}
+--- !u!114 &2175738159393017815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4849702032054896335, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+    type: 3}
+  m_PrefabInstance: {fileID: 2175738159393017814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96860d533c0f8e04a816de7e61e67d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4991069345542488325
 PrefabInstance:
   m_ObjectHideFlags: 0

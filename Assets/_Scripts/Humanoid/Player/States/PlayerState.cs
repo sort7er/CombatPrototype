@@ -23,6 +23,8 @@ namespace PlayerSM
         public StaggeredState staggeredState;
         public HitState hitState;
         public StunnedState stunnedState;
+        public MeleeState meleeState;
+        public RangedState rangedState;
 
         private Action nextAction;
 
@@ -96,6 +98,14 @@ namespace PlayerSM
 
         }
         public virtual void Stunned()
+        {
+
+        }
+        public virtual void Melee()
+        {
+
+        }
+        public virtual void Ranged()
         {
 
         }
@@ -192,6 +202,8 @@ namespace PlayerSM
                 staggeredState = player.staggeredState;
                 hitState = player.hitState;
                 stunnedState = player.stunnedState;
+                meleeState = player.meleeState;
+                rangedState = player.rangedState;
             }
 
             //Need to update the current weapon all the time to make sure the state knows which weapon is in use

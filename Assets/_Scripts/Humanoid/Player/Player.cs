@@ -1,6 +1,5 @@
 using UnityEngine;
 using PlayerSM;
-using System;
 using Stats;
 
 public class Player : Humanoid
@@ -33,6 +32,8 @@ public class Player : Humanoid
     public StaggeredState staggeredState = new StaggeredState();
     public HitState hitState = new HitState();
     public StunnedState stunnedState = new StunnedState();
+    public MeleeState meleeState = new MeleeState();
+    public RangedState rangedState = new RangedState();
 
     public int currentParry { get; private set; }
     public int currentPerfectParry { get; private set; }
@@ -101,6 +102,14 @@ public class Player : Humanoid
         {
             currentState.Unique();
         }
+    }
+    public void Melee()
+    {
+        currentState.Melee();
+    }
+    public void Ranged()
+    {
+        currentState.Ranged();
     }
     public void Block()
     {
@@ -268,6 +277,8 @@ public class Player : Humanoid
         inputReader.OnMoveStarted += Moving;
         inputReader.OnMoveStopped += StoppedMoving;
         inputReader.OnBlockRelease += BlockRelease;
+        inputReader.OnMelee += Melee;
+        inputReader.OnRanged += Ranged;
 
         input = Vector2.zero;
         inputReader.OnMove += OnMove;
@@ -281,6 +292,8 @@ public class Player : Humanoid
         inputReader.OnMoveStarted -= Moving;
         inputReader.OnMoveStopped -= StoppedMoving;
         inputReader.OnBlockRelease -= BlockRelease;
+        inputReader.OnMelee -= Melee;
+        inputReader.OnRanged -= Ranged;
 
         inputReader.OnMove -= OnMove;
         inputReader.OnJump -= Jump;
