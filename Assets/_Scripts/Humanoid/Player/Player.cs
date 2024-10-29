@@ -14,6 +14,7 @@ public class Player : Humanoid
     public InputReader inputReader;
     public CameraController cameraController;
     public TargetAssistance targetAssistance;
+    public Transform[] abilityTransforms;
 
     public Transform[] weaponPos;
     public PlayerState currentState { get; private set; }

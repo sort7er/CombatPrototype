@@ -5707,16 +5707,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5488350683097944370, guid: 7f5cfbe96748cd949a422c5258c65a37,
-        type: 3}
-      propertyPath: damage
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488350683097944370, guid: 7f5cfbe96748cd949a422c5258c65a37,
-        type: 3}
-      propertyPath: pushbackForce
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5702633665709738025, guid: 7f5cfbe96748cd949a422c5258c65a37,
         type: 3}
       propertyPath: m_Name
@@ -5775,6 +5765,11 @@ PrefabInstance:
       propertyPath: unique
       value: 
       objectReference: {fileID: 1803567372}
+    - target: {fileID: 884603581358853836, guid: d5508aed7e7d6d44eb9d602a6d217a03,
+        type: 3}
+      propertyPath: uniqueCoolDown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2305631498756797766, guid: d5508aed7e7d6d44eb9d602a6d217a03,
         type: 3}
       propertyPath: 'weapons.Array.data[0]'
@@ -5980,16 +5975,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 243690824}
     m_Modifications:
-    - target: {fileID: 1817065193163431976, guid: a96920a7ca4595e41b769bdd0433259d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5666398396389686449, guid: a96920a7ca4595e41b769bdd0433259d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8576997796159231745, guid: a96920a7ca4595e41b769bdd0433259d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6044,16 +6029,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Brawling
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219312111224446930, guid: a96920a7ca4595e41b769bdd0433259d,
-        type: 3}
-      propertyPath: damage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 9219312111224446930, guid: a96920a7ca4595e41b769bdd0433259d,
-        type: 3}
-      propertyPath: pushbackForce
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6201,16 +6176,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4159671876745688738, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
-        type: 3}
-      propertyPath: damage
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159671876745688738, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
-        type: 3}
-      propertyPath: pushbackForce
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4861395527885083912, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
       propertyPath: m_Name
@@ -6247,21 +6212,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 243690824}
     m_Modifications:
-    - target: {fileID: 3028265408452442662, guid: cc3e8d7332e11814f92f77cf51ea9a96,
-        type: 3}
-      propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028265408452442662, guid: cc3e8d7332e11814f92f77cf51ea9a96,
-        type: 3}
-      propertyPath: pushbackForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5584585408387378420, guid: cc3e8d7332e11814f92f77cf51ea9a96,
-        type: 3}
-      propertyPath: Separation
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 6558507996456503484, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6384,16 +6334,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7306791833661894271, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
-        type: 3}
-      propertyPath: damage
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7306791833661894271, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
-        type: 3}
-      propertyPath: pushbackForce
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

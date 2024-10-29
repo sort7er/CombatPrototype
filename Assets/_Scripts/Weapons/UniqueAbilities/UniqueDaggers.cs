@@ -4,7 +4,7 @@ using UnityEngine;
 using EnemyAI;
 using TMPro;
 
-public class UniqueDaggers : UniqueAbility
+public class UniqueDaggers : Ability
 {
 
     [Header("Rotation")]

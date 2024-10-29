@@ -22,7 +22,7 @@ public class TargetAssistance : MonoBehaviour
         hitColliders = new Collider[maxColliders];
     }
 
-    public List<Enemy> CheckForEnemies(UniqueAbility uniqueAbility)
+    public List<Enemy> CheckForEnemies(Ability uniqueAbility)
     {
         CleanUpPreviousData();
 

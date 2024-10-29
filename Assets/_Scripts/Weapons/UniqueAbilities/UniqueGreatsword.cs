@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyAI;
 
-public class UniqueGreatsword : UniqueAbility
+public class UniqueGreatsword : Ability
 {
     [Header("Rotation")]
     private float rotationDuration = 0.8f;

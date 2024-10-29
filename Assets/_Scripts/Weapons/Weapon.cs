@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     public AbilitySet abilitySet;
 
     [Header("Weapons")]
-    [SerializeField] private WeaponModel[] weaponModel;
+    public WeaponModel[] weaponModel;
     public Humanoid owner { get; private set; }
 
     public Vector3 weaponPos { get; private set; }
@@ -49,7 +49,23 @@ public class Weapon : MonoBehaviour
         {
             weaponModel[i].SetParent(modelParents[i]);
         }
+
+        SetParentForModels(modelParents);
     }
+
+    public Transform[] SetParentForModels(params Transform[] newParents)
+    {
+        Transform[] oldParents = new Transform[weaponModel.Length];
+
+        for (int i = 0; i < weaponModel.Length; i++)
+        {
+            oldParents[i] = weaponModel[i].transform.parent;
+            weaponModel[i].SetParent(newParents[i]);
+        }
+
+        return oldParents;
+    }
+
     //public void NoAttack()
     //{
     //    currentAttack = null;

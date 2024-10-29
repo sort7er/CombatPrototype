@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using EnemyAI;
-using TMPro;
 
-public abstract class UniqueAbility
+public abstract class Ability
 {
     public float range = 10f;
     public float idealDotProduct = 0.85f;

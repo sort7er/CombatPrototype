@@ -23,7 +23,7 @@ public class Archetype: ScriptableObject
     public ParticleSystem slashEffect;
 
     public Type archetype;
-    public UniqueAbility uniqueAbility;
+    public Ability uniqueAbility;
 
     [Header("Player")]
     [SerializeField] private AnimationInput idleInput;

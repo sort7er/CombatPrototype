@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using EnemyAI;
-public class UniqueSword : UniqueAbility
+public class UniqueSword : Ability
 {
 
     [Header("Rotation")]

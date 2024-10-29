@@ -17,6 +17,7 @@ MonoBehaviour:
   showEffect: 1
   effectSize: 4
   slashEffect: {fileID: 0}
+  archetype: 4
   idleInput:
     animationClip: {fileID: 9213043166173695205, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}

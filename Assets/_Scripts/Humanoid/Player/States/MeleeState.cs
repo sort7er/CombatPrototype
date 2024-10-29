@@ -12,7 +12,7 @@ namespace PlayerSM
             Debug.Log("Entered melee");
 
             Attack melee = weapon.abilitySet.melee;
-            Debug.Log(melee);
+            Debug.Log(melee.animationClip.name);
 
         }
 

@@ -18,6 +18,7 @@ MonoBehaviour:
   effectSize: 2
   slashEffect: {fileID: 3251017502524556899, guid: 25734d4e85c502b46917c9634752e22c,
     type: 3}
+  archetype: 3
   idleInput:
     animationClip: {fileID: 3403855293417621027, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}

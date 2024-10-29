@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using EnemyAI;
-public class UniqueSpear : UniqueAbility
+public class UniqueSpear : Ability
 {
     [Header("Rotation")]
     private float rotationDuration = 0.35f;
