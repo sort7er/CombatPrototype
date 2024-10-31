@@ -349,20 +349,21 @@ MonoBehaviour:
   health: {fileID: 4608506369025162612}
   hitBox: {fileID: 7278276694183487644}
   parryCheck: {fileID: 1328179942541524593}
+  weaponTransform:
+  - {fileID: 5386840715973219261}
+  - {fileID: 2525827288816242268}
   navMeshRefreshRate: 0.2
   waypointDistance: 0.3
   rotationSlerp: 15
   DistanceBeforeChase: 5
-  minPlayerDistance: 2
+  minTargetDistance: 2
   playerDistanceThreshold: 1
   runDistance: 8
+  target: {fileID: 0}
   attackCooldown: 0.5
   attackFOV: 160
   attackParryPeriod: 0.25
   parryFOV: 160
-  weaponPos:
-  - {fileID: 5386840715973219261}
-  - {fileID: 2525827288816242268}
   startWeapon: {fileID: 4573752892181745633, guid: a7fbf9fe8923747479728b128f6a5099,
     type: 3}
   enemyBehaviour: {fileID: 7250228212090035543}

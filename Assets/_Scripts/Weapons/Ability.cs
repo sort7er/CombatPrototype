@@ -14,11 +14,16 @@ public abstract class Ability
     protected Transform playerTrans;
     protected CameraController camController;
     protected List<Enemy> enemies;
+    protected Transform[] abilityTransforms;
 
     protected Transform enemyTrans;
     protected Vector3 targetPosition;
 
-    public virtual void SetParamaters()
+    public virtual void InitializeAbility()
+    {
+
+    }
+    public virtual void UpdateAbility()
     {
 
     }
@@ -41,6 +46,7 @@ public abstract class Ability
             playerTrans = player.transform;
             camController = player.cameraController;
             rb = player.rb;
+            abilityTransforms = player.abilityTransforms;
         }
     }
     private void SetEnemies(List<Enemy> enemies)
@@ -58,5 +64,27 @@ public abstract class Ability
     {
         Vector3 compensatedCamLookAt = new Vector3(targetPosition.x, targetPosition.y + 1.3f, targetPosition.z);
         camController.LookAt(compensatedCamLookAt, duration);
+    }
+    protected void ReleaseCurrentWeapon()
+    {
+        Weapon weapon = player.currentWeapon;
+
+        for (int i = 0; i < weapon.weaponModel.Length; i++)
+        {
+            abilityTransforms[i].position = weapon.weaponModel[i].Position();
+            abilityTransforms[i].rotation = weapon.weaponModel[i].Rotation();
+            abilityTransforms[i].parent = ParentManager.instance.abilities;
+        }
+        weapon.SetParentForModels(0, abilityTransforms);
+    }
+    protected void ReturnCurrentWeapon()
+    {
+        player.currentWeapon.SetParentForModels(player.currentWeapon.startLocalEulerY, player.weaponTransform);
+
+        for (int i = 0; i < abilityTransforms.Length; i++)
+        {
+            abilityTransforms[i].parent = player.transform;
+            abilityTransforms[i].localPosition = Vector3.zero;
+        }
     }
 }

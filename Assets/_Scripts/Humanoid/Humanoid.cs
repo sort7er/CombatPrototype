@@ -31,6 +31,7 @@ public class Humanoid : MonoBehaviour
     public Health health;
     public HitBox hitBox;
     public ParryCheck parryCheck;
+    public Transform[] weaponTransform;
 
     //This is when the owner is parrying
     private bool startParryTimer;
@@ -267,6 +268,10 @@ public class Humanoid : MonoBehaviour
     public Vector3 Position()
     {
         return transform.position;
+    }
+    public Vector3 Up()
+    {
+        return transform.up;
     }
     public Vector3 Forward()
     {

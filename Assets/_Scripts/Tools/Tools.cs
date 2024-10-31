@@ -1,5 +1,6 @@
 using Attacks;
 using EnemyAI;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -139,7 +140,7 @@ public static class Tools
             input.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
         }
 
-        return new Attack(input.animationClip, input.damage, input.postureDamage, input.activeWield, input.hitType, input.attackCoordsMain, input.attackCoordsSecondary);
+        return new Attack(input.animationClip, input.damage, input.postureDamage, input.activeWield, input.hitType, input.animationCurve, input.attackCoordsMain, input.attackCoordsSecondary);
     }
     public static AttackEnemy SetUpEnemyAttack(AttackEnemyInput input)
     {
@@ -159,7 +160,7 @@ public static class Tools
             input.attackCoordsSecondary[0] = new AttackCoord(Vector3.zero, Vector3.zero);
         }
 
-        return new AttackEnemy(input.animationClip, input.damage, input.postureDamage, input.activeWield, input.hitType, input.attackCoordsMain, input.attackCoordsSecondary, input.exitTime, input.transitionDuration);
+        return new AttackEnemy(input.animationClip, input.damage, input.postureDamage, input.activeWield, input.hitType, input.animationCurve, input.attackCoordsMain, input.attackCoordsSecondary, input.exitTime, input.transitionDuration);
     }
     #endregion
 

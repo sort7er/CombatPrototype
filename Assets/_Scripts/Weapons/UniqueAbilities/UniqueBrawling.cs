@@ -12,7 +12,7 @@ public class UniqueBrawling : Ability
     private float jumpPower = 1;
 
     private Vector3 target;
-    public override void SetParamaters()
+    public override void InitializeAbility()
     {
         range = 2;
     }

@@ -161,6 +161,6 @@ public class Archetype: ScriptableObject
         {
             uniqueAbility = new UniqueSword();
         }
-        uniqueAbility.SetParamaters();
+        uniqueAbility.InitializeAbility();
     }
 }

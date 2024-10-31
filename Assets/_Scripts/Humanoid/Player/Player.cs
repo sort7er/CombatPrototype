@@ -15,8 +15,6 @@ public class Player : Humanoid
     public CameraController cameraController;
     public TargetAssistance targetAssistance;
     public Transform[] abilityTransforms;
-
-    public Transform[] weaponPos;
     public PlayerState currentState { get; private set; }
     public bool isMoving { get; private set; }
     public bool isFalling { get; private set; }
@@ -227,7 +225,7 @@ public class Player : Humanoid
     {
         base.SetNewWeapon(weapon);
 
-        currentWeapon.SetOwner(this, cameraController.camTrans, weaponPos);
+        currentWeapon.SetOwner(this, cameraController.camTrans, weaponTransform);
 
         if (currentState != null)
         {

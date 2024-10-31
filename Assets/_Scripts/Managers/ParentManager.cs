@@ -6,6 +6,7 @@ public class ParentManager : MonoBehaviour
 
     public Transform effects;
     public Transform meshes;
+    public Transform abilities;
 
 
 

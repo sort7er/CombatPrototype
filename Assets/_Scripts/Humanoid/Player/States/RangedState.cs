@@ -11,7 +11,6 @@ namespace PlayerSM
         public override void Enter(Player player)
         {
             base.Enter(player);
-
             Attack ranged = weapon.abilitySet.ranged;
             player.SetAttack(ranged);
 
@@ -33,6 +32,7 @@ namespace PlayerSM
                 weapon.abilitySet.rangedAbilty.ExecuteAbilityNoTarget(player);
             }
         }
+
         private void ClearList()
         {
             if (enemyList == null)
@@ -41,6 +41,13 @@ namespace PlayerSM
             }
             enemyList.Clear();
         }
+
+        public override void Update()
+        {
+            base.Update();
+            weapon.abilitySet.rangedAbilty.UpdateAbility();
+        }
+
         private void EndRanged()
         {
             Debug.Log("Ranged left");

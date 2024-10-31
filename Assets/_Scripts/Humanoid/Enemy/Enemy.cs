@@ -27,7 +27,6 @@ namespace EnemyAI
         [SerializeField] private float parryFOV = 160;
 
         [Header("Weapons")]
-        [SerializeField] private Transform[] weaponPos;
         [SerializeField] private Weapon startWeapon;
 
         [Header("References")]
@@ -84,7 +83,7 @@ namespace EnemyAI
 
             if (CheckForWeapon())
             {
-                currentWeapon.SetOwner(this, transform, weaponPos);
+                currentWeapon.SetOwner(this, transform, weaponTransform);
             }
         }
         private void FindReferences()

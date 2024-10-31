@@ -15,6 +15,11 @@ public class WeaponModel : MonoBehaviour
     {
         return transform.position;
     }
+    public Quaternion Rotation()
+    {
+        return transform.rotation;
+    }
+
 
     public Vector3 UpDir()
     {
@@ -67,11 +72,11 @@ public class WeaponModel : MonoBehaviour
             DisplayAttackCoords("End");
         }
     }
-    public void SetParent(Transform parent)
+    public void SetParent(Transform parent, float y)
     {
         transform.parent = parent;
         transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
+        transform.localRotation = Quaternion.Euler(Vector3.up * y);
     }
     public void Hit(Vector3 hitPoint)
     {

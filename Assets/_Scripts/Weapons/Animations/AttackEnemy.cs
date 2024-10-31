@@ -7,12 +7,13 @@ public class AttackEnemy : Attack
     public float exitTimeSeconds { get; private set; }
     public float transitionDuration { get; private set; }
 
-    public AttackEnemy(AnimationClip clip, int damage, int postureDamage, Wield wield, HitType hitType, AttackCoord[] attackCoordsMain, AttackCoord[] attackCoordsSecondary, float exitTime, float transitionDuration) : base(clip, damage, postureDamage, wield, hitType, attackCoordsMain, attackCoordsSecondary)
+    public AttackEnemy(AnimationClip clip, int damage, int postureDamage, Wield wield, HitType hitType, AnimationCurve animationCurve, AttackCoord[] attackCoordsMain, AttackCoord[] attackCoordsSecondary, float exitTime, float transitionDuration) : base(clip, damage, postureDamage, wield, hitType, animationCurve, attackCoordsMain, attackCoordsSecondary)
     {
         this.damage = damage;
         this.postureDamage = postureDamage;
         currentWield = wield;
         this.hitType = hitType;
+        this.animationCurve = animationCurve;
 
         this.exitTime = exitTime;
         this.transitionDuration = transitionDuration;

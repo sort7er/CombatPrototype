@@ -42,7 +42,7 @@ public class AbilitySet : ScriptableObject
             rangedAbilty = new Maestro();
         }
 
-        rangedAbilty.SetParamaters();
+        rangedAbilty.InitializeAbility();
     }
     //private void SetMelee()
     //{
