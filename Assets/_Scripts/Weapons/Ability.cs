@@ -27,6 +27,10 @@ public abstract class Ability
     {
 
     }
+    public virtual void LateUpdateAbility()
+    {
+
+    }
 
     public virtual void ExecuteAbility(Player player, List<Enemy> enemies)
     {

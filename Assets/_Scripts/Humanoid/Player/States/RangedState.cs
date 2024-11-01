@@ -42,10 +42,9 @@ namespace PlayerSM
             enemyList.Clear();
         }
 
-        public override void Update()
+        public override void LateUpdate()
         {
-            base.Update();
-            weapon.abilitySet.rangedAbilty.UpdateAbility();
+            weapon.abilitySet.rangedAbilty.LateUpdateAbility();
         }
 
         private void EndRanged()

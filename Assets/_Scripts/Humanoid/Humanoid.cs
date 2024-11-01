@@ -111,6 +111,10 @@ public class Humanoid : MonoBehaviour
 
 
     }
+    protected virtual void LateUpdate()
+    {
+
+    }
     protected virtual void FixedUpdate()
     {
         if (!GroundCheck())
