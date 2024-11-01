@@ -1,6 +1,4 @@
-using DG.Tweening;
 using EnemyAI;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -122,26 +120,6 @@ public class Maestro : Ability
     }
     private void MoveAbilityTransform(Transform abilityTrans, Vector3 targetPos, Quaternion targetRot)
     {
-        //abilityTrans.rotation = Quaternion.Slerp(abilityTrans.rotation, targetRot, interpolation * Time.deltaTime);
-
-        //if (timeElapsed < flyingInterval)
-        //{
-        //    timeElapsed += Time.deltaTime;
-        //    Vector3 currentPos = Vector3.Lerp(abilityTrans.position, targetPos, interpolation * Time.deltaTime);
-
-        //    float remapedTime = Tools.Remap(timeElapsed, 0, flyingInterval, 0, 1);
-
-        //    float y = currentPos.y - animationCurve.Evaluate(remapedTime);
-
-        //    Debug.Log(animationCurve.Evaluate(remapedTime));
-        //    Vector3 pos = new Vector3(currentPos.x, y, currentPos.z);
-
-        //    abilityTrans.position = pos;
-        //}
-        //else
-        //{
-        //    abilityTrans.position = Vector3.Lerp(abilityTrans.position, targetPos, interpolation * Time.deltaTime);
-        //}
         if(timeElapsed < duration)
         {
             float t = timeElapsed / duration;
