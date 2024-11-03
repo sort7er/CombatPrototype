@@ -79,11 +79,11 @@ public abstract class Ability
             abilityTransforms[i].rotation = weapon.weaponModel[i].Rotation();
             abilityTransforms[i].parent = ParentManager.instance.abilities;
         }
-        weapon.SetParentForModels(0, abilityTransforms);
+        weapon.SetParentForModels(abilityTransforms);
     }
     protected void ReturnCurrentWeapon()
     {
-        player.currentWeapon.SetParentForModels(player.currentWeapon.startLocalEulerY, player.weaponTransform);
+        player.currentWeapon.SetParentForModels(player.weaponTransform);
 
         for (int i = 0; i < abilityTransforms.Length; i++)
         {

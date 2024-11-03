@@ -15,7 +15,6 @@ public class Weapon : MonoBehaviour
 
     [Header("Weapons")]
     public WeaponModel[] weaponModel;
-    public float startLocalEulerY;
     public Humanoid owner { get; private set; }
 
     public Vector3 weaponPos { get; private set; }
@@ -46,15 +45,15 @@ public class Weapon : MonoBehaviour
         transform.localRotation= Quaternion.identity;
         transform.localPosition= Vector3.zero;
 
-        SetParentForModels(startLocalEulerY, modelParents);
+        SetParentForModels(modelParents);
     }
 
-    public void SetParentForModels(float startLocalEulerY, params Transform[] newParents)
+    public void SetParentForModels(params Transform[] newParents)
     {
 
         for (int i = 0; i < weaponModel.Length; i++)
         {
-            weaponModel[i].SetParent(newParents[i], startLocalEulerY);
+            weaponModel[i].SetParent(newParents[i]);
         }
     }
 

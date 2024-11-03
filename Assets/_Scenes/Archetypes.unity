@@ -6370,7 +6370,7 @@ PrefabInstance:
     - target: {fileID: 4159671876745688738, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
       propertyPath: startLocalEulerY
-      value: 35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4159671876745688738, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
@@ -6456,7 +6456,7 @@ PrefabInstance:
     - target: {fileID: 3028265408452442662, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
       propertyPath: startLocalEulerY
-      value: -60
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3028265408452442662, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}

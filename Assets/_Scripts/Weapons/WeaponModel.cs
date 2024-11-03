@@ -72,11 +72,11 @@ public class WeaponModel : MonoBehaviour
             DisplayAttackCoords("End");
         }
     }
-    public void SetParent(Transform parent, float y)
+    public void SetParent(Transform parent)
     {
         transform.parent = parent;
         transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(Vector3.up * y);
+        transform.localRotation = Quaternion.identity;
     }
     public void Hit(Vector3 hitPoint)
     {
