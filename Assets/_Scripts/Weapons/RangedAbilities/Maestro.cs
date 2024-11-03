@@ -1,23 +1,33 @@
-using DG.Tweening;
 using EnemyAI;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Maestro : Ability
 {
-
+    //References
     private AnimationCurve animationCurve;
+
+    //Targets
     private Vector3[] targetPos;
     private Quaternion[] targetRotation;
+
+
+    //Constant positions
     private Vector3 centerPos;
     private Vector3 leftCorner;
     private Vector3 rightCorner;
     private float distanceFromTarget = 8;
-    private float interpolation = 8;
+
+    //Sequence
+    private float timeInHand = 0.5f;
     private float timeToFlyBack = 0.5f;
     private float timeFlying;
+    private float flyingInterval;
+    private float timeElapsed;
+    private float duration;
 
+    // Values
+    private float interpolation = 8;
     private bool backToHands;
     private bool left;
 
@@ -46,38 +56,37 @@ public class Maestro : Ability
     private void Common()
     {
         ReleaseCurrentWeapon();
+        SetValues();
+        OneLeft();
+    }
+    private void SetValues()
+    {
         animationCurve = player.currentWeapon.currentAttack.animationCurve;
         backToHands = false;
-        timeFlying = player.currentWeapon.abilitySet.ranged.duration - timeToFlyBack;
-
-        player.InvokeMethod(FlyBack, timeFlying);
-        player.InvokeMethod(MaestroDone, player.currentWeapon.abilitySet.ranged.duration);
-        OneLeft();
-
+        timeFlying = player.currentWeapon.abilitySet.ranged.duration - timeToFlyBack - timeInHand;
+        flyingInterval = timeFlying / 3;
+        timeElapsed = 1;
     }
-
-    public override void UpdateAbility()
+    public override void LateUpdateAbility()
     {
-        if(!backToHands)
+        SettingTargetTransforms();
+        MovingAbilityTransforms();
+    }
+    #region UpdateMethods
+    private void SettingTargetTransforms()
+    {
+        if (!backToHands)
         {
+            Quaternion baseRotation = Quaternion.LookRotation(-player.Up());
+            targetRotation[0] = targetRotation[1] = Quaternion.Euler(baseRotation.eulerAngles.x, player.Rotation().eulerAngles.y, baseRotation.eulerAngles.z);
+
+
             centerPos = player.Position() + player.Forward() * distanceFromTarget;
             centerPos.y = player.cameraController.CameraPosition().y;
             leftCorner = centerPos - player.Right() * 5 + player.Up();
             rightCorner = centerPos + player.Right() * 5 + player.Up();
-            
-            if(left)
-            {
-                targetPos[0] = leftCorner;
-                targetPos[1] = leftCorner;
-            }
-            else
-            {
-                targetPos[0] = rightCorner;
-                targetPos[1] = rightCorner;
-            }
 
-            Quaternion baseRotation = Quaternion.LookRotation(-player.Up());
-            targetRotation[0] = targetRotation[1] = Quaternion.Euler(baseRotation.eulerAngles.x, player.Rotation().eulerAngles.y, baseRotation.eulerAngles.z);
+            DeterimeTarget();
         }
         else
         {
@@ -85,43 +94,99 @@ public class Maestro : Ability
             {
                 targetPos[i] = player.weaponTransform[i].position;
                 targetRotation[i] = player.weaponTransform[i].rotation;
+                
             }
         }
+    }
 
+    private void DeterimeTarget()
+    {
+        if (left)
+        {
+            targetPos[0] = targetPos[1] = leftCorner;
+        }
+        else
+        {
+            targetPos[0] = targetPos[1] = rightCorner;
+        }
+    }
+
+    private void MovingAbilityTransforms()
+    {
         for (int i = 0; i < abilityTransforms.Length; i++)
         {
-            abilityTransforms[i].position = Vector3.Lerp(abilityTransforms[i].position, targetPos[i], interpolation * Time.deltaTime);
-            abilityTransforms[i].rotation = Quaternion.Slerp(abilityTransforms[i].rotation, targetRotation[i], interpolation * Time.deltaTime);
+            MoveAbilityTransform(abilityTransforms[i], targetPos[i], targetRotation[i]);
+        }
+    }
+    private void MoveAbilityTransform(Transform abilityTrans, Vector3 targetPos, Quaternion targetRot)
+    {
+        if(timeElapsed < duration)
+        {
+            float t = timeElapsed / duration;
+
+            Vector3 currentPos = Vector3.Lerp(abilityTrans.position, targetPos,t);
+
+            float remapedTime = Tools.Remap(timeElapsed, 0, duration, 0, 1);
+            float y = currentPos.y - animationCurve.Evaluate(remapedTime);
+            Vector3 pos = new Vector3(currentPos.x, y, currentPos.z);
+            abilityTrans.position = pos;
+
+            abilityTrans.rotation = Quaternion.Slerp(abilityTrans.rotation, targetRot, t);
+            timeElapsed += Time.deltaTime;
+
+
+        }
+        else
+        {
+            abilityTrans.position = targetPos;
+            abilityTrans.rotation = targetRot;
         }
 
     }
+
+    #endregion
+
 
     private void OneLeft()
     {
         left = true;
-        player.InvokeMethod(TwoRight, timeFlying * 0.333f);
+        timeElapsed = 0;
+        duration = flyingInterval;
+        player.InvokeMethod(TwoRight, flyingInterval);
     }
     private void TwoRight()
     {
         left = false;
-        player.InvokeMethod(ThreeLeft, timeFlying * 0.333f);
+        timeElapsed = 0;
+        duration = flyingInterval;
+        player.InvokeMethod(ThreeLeft, flyingInterval);
     }
     private void ThreeLeft()
     {
+        timeElapsed = 0;
+        duration = flyingInterval;
         left = true;
+        player.InvokeMethod(FlyBack, flyingInterval);
     }
-    private void CastBox()
-    {
-        Collider[] hits;
-        hits = Physics.OverlapBox(centerPos, new Vector3(3, 2, distanceFromTarget), player.Rotation(), 6);
-    }
+
 
     private void FlyBack()
     {
         backToHands = true;
+        timeElapsed = 0;
+        duration = timeToFlyBack;
+        player.InvokeMethod(Return, timeToFlyBack);
     }
-    private void MaestroDone()
+    private void Return()
     {
         ReturnCurrentWeapon();
+    }
+
+
+
+    private void CastBox()
+    {
+        Collider[] hits;
+        hits = Physics.OverlapBox(centerPos, new Vector3(3, 2, distanceFromTarget), player.Rotation(), 6);
     }
 }

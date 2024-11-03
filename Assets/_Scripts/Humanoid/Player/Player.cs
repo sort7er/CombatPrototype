@@ -1,6 +1,7 @@
 using UnityEngine;
 using PlayerSM;
 using Stats;
+using System;
 
 public class Player : Humanoid
 {
@@ -68,6 +69,10 @@ public class Player : Humanoid
 
         movement = Vector2.Lerp(movement, input, Time.deltaTime * 5);
         SetMovement(movement);
+    }
+    protected override void LateUpdate()
+    {
+        currentState.LateUpdate();
     }
     #endregion
 

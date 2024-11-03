@@ -37,6 +37,10 @@ namespace PlayerSM
         {
 
         }
+        public virtual void LateUpdate()
+        {
+
+        }
         public virtual void Moving()
         {
 
