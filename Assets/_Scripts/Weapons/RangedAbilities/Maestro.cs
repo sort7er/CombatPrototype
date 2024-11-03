@@ -17,17 +17,18 @@ public class Maestro : Ability
     private Vector3 leftCorner;
     private Vector3 rightCorner;
     private float distanceFromTarget = 8;
+    private float interpolation = 10;
 
     //Sequence
-    private float timeInHand = 0.5f;
-    private float timeToFlyBack = 0.5f;
-    private float timeFlying;
+    private float timeInHandStart = 0.5f;
     private float flyingInterval;
+    private float timeToFlyBack = 0.5f;
+    private float timeInHandEnd = 0.5f;
+    private float timeFlying;
     private float timeElapsed;
     private float duration;
 
     // Values
-    private float interpolation = 8;
     private bool backToHands;
     private bool left;
 
@@ -55,15 +56,14 @@ public class Maestro : Ability
 
     private void Common()
     {
-        ReleaseCurrentWeapon();
         SetValues();
-        OneLeft();
+        player.InvokeMethod(OneLeft, timeInHandStart);
     }
     private void SetValues()
     {
         animationCurve = player.currentWeapon.currentAttack.animationCurve;
         backToHands = false;
-        timeFlying = player.currentWeapon.abilitySet.ranged.duration - timeToFlyBack - timeInHand;
+        timeFlying = player.currentWeapon.abilitySet.ranged.duration - timeToFlyBack - timeInHandEnd - timeInHandStart;
         flyingInterval = timeFlying / 3;
         timeElapsed = 1;
     }
@@ -80,9 +80,10 @@ public class Maestro : Ability
             Quaternion baseRotation = Quaternion.LookRotation(-player.Up());
             targetRotation[0] = targetRotation[1] = Quaternion.Euler(baseRotation.eulerAngles.x, player.Rotation().eulerAngles.y, baseRotation.eulerAngles.z);
 
+            Vector3 targetPos = player.Position() + player.Forward() * distanceFromTarget;
+            targetPos.y = player.cameraController.CameraPosition().y;
 
-            centerPos = player.Position() + player.Forward() * distanceFromTarget;
-            centerPos.y = player.cameraController.CameraPosition().y;
+            centerPos = Vector3.Lerp(centerPos, targetPos, Time.deltaTime * interpolation);
             leftCorner = centerPos - player.Right() * 5 + player.Up();
             rightCorner = centerPos + player.Right() * 5 + player.Up();
 
@@ -94,7 +95,6 @@ public class Maestro : Ability
             {
                 targetPos[i] = player.weaponTransform[i].position;
                 targetRotation[i] = player.weaponTransform[i].rotation;
-                
             }
         }
     }
@@ -122,6 +122,7 @@ public class Maestro : Ability
     {
         if(timeElapsed < duration)
         {
+
             float t = timeElapsed / duration;
 
             Vector3 currentPos = Vector3.Lerp(abilityTrans.position, targetPos,t);
@@ -149,6 +150,7 @@ public class Maestro : Ability
 
     private void OneLeft()
     {
+        ReleaseCurrentWeapon();
         left = true;
         timeElapsed = 0;
         duration = flyingInterval;
