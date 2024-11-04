@@ -73,6 +73,10 @@ namespace PlayerSM
         {
             CheckQueueOrActionDone();
         }
+        public virtual void AbilityPing()
+        {
+
+        }
         public virtual void Unique()
         {
 

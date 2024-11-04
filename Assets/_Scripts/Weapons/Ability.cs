@@ -31,6 +31,10 @@ public abstract class Ability
     {
 
     }
+    public virtual void AbilityPing()
+    {
+
+    }
 
     public virtual void ExecuteAbility(Player player, List<Enemy> enemies)
     {

@@ -41,7 +41,10 @@ namespace PlayerSM
             }
             enemyList.Clear();
         }
-
+        public override void AbilityPing()
+        {
+            weapon.abilitySet.rangedAbilty.AbilityPing();
+        }
         public override void LateUpdate()
         {
             weapon.abilitySet.rangedAbilty.LateUpdateAbility();

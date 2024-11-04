@@ -134,6 +134,10 @@ public class Player : Humanoid
         currentState.ActionDone();
         currentWeapon.AttackDone();
     }
+    public void AbilityPing()
+    {
+        currentState.AbilityPing();
+    }
 
     //From humanoid
     public override void OverlapCollider()

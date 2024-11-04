@@ -18,4 +18,8 @@ public class ArmRedirect : MonoBehaviour
     {
         player.ActionDone();
     }
+    public void AbilityPing()
+    {
+        player.AbilityPing();
+    }
 }
