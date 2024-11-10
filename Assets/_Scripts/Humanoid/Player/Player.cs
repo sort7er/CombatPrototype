@@ -10,6 +10,10 @@ public class Player : Humanoid
     public float uniqueCoolDown = 8f;
 
     [Header("References")]
+    public Transform debugCube;
+    public Transform debugArrow;
+    public Transform debugArrow2;
+
     public Unique unique;
     public WeaponSwitcher weaponSwitcher;
     public InputReader inputReader;

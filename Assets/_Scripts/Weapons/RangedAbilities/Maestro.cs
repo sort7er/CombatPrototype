@@ -1,7 +1,5 @@
 using EnemyAI;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using UnityEditor;
 using UnityEngine;
 
 public class Maestro : Ability
@@ -22,6 +20,7 @@ public class Maestro : Ability
     private Vector3 rightCorner;
     private float distanceFromTarget = 8;
     private float interpolation = 10;
+    private float offsets = 5;
 
     //Sequence
     private float timeToFlyBack = 0.5f;
@@ -34,9 +33,12 @@ public class Maestro : Ability
     private float floatAmount = 0.05f;
     private bool backToHands;
     private bool left;
+    private bool first;
     private bool curve;
 
     private Vector3 enemyPos;
+    private Vector3 enemyDirection;
+    private float enemyAngle;
 
 
     public override void InitializeAbility()
@@ -73,7 +75,6 @@ public class Maestro : Ability
 
     public override void AbilityPing()
     {
-        CastBox();
         if (numberOfSwings == 0)
         {
             OneLeft();
@@ -90,6 +91,9 @@ public class Maestro : Ability
         {
             FlyBack();
         }
+
+        //Cast box after methods to have startpositions updated
+        CastBox();
         numberOfSwings++;
     }
     #region Sequence
@@ -99,6 +103,7 @@ public class Maestro : Ability
     {
         ReleaseCurrentWeapon();
         SetStartTransforms();
+        first = true;
         left = true;
         timeElapsed = 0;
     }
@@ -162,14 +167,14 @@ public class Maestro : Ability
 
 
             Quaternion baseRotation = Quaternion.LookRotation(directionToWeapon);
-            targetRotation[0] = targetRotation[1] = baseRotation /* Quaternion.Euler(baseRotation.eulerAngles.x, player.Rotation().eulerAngles.y, baseRotation.eulerAngles.z);*/;
+            targetRotation[0] = targetRotation[1] = baseRotation;
 
             Vector3 targetPos = player.Position() + player.Forward() * distanceFromTarget;
             targetPos.y = player.cameraController.CameraPosition().y;
 
             centerPos = Vector3.Lerp(centerPos, targetPos, Time.deltaTime * interpolation);
-            leftCorner = centerPos - player.Right() * 5 + player.Up();
-            rightCorner = centerPos + player.Right() * 5 + player.Up();
+            leftCorner = centerPos - player.Right() * offsets + player.Up();
+            rightCorner = centerPos + player.Right() * offsets + player.Up();
 
             DeterimeTarget();
         }
@@ -187,11 +192,17 @@ public class Maestro : Ability
     {
         if (left)
         {
+
             targetPos[0] = targetPos[1] = leftCorner;
         }
         else
         {
-            targetPos[0] = targetPos[1] = rightCorner;
+
+            float hyp = (offsets * 2) / Mathf.Cos(enemyAngle);
+
+            Debug.Log(hyp);
+
+            targetPos[0] = targetPos[1] = startPositions[0] + enemyDirection * Mathf.Abs(hyp); /*rightCorner;*/
         }
     }
 
@@ -243,7 +254,29 @@ public class Maestro : Ability
 
         if(groups.Count > 0 )
         {
+            float dir = 1;
+            if (left)
+            {
+                dir = -1;
+            }
+
+            Vector3 perpendicularDirection = player.Right() * dir;
+            
             enemyPos = GroupToTarget(groups[0]);
+            enemyDirection = (enemyPos - startPositions[0]).normalized;
+            enemyDirection.y = 0;
+
+
+
+            enemyAngle = Mathf.Abs(Vector3.Angle(perpendicularDirection, enemyDirection));
+            Debug.Log(enemyAngle);
+
+            player.debugArrow.position = startPositions[0];
+            player.debugArrow2.position = startPositions[0];
+            player.debugArrow.rotation = Quaternion.LookRotation(enemyDirection);
+            player.debugArrow2.rotation = Quaternion.LookRotation(perpendicularDirection);
+
+            player.debugCube.position = enemyPos + Vector3.up * 0.5f;
         }
     }
 
