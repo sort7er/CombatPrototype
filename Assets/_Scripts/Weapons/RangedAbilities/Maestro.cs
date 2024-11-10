@@ -1,5 +1,7 @@
 using EnemyAI;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using UnityEditor;
 using UnityEngine;
 
 public class Maestro : Ability
@@ -33,6 +35,8 @@ public class Maestro : Ability
     private bool backToHands;
     private bool left;
     private bool curve;
+
+    private Vector3 enemyPos;
 
 
     public override void InitializeAbility()
@@ -237,12 +241,21 @@ public class Maestro : Ability
     {
         List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(4, 2, distanceFromTarget), player.Rotation(), new Vector3Int(3,1,3));
 
-        for(int i = 0; i < groups.Count; i++)
+        if(groups.Count > 0 )
         {
-            for(int j = 0; j < groups[i].Count; j++)
-            {
-                Debug.Log("Group: " + i + " and enemy " + groups[i][j].name);
-            }
+            enemyPos = GroupToTarget(groups[0]);
         }
     }
+
+    private Vector3 GroupToTarget(List<Enemy> enemies)
+    {
+
+        Vector3 targetPos = Vector3.zero;
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            targetPos += enemies[i].Position();
+        }
+
+        return targetPos / enemies.Count;
+    } 
 }
