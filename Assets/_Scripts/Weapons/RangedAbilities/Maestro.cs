@@ -69,6 +69,7 @@ public class Maestro : Ability
 
     public override void AbilityPing()
     {
+        CastBox();
         if (numberOfSwings == 0)
         {
             OneLeft();
@@ -234,7 +235,14 @@ public class Maestro : Ability
 
     private void CastBox()
     {
-        Collider[] hits;
-        hits = Physics.OverlapBox(centerPos, new Vector3(3, 2, distanceFromTarget), player.Rotation(), 6);
+        List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(4, 2, distanceFromTarget), player.Rotation(), new Vector3Int(3,1,3));
+
+        for(int i = 0; i < groups.Count; i++)
+        {
+            for(int j = 0; j < groups[i].Count; j++)
+            {
+                Debug.Log("Group: " + i + " and enemy " + groups[i][j].name);
+            }
+        }
     }
 }
