@@ -112,8 +112,8 @@ public class Maestro : Ability
     private void TwoRight()
     {
         SetStartTransforms();
-        duration = 0.7f;
         isCurving = true;
+        duration = 0.7f;
         left = false;
         timeElapsed = 0;
     }
@@ -258,7 +258,7 @@ public class Maestro : Ability
 
     private void CastBox()
     {
-        List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(4, 4, distanceFromTarget), player.Rotation(), new Vector3Int(3,2,3));
+        List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(5, 5, distanceFromTarget), player.Rotation(), new Vector3Int(3,2,3));
 
         if(groups.Count > 0 )
         {
