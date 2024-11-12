@@ -275,7 +275,6 @@ public class Maestro : Ability
             float xDifference = Mathf.Abs(localLeftCorner.x - localEnemyPos.x);
 
             float normalizedX = Tools.Remap(xDifference, 0, offsets * 2, 0, 1);
-            Debug.Log(normalizedX);
 
             Keyframe[] modifiedKeys = new Keyframe[baseCurve.length];
 

@@ -22,8 +22,6 @@ public class TargetAssistance : MonoBehaviour
     private List<Vector3> keys = new();
     private Dictionary <Vector3, List<Enemy>> enemyGroups = new();
 
-    public Transform dummyCube;
-
     private void Awake()
     {
         hitColliders = new Collider[maxColliders];
@@ -210,10 +208,6 @@ public class TargetAssistance : MonoBehaviour
 
     private List<Enemy> CastBox(Vector3 centerPos, Vector3 halfExtends, Quaternion rotation)
     {
-
-        dummyCube.position = centerPos;
-        dummyCube.rotation = rotation;
-        dummyCube.localScale = halfExtends * 2;
 
         Collider[] hits;
         hits = Physics.OverlapBox(centerPos, halfExtends, rotation, enemyLayer);
