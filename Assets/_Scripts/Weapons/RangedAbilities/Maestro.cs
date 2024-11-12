@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Maestro : Ability
 {
-    //References
-    private AnimationCurve animationCurve;
-
     //Beginnings and Targets
     private Vector3[] startPositions;
     private Vector3[] targetPos;
@@ -33,12 +30,17 @@ public class Maestro : Ability
     private float floatAmount = 0.05f;
     private bool backToHands;
     private bool left;
-    private bool first;
-    private bool curve;
 
+
+    //Curving
+    private AnimationCurve baseCurve;
+    private AnimationCurve modifiedCurve;
     private Vector3 enemyPos;
-    private Vector3 enemyDirection;
-    private float enemyAngle;
+    private bool isCurving;
+    private float enemyGroundOffset = 1.5f;
+    private float weaponBackOffset = 1f;
+    private float downwardsAmount;
+    private float backwardsAmount;
 
 
     public override void InitializeAbility()
@@ -64,9 +66,10 @@ public class Maestro : Ability
     }
     private void SetValues()
     {
-        animationCurve = player.currentWeapon.currentAttack.animationCurve;
+        baseCurve = player.currentWeapon.currentAttack.animationCurve;
+        modifiedCurve = new AnimationCurve();
         backToHands = false;
-        curve = false;
+        isCurving = false;
         numberOfSwings = 0;
         timeElapsed = 1;
         duration = 0.4f;
@@ -103,7 +106,6 @@ public class Maestro : Ability
     {
         ReleaseCurrentWeapon();
         SetStartTransforms();
-        first = true;
         left = true;
         timeElapsed = 0;
     }
@@ -111,7 +113,7 @@ public class Maestro : Ability
     {
         SetStartTransforms();
         duration = 0.7f;
-        curve = true;
+        isCurving = true;
         left = false;
         timeElapsed = 0;
     }
@@ -126,7 +128,7 @@ public class Maestro : Ability
     {
         SetStartTransforms();
         backToHands = true;
-        curve = false;
+        isCurving = false;
         timeElapsed = 0;
         duration = timeToFlyBack;
         player.InvokeMethod(Return, timeToFlyBack);
@@ -197,12 +199,7 @@ public class Maestro : Ability
         }
         else
         {
-
-            float hyp = (offsets * 2) / Mathf.Cos(enemyAngle);
-
-            Debug.Log(hyp);
-
-            targetPos[0] = targetPos[1] = startPositions[0] + enemyDirection * Mathf.Abs(hyp); /*rightCorner;*/
+            targetPos[0] = targetPos[1] = rightCorner;
         }
     }
 
@@ -220,20 +217,31 @@ public class Maestro : Ability
 
             float t = timeElapsed / duration;
 
-            Vector3 currentPos = Vector3.Lerp(startPos, targetPos, t);
-            float y;
+            Vector3 localStartPos = playerTrans.InverseTransformPoint(startPos);
+            Vector3 localTargetPos = playerTrans.InverseTransformPoint(targetPos);
 
-            if (!curve)
+            Vector3 localCurrentPos = Vector3.Lerp(localStartPos, localTargetPos, t);
+            float x;
+            float y;
+            float z;
+
+            if (!isCurving)
             {
-                y = currentPos.y;
+                x = localCurrentPos.x; 
+                y = localCurrentPos.y;
+                z = localCurrentPos.z;
+
             }
             else
             {
                 float remapedTime = Tools.Remap(timeElapsed, 0, duration, 0, 1);
-                y = currentPos.y - animationCurve.Evaluate(remapedTime) * 1.5f;
+
+                x = localCurrentPos.x;
+                y = localCurrentPos.y - modifiedCurve.Evaluate(remapedTime) * downwardsAmount;
+                z = localCurrentPos.z - modifiedCurve.Evaluate(remapedTime) * backwardsAmount;
             }
 
-            Vector3 pos = new Vector3(currentPos.x, y, currentPos.z);
+            Vector3 pos = playerTrans.TransformPoint(new Vector3(x, y, z));
 
             abilityTrans.position = pos;
             abilityTrans.rotation = Quaternion.Slerp(startRot, targetRot, t);
@@ -250,33 +258,39 @@ public class Maestro : Ability
 
     private void CastBox()
     {
-        List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(4, 2, distanceFromTarget), player.Rotation(), new Vector3Int(3,1,3));
+        List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(4, 4, distanceFromTarget), player.Rotation(), new Vector3Int(3,2,3));
 
         if(groups.Count > 0 )
         {
-            float dir = 1;
-            if (left)
-            {
-                dir = -1;
-            }
-
-            Vector3 perpendicularDirection = player.Right() * dir;
-            
             enemyPos = GroupToTarget(groups[0]);
-            enemyDirection = (enemyPos - startPositions[0]).normalized;
-            enemyDirection.y = 0;
+            enemyPos.y += enemyGroundOffset;
 
+            downwardsAmount = leftCorner.y - enemyPos.y;
 
+            Vector3 localLeftCorner = playerTrans.InverseTransformPoint(leftCorner);
+            Vector3 localEnemyPos = playerTrans.InverseTransformPoint(enemyPos);
 
-            enemyAngle = Mathf.Abs(Vector3.Angle(perpendicularDirection, enemyDirection));
-            Debug.Log(enemyAngle);
+            backwardsAmount = localLeftCorner.z - localEnemyPos.z + weaponBackOffset;
 
-            player.debugArrow.position = startPositions[0];
-            player.debugArrow2.position = startPositions[0];
-            player.debugArrow.rotation = Quaternion.LookRotation(enemyDirection);
-            player.debugArrow2.rotation = Quaternion.LookRotation(perpendicularDirection);
+            float xDifference = Mathf.Abs(localLeftCorner.x - localEnemyPos.x);
 
-            player.debugCube.position = enemyPos + Vector3.up * 0.5f;
+            float normalizedX = Tools.Remap(xDifference, 0, offsets * 2, 0, 1);
+            Debug.Log(normalizedX);
+
+            Keyframe[] modifiedKeys = new Keyframe[baseCurve.length];
+
+            modifiedKeys[0] = baseCurve.keys[0];
+            modifiedKeys[1] = new Keyframe(normalizedX, 1);
+            modifiedKeys[2] = baseCurve.keys[2];
+
+            modifiedCurve.keys = modifiedKeys;
+
+        }
+        else
+        {
+            modifiedCurve.keys = baseCurve.keys;
+            backwardsAmount = 0;
+            downwardsAmount = 1.5f;
         }
     }
 
