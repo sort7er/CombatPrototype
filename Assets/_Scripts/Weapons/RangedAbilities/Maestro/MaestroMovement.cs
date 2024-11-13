@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MaestroMovement
 {
 
-    private float timeElapsed;
+    public float timeElapsed { get; private set; } 
 
     private Maestro maestro;
     private Player player;
+    private Transform playerTrans;
     private Transform[] abilityTransforms;
 
     //Curves
@@ -17,6 +19,7 @@ public class MaestroMovement
     private Vector3 enemyPos;
     private float enemyGroundOffset = 1.5f;
     private float weaponBackOffset = 1f;
+    private float weaponRightOffset = 0.5f;
     private float rightAmount;
     private float downwardsAmount;
     private float backwardsAmount;
@@ -31,9 +34,10 @@ public class MaestroMovement
     private Vector3 centerPos;
     private Vector3 leftCorner;
     private Vector3 rightCorner;
-    private float distanceFromTarget = 8;
+    private float distanceFromTarget = 10;
     private float interpolation = 10;
     private float offsets = 5;
+    private float centerOffset = 6;
 
     //Floating
     private float floatSpeed = 5;
@@ -43,6 +47,7 @@ public class MaestroMovement
     {
         this.maestro = maestro;
         player = maestro.player;
+        playerTrans = maestro.playerTrans;
         abilityTransforms = maestro.abilityTransforms;
 
         startPositions = new Vector3[2];
@@ -134,8 +139,8 @@ public class MaestroMovement
 
             float t = timeElapsed / maestro.duration;
 
-            Vector3 localStartPos = maestro.playerTrans.InverseTransformPoint(startPos);
-            Vector3 localTargetPos = maestro.playerTrans.InverseTransformPoint(targetPos);
+            Vector3 localStartPos = playerTrans.InverseTransformPoint(startPos);
+            Vector3 localTargetPos = playerTrans.InverseTransformPoint(targetPos);
 
             Vector3 localCurrentPos = Vector3.Lerp(localStartPos, localTargetPos, t);
             float remapedTime = Tools.Remap(timeElapsed, 0, maestro.duration, 0, 1);
@@ -158,7 +163,7 @@ public class MaestroMovement
                 z = localCurrentPos.z - middleCurve.Evaluate(remapedTime) * backwardsAmount;
             }
 
-            Vector3 pos = maestro.playerTrans.TransformPoint(new Vector3(x, y, z));
+            Vector3 pos = playerTrans.TransformPoint(new Vector3(x, y, z));
 
             abilityTrans.position = pos;
             abilityTrans.rotation = Quaternion.Slerp(startRot, targetRot, t);
@@ -171,17 +176,12 @@ public class MaestroMovement
         }
 
     }
+
+
+
     public void CastBox()
     {
-        float difference = 2;
-
-        float length = distanceFromTarget + difference;
-        Vector3 ajustedCenter = maestro.playerTrans.InverseTransformPoint(centerPos);
-        ajustedCenter.z += difference * 0.5f;
-
-        ajustedCenter = maestro.playerTrans.TransformPoint(ajustedCenter);
-
-        List<TargetGroup> groups = player.targetAssistance.GroupedEnemies(ajustedCenter, new Vector3(5, 6, length), player.Rotation(), new Vector3Int(3, 2, 4));
+        List<TargetGroup> groups = player.targetAssistance.GroupedEnemies(BoxCenter(), BoxSize(), player.Rotation(), new Vector3Int(3, 2, 4));
 
         if (groups.Count > 0)
         {
@@ -209,11 +209,24 @@ public class MaestroMovement
         }
     }
 
+    public Vector3 BoxCenter()
+    {
+        Vector3 ajustedCenter = playerTrans.InverseTransformPoint(centerPos);
+        ajustedCenter.z -= centerOffset * 0.5f;
+
+        return playerTrans.TransformPoint(ajustedCenter);
+    } 
+    public Vector3 BoxSize()
+    {
+        float length = (distanceFromTarget * 2 - centerOffset) * 0.5f;
+        return new Vector3(5, 6, length);
+    }
+
     private void CalculateMiddleCurve()
     {
-        Vector3 localEnemyPos = maestro.playerTrans.InverseTransformPoint(enemyPos);
-        Vector3 localRightCorner = maestro.playerTrans.InverseTransformPoint(rightCorner);
-        Vector3 localLeftCorner = maestro.playerTrans.InverseTransformPoint(leftCorner);
+        Vector3 localEnemyPos = playerTrans.InverseTransformPoint(enemyPos);
+        Vector3 localRightCorner = playerTrans.InverseTransformPoint(rightCorner);
+        Vector3 localLeftCorner = playerTrans.InverseTransformPoint(leftCorner);
 
         float xDifference;
 
@@ -242,8 +255,8 @@ public class MaestroMovement
 
     private void CalculateStartCurve()
     {
-        Vector3 localEnemyPos = maestro.playerTrans.InverseTransformPoint(enemyPos);
-        Vector3 localLeftCorner = maestro.playerTrans.InverseTransformPoint(leftCorner);
+        Vector3 localEnemyPos = playerTrans.InverseTransformPoint(enemyPos);
+        Vector3 localLeftCorner = playerTrans.InverseTransformPoint(leftCorner);
 
 
         float normalizedZ;
@@ -251,15 +264,25 @@ public class MaestroMovement
         backwardsAmount = localLeftCorner.z - localEnemyPos.z + weaponBackOffset;
         normalizedZ = Tools.Remap(backwardsAmount, 0, distanceFromTarget, 0, 1);
 
+        if (!maestro.backToHands)
+        {
+            normalizedZ = 1 - normalizedZ;
+        }
+
+
         crockedLineAjustment = Tools.Remap(normalizedZ, 0, 1, 0, 5);
 
-        rightAmount = localLeftCorner.x - localEnemyPos.x + crockedLineAjustment;
+        rightAmount = localLeftCorner.x - localEnemyPos.x + crockedLineAjustment - weaponRightOffset;
+
+        //Debug.Log("Right amout " + rightAmount + ". Difference " + (localLeftCorner.x - localEnemyPos.x) + ". Crocked " + crockedLineAjustment);
 
         Keyframe[] modifiedKeys = new Keyframe[baseCurve.length];
 
         modifiedKeys[0] = baseCurve.keys[0];
         modifiedKeys[1] = new Keyframe(normalizedZ, 1);
         modifiedKeys[2] = baseCurve.keys[2];
+
+
 
         startCurve.keys = modifiedKeys;
 

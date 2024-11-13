@@ -2,7 +2,7 @@ using EnemyAI;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetGroup : MonoBehaviour
+public class TargetGroup
 {
     public List<Enemy> enemies;
     public float dotProduct;

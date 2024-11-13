@@ -10,9 +10,16 @@ public class Maestro : Ability
     public bool isLeft { get; private set; }
     public bool isMiddleCurve { get; private set; }
 
+    private List<Enemy> enemiesDamaged = new();
     private MaestroMovement maestroMovement;
     private float timeToFlyBack = 0.6f;
     private int numberOfSwings;
+
+    //Damage
+    private float damageRange;
+    private float damage;
+    private bool damagePhaseDone;
+
 
     public override void ExecuteAbility(Player player, List<Enemy> enemies)
     {
@@ -70,32 +77,34 @@ public class Maestro : Ability
     private void OneLeft()
     {
         ReleaseCurrentWeapon();
-        maestroMovement.SetStartTransforms();
-        maestroMovement.ResetTimeElapsed();
+        SwingStartCommon();
         isLeft = true;
     }
     private void TwoRight()
     {
-        maestroMovement.SetStartTransforms();
-        maestroMovement.ResetTimeElapsed();
+        SwingStartCommon();
         isMiddleCurve = true;
         isLeft = false;
     }
     private void ThreeLeft()
     {
-        maestroMovement.SetStartTransforms();
-        maestroMovement.ResetTimeElapsed();
+        SwingStartCommon();
         isLeft = true;
     }
 
     private void FlyBack()
     {
-        maestroMovement.ResetTimeElapsed();
-        maestroMovement.SetStartTransforms();
+        SwingStartCommon();
         backToHands = true;
         isMiddleCurve = false;
         duration = timeToFlyBack;
         player.InvokeMethod(Return, timeToFlyBack);
+    }
+    private void SwingStartCommon()
+    {
+        damagePhaseDone = false;
+        maestroMovement.ResetTimeElapsed();
+        maestroMovement.SetStartTransforms();
     }
     private void Return()
     {
@@ -108,6 +117,47 @@ public class Maestro : Ability
         maestroMovement.SettingTargetTransforms();
         maestroMovement.MovingAbilityTransforms();
     }
+    public override void FixedUpdateAbility()
+    {
+        if(maestroMovement.timeElapsed < duration)
+        {
+            LookForEnemies();
+        }
+        else
+        {
+            if(!damagePhaseDone)
+            {         
+                ResetEnemyList();
+                
+            }
+        }
+    }
 
+    private void LookForEnemies()
+    {
+        enemies.Clear();
+        enemies = player.targetAssistance.CastBox(maestroMovement.BoxCenter(), maestroMovement.BoxSize(), playerTrans.rotation);
+
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            if (!enemiesDamaged.Contains(enemies[i]))
+            {
+
+            }
+        }
+
+    }
+
+    //private void CheckIfDamage(Enemy enemy)
+    //{
+    //    if(Vector3.Distance())
+    //}
+
+    private void ResetEnemyList()
+    {
+        damagePhaseDone = true;
+        enemiesDamaged.Clear();
+        Debug.Log("Nah");
+    }
 
 }

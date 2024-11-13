@@ -21,6 +21,8 @@ public class TargetAssistance : MonoBehaviour
     private List<Vector3> keys = new();
     private Dictionary <Vector3, TargetGroup> enemyGroups = new();
 
+    //public Transform cube;
+
     private void Awake()
     {
         hitColliders = new Collider[maxColliders];
@@ -134,11 +136,15 @@ public class TargetAssistance : MonoBehaviour
 
         return sortedList;
     }
-    private List<Enemy> CastBox(Vector3 centerPos, Vector3 halfExtends, Quaternion rotation)
+    public List<Enemy> CastBox(Vector3 centerPos, Vector3 halfExtends, Quaternion rotation, bool includeBounds = true)
     {
 
         Collider[] hits;
         hits = Physics.OverlapBox(centerPos, halfExtends, rotation, enemyLayer);
+
+        //cube.position = centerPos;
+        //cube.rotation = rotation;
+        //cube.localScale = halfExtends * 2;
 
         List<Enemy> rawList = new();
 
@@ -147,8 +153,12 @@ public class TargetAssistance : MonoBehaviour
             if (hits[i].TryGetComponent<Enemy>(out Enemy enemy))
             {
                 Vector3 localPos = transform.InverseTransformPoint(enemy.Position());
-     
-                if (IsWithinBounds(localPos, halfExtends))
+
+                if (!includeBounds)
+                {
+                    rawList.Add(enemy);
+                }
+                else if(IsWithinBounds(localPos, halfExtends))
                 {
                     rawList.Add(enemy);
                 }

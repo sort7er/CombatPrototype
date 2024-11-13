@@ -12,10 +12,10 @@ public abstract class Ability
     public Player player { get; private set; }
     public Rigidbody rb { get; private set; }
     public Transform playerTrans { get; private set; }
-    public CameraController camController { get; private set; }
-    public List<Enemy> enemies { get; private set; }
     public Transform[] abilityTransforms { get; private set; }
-
+    
+    protected CameraController camController;
+    protected List<Enemy> enemies;
     protected Transform enemyTrans;
     protected Vector3 targetPosition;
 
