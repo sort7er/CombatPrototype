@@ -17,10 +17,9 @@ public class TargetAssistance : MonoBehaviour
     private List<Target> otherTargets = new();
     private List<Enemy> finalTargets = new();
 
-
     //Gridsorting
     private List<Vector3> keys = new();
-    private Dictionary <Vector3, List<Enemy>> enemyGroups = new();
+    private Dictionary <Vector3, TargetGroup> enemyGroups = new();
 
     private void Awake()
     {
@@ -79,7 +78,17 @@ public class TargetAssistance : MonoBehaviour
             }
         }
     }
-
+    private void AddToFinalList()
+    {
+        for (int i = 0; i < idealTargets.Count; i++)
+        {
+            finalTargets.Add(idealTargets[i].enemy);
+        }
+        for (int i = 0; i < otherTargets.Count; i++)
+        {
+            finalTargets.Add(otherTargets[i].enemy);
+        }
+    }
 
     private Target CreateTarget(Transform colliderTransform)
     {
@@ -96,126 +105,52 @@ public class TargetAssistance : MonoBehaviour
         {
             return null;
         }
-
-
     }
+    //private Targets CreateTargets(Enemy[] enemies)
+    //{
+    //    if (colliderTransform.TryGetComponent<Enemy>(out Enemy enemy))
+    //    {
+    //        Vector3 dirToTarget = Vector3.Normalize(colliderTransform.position - transform.position);
+    //        float dotProduct = Vector3.Dot(transform.forward, dirToTarget);
+    //        float distance = Vector3.Distance(transform.position, colliderTransform.position);
 
-    private void AddToFinalList()
+
+    //        return new Target(enemy, dotProduct, distance);
+    //    }
+    //    else
+    //    {
+    //        return null;
+    //    }
+    //}
+
+
+
+
+    #region Putting groups of enemies into a grid
+    public List<TargetGroup> GroupedEnemies(Vector3 centerPos, Vector3 halfExtends, Quaternion rotation, Vector3Int divisions)
     {
-        for (int i = 0; i < idealTargets.Count; i++)
-        {
-            finalTargets.Add(idealTargets[i].enemy);
-        }
-        for (int i = 0; i < otherTargets.Count; i++)
-        {
-            finalTargets.Add(otherTargets[i].enemy);
-        }
-    }
-
-
-    private int SortByDistance(Target t1, Target t2)
-    {
-        return t1.distance.CompareTo(t2.distance);
-    }
-
-    private int SortByDotProduct(Target t1, Target t2)
-    {
-        return t1.dotProduct.CompareTo(t2.dotProduct);
-    }
-    public List<List<Enemy>> GroupedEnemies(Vector3 centerPos, Vector3 halfExtends, Quaternion rotation, Vector3Int divisions)
-    {
-        List<Enemy> rawList = CastBox(centerPos, halfExtends, rotation);
-
         keys.Clear();
         enemyGroups.Clear();
 
+        List<Enemy> rawList = CastBox(centerPos, halfExtends, rotation);
+        ConvertRawListToDictionary(rawList, halfExtends, divisions);
 
 
-        Vector3 gridSize = halfExtends * 2;
-        Vector3 cellSize = new Vector3(gridSize.x / divisions.x, gridSize.y / divisions.y, gridSize.z / divisions.z);
 
-        for (int i = 0; i < rawList.Count;i++)
-        {
-            Vector3 gridPos = transform.InverseTransformPoint(rawList[i].Position());
-            gridPos.x += halfExtends.x;
-
-            Vector3 key = GetKey(gridPos, cellSize, divisions);
-
-            if(enemyGroups.ContainsKey(key))
-            {
-                enemyGroups[key].Add(rawList[i]);
-            }
-            else
-            {
-                List<Enemy> newList = new List<Enemy>() { rawList[i] };
-                
-                keys.Add(key);
-                enemyGroups.Add(key, newList);
-
-            }
-        }
-
-        List<List<Enemy>> sortedList = new();
-
-        keys.Sort(SortByDistance);
-
-        for(int i = 0; i < keys.Count;i++)
+        List<TargetGroup> sortedList = new();
+        for (int i = 0; i < keys.Count; i++)
         {
             if (enemyGroups.ContainsKey(keys[i]))
             {
+                CalculateDotAndDistance(enemyGroups[keys[i]]);
                 sortedList.Add(enemyGroups[keys[i]]);
             }
         }
 
-        return sortedList;  
+        sortedList.Sort(SortByDotProductAndDistance);
+
+        return sortedList;
     }
-
-    private int SortByDistance(Vector3 g1, Vector3 g2)
-    {
-        float g1Distance = Vector3.Distance(g1, Vector3.zero);
-        float g2Distance = Vector3.Distance(g2, Vector3.zero);
-
-        return g1Distance.CompareTo(g2Distance);
-    }
-    private int SortByDotProduct(Vector3 g1, Vector3 g2)
-    {
-        Vector3 g1DirToTarget = Vector3.Normalize(g1 - transform.position);
-        float g1DotProduct = Vector3.Dot(transform.forward, g1DirToTarget);
-
-        Vector3 g2DirToTarget = Vector3.Normalize(g2 - transform.position);
-        float g2DotProduct = Vector3.Dot(transform.forward, g2DirToTarget);
-
-        return -g1DotProduct.CompareTo(g2DotProduct);
-    }
-
-    private Vector3 GetKey(Vector3 gridPos, Vector3 cellSize, Vector3Int divisions)
-    {
-        float x = CastToDivision(gridPos.x, cellSize.x, divisions.x);
-        float y = CastToDivision(gridPos.y, cellSize.y, divisions.y);
-        float z = CastToDivision(gridPos.z, cellSize.z, divisions.z);
-
-        return new Vector3(x, y, z);
-    }
-
-    private float CastToDivision(float value, float size, int divisions)
-    {
-        float currentDiff;
-        float smallestDiff = Mathf.Infinity;
-        float closest = 0;
-
-        for (int i = 0; i < divisions; i++)
-        {
-            currentDiff = Mathf.Abs(value - size * i);
-            if (currentDiff < smallestDiff)
-            {
-                smallestDiff = currentDiff;
-                closest = size * i;
-            }
-        }
-
-        return closest;
-    }
-
     private List<Enemy> CastBox(Vector3 centerPos, Vector3 halfExtends, Quaternion rotation)
     {
 
@@ -239,6 +174,33 @@ public class TargetAssistance : MonoBehaviour
 
         return rawList;
     }
+    #region Shortcuts
+    private Vector3 GetKey(Vector3 gridPos, Vector3 cellSize, Vector3Int divisions)
+    {
+        float x = CastToDivision(gridPos.x, cellSize.x, divisions.x);
+        float y = CastToDivision(gridPos.y, cellSize.y, divisions.y);
+        float z = CastToDivision(gridPos.z, cellSize.z, divisions.z);
+
+        return new Vector3(x, y, z);
+    }
+    private float CastToDivision(float value, float size, int divisions)
+    {
+        float currentDiff;
+        float smallestDiff = Mathf.Infinity;
+        float closest = 0;
+
+        for (int i = 0; i < divisions; i++)
+        {
+            currentDiff = Mathf.Abs(value - size * i);
+            if (currentDiff < smallestDiff)
+            {
+                smallestDiff = currentDiff;
+                closest = size * i;
+            }
+        }
+
+        return closest;
+    }
     private bool IsWithinBounds(Vector3 localPos, Vector3 halfExtends)
     {
         if(localPos.x < -halfExtends.x || localPos.x > halfExtends.x)
@@ -258,4 +220,74 @@ public class TargetAssistance : MonoBehaviour
             return true;
         }
     }
+    #endregion
+
+    private void ConvertRawListToDictionary(List<Enemy> rawList, Vector3 halfExtends, Vector3Int divisions)
+    {
+        Vector3 gridSize = halfExtends * 2;
+        Vector3 cellSize = new Vector3(gridSize.x / divisions.x, gridSize.y / divisions.y, gridSize.z / divisions.z);
+
+        for (int i = 0; i < rawList.Count; i++)
+        {
+            Vector3 gridPos = transform.InverseTransformPoint(rawList[i].Position());
+            gridPos.x += halfExtends.x;
+
+            Vector3 key = GetKey(gridPos, cellSize, divisions);
+
+            if (enemyGroups.ContainsKey(key))
+            {
+                enemyGroups[key].AddEnemyToGroup(rawList[i]);
+            }
+            else
+            {
+                List<Enemy> newList = new List<Enemy>() { rawList[i] };
+
+                TargetGroup newGroup = new TargetGroup(newList);
+
+                keys.Add(key);
+                enemyGroups.Add(key, newGroup);
+            }
+        }
+    }
+
+    private void CalculateDotAndDistance(TargetGroup targets)
+    {
+        Vector3 dirToTarget = Vector3.Normalize(targets.AveragePosOfGroup() - transform.position);
+        float dotProduct = Vector3.Dot(dirToTarget, transform.forward);
+        float distance = Vector3.Distance(transform.position, targets.AveragePosOfGroup());
+
+        targets.SetDotProductAndDistance(dotProduct, distance);
+    }
+
+
+    #endregion
+
+    #region Sorting
+    private int SortByDotProduct(Target t1, Target t2)
+    {
+        return t1.dotProduct.CompareTo(t2.dotProduct);
+    }
+    private int SortByDistance(Target t1, Target t2)
+    {
+        return t1.distance.CompareTo(t2.distance);
+    }
+    private int SortByDotProductAndDistance(TargetGroup g1, TargetGroup g2)
+    {
+
+        float threshold = 0.2f;
+
+        if (Mathf.Abs(g1.dotProduct) < threshold && Mathf.Abs(g1.dotProduct) < threshold)
+        {
+            return SortByDistance(g1, g2);
+        }
+        else
+        {
+            return -g1.dotProduct.CompareTo(g2.dotProduct);
+        }
+    }
+    private int SortByDistance(TargetGroup g1, TargetGroup g2)
+    {
+        return g1.distance.CompareTo(g2.distance);
+    }
+    #endregion
 }

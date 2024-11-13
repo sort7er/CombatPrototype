@@ -1,7 +1,6 @@
 using EnemyAI;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 namespace PlayerSM
 {
@@ -52,7 +51,6 @@ namespace PlayerSM
 
         private void EndRanged()
         {
-            Debug.Log("Ranged left");
             LeaveState(idleState);
         }
 

@@ -20,7 +20,7 @@ public class Maestro : Ability
     private float offsets = 5;
 
     //Sequence
-    private float timeToFlyBack = 0.7f;
+    private float timeToFlyBack = 0.6f;
     private float timeElapsed;
     private float duration;
     private int numberOfSwings;
@@ -116,7 +116,6 @@ public class Maestro : Ability
     {
         SetStartTransforms();
         isMiddleCurve = true;
-        duration = 0.7f;
         left = false;
         timeElapsed = 0;
     }
@@ -261,27 +260,19 @@ public class Maestro : Ability
 
     private void CastBox()
     {
-        List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(5, 6, distanceFromTarget * 2), player.Rotation(), new Vector3Int(3,2,4));
+        float difference = 2;
+
+        float length = distanceFromTarget + difference;
+        Vector3 ajustedCenter = playerTrans.InverseTransformPoint(centerPos);
+        ajustedCenter.z += difference * 0.5f;
+
+        ajustedCenter = playerTrans.TransformPoint(ajustedCenter);
+
+        List<TargetGroup> groups = player.targetAssistance.GroupedEnemies(ajustedCenter, new Vector3(5, 6, length), player.Rotation(), new Vector3Int(3,2,4));
 
         if(groups.Count > 0 )
         {
-            enemyPos = AveragePosOfGroup(groups[0]);
-
-            //for (int j = 0; j < groups[0].Count; j++)
-            //{
-            //    Debug.Log("Group " + 0 + " and " + groups[0][j].name);
-
-            //}
-
-            for (int i = 0; i < groups.Count; i++)
-            {
-                //for (int j = 0; j < groups[i].Count; j++)
-                //{
-                //    Debug.Log("Group " + i + " and " + groups[i][j].name);
-
-                //}
-                //Debug.Log("Group " + i + " Distance " + Vector3.Distance(AveragePosOfGroup(groups[i]), playerTrans.position));
-            }
+            enemyPos = groups[0].AveragePosOfGroup();
 
             enemyPos.y += enemyGroundOffset;
 
@@ -351,27 +342,6 @@ public class Maestro : Ability
 
         rightAmount = localLeftCorner.x - localEnemyPos.x + crockedLineAjustment;
 
-        //if (Tools.Dot(localEnemyPos, Vector3.forward) > 0)
-        //{
-        //    //Left
-
-        //    normalizedZ = Tools.Remap(backwardsAmount, 0, distanceFromTarget, 0, 1);
-        //    leftAmount =  localLeftCorner.x - localEnemyPos.x * (1 + normalizedZ);
-        //}
-        //else
-        //{
-        //    //Right
-
-        //    normalizedZ = Tools.Remap(backwardsAmount, 0, distanceFromTarget, 0, 1);
-        //    leftAmount = - localEnemyPos.x * (1 + normalizedZ);
-        //}
-
-
-        //This works if target is on the left side
-
-
-
-
         Keyframe[] modifiedKeys = new Keyframe[baseCurve.length];
 
         modifiedKeys[0] = baseCurve.keys[0];
@@ -380,18 +350,5 @@ public class Maestro : Ability
 
         startCurve.keys = modifiedKeys;
 
-
-
     }
-    private Vector3 AveragePosOfGroup(List<Enemy> enemies)
-    {
-
-        Vector3 targetPos = Vector3.zero;
-        for(int i = 0; i < enemies.Count; i++)
-        {
-            targetPos += enemies[i].Position();
-        }
-
-        return targetPos / enemies.Count;
-    } 
 }
