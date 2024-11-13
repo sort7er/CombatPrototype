@@ -20,7 +20,7 @@ public class Maestro : Ability
     private float offsets = 5;
 
     //Sequence
-    private float timeToFlyBack = 0.5f;
+    private float timeToFlyBack = 0.7f;
     private float timeElapsed;
     private float duration;
     private int numberOfSwings;
@@ -34,11 +34,13 @@ public class Maestro : Ability
 
     //Curving
     private AnimationCurve baseCurve;
-    private AnimationCurve modifiedCurve;
+    private AnimationCurve middleCurve;
+    private AnimationCurve startCurve;
     private Vector3 enemyPos;
-    private bool isCurving;
+    private bool isMiddleCurve;
     private float enemyGroundOffset = 1.5f;
     private float weaponBackOffset = 1f;
+    private float rightAmount;
     private float downwardsAmount;
     private float backwardsAmount;
 
@@ -67,12 +69,13 @@ public class Maestro : Ability
     private void SetValues()
     {
         baseCurve = player.currentWeapon.currentAttack.animationCurve;
-        modifiedCurve = new AnimationCurve();
+        middleCurve = new AnimationCurve();
+        startCurve = new AnimationCurve();
         backToHands = false;
-        isCurving = false;
+        isMiddleCurve = false;
         numberOfSwings = 0;
         timeElapsed = 1;
-        duration = 0.4f;
+        duration = 0.7f;
         SetStartTransforms();
     }
 
@@ -112,7 +115,7 @@ public class Maestro : Ability
     private void TwoRight()
     {
         SetStartTransforms();
-        isCurving = true;
+        isMiddleCurve = true;
         duration = 0.7f;
         left = false;
         timeElapsed = 0;
@@ -128,7 +131,7 @@ public class Maestro : Ability
     {
         SetStartTransforms();
         backToHands = true;
-        isCurving = false;
+        isMiddleCurve = false;
         timeElapsed = 0;
         duration = timeToFlyBack;
         player.InvokeMethod(Return, timeToFlyBack);
@@ -221,24 +224,24 @@ public class Maestro : Ability
             Vector3 localTargetPos = playerTrans.InverseTransformPoint(targetPos);
 
             Vector3 localCurrentPos = Vector3.Lerp(localStartPos, localTargetPos, t);
+            float remapedTime = Tools.Remap(timeElapsed, 0, duration, 0, 1);
+
             float x;
             float y;
             float z;
 
-            if (!isCurving)
+            if (!isMiddleCurve)
             {
-                x = localCurrentPos.x; 
-                y = localCurrentPos.y;
+                x = localCurrentPos.x - startCurve.Evaluate(remapedTime) * rightAmount; 
+                y = localCurrentPos.y - startCurve.Evaluate(remapedTime) * downwardsAmount;
                 z = localCurrentPos.z;
 
             }
             else
             {
-                float remapedTime = Tools.Remap(timeElapsed, 0, duration, 0, 1);
-
                 x = localCurrentPos.x;
-                y = localCurrentPos.y - modifiedCurve.Evaluate(remapedTime) * downwardsAmount;
-                z = localCurrentPos.z - modifiedCurve.Evaluate(remapedTime) * backwardsAmount;
+                y = localCurrentPos.y - middleCurve.Evaluate(remapedTime) * downwardsAmount;
+                z = localCurrentPos.z - middleCurve.Evaluate(remapedTime) * backwardsAmount;
             }
 
             Vector3 pos = playerTrans.TransformPoint(new Vector3(x, y, z));
@@ -258,42 +261,129 @@ public class Maestro : Ability
 
     private void CastBox()
     {
-        List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(5, 5, distanceFromTarget), player.Rotation(), new Vector3Int(3,2,3));
+        List<List<Enemy>> groups = player.targetAssistance.GroupedEnemies(centerPos, new Vector3(5, 6, distanceFromTarget * 2), player.Rotation(), new Vector3Int(3,2,4));
 
         if(groups.Count > 0 )
         {
-            enemyPos = GroupToTarget(groups[0]);
+            enemyPos = AveragePosOfGroup(groups[0]);
+
+            //for (int j = 0; j < groups[0].Count; j++)
+            //{
+            //    Debug.Log("Group " + 0 + " and " + groups[0][j].name);
+
+            //}
+
+            for (int i = 0; i < groups.Count; i++)
+            {
+                //for (int j = 0; j < groups[i].Count; j++)
+                //{
+                //    Debug.Log("Group " + i + " and " + groups[i][j].name);
+
+                //}
+                //Debug.Log("Group " + i + " Distance " + Vector3.Distance(AveragePosOfGroup(groups[i]), playerTrans.position));
+            }
+
             enemyPos.y += enemyGroundOffset;
 
             downwardsAmount = leftCorner.y - enemyPos.y;
 
-            Vector3 localLeftCorner = playerTrans.InverseTransformPoint(leftCorner);
-            Vector3 localEnemyPos = playerTrans.InverseTransformPoint(enemyPos);
-
-            backwardsAmount = localLeftCorner.z - localEnemyPos.z + weaponBackOffset;
-
-            float xDifference = Mathf.Abs(localLeftCorner.x - localEnemyPos.x);
-
-            float normalizedX = Tools.Remap(xDifference, 0, offsets * 2, 0, 1);
-
-            Keyframe[] modifiedKeys = new Keyframe[baseCurve.length];
-
-            modifiedKeys[0] = baseCurve.keys[0];
-            modifiedKeys[1] = new Keyframe(normalizedX, 1);
-            modifiedKeys[2] = baseCurve.keys[2];
-
-            modifiedCurve.keys = modifiedKeys;
+            if (isMiddleCurve)
+            {
+                CalculateMiddleCurve();
+            }
+            else
+            {
+                CalculateStartCurve();
+            }
 
         }
         else
         {
-            modifiedCurve.keys = baseCurve.keys;
+            middleCurve.keys = baseCurve.keys;
             backwardsAmount = 0;
             downwardsAmount = 1.5f;
         }
     }
 
-    private Vector3 GroupToTarget(List<Enemy> enemies)
+    private void CalculateMiddleCurve()
+    {
+        Vector3 localEnemyPos = playerTrans.InverseTransformPoint(enemyPos);
+        Vector3 localRightCorner = playerTrans.InverseTransformPoint(rightCorner);
+        Vector3 localLeftCorner = playerTrans.InverseTransformPoint(leftCorner);
+
+        float xDifference;    
+
+        if (!left)
+        {
+            xDifference = Mathf.Abs(localRightCorner.x - localEnemyPos.x);
+        }
+        else
+        {
+            xDifference = Mathf.Abs(localLeftCorner.x - localEnemyPos.x);
+        }
+
+        //This is the same no matter left or right
+        float normalizedX = Tools.Remap(xDifference, 0, offsets * 2, 1, 0);
+
+        backwardsAmount = localLeftCorner.z - localEnemyPos.z + weaponBackOffset;
+
+        Keyframe[] modifiedKeys = new Keyframe[baseCurve.length];
+
+        modifiedKeys[0] = baseCurve.keys[0];
+        modifiedKeys[1] = new Keyframe(normalizedX, 1);
+        modifiedKeys[2] = baseCurve.keys[2];
+
+        middleCurve.keys = modifiedKeys;
+    }
+
+    private void CalculateStartCurve()
+    {
+        Vector3 localEnemyPos = playerTrans.InverseTransformPoint(enemyPos);
+        Vector3 localLeftCorner = playerTrans.InverseTransformPoint(leftCorner);
+
+
+        float normalizedZ;
+        float crockedLineAjustment;
+        backwardsAmount = localLeftCorner.z - localEnemyPos.z + weaponBackOffset;
+        normalizedZ = Tools.Remap(backwardsAmount, 0, distanceFromTarget, 0, 1);
+
+        crockedLineAjustment = Tools.Remap(normalizedZ, 0, 1, 0, 5);
+
+        rightAmount = localLeftCorner.x - localEnemyPos.x + crockedLineAjustment;
+
+        //if (Tools.Dot(localEnemyPos, Vector3.forward) > 0)
+        //{
+        //    //Left
+
+        //    normalizedZ = Tools.Remap(backwardsAmount, 0, distanceFromTarget, 0, 1);
+        //    leftAmount =  localLeftCorner.x - localEnemyPos.x * (1 + normalizedZ);
+        //}
+        //else
+        //{
+        //    //Right
+
+        //    normalizedZ = Tools.Remap(backwardsAmount, 0, distanceFromTarget, 0, 1);
+        //    leftAmount = - localEnemyPos.x * (1 + normalizedZ);
+        //}
+
+
+        //This works if target is on the left side
+
+
+
+
+        Keyframe[] modifiedKeys = new Keyframe[baseCurve.length];
+
+        modifiedKeys[0] = baseCurve.keys[0];
+        modifiedKeys[1] = new Keyframe(normalizedZ, 1);
+        modifiedKeys[2] = baseCurve.keys[2];
+
+        startCurve.keys = modifiedKeys;
+
+
+
+    }
+    private Vector3 AveragePosOfGroup(List<Enemy> enemies)
     {
 
         Vector3 targetPos = Vector3.zero;

@@ -177,6 +177,16 @@ public class TargetAssistance : MonoBehaviour
 
         return g1Distance.CompareTo(g2Distance);
     }
+    private int SortByDotProduct(Vector3 g1, Vector3 g2)
+    {
+        Vector3 g1DirToTarget = Vector3.Normalize(g1 - transform.position);
+        float g1DotProduct = Vector3.Dot(transform.forward, g1DirToTarget);
+
+        Vector3 g2DirToTarget = Vector3.Normalize(g2 - transform.position);
+        float g2DotProduct = Vector3.Dot(transform.forward, g2DirToTarget);
+
+        return -g1DotProduct.CompareTo(g2DotProduct);
+    }
 
     private Vector3 GetKey(Vector3 gridPos, Vector3 cellSize, Vector3Int divisions)
     {
