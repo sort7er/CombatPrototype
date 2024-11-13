@@ -9,12 +9,12 @@ public abstract class Ability
     public float acceptedDotProduct = 0.75f;
 
 
-    protected Player player;
-    protected Rigidbody rb;
-    protected Transform playerTrans;
-    protected CameraController camController;
-    protected List<Enemy> enemies;
-    protected Transform[] abilityTransforms;
+    public Player player { get; private set; }
+    public Rigidbody rb { get; private set; }
+    public Transform playerTrans { get; private set; }
+    public CameraController camController { get; private set; }
+    public List<Enemy> enemies { get; private set; }
+    public Transform[] abilityTransforms { get; private set; }
 
     protected Transform enemyTrans;
     protected Vector3 targetPosition;
