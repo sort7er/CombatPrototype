@@ -21,6 +21,8 @@ public class TargetAssistance : MonoBehaviour
     private List<Vector3> keys = new();
     private Dictionary <Vector3, TargetGroup> enemyGroups = new();
 
+    private bool dotIgnoreY = true;
+
     //public Transform cube;
 
     private void Awake()
@@ -245,7 +247,15 @@ public class TargetAssistance : MonoBehaviour
 
     private void CalculateDotAndDistance(TargetGroup targets)
     {
-        Vector3 dirToTarget = Vector3.Normalize(targets.AveragePosOfGroup() - transform.position);
+        Vector3 groupPos = targets.AveragePosOfGroup();
+        if (dotIgnoreY)
+        {
+            groupPos.y = 0;
+        }
+
+
+        Vector3 dirToTarget = Vector3.Normalize(groupPos - transform.position);
+
         float dotProduct = Vector3.Dot(dirToTarget, transform.forward);
         float distance = Vector3.Distance(transform.position, targets.AveragePosOfGroup());
 

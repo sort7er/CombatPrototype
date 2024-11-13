@@ -205,7 +205,16 @@ public class MaestroMovement
         {
             middleCurve.keys = baseCurve.keys;
             backwardsAmount = 0;
-            downwardsAmount = 1.5f;
+            rightAmount = 0;
+
+            if (!maestro.isMiddleCurve)
+            {
+                downwardsAmount = 0f;
+            }
+            else
+            {
+                downwardsAmount = 1.5f;
+            }
         }
     }
 
