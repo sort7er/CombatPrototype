@@ -37,6 +37,10 @@ namespace PlayerSM
         {
 
         }
+        public virtual void FixedUpdate()
+        {
+
+        }
         public virtual void LateUpdate()
         {
 

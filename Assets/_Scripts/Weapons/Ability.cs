@@ -31,6 +31,10 @@ public abstract class Ability
     {
 
     }
+    public virtual void FixedUpdateAbility()
+    {
+
+    }
     public virtual void AbilityPing()
     {
 

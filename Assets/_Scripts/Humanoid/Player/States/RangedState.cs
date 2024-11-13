@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace PlayerSM
 {
+
     public class RangedState : PlayerState
     {
         private List<Enemy> enemyList;
@@ -47,6 +48,10 @@ namespace PlayerSM
         public override void LateUpdate()
         {
             weapon.abilitySet.rangedAbilty.LateUpdateAbility();
+        }
+        public override void FixedUpdate()
+        {
+            weapon.abilitySet.rangedAbilty.FixedUpdateAbility();
         }
 
         private void EndRanged()

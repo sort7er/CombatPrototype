@@ -26,6 +26,7 @@ public class TargetAssistance : MonoBehaviour
         hitColliders = new Collider[maxColliders];
     }
 
+    #region Sphere cast
     public List<Enemy> CheckForEnemies(Ability uniqueAbility)
     {
         CleanUpPreviousData();
@@ -106,25 +107,7 @@ public class TargetAssistance : MonoBehaviour
             return null;
         }
     }
-    //private Targets CreateTargets(Enemy[] enemies)
-    //{
-    //    if (colliderTransform.TryGetComponent<Enemy>(out Enemy enemy))
-    //    {
-    //        Vector3 dirToTarget = Vector3.Normalize(colliderTransform.position - transform.position);
-    //        float dotProduct = Vector3.Dot(transform.forward, dirToTarget);
-    //        float distance = Vector3.Distance(transform.position, colliderTransform.position);
-
-
-    //        return new Target(enemy, dotProduct, distance);
-    //    }
-    //    else
-    //    {
-    //        return null;
-    //    }
-    //}
-
-
-
+    #endregion
 
     #region Putting groups of enemies into a grid
     public List<TargetGroup> GroupedEnemies(Vector3 centerPos, Vector3 halfExtends, Quaternion rotation, Vector3Int divisions)

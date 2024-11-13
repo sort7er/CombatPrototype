@@ -70,6 +70,11 @@ public class Player : Humanoid
         movement = Vector2.Lerp(movement, input, Time.deltaTime * 5);
         SetMovement(movement);
     }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        currentState.FixedUpdate();
+    }
     protected override void LateUpdate()
     {
         currentState.LateUpdate();
