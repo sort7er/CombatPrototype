@@ -65,6 +65,9 @@ namespace EnemyAI
         private float animatorRunSpeed;
         private bool isRunning;
 
+        public bool justCut { get; private set; }
+        public Vector3 planeNormal { get; private set; }
+
 
 
         #region Setup
@@ -144,6 +147,12 @@ namespace EnemyAI
             base.Hit(attack, attacker, hitPoint);
             currentState.Hit();
             SetTarget(attacker);
+        }
+        public void HitJustCut(Attack attack, Humanoid attacker, Vector3 hitPoint, Vector3 planeNormal)
+        {
+            justCut = true;
+            this.planeNormal = planeNormal;
+            Hit(attack, attacker, hitPoint);
         }
         public override void OverlapCollider()
         {

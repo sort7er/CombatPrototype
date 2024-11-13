@@ -346,6 +346,7 @@ MonoBehaviour:
     m_Bits: 8
   stunnedDuration: 4
   animator: {fileID: 2084979510854429856}
+  capsuleCollider: {fileID: 4511747968674823317}
   health: {fileID: 4608506369025162612}
   hitBox: {fileID: 7278276694183487644}
   parryCheck: {fileID: 1328179942541524593}

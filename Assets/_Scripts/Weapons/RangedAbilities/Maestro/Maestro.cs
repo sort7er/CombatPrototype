@@ -16,8 +16,7 @@ public class Maestro : Ability
     private int numberOfSwings;
 
     //Damage
-    private float damageRange;
-    private float damage;
+    private float damageRange = 3f; //should be generous
     private bool damagePhaseDone;
 
 
@@ -102,9 +101,9 @@ public class Maestro : Ability
     }
     private void SwingStartCommon()
     {
-        damagePhaseDone = false;
         maestroMovement.ResetTimeElapsed();
         maestroMovement.SetStartTransforms();
+        damagePhaseDone = false;
     }
     private void Return()
     {
@@ -127,8 +126,7 @@ public class Maestro : Ability
         {
             if(!damagePhaseDone)
             {         
-                ResetEnemyList();
-                
+                ResetEnemyList();             
             }
         }
     }
@@ -142,22 +140,27 @@ public class Maestro : Ability
         {
             if (!enemiesDamaged.Contains(enemies[i]))
             {
-
+                CheckIfDamage(enemies[i]);
             }
         }
 
     }
 
-    //private void CheckIfDamage(Enemy enemy)
-    //{
-    //    if(Vector3.Distance())
-    //}
+    private void CheckIfDamage(Enemy enemy)
+    {
+        if (Vector3.Distance(enemy.Position(), abilityTransforms[0].position) < damageRange)
+        {
+            //Damage enemy
+            enemy.HitJustCut(player.currentWeapon.currentAttack, player, abilityTransforms[0].position, -abilityTransforms[0].forward);
+
+            enemiesDamaged.Add(enemy);
+        }
+    }
 
     private void ResetEnemyList()
     {
         damagePhaseDone = true;
         enemiesDamaged.Clear();
-        Debug.Log("Nah");
     }
 
 }

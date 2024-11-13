@@ -267,7 +267,7 @@ public class TargetAssistance : MonoBehaviour
     private int SortByDotProductAndDistance(TargetGroup g1, TargetGroup g2)
     {
 
-        float threshold = 0.2f;
+        float threshold = 0.25f;
 
         if (Mathf.Abs(g1.dotProduct) < threshold && Mathf.Abs(g1.dotProduct) < threshold)
         {

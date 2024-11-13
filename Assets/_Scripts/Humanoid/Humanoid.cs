@@ -22,6 +22,7 @@ public class Humanoid : MonoBehaviour
     [Header("Stunned")]
     public float stunnedDuration;
     public Animator animator;
+    public Collider capsuleCollider;
     public Weapon currentWeapon { get; private set; }
     public Rigidbody rb { get; private set; }
     public Vector3 hitPoint { get; private set; }

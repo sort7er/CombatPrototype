@@ -53,6 +53,10 @@ namespace Stats
         private bool canRegenPosture;
         private bool postureDrained;
 
+        private bool justCut = false;
+        private Vector3 hitPoint;
+        private Vector3 planeNormal;
+
         protected virtual void Awake()
         {
             hudHandlerHealth = new ActiveHudHandler<int>(3, canvasGroupHealth);
@@ -91,6 +95,13 @@ namespace Stats
             MinusPosture(postureDamage);
             CheckStatus(null);
         }
+        public virtual void TakeDamage(Humanoid attacker, Vector3 hitPoint, Vector3 planeNormal)
+        {
+            justCut = true;
+            this.hitPoint = hitPoint;
+            this.planeNormal = planeNormal;
+            TakeDamage(attacker, hitPoint);
+        }
 
         public virtual void TakeDamage(Humanoid attacker, Vector3 hitPoint)
         {
@@ -109,6 +120,8 @@ namespace Stats
 
             CheckStatus(attackingWeapon);
         }
+
+
 
         public virtual void MinusHealth(int damage)
         {
@@ -144,7 +157,14 @@ namespace Stats
             {
                 if (weapon != null)
                 {
-                    Dead(weapon);
+                    if (justCut)
+                    {
+                        JustCutDead(weapon, hitPoint, planeNormal);
+                    }
+                    else
+                    {
+                        Dead(weapon);
+                    }
                 }
                 else
                 {
@@ -165,6 +185,11 @@ namespace Stats
 
         protected virtual void Dead(Weapon attackingWeapon)
         {
+            Dead();
+        }
+        protected virtual void JustCutDead(Weapon attackingWeapon, Vector3 worldPos, Vector3 planeNormal)
+        {
+            justCut = false;
             Dead();
         }
 

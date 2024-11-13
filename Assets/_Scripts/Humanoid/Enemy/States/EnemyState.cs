@@ -85,7 +85,14 @@ namespace EnemyAI
         //Place this last as this might lead to stunned state before current state is done with enter
         public void TakeDamage()
         {
-            enemy.health.TakeDamage(enemy.currentAttacker, enemy.hitPoint);
+            if (enemy.justCut)
+            {
+                enemy.health.TakeDamage(enemy.currentAttacker, enemy.hitPoint, enemy.planeNormal);
+            }
+            else
+            {
+                enemy.health.TakeDamage(enemy.currentAttacker, enemy.hitPoint);
+            }
         }
         //Same with this as with TakeDamage
         public void ReturnPostureDamage(ParryType type)

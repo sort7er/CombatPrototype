@@ -151,7 +151,6 @@ public class Weapon : MonoBehaviour
     #region Slice related methods
     public void Slice(MeshTarget mesh)
     {
-
         if(currentAttack.hitType == HitType.slice && slicingWeapons[0] != null)
         {
             sliceEnded = false;
@@ -169,6 +168,10 @@ public class Weapon : MonoBehaviour
                 slicingWeapons[0].Slice(mesh);
             }
         }
+    }
+    public void JustCut(MeshTarget meshTarget, Vector3 worldPos, Vector3 planeNormal)
+    {
+        slicingWeapons[0].Cut(meshTarget, worldPos, planeNormal);
     }
 
     private void SetUpSlicingWeapons()

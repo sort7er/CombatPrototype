@@ -18,4 +18,9 @@ public class SlicingController : MonoBehaviour
     {
         weapon.Slice(meshTarget);
     }
+    public void JustCut(Weapon attackingWeapon, Vector3 worldPosition, Vector3 worldNormal)
+    {
+        weapon = attackingWeapon;
+        weapon.JustCut(meshTarget, worldPosition, worldNormal);
+    }
 }

@@ -15,10 +15,11 @@ public class SlicingWeapon : WeaponModel
 
     [Header("References")]
     [SerializeField] private Cutter cutter;
+    [SerializeField] private PhysicMaterial physicMaterial;
 
     //public Transform arrow;
 
-    //public Transform plane;
+    ////public Transform plane;
     //public Transform startPoint;
 
     public override void Effect()
@@ -40,8 +41,8 @@ public class SlicingWeapon : WeaponModel
 
 
 
-
         Vector3 point = weapon.transform.position + weapon.transform.forward;
+
 
         //Change slicing mode depending on if its dual wield or not
 
@@ -59,8 +60,13 @@ public class SlicingWeapon : WeaponModel
         planeNormal.Normalize();
 
 
-        cutter.Cut(meshTarget, finalPoint, planeNormal, null, OnCreated, null);
+        Cut(meshTarget, finalPoint, planeNormal);
 
+    }
+
+    public void Cut(MeshTarget meshTarget, Vector3 worldPos, Vector3 planeNormal)
+    {
+        cutter.Cut(meshTarget, worldPos, planeNormal, null, OnCreated, null);
     }
 
     private void OnCreated(Info info, MeshCreationData data)
@@ -71,7 +77,7 @@ public class SlicingWeapon : WeaponModel
 
         for (int i = 0; i < data.CreatedObjects.Length; i++)
         {
-            SetUpObjects(data.CreatedObjects[i], cutForce);
+            SetUpObjects(data.CreatedObjects[i]);
         }
 
         for (int i = 0; i < data.CreatedTargets.Length; i++)
@@ -82,17 +88,25 @@ public class SlicingWeapon : WeaponModel
     }
 
 
-    public void SetUpObjects(GameObject meshObject, float cutForce = 500f)
+    public void SetUpObjects(GameObject meshObject)
     {
         meshObject.transform.parent = ParentManager.instance.meshes;
 
         Tools.SetLayerForAllChildren(meshObject, 7);
 
         Rigidbody rb = meshObject.GetComponent<Rigidbody>();
+        rb.mass = 5f;
 
+        for(int i = 0; i < meshObject.transform.childCount; i++)
+        {
+            meshObject.transform.GetChild(i).GetComponent<MeshCollider>().material = physicMaterial;
+        }
+        
         if (rb != null)
         {
-            rb.AddExplosionForce(cutForce, attackCoord.EndPos(weapon.transform), 1);
+            Vector3 direction = (rb.transform.position - weapon.transform.position).normalized;
+
+            rb.AddForceAtPosition(direction * cutForce, attackCoord.EndPos(weapon.transform), ForceMode.Impulse);
         }
 
         Destroy(meshObject, 4f);

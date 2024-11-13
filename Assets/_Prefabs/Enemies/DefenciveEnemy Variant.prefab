@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.11
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
@@ -21,12 +21,12 @@ PrefabInstance:
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.29
+      value: 7.72
       objectReference: {fileID: 0}
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
@@ -93,6 +93,11 @@ PrefabInstance:
       propertyPath: enemyBehaviour
       value: 
       objectReference: {fileID: 5574887955178864307}
+    - target: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
+      propertyPath: capsuleCollider
+      value: 
+      objectReference: {fileID: 5704913395236892502}
     - target: {fileID: 6035460800008974343, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -125,6 +130,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658acf5ec0721b34490ec043f277db6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &5704913395236892502 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 4511747968674823317, guid: ca25066036473ca49a73d594b649c74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8194051437198939075}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7057959430376796046 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1172614768507206733, guid: ca25066036473ca49a73d594b649c74b,

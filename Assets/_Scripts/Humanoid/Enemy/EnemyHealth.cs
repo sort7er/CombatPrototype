@@ -41,6 +41,18 @@ public class EnemyHealth : Health
         base.Dead(attackingWeapon);
         owner.Dead();
     }
+
+    protected override void JustCutDead(Weapon attackingWeapon, Vector3 worldPos, Vector3 planeNormal)
+    {
+        if(slicingController != null)
+        {
+            slicingController.JustCut(attackingWeapon, worldPos, planeNormal);
+        }
+
+        base.JustCutDead(attackingWeapon, worldPos, planeNormal);
+        owner.Dead();
+    }
+
     protected override void DrainedPosture()
     {
         base.DrainedPosture();

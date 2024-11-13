@@ -34,10 +34,10 @@ MonoBehaviour:
   rangedInput:
     animationClip: {fileID: -6006647416582150587, guid: 42b20035dabf19349a042a4a1009b198,
       type: 3}
-    damage: 0
-    postureDamage: 0
+    damage: 75
+    postureDamage: 75
     activeWield: 0
-    hitType: 0
+    hitType: 1
     animationCurve:
       serializedVersion: 2
       m_Curve:

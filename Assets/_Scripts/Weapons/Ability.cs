@@ -15,7 +15,7 @@ public abstract class Ability
     public Transform[] abilityTransforms { get; private set; }
     
     protected CameraController camController;
-    protected List<Enemy> enemies;
+    protected List<Enemy> enemies = new();
     protected Transform enemyTrans;
     protected Vector3 targetPosition;
 
