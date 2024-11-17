@@ -638,12 +638,12 @@ PrefabInstance:
     - target: {fileID: 4258902708166986747, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
       propertyPath: trailFrameLength
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5486745493578346794, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
       propertyPath: trailFrameLength
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5608112329617447096, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
@@ -6651,7 +6651,7 @@ PrefabInstance:
     - target: {fileID: 2482145031874906935, guid: 7f5cfbe96748cd949a422c5258c65a37,
         type: 3}
       propertyPath: trailFrameLength
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5702633665709738025, guid: 7f5cfbe96748cd949a422c5258c65a37,
         type: 3}
@@ -6827,12 +6827,12 @@ PrefabInstance:
     - target: {fileID: 5524878169235534005, guid: a96920a7ca4595e41b769bdd0433259d,
         type: 3}
       propertyPath: trailFrameLength
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8194651457725649147, guid: a96920a7ca4595e41b769bdd0433259d,
         type: 3}
       propertyPath: trailFrameLength
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8576997796159231745, guid: a96920a7ca4595e41b769bdd0433259d,
         type: 3}
@@ -7058,7 +7058,7 @@ PrefabInstance:
     - target: {fileID: 4941364153969370893, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
       propertyPath: trailFrameLength
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7340748607120714782, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
         type: 3}
@@ -7099,7 +7099,7 @@ PrefabInstance:
     - target: {fileID: 50163109103485092, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
       propertyPath: trailFrameLength
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6558507996456503484, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
@@ -7182,7 +7182,7 @@ PrefabInstance:
     - target: {fileID: 2562936915091592370, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
         type: 3}
       propertyPath: trailFrameLength
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5670018948379713822, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
         type: 3}
