@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Weapons")]
     public WeaponModel[] weaponModel;
+    public TrailEffect[] trailEffects;
     public Humanoid owner { get; private set; }
 
     public Vector3 weaponPos { get; private set; }
@@ -46,6 +47,21 @@ public class Weapon : MonoBehaviour
         transform.localPosition= Vector3.zero;
 
         SetParentForModels(modelParents);
+    }
+
+    public void DisableTrails()
+    {
+        for(int i = 0; i < trailEffects.Length; i++)
+        {
+            trailEffects[i].DisableTrails();
+        }
+    }
+    public void EnableTrails()
+    {
+        for (int i = 0; i < trailEffects.Length; i++)
+        {
+            trailEffects[i].EnableTrails();
+        }
     }
 
     public void SetParentForModels(params Transform[] newParents)

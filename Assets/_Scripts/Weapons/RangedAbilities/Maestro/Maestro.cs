@@ -75,6 +75,7 @@ public class Maestro : Ability
 
     private void OneLeft()
     {
+        player.currentWeapon.EnableTrails();
         ReleaseCurrentWeapon();
         SwingStartCommon();
         isLeft = true;
@@ -107,6 +108,7 @@ public class Maestro : Ability
     }
     private void Return()
     {
+        player.currentWeapon.DisableTrails();
         ReturnCurrentWeapon();
     }
     #endregion
