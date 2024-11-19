@@ -60,7 +60,7 @@ public class Weapon : MonoBehaviour
     {
         for (int i = 0; i < trailEffects.Length; i++)
         {
-            trailEffects[i].EnableTrails();
+            trailEffects[i].EnableTrails(transform);
         }
     }
 

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TrailEffect : MonoBehaviour
@@ -8,16 +10,19 @@ public class TrailEffect : MonoBehaviour
     [SerializeField] private Transform bottom;
     [SerializeField] private MeshFilter trailMeshFilter;
 
+    private Transform transformToAjustTo;
+
     private Mesh mesh;
     private Vector3[] vertecies;
     private Vector2[] uv;
     private int[] triangles;
+    private int vertexCount;
     private int frameCount;
 
     private Vector3 previouisTipPos;
     private Vector3 previouisBottomPos;
 
-    private const int numVerticies = 12;
+    private const int numVerticies = 6;
 
 
 
@@ -33,86 +38,127 @@ public class TrailEffect : MonoBehaviour
         previouisTipPos = tip.position;
         previouisBottomPos = bottom.position;
 
-        DisableTrails();
+        //DisableTrails();
     }
-    public void EnableTrails()
+    public void EnableTrails(Transform transform)
     {
-        trailMeshFilter.gameObject.SetActive(true);
+        //trailMeshFilter.gameObject.SetActive(true);
+        //transformToAjustTo = transform;
     }
     public void DisableTrails()
     {
-        trailMeshFilter.gameObject.SetActive(false);
+        //trailMeshFilter.gameObject.SetActive(false);
+        //transformToAjustTo = null;
     }
 
     private void Update()
     {
-        if(trailMeshFilter.gameObject.activeSelf)
-        {
-            trailMeshFilter.transform.position = Vector3.zero;
-            trailMeshFilter.transform.rotation = Quaternion.identity;
-        }
+        //if(trailMeshFilter.gameObject.activeSelf)
+        //{
+        //    trailMeshFilter.transform.position = Vector3.zero;
+        //    trailMeshFilter.transform.rotation = Quaternion.identity;
+        //}
+        trailMeshFilter.transform.position = Vector3.zero;
+        trailMeshFilter.transform.rotation = Quaternion.identity;
 
     }
 
     private void LateUpdate()
     {
-        if (trailMeshFilter.gameObject.activeSelf)
+        //if (trailMeshFilter.gameObject.activeSelf)
+        //{
+        //    trailMeshFilter.transform.position = Vector3.zero;
+        //    trailMeshFilter.transform.rotation = Quaternion.identity;
+
+        //    if (frameCount == (trailFrameLength * numVerticies))
+        //    {
+        //        frameCount = 0;
+        //    }
+
+        //    SetVerecies();
+        //    SetTriangles();
+        //    SetUV();
+        //    SetMesh();
+
+
+        //    previouisTipPos = tip.position;
+        //    previouisBottomPos = bottom.position;
+        //    frameCount += numVerticies;
+
+        //    mesh.RecalculateBounds();
+        //}
+        trailMeshFilter.transform.position = Vector3.zero;
+        trailMeshFilter.transform.rotation = Quaternion.identity;
+
+        if (vertexCount == (trailFrameLength * numVerticies))
         {
-            trailMeshFilter.transform.position = Vector3.zero;
-            trailMeshFilter.transform.rotation = Quaternion.identity;
-
-            if (frameCount == (trailFrameLength * numVerticies))
-            {
-                frameCount = 0;
-            }
-
-            SetVerecies();
-            SetTriangles();
-            SetUV();
-            SetMesh();
-
-
-            previouisTipPos = tip.position;
-            previouisBottomPos = bottom.position;
-            frameCount += numVerticies;
-
-            mesh.RecalculateBounds();
+            vertexCount = 0;
+            frameCount = 0;
         }
 
+        SetVerecies();
+        SetTriangles();
+        SetUV();
+        SetMesh();
+
+
+        previouisTipPos = tip.position;
+        previouisBottomPos = bottom.position;
+        vertexCount += numVerticies;
+        frameCount++;
+
+        mesh.RecalculateBounds();
     }
     private void SetVerecies()
     {
-        //Previus tip face forwards
-        vertecies[frameCount] = bottom.position;
-        vertecies[frameCount + 1] = tip.position;
-        vertecies[frameCount + 2] = previouisTipPos;
-        //Previus tip face backwards
-        vertecies[frameCount + 3] = bottom.position;
-        vertecies[frameCount + 4] = previouisTipPos;
-        vertecies[frameCount + 5] = tip.position;
+        //Tip triangle
+        vertecies[vertexCount] = bottom.position;
+        vertecies[vertexCount + 1] = tip.position;
+        vertecies[vertexCount + 2] = previouisTipPos;
 
-        //Previous bottom face forwards
-        vertecies[frameCount + 6] = previouisTipPos;
-        vertecies[frameCount + 7] = bottom.position;
-        vertecies[frameCount + 8] = previouisBottomPos;
-        //Previous bottom face backwards
-        vertecies[frameCount + 9] = previouisTipPos;
-        vertecies[frameCount + 10] = previouisBottomPos;
-        vertecies[frameCount + 11] = bottom.position;
+        //Bottom triangle
+        vertecies[vertexCount + 3] = previouisTipPos;
+        vertecies[vertexCount + 4] = bottom.position;
+        vertecies[vertexCount + 5] = previouisBottomPos;
+
     }
 
     private void SetTriangles()
     {
         for (int i = 0; i < numVerticies; i++)
         {
-            triangles[frameCount + i] = frameCount + i;
+            triangles[vertexCount + i] = vertexCount + i;
         }
     }
     private void SetUV()
     {
-        for (int i = 0; i < uv.Length; i++)
+        float ratio = 1 / (float)trailFrameLength;
+
+        Debug.Log(vertexCount);
+
+        for (int i = 0; i < trailFrameLength; i++)
         {
-            uv[i] = new Vector2(vertecies[i].x, vertecies[i].z);
+            //The number of UVs here NEED to be the same amount as numVertecies
+
+            int offset = i * numVerticies;
+            int ajusdedOffset = offset /*+ frameCount*/;
+
+            //if(ajusdedOffset > uv.Length - 1)
+            //{
+            //    int difference = ajusdedOffset - uv.Length - 1;
+            //    ajusdedOffset = 0 + difference;
+            //}
+
+
+            uv[0 + ajusdedOffset] = new Vector2(ratio * i + ratio, 1);
+            uv[1 + ajusdedOffset] = new Vector2(ratio * i + ratio, 0);
+            uv[2 + ajusdedOffset] = new Vector2(ratio * i, 0);
+
+            uv[3 + ajusdedOffset] = new Vector2(ratio * i, 0);
+            uv[4 + ajusdedOffset] = new Vector2(ratio * i, 1);
+            uv[5 + ajusdedOffset] = new Vector2(ratio * i + ratio, 1);
+
+
         }
     }
     private void SetMesh()
@@ -121,4 +167,6 @@ public class TrailEffect : MonoBehaviour
         mesh.triangles = triangles;
         mesh.uv = uv;
     }
+
+
 }

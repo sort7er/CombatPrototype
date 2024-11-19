@@ -310,7 +310,11 @@
             "m_Id": "2de2b0f0dc644ebf97f00136505f841c"
         }
     ],
-    "m_GroupDatas": [],
+    "m_GroupDatas": [
+        {
+            "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
+        }
+    ],
     "m_StickyNoteDatas": [],
     "m_Edges": [
         {
@@ -1503,7 +1507,7 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "035f364782604dcc8e5f7c04bd3ca27f",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Property",
     "m_DrawState": {
@@ -2051,7 +2055,7 @@
     "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
     "m_ObjectId": "112a17ce34f0438dae75870d2b67e134",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Multiply",
     "m_DrawState": {
@@ -2316,6 +2320,8 @@
     "m_AlphaClip": true,
     "m_CastShadows": false,
     "m_ReceiveShadows": true,
+    "m_AdditionalMotionVectorMode": 0,
+    "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
@@ -2419,7 +2425,7 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "1b39ff3ae6d249f882babfa35550518c",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Property",
     "m_DrawState": {
@@ -4353,7 +4359,7 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "568444acf69447b4877013cf6ea9cff6",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Property",
     "m_DrawState": {
@@ -5229,7 +5235,7 @@
     "m_Type": "UnityEditor.ShaderGraph.TimeNode",
     "m_ObjectId": "6dbc31511c064660b6bf0b1e451edb93",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Time",
     "m_DrawState": {
@@ -5903,6 +5909,17 @@
     "m_Value": 0.5,
     "m_DefaultValue": 0.5,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.GroupData",
+    "m_ObjectId": "7cc129ab1ecd47b4b0f35681b9d30115",
+    "m_Title": "Distortion",
+    "m_Position": {
+        "x": 10.0,
+        "y": 10.0
+    }
 }
 
 {
@@ -7734,7 +7751,7 @@
     "m_Type": "UnityEditor.ShaderGraph.UVNode",
     "m_ObjectId": "b952a59840954afd8e17501967a7dc54",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "UV",
     "m_DrawState": {
@@ -8277,7 +8294,7 @@
     "m_Type": "UnityEditor.ShaderGraph.NoiseNode",
     "m_ObjectId": "c7488cef35b14b76b84fc800effdead8",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Simple Noise",
     "m_DrawState": {
@@ -8446,7 +8463,7 @@
     "m_Type": "UnityEditor.ShaderGraph.LerpNode",
     "m_ObjectId": "c8ea3afdc4f34dc6897b9e377fe4490b",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Lerp",
     "m_DrawState": {
@@ -8908,7 +8925,7 @@
     "m_Type": "UnityEditor.ShaderGraph.TilingAndOffsetNode",
     "m_ObjectId": "d04e9d2a348644ce8c5d37bcd30df5dd",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Tiling And Offset",
     "m_DrawState": {
@@ -8953,7 +8970,7 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "d0a9c9d6661c48a0b104dd968f0911fd",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "7cc129ab1ecd47b4b0f35681b9d30115"
     },
     "m_Name": "Property",
     "m_DrawState": {
