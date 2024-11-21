@@ -43,14 +43,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DisolveScale: 35
+    - _DisolveScale: 46.37
+    - _Emission: 10
+    - _MainTexSpeed: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color1: {r: 1, g: 0, b: 0.9957261, a: 1}
-    - _Color2: {r: 0.1295404, g: 0, b: 1, a: 1}
-    - _DisolveSpeed: {r: -0.5, g: 0, b: 0, a: 0}
-    - _MainTexSpeed: {r: -0.1, g: 0, b: 0, a: 0}
+    - _BackgroundColor: {r: 0.80597496, g: 0, b: 2, a: 0.5686275}
+    - _CellSize: {r: 0.6, g: 0.6, b: 0, a: 0}
+    - _Color1: {r: 1, g: 0.1554602, b: 0, a: 1}
+    - _Color2: {r: 1, g: 0.01055041, b: 0, a: 1}
+    - _DisolveSpeed: {r: 8.9, g: 0, b: 0, a: 0}
+    - _GridColor1: {r: 1, g: 0.2148411, b: 0, a: 1}
+    - _GridColor2: {r: 1, g: 0, b: 0.02767277, a: 1}
+    - _MainTexSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _TextureSize: {r: 20, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1028096998098226868

@@ -660,10 +660,25 @@ PrefabInstance:
       propertyPath: trailMeshFilter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6405448853543404253, guid: a7fbf9fe8923747479728b128f6a5099,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6815047948248039133, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
       propertyPath: m_Name
       value: Daggers
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965379906045501070, guid: a7fbf9fe8923747479728b128f6a5099,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276562481233663271, guid: a7fbf9fe8923747479728b128f6a5099,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8575816023146386143, guid: a7fbf9fe8923747479728b128f6a5099,
         type: 3}
@@ -852,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &330947919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6721,6 +6736,11 @@ PrefabInstance:
       propertyPath: trailFrameLength
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 3852665544566361922, guid: 7f5cfbe96748cd949a422c5258c65a37,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5702633665709738025, guid: 7f5cfbe96748cd949a422c5258c65a37,
         type: 3}
       propertyPath: m_Name
@@ -6882,6 +6902,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 243690824}
     m_Modifications:
+    - target: {fileID: 2772936413988381567, guid: a96920a7ca4595e41b769bdd0433259d,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2895366906143010245, guid: a96920a7ca4595e41b769bdd0433259d,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -6896,6 +6921,11 @@ PrefabInstance:
         type: 3}
       propertyPath: trailFrameLength
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045530697146603420, guid: a96920a7ca4595e41b769bdd0433259d,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8194651457725649147, guid: a96920a7ca4595e41b769bdd0433259d,
         type: 3}
@@ -7004,6 +7034,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DefenciveEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057959430376796046, guid: a8676f04cf7eb5a45ac0ea6d9d7c331b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8993070698915446131, guid: a8676f04cf7eb5a45ac0ea6d9d7c331b,
         type: 3}
@@ -7133,6 +7168,11 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 45673842da1dce94484d4f960a14c64e, type: 2}
+    - target: {fileID: 8296117594122848076, guid: 28f8d28cb7c0d9b409cafbc931b2eeb2,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7168,6 +7208,16 @@ PrefabInstance:
         type: 3}
       propertyPath: trailFrameLength
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726625394798626596, guid: cc3e8d7332e11814f92f77cf51ea9a96,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857015695214741590, guid: cc3e8d7332e11814f92f77cf51ea9a96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.966
       objectReference: {fileID: 0}
     - target: {fileID: 6558507996456503484, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
@@ -7219,6 +7269,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7140927226224647397, guid: cc3e8d7332e11814f92f77cf51ea9a96,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140927226224647397, guid: cc3e8d7332e11814f92f77cf51ea9a96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.893
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252832919845681381, guid: cc3e8d7332e11814f92f77cf51ea9a96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.794
+      objectReference: {fileID: 0}
     - target: {fileID: 7489086249869654527, guid: cc3e8d7332e11814f92f77cf51ea9a96,
         type: 3}
       propertyPath: m_Name
@@ -7246,6 +7311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562936915091592370, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5670018948379713822, guid: 42dc171b1f8b2124b9e7042e9ce63f6b,
         type: 3}

@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
     {
         for(int i = 0; i < trailEffects.Length; i++)
         {
-            trailEffects[i].DisableTrails();
+            trailEffects[i].DisableTrails(0.25f);
         }
     }
     public void EnableTrails()

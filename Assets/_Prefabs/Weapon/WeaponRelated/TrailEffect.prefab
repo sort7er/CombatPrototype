@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4455140417478425077}
   m_Layer: 0
-  m_Name: Tip
+  m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1645be04822b154f974ca97cf671195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trailFrameLength: 100
-  tip: {fileID: 4455140417478425077}
+  trailFrameLength: 20
+  top: {fileID: 4455140417478425077}
   bottom: {fileID: 9138581156698900806}
   trailMeshFilter: {fileID: 4123869230226969018}
 --- !u!1 &8934077439187923864

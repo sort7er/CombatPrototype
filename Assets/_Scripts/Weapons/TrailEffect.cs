@@ -6,7 +6,7 @@ public class TrailEffect : MonoBehaviour
 {
     [SerializeField] private int trailFrameLength;
 
-    [SerializeField] private Transform tip;
+    [SerializeField] private Transform top;
     [SerializeField] private Transform bottom;
     [SerializeField] private MeshFilter trailMeshFilter;
 
@@ -16,149 +16,154 @@ public class TrailEffect : MonoBehaviour
     private Vector3[] vertecies;
     private Vector2[] uv;
     private int[] triangles;
-    private int vertexCount;
-    private int frameCount;
 
-    private Vector3 previouisTipPos;
-    private Vector3 previouisBottomPos;
+    private Vector3[] topPositions;
+    private Vector3[] bottomPositions;
 
-    private const int numVerticies = 6;
+    private int numVerticies;
+    private int halfNumVerticies;
+    private int numTris;
 
-
+    private float timer;
+    private int targetFPS = 60;
 
     private void Start()
     {
         mesh = new Mesh();
         trailMeshFilter.mesh = mesh;
 
-        vertecies = new Vector3[trailFrameLength * numVerticies];
-        uv = new Vector2[vertecies.Length];
-        triangles = new int[vertecies.Length];
+        numVerticies = trailFrameLength * 2 + 2;
+        halfNumVerticies = Mathf.RoundToInt(numVerticies * 0.5f);
+        numTris = trailFrameLength * 6;
 
-        previouisTipPos = tip.position;
-        previouisBottomPos = bottom.position;
+        vertecies = new Vector3[numVerticies];
+        uv = new Vector2[numVerticies];
+        triangles = new int[numTris];
 
-        //DisableTrails();
+        topPositions = new Vector3[halfNumVerticies];
+        bottomPositions = new Vector3[halfNumVerticies];
+
+        CalculatePositions();
+
+        DisableTrails();
     }
     public void EnableTrails(Transform transform)
     {
-        //trailMeshFilter.gameObject.SetActive(true);
-        //transformToAjustTo = transform;
+        trailMeshFilter.gameObject.SetActive(true);
+        transformToAjustTo = transform;
+
+        for(int i = 0; i < halfNumVerticies; i++)
+        {
+            topPositions[i] = top.position;
+            bottomPositions[i] = bottom.position;
+        } 
+        CancelInvoke(nameof(Delay));
     }
-    public void DisableTrails()
+    public void DisableTrails(float delay = 0)
     {
-        //trailMeshFilter.gameObject.SetActive(false);
-        //transformToAjustTo = null;
+        if(delay == 0)
+        {
+            trailMeshFilter.gameObject.SetActive(false);
+            transformToAjustTo = null;
+        }
+        else
+        {
+            Invoke(nameof(Delay), delay);   
+        }
+    }
+
+    private void Delay()
+    {
+        trailMeshFilter.gameObject.SetActive(false);
+        transformToAjustTo = null;
     }
 
     private void Update()
     {
-        //if(trailMeshFilter.gameObject.activeSelf)
-        //{
-        //    trailMeshFilter.transform.position = Vector3.zero;
-        //    trailMeshFilter.transform.rotation = Quaternion.identity;
-        //}
-        trailMeshFilter.transform.position = Vector3.zero;
-        trailMeshFilter.transform.rotation = Quaternion.identity;
+        if(trailMeshFilter.gameObject.activeSelf)
+        {
+            trailMeshFilter.transform.position = Vector3.zero;
+            trailMeshFilter.transform.rotation = Quaternion.identity;
+        }
 
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-        //if (trailMeshFilter.gameObject.activeSelf)
-        //{
-        //    trailMeshFilter.transform.position = Vector3.zero;
-        //    trailMeshFilter.transform.rotation = Quaternion.identity;
-
-        //    if (frameCount == (trailFrameLength * numVerticies))
-        //    {
-        //        frameCount = 0;
-        //    }
-
-        //    SetVerecies();
-        //    SetTriangles();
-        //    SetUV();
-        //    SetMesh();
-
-
-        //    previouisTipPos = tip.position;
-        //    previouisBottomPos = bottom.position;
-        //    frameCount += numVerticies;
-
-        //    mesh.RecalculateBounds();
-        //}
-        trailMeshFilter.transform.position = Vector3.zero;
-        trailMeshFilter.transform.rotation = Quaternion.identity;
-
-        if (vertexCount == (trailFrameLength * numVerticies))
+        //Is in fixed to ensure constant framerate across devices
+        if (trailMeshFilter.gameObject.activeSelf)
         {
-            vertexCount = 0;
-            frameCount = 0;
+            trailMeshFilter.transform.position = Vector3.zero;
+            trailMeshFilter.transform.rotation = Quaternion.identity;
+
+            SetVerecies();
+            SetTriangles();
+            SetUV();
+            SetMesh();
+
+            CalculatePositions();
+
+            mesh.RecalculateBounds();
         }
+    }
 
-        SetVerecies();
-        SetTriangles();
-        SetUV();
-        SetMesh();
+    private void CalculatePositions()
+    {
+        topPositions[0] = top.position;
+        bottomPositions[0] = bottom.position;
 
-
-        previouisTipPos = tip.position;
-        previouisBottomPos = bottom.position;
-        vertexCount += numVerticies;
-        frameCount++;
-
-        mesh.RecalculateBounds();
+        for (int i = halfNumVerticies - 1; i >= 1; i--)
+        {
+            topPositions[i] = topPositions[i - 1];
+            bottomPositions[i] = bottomPositions[i - 1];
+        }
     }
     private void SetVerecies()
     {
-        //Tip triangle
-        vertecies[vertexCount] = bottom.position;
-        vertecies[vertexCount + 1] = tip.position;
-        vertecies[vertexCount + 2] = previouisTipPos;
+        vertecies[0] = bottom.position;
+        vertecies[1] = top.position;
 
-        //Bottom triangle
-        vertecies[vertexCount + 3] = previouisTipPos;
-        vertecies[vertexCount + 4] = bottom.position;
-        vertecies[vertexCount + 5] = previouisBottomPos;
+        for (int frame = 0, vertexIndex = 2; frame < trailFrameLength; frame++)
+        {
+            vertecies[vertexIndex] = bottomPositions[frame + 1];
+            vertecies[vertexIndex + 1] = topPositions[frame + 1];
 
+
+            vertexIndex += 2;
+        }
     }
 
     private void SetTriangles()
     {
-        for (int i = 0; i < numVerticies; i++)
+        for (int frame = 0, triangle = 0, line = 0; frame < trailFrameLength; frame++)
         {
-            triangles[vertexCount + i] = vertexCount + i;
+            //Needs to be 6 to avoid null reference in index
+            triangles[triangle] = line;
+            triangles[triangle + 1] = line + 1;
+            triangles[triangle + 2] = line + 3;
+
+            triangles[triangle + 3] = line;
+            triangles[triangle + 4] = line + 3;
+            triangles[triangle + 5] = line + 2;
+
+            line += 2;
+            triangle += 6;
         }
     }
     private void SetUV()
     {
-        float ratio = 1 / (float)trailFrameLength;
+        float ratio = 1 / (float)numVerticies;
 
-        Debug.Log(vertexCount);
+        uv[0] = new Vector2(0, 0);
+        uv[1] = new Vector2(0, 1);
 
-        for (int i = 0; i < trailFrameLength; i++)
+        for (int frame = 0, uvIndex = 2; frame < trailFrameLength; frame ++)
         {
-            //The number of UVs here NEED to be the same amount as numVertecies
 
-            int offset = i * numVerticies;
-            int ajusdedOffset = offset /*+ frameCount*/;
+            uv[uvIndex] = new Vector2(ratio * uvIndex, 0);
+            uv[uvIndex + 1] = new Vector2(ratio * uvIndex, 1);
 
-            //if(ajusdedOffset > uv.Length - 1)
-            //{
-            //    int difference = ajusdedOffset - uv.Length - 1;
-            //    ajusdedOffset = 0 + difference;
-            //}
-
-
-            uv[0 + ajusdedOffset] = new Vector2(ratio * i + ratio, 1);
-            uv[1 + ajusdedOffset] = new Vector2(ratio * i + ratio, 0);
-            uv[2 + ajusdedOffset] = new Vector2(ratio * i, 0);
-
-            uv[3 + ajusdedOffset] = new Vector2(ratio * i, 0);
-            uv[4 + ajusdedOffset] = new Vector2(ratio * i, 1);
-            uv[5 + ajusdedOffset] = new Vector2(ratio * i + ratio, 1);
-
-
+            uvIndex += 2;
         }
     }
     private void SetMesh()
