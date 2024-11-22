@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailFrameLength: 100
-  tip: {fileID: 0}
+  top: {fileID: 0}
   bottom: {fileID: 0}
   trailMeshFilter: {fileID: 0}
 --- !u!1 &6815047948248039133
@@ -451,6 +451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1515025721951193632}
   - component: {fileID: 4573752892181745633}
+  - component: {fileID: 4094304201490428946}
   m_Layer: 0
   m_Name: Daggers
   m_TagString: Untagged
@@ -493,9 +494,25 @@ MonoBehaviour:
   weaponModel:
   - {fileID: 7785325015696337657}
   - {fileID: 5311457579088156792}
+  weaponEffects: {fileID: 4094304201490428946}
+--- !u!114 &4094304201490428946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6815047948248039133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17cbbcb026304eb47a460e14e82afaf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   trailEffects:
   - {fileID: 6965379906045501070}
   - {fileID: 6405448853543404253}
+  meshRenderer: []
+  defaultMaterial: {fileID: 2100000, guid: 4449b1c0056793a40bec90e0e2e24805, type: 2}
+  glowMaterial: {fileID: 2100000, guid: 4c7756a018cec2046bf1efe91971673f, type: 2}
 --- !u!1 &6815096003813549096
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +957,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2091220557511435940}
     m_Modifications:
+    - target: {fileID: 973844731971827335, guid: e1e6f4d07b4583249bb1176543db89a9,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3575005238017237373, guid: e1e6f4d07b4583249bb1176543db89a9,
         type: 3}
       propertyPath: m_Name
@@ -1110,6 +1132,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4230354221165853680}
     m_Modifications:
+    - target: {fileID: 973844731971827335, guid: e1e6f4d07b4583249bb1176543db89a9,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3575005238017237373, guid: e1e6f4d07b4583249bb1176543db89a9,
         type: 3}
       propertyPath: m_Name

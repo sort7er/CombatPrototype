@@ -19,12 +19,11 @@ public class Maestro : Ability
     private float damageRange = 3f; //should be generous
     private bool damagePhaseDone;
 
-
     public override void ExecuteAbility(Player player, List<Enemy> enemies)
     {
         base.ExecuteAbility(player, enemies);
         SetValues();
-
+        //player.handEffects.EnableRight();
     }
     public override void ExecuteAbilityNoTarget(Player player)
     {
@@ -42,9 +41,11 @@ public class Maestro : Ability
         isMiddleCurve = false;
         numberOfSwings = 0;
         
-        duration = 0.7f;
+        duration = 0.75f;
         maestroMovement.SetStartValues();
         maestroMovement.SetStartTransforms();
+        player.currentWeapon.weaponEffects.EnableGlow();
+        abilityTransforms[0].GetComponent<AudioSource>().Play();
     }
 
     public override void AbilityPing()
@@ -75,7 +76,7 @@ public class Maestro : Ability
 
     private void OneLeft()
     {
-        player.currentWeapon.EnableTrails();
+        player.currentWeapon.weaponEffects.EnableTrails();
         ReleaseCurrentWeapon();
         SwingStartCommon();
         isLeft = true;
@@ -108,8 +109,12 @@ public class Maestro : Ability
     }
     private void Return()
     {
-        player.currentWeapon.DisableTrails();
+        player.currentWeapon.weaponEffects.DisableTrails();
+        player.currentWeapon.weaponEffects.DisableGlow();
+        abilityTransforms[0].GetComponent<AudioSource>().Stop();
+        //player.handEffects.DisableRight();
         ReturnCurrentWeapon();
+
     }
     #endregion
 

@@ -9,6 +9,7 @@ public class TrailEffect : MonoBehaviour
     [SerializeField] private Transform top;
     [SerializeField] private Transform bottom;
     [SerializeField] private MeshFilter trailMeshFilter;
+    [SerializeField] private ParticleSystem particleSystem;
 
     private Transform transformToAjustTo;
 
@@ -49,6 +50,7 @@ public class TrailEffect : MonoBehaviour
     }
     public void EnableTrails(Transform transform)
     {
+        particleSystem.Play();
         trailMeshFilter.gameObject.SetActive(true);
         transformToAjustTo = transform;
 
@@ -61,6 +63,7 @@ public class TrailEffect : MonoBehaviour
     }
     public void DisableTrails(float delay = 0)
     {
+        particleSystem.Stop();
         if(delay == 0)
         {
             trailMeshFilter.gameObject.SetActive(false);

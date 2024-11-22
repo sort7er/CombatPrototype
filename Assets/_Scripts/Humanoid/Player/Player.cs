@@ -16,6 +16,7 @@ public class Player : Humanoid
     public CameraController cameraController;
     public TargetAssistance targetAssistance;
     public Transform[] abilityTransforms;
+    public HandEffects handEffects;
     public PlayerState currentState { get; private set; }
     public bool isMoving { get; private set; }
     public bool isFalling { get; private set; }

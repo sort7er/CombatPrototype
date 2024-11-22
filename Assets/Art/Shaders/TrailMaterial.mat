@@ -50,14 +50,14 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _BackgroundColor: {r: 0.80597496, g: 0, b: 2, a: 0.5686275}
-    - _CellSize: {r: 0.6, g: 0.6, b: 0, a: 0}
+    - _CellSize: {r: 0.7, g: 0.7, b: 0, a: 0}
     - _Color1: {r: 1, g: 0.1554602, b: 0, a: 1}
     - _Color2: {r: 1, g: 0.01055041, b: 0, a: 1}
     - _DisolveSpeed: {r: 8.9, g: 0, b: 0, a: 0}
     - _GridColor1: {r: 1, g: 0.2148411, b: 0, a: 1}
     - _GridColor2: {r: 1, g: 0, b: 0.02767277, a: 1}
     - _MainTexSpeed: {r: 0, g: 0, b: 0, a: 0}
-    - _TextureSize: {r: 20, g: 5, b: 0, a: 0}
+    - _TextureSize: {r: 20, g: 9, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1028096998098226868

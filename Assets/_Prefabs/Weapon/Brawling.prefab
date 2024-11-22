@@ -748,6 +748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8576997796159231745}
   - component: {fileID: 9219312111224446930}
+  - component: {fileID: 7864308592160356302}
   m_Layer: 10
   m_Name: Brawling
   m_TagString: Untagged
@@ -790,9 +791,25 @@ MonoBehaviour:
   weaponModel:
   - {fileID: 558316155458603694}
   - {fileID: 5922704958408187636}
+  weaponEffects: {fileID: 7864308592160356302}
+--- !u!114 &7864308592160356302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669160942470608494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17cbbcb026304eb47a460e14e82afaf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   trailEffects:
   - {fileID: 8045530697146603420}
   - {fileID: 2772936413988381567}
+  meshRenderer: []
+  defaultMaterial: {fileID: 0}
+  glowMaterial: {fileID: 0}
 --- !u!1001 &3168485085394834936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -801,6 +818,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6016914781505189282}
     m_Modifications:
+    - target: {fileID: 973844731971827335, guid: e1e6f4d07b4583249bb1176543db89a9,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3575005238017237373, guid: e1e6f4d07b4583249bb1176543db89a9,
         type: 3}
       propertyPath: m_Name
@@ -897,6 +919,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 148405150204872994}
     m_Modifications:
+    - target: {fileID: 973844731971827335, guid: e1e6f4d07b4583249bb1176543db89a9,
+        type: 3}
+      propertyPath: trailFrameLength
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3575005238017237373, guid: e1e6f4d07b4583249bb1176543db89a9,
         type: 3}
       propertyPath: m_Name

@@ -88,7 +88,7 @@ public class MaestroMovement
             }
 
             Vector3 directionToWeapon = (abilityTransforms[0].transform.position - player.Position() + player.Right() * offset).normalized;
-            directionToWeapon.y = -10;
+            directionToWeapon.y = -3;
 
 
             Quaternion baseRotation = Quaternion.LookRotation(directionToWeapon);

@@ -15,7 +15,9 @@ public class Weapon : MonoBehaviour
 
     [Header("Weapons")]
     public WeaponModel[] weaponModel;
-    public TrailEffect[] trailEffects;
+
+    public WeaponEffects weaponEffects;
+
     public Humanoid owner { get; private set; }
 
     public Vector3 weaponPos { get; private set; }
@@ -29,6 +31,8 @@ public class Weapon : MonoBehaviour
 
     private bool rightIncluded;
     private bool leftIncluded;
+
+
 
 
     private void Awake()
@@ -49,20 +53,7 @@ public class Weapon : MonoBehaviour
         SetParentForModels(modelParents);
     }
 
-    public void DisableTrails()
-    {
-        for(int i = 0; i < trailEffects.Length; i++)
-        {
-            trailEffects[i].DisableTrails(0.25f);
-        }
-    }
-    public void EnableTrails()
-    {
-        for (int i = 0; i < trailEffects.Length; i++)
-        {
-            trailEffects[i].EnableTrails(transform);
-        }
-    }
+
 
     public void SetParentForModels(params Transform[] newParents)
     {
