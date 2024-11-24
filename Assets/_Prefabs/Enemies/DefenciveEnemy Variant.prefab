@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 10639342704324535, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
+      propertyPath: defaultMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 9c5665b6846a6ff4e94cafc313f0d3fd, type: 2}
+    - target: {fileID: 10639342704324535, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
+      propertyPath: dissolveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ffe7457627e87a4d8c2f2d678da2081, type: 2}
     - target: {fileID: 971317887783513776, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -87,7 +97,12 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 8ffe7457627e87a4d8c2f2d678da2081, type: 2}
+      objectReference: {fileID: 2100000, guid: 9c5665b6846a6ff4e94cafc313f0d3fd, type: 2}
+    - target: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
+        type: 3}
+      propertyPath: enemyDissolve
+      value: 
+      objectReference: {fileID: 8183834590495734900}
     - target: {fileID: 5937715972609921831, guid: ca25066036473ca49a73d594b649c74b,
         type: 3}
       propertyPath: enemyBehaviour
@@ -161,3 +176,15 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 8194051437198939075}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8183834590495734900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 10639342704324535, guid: ca25066036473ca49a73d594b649c74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8194051437198939075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7057959430376796046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eac51fbce1848e40b31a6d12a1710a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

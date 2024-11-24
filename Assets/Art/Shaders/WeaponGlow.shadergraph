@@ -266,6 +266,9 @@
         },
         {
             "m_Id": "67828dba1bff4b29b95faad9e45f98ca"
+        },
+        {
+            "m_Id": "cb5238d101e54150900cf375c687238d"
         }
     ],
     "m_GroupDatas": [
@@ -943,6 +946,20 @@
                     "m_Id": "397d165994324a60a94d3a55137eef5c"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "cb5238d101e54150900cf375c687238d"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "e537c89f9d454c27a8689d843fc033c4"
+                },
+                "m_SlotId": 992985103
             }
         },
         {
@@ -6210,10 +6227,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3744.0,
-            "y": 1585.9998779296875,
+            "x": -3808.0,
+            "y": 1576.0,
             "width": 141.0,
-            "height": 34.0001220703125
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -6824,6 +6841,44 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.UVNode",
+    "m_ObjectId": "cb5238d101e54150900cf375c687238d",
+    "m_Group": {
+        "m_Id": "19d09e6118224bc5881ec1eae089085a"
+    },
+    "m_Name": "UV",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -3875.0,
+            "y": 1677.0,
+            "width": 208.0,
+            "height": 313.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "e0025fc07c6b409f9aa08e4bd59082bf"
+        }
+    ],
+    "synonyms": [
+        "texcoords",
+        "coords",
+        "coordinates"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_OutputChannel": 0
 }
 
 {
@@ -7568,6 +7623,31 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "e0025fc07c6b409f9aa08e4bd59082bf",
+    "m_Id": 0,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "e0c60f87f1fe4187b7f8761a1523cfb5",
     "m_Group": {
@@ -7773,6 +7853,9 @@
             "m_Id": "8f22cbff9acd43358e777ebe81fe56a4"
         },
         {
+            "m_Id": "f8bbd20f8ec841ae905a94f40c4b3ff8"
+        },
+        {
             "m_Id": "8940e83966da4ed0a29060d5812ee1fb"
         }
     ],
@@ -7789,13 +7872,15 @@
         "64172749-4f41-4525-a59c-b5d13cd8bc8d",
         "11d1608e-f38a-466b-b277-68ee29b4dc56",
         "82cd6b48-c684-448d-8481-0cc77896c60a",
-        "2a843410-ba27-453f-84ce-d3821aa60b98"
+        "2a843410-ba27-453f-84ce-d3821aa60b98",
+        "6fb0e8af-4c09-42f9-9efe-a74c379ac15a"
     ],
     "m_PropertyIds": [
         2101030033,
         -284274529,
         193641008,
-        1969481385
+        1969481385,
+        992985103
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -8387,6 +8472,27 @@
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "f8bbd20f8ec841ae905a94f40c4b3ff8",
+    "m_Id": 992985103,
+    "m_DisplayName": "UV",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_UV",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 1.0,
+        "y": 1.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
     "m_Labels": []
 }
 

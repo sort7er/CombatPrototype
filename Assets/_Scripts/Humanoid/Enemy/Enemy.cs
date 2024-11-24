@@ -32,6 +32,7 @@ namespace EnemyAI
         [Header("References")]
         public EnemyBehaviour enemyBehaviour;
         public EnemyAnimator enemyAnimator;
+        public EnemyDissolve enemyDissolve;
 
         public EnemyState currentState { get; private set; }
         public EnemyState nextParryState { get; private set; }
@@ -54,6 +55,8 @@ namespace EnemyAI
         public PerfectParryState perfectParryState = new PerfectParryState();
         public ParryAttackState parryAttackState = new ParryAttackState();
         public TakedownState takedownState = new TakedownState();
+        public DeadState deadState = new DeadState();
+
 
 
         //For attack done when hit
@@ -110,10 +113,12 @@ namespace EnemyAI
         }
         protected override void Update()
         {   
-            //Debug.Log(currentState);
-            base.Update();
-            currentState.Update();
-            AnimationSpeed();
+            if(currentState != deadState)
+            {
+                base.Update();
+                currentState.Update();
+                AnimationSpeed();
+            }
         }
         #endregion
 
@@ -160,8 +165,9 @@ namespace EnemyAI
         }
         public override void Dead()
         {
-            currentState.Dead();
-            gameObject.SetActive(false);
+            SwitchState(deadState);
+
+            //gameObject.SetActive(false);
         }
 
         #endregion

@@ -7,9 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GreatswordGlow
-  m_Shader: {fileID: -6465566751694194690, guid: c161db6c65c1d0a42b268718c394853c,
-    type: 3}
+  m_Name: EnemyDefault
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -18,31 +17,40 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Albedo:
-        m_Texture: {fileID: 2800000, guid: bd388927b43caf84cb288e070e4ee6ff, type: 3}
+    - _BaseLit_35c9d5511d5b45989a5879669edcfd85_Albedo_4010192003_Texture2D:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _AmbientOcclusion:
-        m_Texture: {fileID: 2800000, guid: e1e6de3672debee4c83edc6d74996857, type: 3}
+    - _BaseLit_35c9d5511d5b45989a5879669edcfd85_AmbientOcclusion_4083507712_Texture2D:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BaseLit_8cf33420887740bbb1069e8a966b94e8_Emission_3482804084_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 64abe09154ef9cb4dae252a75e3e8f76, type: 3}
+    - _BaseLit_35c9d5511d5b45989a5879669edcfd85_Emission_3482804084_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseLit_35c9d5511d5b45989a5879669edcfd85_MetallicSmoothness_2324762714_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseLit_35c9d5511d5b45989a5879669edcfd85_Normal_4217788894_Texture2D:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: cc94e6a3124627e479c175af7ea6c2c8, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 6d94e1f80d7a60f4d8de80ecaaff5070, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -57,43 +65,35 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _EmissionBorder:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Emissive:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: cc94e6a3124627e479c175af7ea6c2c8, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 79ef7d0c0e8be7744af5baadd4d01b16, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicSmoothness:
-        m_Texture: {fileID: 2800000, guid: 754f6907fd2b3a84499ab9cf1d4f032a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Normal:
-        m_Texture: {fileID: 2800000, guid: 0fb5bc13d6186184086bfd9b60570c93, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 6e73f644b4b720d46a2caf180db58b04, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 0d2238184e841e446bbfd4fd6a58a444, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Triplanar_726c1d7483844d28afba78b6166881bc_Texture_1_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Triplanar_e742197cba8f493b8a6678fd8ab9fa7a_Texture_1_Texture2D:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -114,56 +114,57 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _Alternative: 0.13
+    - _AlternativeDissolve: -1.74
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _BorderEmissionMultiplier: 2
     - _BumpScale: 1
+    - _CellSize: 0.5
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorSpeed: 8.88
+    - _ColorSpeed: 5
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _Dissolve: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _EmissionThickness: 0.02
     - _EnvironmentReflections: 1
-    - _FresnelPower: 2
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.146
     - _GlossyReflections: 1
-    - _GradientBorder: 0.58
-    - _GridRotation: 1.54
+    - _GradientAmount: 2.07
+    - _GridSize: 1
+    - _Height: 2.4
     - _Metallic: 0
     - _Mode: 0
-    - _NormalStrength: 1
     - _OcclusionStrength: 1
-    - _Parallax: 0.005
+    - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 1
+    - _Smoothness: 0.226
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Transission: 0.61688143
+    - _USE_UV: 1
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.00019003297, g: 0, b: 0.00063677685, a: 1}
-    - _Cellsize: {r: 0.9, g: 0.9, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.13140418, g: 2.4556432, b: 27.857618, a: 1}
-    - _EmissionColor2: {r: 8, g: 1.9457684, b: 0, a: 1}
-    - _GridSize: {r: 15, g: 15, b: 0, a: 0}
-    - _GridSpeed: {r: -8, g: 0.3, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.3251033, g: 0, b: 0, a: 1}
+    - _EmissionColor1: {r: 2, g: 0, b: 0.8126707, a: 0}
+    - _EmissionColor2: {r: 0.4153833, g: 0, b: 2, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &5509830224970121643
+--- !u!114 &6399504647040892491
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
