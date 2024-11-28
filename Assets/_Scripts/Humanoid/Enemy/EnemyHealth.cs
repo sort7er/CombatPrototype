@@ -26,18 +26,18 @@ public class EnemyHealth : Health
 
     protected override void Dead(Weapon attackingWeapon)
     {
-        if (attackingWeapon.currentAttack.hitType == HitType.slice)
-        {
-            slicingController.Slice(attackingWeapon);
-        }
-        else if (attackingWeapon.currentAttack.hitType == HitType.crumble)
-        {
-            int rnd = Random.Range(0, prefabs.Length);
-            ShardContainer container = Instantiate(prefabs[rnd], transform.position, transform.rotation);
+        //if (attackingWeapon.currentAttack.hitType == HitType.slice)
+        //{
+        //    slicingController.Slice(attackingWeapon);
+        //}
+        //else if (attackingWeapon.currentAttack.hitType == HitType.crumble)
+        //{
+        //    int rnd = Random.Range(0, prefabs.Length);
+        //    ShardContainer container = Instantiate(prefabs[rnd], transform.position, transform.rotation);
 
-            Vector3 direction = transform.position - attackingWeapon.owner.Position();
-            container.Blast(direction * 2);
-        }
+        //    Vector3 direction = transform.position - attackingWeapon.owner.Position();
+        //    container.Blast(direction * 2);
+        //}
         base.Dead(attackingWeapon);
         owner.Dead();
     }
