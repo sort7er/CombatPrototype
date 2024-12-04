@@ -10,7 +10,7 @@ namespace PlayerSM
 
             ResetValuesAttack();
 
-            Attack attack = archetype.parryAttack[player.currentPerfectParry];
+            Attack attack = archetype.followUpAttacks[player.currentPerfectParry];
 
             player.SetAttack(attack);
             player.InvokeMethod(EndAttack, attack.duration);

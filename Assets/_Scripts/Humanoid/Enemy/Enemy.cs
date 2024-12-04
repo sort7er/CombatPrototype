@@ -71,6 +71,8 @@ namespace EnemyAI
         public bool justCut { get; private set; }
         public Vector3 planeNormal { get; private set; }
 
+        public int currentPerfectParry { get; private set; }
+
 
 
         #region Setup
@@ -173,6 +175,18 @@ namespace EnemyAI
         #endregion
 
         #region Called from the state machine
+
+        public void SetCurrentPerfectParry()
+        {
+            if (currentPerfectParry == 0)
+            {
+                currentPerfectParry = currentWeapon.archetype.enemyPerfectParrys.Length - 1;
+            }
+            else
+            {
+                currentPerfectParry = 0;
+            }
+        }
         public void SetNextParryState(EnemyState enemyState)
         {
             nextParryState = enemyState;

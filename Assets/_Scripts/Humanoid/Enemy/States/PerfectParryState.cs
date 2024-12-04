@@ -8,6 +8,8 @@ namespace EnemyAI
         public override void Enter(Enemy enemy)
         {
             base.Enter(enemy);
+      
+            enemy.SetCurrentPerfectParry();
             enemyBehaviour.PerfectParryEnter();
             enemy.SetNextParryState(parryState);
             DoPerfectParry();
@@ -15,7 +17,7 @@ namespace EnemyAI
 
         private void DoPerfectParry()
         {
-            Attack perfectParryAnim = currentWeapon.archetype.enemyPerfectParry;
+            Attack perfectParryAnim = currentWeapon.archetype.enemyPerfectParrys[enemy.currentPerfectParry];
 
             StartRotate();
             enemy.InvokeMethod(StopRotate, 0.25f);

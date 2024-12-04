@@ -8,7 +8,7 @@ namespace EnemyAI
         {
             base.Enter(enemy);
 
-            Attack parryAttack = currentWeapon.archetype.enemyParryAttack;
+            Attack parryAttack = currentWeapon.archetype.enemyFollowUpAttacks[enemy.currentPerfectParry];
 
             enemy.SetAttack(parryAttack);
             StartRotate();

@@ -62,7 +62,7 @@ public class Defencive : EnemyBehaviour
     #region Perfect parry state
     public override void PerfectParryEnter()
     {
-        Anim perfectParry = enemy.currentWeapon.archetype.enemyPerfectParry;
+        Attack perfectParry = enemy.currentWeapon.archetype.perfectParry[enemy.currentPerfectParry];
 
         float waitTime = perfectParry.duration * 0.3f;
 
