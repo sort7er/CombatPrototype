@@ -73,6 +73,8 @@ namespace EnemyAI
 
         public int currentPerfectParry { get; private set; }
 
+        private Quaternion startRotation;
+        private float timeElapsed;
 
 
         #region Setup
@@ -266,6 +268,29 @@ namespace EnemyAI
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             Quaternion slerpedRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSlerp);
             SetRotation(slerpedRotation);
+        }
+
+        public void SetStartRotation(Quaternion startRot)
+        {
+            startRotation = startRot;
+            timeElapsed = 0;
+        }
+
+        public void RotateToTarget(Vector3 lookAtTarget, Vector3 forwardTarget, float duration)
+        {
+            // This is here because to set the targets
+            SetLookAtAndForward(lookAtTarget, forwardTarget);
+            Vector3 alteredPlayerPos = new Vector3(lookAtTarget.x, transform.position.y, lookAtTarget.z);
+            Vector3 targetDirection = alteredPlayerPos - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+            if (timeElapsed < duration)
+            {
+
+                float t = timeElapsed / duration;
+                SetRotation(Quaternion.Slerp(startRotation, targetRotation, t));
+                timeElapsed += Time.deltaTime;
+            }
         }
         public void SetLookAtAndForward(Vector3 lookAtTarget, Vector3 forwardTarget)
         {

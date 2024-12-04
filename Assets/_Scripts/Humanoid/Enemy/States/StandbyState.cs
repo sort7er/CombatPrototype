@@ -27,7 +27,7 @@ namespace EnemyAI
             if (turn)
             {
                 // Actuall turning
-                enemy.RotateToTarget(enemy.target.Position(), enemy.target.Position());
+                enemy.RotateToTarget(enemy.target.Position(), enemy.target.Position(), currentWeapon.archetype.enemyStandbyTurnRight.duration);
             }
             else
             {
@@ -70,6 +70,7 @@ namespace EnemyAI
         private void StartTurn(Anim turnAnim)
         {
             turn = true;
+            enemy.SetStartRotation(enemy.Rotation());
             enemy.StopMethod();
             enemy.SetAnimation(turnAnim);
             enemy.InvokeMethod(EndTurn, turnAnim.duration);
